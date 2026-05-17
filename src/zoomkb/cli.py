@@ -11,7 +11,7 @@ from typing import List, Optional
 from zoomkb.classifier import classify_relevance
 from zoomkb.crawler import crawl_article
 from zoomkb.discover import discover_articles
-from zoomkb.ingest import ingest_articles
+from zoomkb.ingest import commit_extraction, dry_run_ingest, prepare_extraction_queue
 from zoomkb.manifest import add_article, init_manifest, load_manifest, save_manifest
 from zoomkb.lint import lint, write_lint_report
 from zoomkb.validator import check_duplicates
@@ -123,7 +123,13 @@ def cmd_crawl(args: argparse.Namespace) -> int:
 
 
 def cmd_ingest(args: argparse.Namespace) -> int:
-    """Ingest accepted raw articles into wiki."""
+    """Ingest accepted raw articles into wiki.
+
+    Pipeline:
+      1. --prepare: write extraction prompt files
+      2. Claude Code processes prompts → .result.json files
+      3. --commit: read results, write wiki pages, update manifest
+    """
     output = Path(args.output)
     manifest_path = output / "manifest.json"
     raw_dir = output / "raw" / "support-articles"
@@ -133,35 +139,67 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         logger.error("Manifest not found. Run 'zoomkb init' first.")
         return 1
 
-    manifest = load_manifest(manifest_path)
-    product = manifest.get("product", "zoom-phone")
-
-    stats = ingest_articles(
-        manifest_path=manifest_path,
-        raw_dir=raw_dir,
-        wiki_dir=wiki_dir,
-        product=product,
-        force=args.force,
-        dry_run=args.dry_run,
-        article_ids=args.article_ids or None,
-    )
-
-    if stats.get("dry_run"):
-        print(f"\nDry run — would ingest {len(stats['candidates'])} articles:")
+    # Dry run mode
+    if args.dry_run:
+        stats = dry_run_ingest(
+            manifest_path=manifest_path,
+            raw_dir=raw_dir,
+            force=args.force,
+            article_ids=args.article_ids or None,
+        )
+        print(f"\nDry run — would prepare {stats['total']} articles for extraction:")
         for aid in stats["candidates"]:
             print(f"  - {aid}")
+        if stats["missing_raw_files"]:
+            print(f"\nWarning: {stats['missing_raw_files']} articles have missing raw files")
         print(f"\nWiki output would go to: {wiki_dir}")
         return 0
 
-    print(f"\nIngest complete:")
-    print(f"  Articles processed: {stats['processed']}")
-    print(f"  Entities created: {stats['entities_created']}")
-    print(f"  Entities updated: {stats['entities_updated']}")
-    print(f"  Errors: {stats['errors']}")
-    print(f"  Skipped: {stats['skipped']}")
-    print(f"\nWiki output: {wiki_dir}")
+    # Prepare mode: write extraction prompts
+    if args.prepare:
+        manifest = load_manifest(manifest_path)
 
-    return 0 if stats["errors"] == 0 else 1
+        qm = prepare_extraction_queue(
+            manifest_path=manifest_path,
+            raw_dir=raw_dir,
+            force=args.force,
+            article_ids=args.article_ids or None,
+        )
+
+        print(f"\nExtraction queue prepared:")
+        print(f"  Articles ready: {qm['total']}")
+        print(f"  Skipped (already ingested): {qm['skipped_ingested']}")
+        print(f"  Skipped (missing raw file): {qm['skipped_missing']}")
+        print(f"\nNext step: Claude Code processes prompts in extraction-queue/")
+        print(f"  For each .prompt.md file, extract entities and save as .result.json")
+        print(f"  Then run: zoomkb ingest --output {args.output} --commit")
+        return 0
+
+    # Commit mode: read results, write wiki pages
+    if args.commit:
+        manifest = load_manifest(manifest_path)
+        product = manifest.get("product", "zoom-phone")
+
+        stats = commit_extraction(
+            manifest_path=manifest_path,
+            raw_dir=raw_dir,
+            wiki_dir=wiki_dir,
+            product=product,
+        )
+
+        print(f"\nIngest commit complete:")
+        print(f"  Articles processed: {stats['processed']}")
+        print(f"  Entities created: {stats['entities_created']}")
+        print(f"  Entities updated: {stats['entities_updated']}")
+        print(f"  Errors: {stats['errors']}")
+        print(f"  Skipped: {stats['skipped']}")
+        print(f"\nWiki output: {wiki_dir}")
+
+        return 0 if stats["errors"] == 0 else 1
+
+    # No mode specified
+    logger.error("Specify --prepare, --commit, or --dry-run.")
+    return 1
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
@@ -323,7 +361,7 @@ def cmd_build(args: argparse.Namespace) -> int:
     if rc != 0:
         print("validate had issues — continuing.")
 
-    # Step 5: ingest
+    # Step 5: ingest (prepare extraction prompts)
     print("\n[5/6] ingest...")
     if args.dry_run:
         print("Skipping ingest (dry-run mode).")
@@ -333,9 +371,18 @@ def cmd_build(args: argparse.Namespace) -> int:
         ing_args.func = None
         ing_args.force = args.force
         ing_args.article_ids = None
+
+        # Prepare extraction prompts
+        ing_args.prepare = True
         rc = cmd_ingest(ing_args)
+
+        # Try commit (results may or may not exist)
+        if rc == 0:
+            ing_args.prepare = False
+            ing_args.commit = True
+            rc = cmd_ingest(ing_args)
         if rc != 0:
-            print("ingest had errors — continuing with lint.")
+            print("ingest: extraction prompts prepared. Use Claude Code to process them, then re-run with --commit.")
 
     # Step 6: lint
     print("\n[6/6] lint...")
@@ -384,11 +431,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_val.set_defaults(func=cmd_validate)
 
     # ingest
-    p_ing = sub.add_parser("ingest", help="Ingest raw articles into wiki")
+    p_ing = sub.add_parser("ingest", help="Ingest raw articles into wiki (prepare → Claude extract → commit)")
     p_ing.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
-    p_ing.add_argument("--force", action="store_true", help="Re-ingest already processed articles")
-    p_ing.add_argument("--dry-run", action="store_true", help="Preview what would be ingested without calling LLM")
-    p_ing.add_argument("--article-ids", nargs="+", help="Ingest specific articles by ID")
+    p_ing.add_argument("--prepare", action="store_true", help="Step 1: write extraction prompt files to extraction-queue/")
+    p_ing.add_argument("--commit", action="store_true", help="Step 3: read .result.json files and write wiki pages")
+    p_ing.add_argument("--force", action="store_true", help="Re-process already ingested articles")
+    p_ing.add_argument("--dry-run", action="store_true", help="Preview what would be prepared")
+    p_ing.add_argument("--article-ids", nargs="+", help="Process specific articles by ID")
     p_ing.set_defaults(func=cmd_ingest)
 
     # lint

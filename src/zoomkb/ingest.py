@@ -1,8 +1,13 @@
-"""Ingest raw markdown articles into structured wiki pages."""
+"""Ingest raw markdown articles into structured wiki pages.
+
+Pipeline:
+  1. prepare  — writes extraction prompt files to extraction-queue/
+  2. extract  — Claude Code processes prompts → writes .result.json files
+  3. commit   — reads results, writes wiki pages, updates manifest
+"""
 
 import json
 import logging
-import os
 import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -30,16 +35,8 @@ class IngestResult:
     error: Optional[str] = None
 
 
-_INGEST_PROMPT = """You are a knowledge extraction engine. Analyze the following Zoom Support article and extract structured entities for a design-facing wiki.
-
-Product: {product}
-Article ID: {article_id}
-Title: {title}
-
-Article content:
-{content}
-
-Extract the following entity types. For each entity, provide a concise, design-facing summary focused on UX implications, not implementation details.
+_EXTRACTION_SYSTEM = """You are a knowledge extraction engine for Zoom product support articles.
+Analyze the article and extract structured entities for a design-facing wiki.
 
 Entity types:
 - concept: Product concepts, features, or objects designers need to understand
@@ -48,51 +45,24 @@ Entity types:
 - constraint: Design constraints, limitations, or rules
 - ux-pattern: Reusable interaction patterns or design decisions
 
-Respond with JSON only:
-{{
-  "concepts": [
-    {{
-      "title": "Human-readable title",
-      "summary": "2-3 sentences for designers",
-      "key_points": ["bullet 1", "bullet 2"],
-      "related": ["slug-of-related-entity"]
-    }}
-  ],
-  "user_roles": [...],
-  "task_flows": [...],
-  "constraints": [...],
-  "ux_patterns": [...]
-}}
+For each entity provide:
+- title: Human-readable title
+- summary: 2-3 sentences for designers, focused on UX implications
+- key_points: list of 2-5 bullet points
+- related: list of related entity slugs in kebab-case (may be empty)
 
 Rules:
-- Only extract entities actually mentioned in the article. Do not hallucinate.
-- Keep summaries brief and focused on UX/design implications.
-- Use kebab-case for related slugs (derived from title).
-- If an entity type has no matches, return an empty array.
-"""
+- Only extract entities actually mentioned in the article
+- Keep summaries focused on UX/design implications, not implementation
+- Use kebab-case for related slugs
+- Empty array if no matches for an entity type"""
 
 
 def _slugify(title: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:80]
 
 
-def _extract_frontmatter(content: str) -> tuple[dict[str, Any], str]:
-    """Parse YAML frontmatter from markdown. Returns (frontmatter dict, body)."""
-    if not content.startswith("---"):
-        return {}, content
-    parts = content.split("---", 2)
-    if len(parts) < 3:
-        return {}, content
-    try:
-        import yaml
-        fm = yaml.safe_load(parts[1].strip())
-        return fm if isinstance(fm, dict) else {}, parts[2].strip()
-    except Exception:
-        return {}, content
-
-
 def _extract_frontmatter_manual(content: str) -> tuple[dict[str, Any], str]:
-    """Parse simple key:value frontmatter without yaml dependency."""
     if not content.startswith("---"):
         return {}, content
     parts = content.split("---", 2)
@@ -106,40 +76,145 @@ def _extract_frontmatter_manual(content: str) -> tuple[dict[str, Any], str]:
     return fm, parts[2].strip()
 
 
-def _call_llm(prompt: str) -> dict[str, Any]:
-    """Call OpenAI API for entity extraction."""
-    try:
-        import openai
-
-        client = openai.OpenAI()
-        resp = client.chat.completions.create(
-            model=os.getenv("ZOOMKB_LLM_MODEL", "gpt-4o-mini"),
-            messages=[{"role": "user", "content": prompt}],
-            response_format={"type": "json_object"},
-            temperature=0,
-        )
-        return json.loads(resp.choices[0].message.content)
-    except Exception as e:
-        raise RuntimeError(f"LLM call failed: {e}") from e
+def _resolve_raw_path(article: dict, raw_dir: Path) -> Optional[Path]:
+    """Resolve article's raw markdown file path."""
+    local = article.get("local_path", "")
+    if local:
+        # local_path is relative to output dir, e.g. raw/support-articles/KB...md
+        raw_path = raw_dir.parent.parent / local
+        if raw_path.exists():
+            return raw_path
+    # Fallback: search by article_id in raw dir
+    aid = article["article_id"]
+    for f in raw_dir.glob(f"{aid}*.md"):
+        return f
+    return None
 
 
-def extract_entities(raw_path: Path, product: str) -> IngestResult:
-    """Extract wiki entities from a single raw markdown article."""
-    content = raw_path.read_text(encoding="utf-8")
-    fm, body = _extract_frontmatter_manual(content)
+# ── Prepare: write extraction prompts ──────────────────────────────
 
-    article_id = fm.get("article_id", raw_path.stem.split("-")[0])
-    title = fm.get("title", raw_path.stem)
-    source_url = fm.get("source_url", "")
+def prepare_extraction_queue(
+    manifest_path: Path,
+    raw_dir: Path,
+    force: bool = False,
+    article_ids: Optional[List[str]] = None,
+) -> dict:
+    """Write extraction prompt files for pending articles.
 
-    prompt = _INGEST_PROMPT.format(
-        product=product,
-        article_id=article_id,
-        title=title,
-        content=body[:8000],  # Truncate to stay within context limits
+    Creates: <output>/extraction-queue/<article_id>.prompt.md
+    Returns stats dict.
+    """
+    from zoomkb.manifest import load_manifest
+
+    manifest = load_manifest(manifest_path)
+    articles = manifest.get("articles", [])
+
+    # Filter: high-confidence accepted only
+    candidates = [
+        a for a in articles
+        if a.get("status") == "accepted" and a.get("confidence") == "high"
+    ]
+    if article_ids:
+        candidates = [a for a in candidates if a["article_id"] in article_ids]
+
+    # Skip already ingested unless force
+    skipped_ingested = 0
+    if not force:
+        pending = []
+        for a in candidates:
+            if "ingested_at" in a and a.get("content_hash") == a.get("last_ingested_hash"):
+                skipped_ingested += 1
+            else:
+                pending.append(a)
+        candidates = pending
+
+    output_dir = manifest_path.parent
+    queue_dir = output_dir / "extraction-queue"
+    queue_dir.mkdir(parents=True, exist_ok=True)
+
+    prepared = 0
+    skipped_missing = 0
+
+    for article in candidates:
+        raw_path = _resolve_raw_path(article, raw_dir)
+        if not raw_path:
+            logger.warning("Raw file not found for %s", article["article_id"])
+            skipped_missing += 1
+            continue
+
+        content = raw_path.read_text(encoding="utf-8")
+        fm, body = _extract_frontmatter_manual(content)
+        title = fm.get("title", article.get("title", article["article_id"]))
+        source_url = fm.get("source_url", article.get("source_url", ""))
+
+        # Truncate body to ~6000 chars for context efficiency
+        body_truncated = body[:6000]
+
+        prompt_file = queue_dir / f"{article['article_id']}.prompt.md"
+        prompt_content = f"""# Extraction Task: {article['article_id']}
+
+**Product**: zoom-phone
+**Article ID**: {article['article_id']}
+**Title**: {title}
+**Source URL**: {source_url}
+
+## Instructions
+
+{_EXTRACTION_SYSTEM}
+
+## Article Content
+
+{body_truncated}
+
+---
+
+Output your extraction as valid JSON matching this schema:
+
+```json
+{{
+  "article_id": "{article['article_id']}",
+  "concepts": [
+    {{"title": "...", "summary": "...", "key_points": ["..."], "related": ["..."]}}
+  ],
+  "user_roles": [...],
+  "task_flows": [...],
+  "constraints": [...],
+  "ux_patterns": [...]
+}}
+```
+"""
+        prompt_file.write_text(prompt_content, encoding="utf-8")
+        prepared += 1
+
+    # Write queue manifest
+    queue_manifest = {
+        "total": prepared,
+        "skipped_ingested": skipped_ingested,
+        "skipped_missing": skipped_missing,
+        "article_ids": [a["article_id"] for a in candidates if _resolve_raw_path(a, raw_dir)],
+    }
+    (queue_dir / "queue-manifest.json").write_text(
+        json.dumps(queue_manifest, indent=2), encoding="utf-8"
     )
 
-    data = _call_llm(prompt)
+    logger.info(
+        "Prepared %d extraction prompts (skipped: %d ingested, %d missing)",
+        prepared, skipped_ingested, skipped_missing,
+    )
+
+    return queue_manifest
+
+
+# ── Parse: read Claude extraction result ────────────────────────────
+
+def parse_extraction_result(
+    result_path: Path,
+    article_id: str,
+    title: str = "",
+    source_url: str = "",
+) -> IngestResult:
+    """Parse a .result.json file into WikiEntities."""
+    data = json.loads(result_path.read_text(encoding="utf-8"))
 
     entities: list[WikiEntity] = []
     source = {"article_id": article_id, "title": title, "source_url": source_url}
@@ -154,6 +229,8 @@ def extract_entities(raw_path: Path, product: str) -> IngestResult:
 
     for key, etype in type_map.items():
         for item in data.get(key, []):
+            if not item.get("title"):
+                continue
             entities.append(
                 WikiEntity(
                     type=etype,
@@ -169,20 +246,30 @@ def extract_entities(raw_path: Path, product: str) -> IngestResult:
     return IngestResult(article_id=article_id, entities=entities)
 
 
-def _write_wiki_page(entity: WikiEntity, wiki_dir: Path) -> Path:
-    """Write or merge a wiki page for an entity."""
-    subdir = wiki_dir / entity.type.replace("-", "-")  # concepts, user-roles, etc.
+# ── Commit: write wiki pages from results ──────────────────────────
+
+def _write_wiki_page(entity: WikiEntity, wiki_dir: Path) -> tuple[Path, bool]:
+    """Write or merge a wiki page. Returns (path, is_new)."""
+    type_dir_map = {
+        "concept": "concepts",
+        "user-role": "user-roles",
+        "task-flow": "task-flows",
+        "constraint": "constraints",
+        "ux-pattern": "ux-patterns",
+    }
+    subdir = wiki_dir / type_dir_map.get(entity.type, entity.type + "s")
     subdir.mkdir(parents=True, exist_ok=True)
     path = subdir / f"{entity.slug}.md"
 
-    # Merge if page already exists
+    is_new = not path.exists()
+
     existing_entities: list[WikiEntity] = []
     if path.exists():
         existing = _read_wiki_page(path)
         if existing:
             existing_entities.append(existing)
 
-    # Simple merge: append new source, keep longer summary
+    # Merge: append new sources, keep longer summary
     merged_sources = entity.sources.copy()
     merged_summary = entity.summary
     merged_points = list(entity.key_points)
@@ -207,7 +294,6 @@ def _write_wiki_page(entity: WikiEntity, wiki_dir: Path) -> Path:
     )
 
     related_links = "\n".join(f"- [[{r}]]" for r in related) if related else "_None yet_"
-
     key_points_md = "\n".join(f"- {p}" for p in merged_points) if merged_points else "_None yet_"
 
     page = f"""---
@@ -236,7 +322,7 @@ last_reviewed: {today}
 """
 
     path.write_text(page, encoding="utf-8")
-    return path
+    return path, is_new
 
 
 def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
@@ -247,7 +333,6 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
     etype = fm.get("type", "concept")
     title = fm.get("title", path.stem)
 
-    # Parse sources from frontmatter text
     sources: list[dict[str, str]] = []
     in_sources = False
     current: dict[str, str] = {}
@@ -271,7 +356,6 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
                     sources.append(current)
                 break
 
-    # Extract summary
     summary = ""
     lines = body.split("\n")
     in_summary = False
@@ -284,7 +368,6 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
                 break
             summary += line + " "
 
-    # Extract key points
     key_points: list[str] = []
     in_points = False
     for line in lines:
@@ -297,7 +380,6 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
             if line.strip().startswith("- "):
                 key_points.append(line[2:].strip())
 
-    # Extract related
     related: list[str] = []
     in_related = False
     for line in lines:
@@ -322,47 +404,35 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
     )
 
 
-def ingest_articles(
+def commit_extraction(
     manifest_path: Path,
     raw_dir: Path,
     wiki_dir: Path,
     product: str = "zoom-phone",
-    force: bool = False,
-    dry_run: bool = False,
-    article_ids: Optional[List[str]] = None,
-) -> dict[str, Any]:
-    """Ingest raw articles into wiki. Returns stats dict."""
+) -> dict:
+    """Read extraction results and write wiki pages.
+
+    Expects <output>/extraction-queue/<article_id>.result.json files.
+    Updates manifest with ingested_at timestamps.
+    """
     from zoomkb.manifest import load_manifest, save_manifest
 
+    output_dir = manifest_path.parent
+    queue_dir = output_dir / "extraction-queue"
+
+    if not queue_dir.exists():
+        logger.error("extraction-queue/ not found. Run 'zoomkb ingest --prepare' first.")
+        return {"processed": 0, "entities_created": 0, "entities_updated": 0, "errors": 1, "skipped": 0}
+
     manifest = load_manifest(manifest_path)
-    articles = manifest.get("articles", [])
 
-    # Filter to accepted articles
-    candidates = [
-        a for a in articles
-        if a.get("status") == "accepted" and a.get("confidence") == "high"
-    ]
-
-    if article_ids:
-        candidates = [a for a in candidates if a["article_id"] in article_ids]
-
-    # Skip already ingested unless force
-    if not force:
-        candidates = [
-            a for a in candidates
-            if "ingested_at" not in a or a.get("content_hash") != a.get("last_ingested_hash")
-        ]
-
-    if dry_run:
-        return {
-            "dry_run": True,
-            "candidates": [a["article_id"] for a in candidates],
-            "processed": 0,
-            "entities_created": 0,
-            "entities_updated": 0,
-            "errors": 0,
-            "skipped": 0,
-        }
+    # Read queue manifest to know what was prepared
+    qm_path = queue_dir / "queue-manifest.json"
+    if qm_path.exists():
+        queue_manifest = json.loads(qm_path.read_text(encoding="utf-8"))
+        pending_ids = set(queue_manifest.get("article_ids", []))
+    else:
+        pending_ids = set()
 
     stats = {
         "processed": 0,
@@ -376,45 +446,109 @@ def ingest_articles(
     processed_articles: list[str] = []
     error_articles: list[tuple[str, str]] = []
 
-    for article in candidates:
-        raw_path = raw_dir.parent.parent / article.get("local_path", f"raw/support-articles/{article['filename']}")
-        if not raw_path.exists():
-            logger.warning("Raw file not found: %s", raw_path)
-            stats["skipped"] += 1
+    # Build lookup for article metadata
+    article_lookup: dict[str, dict] = {}
+    for a in manifest.get("articles", []):
+        article_lookup[a["article_id"]] = a
+
+    for result_file in sorted(queue_dir.glob("*.result.json")):
+        article_id = result_file.stem.replace(".result", "")
+
+        if pending_ids and article_id not in pending_ids:
             continue
 
+        article = article_lookup.get(article_id, {})
+        raw_path = None
+        title = article.get("title", article_id)
+        source_url = article.get("source_url", "")
+
+        # Try to read title/source_url from raw file
+        raw_candidates = list(raw_dir.glob(f"{article_id}*.md"))
+        if raw_candidates:
+            raw_path = raw_candidates[0]
+            fm, _ = _extract_frontmatter_manual(raw_path.read_text(encoding="utf-8"))
+            title = fm.get("title", title)
+            source_url = fm.get("source_url", source_url)
+
         try:
-            result = extract_entities(raw_path, product)
+            result = parse_extraction_result(result_file, article_id, title, source_url)
 
             for entity in result.entities:
-                path = _write_wiki_page(entity, wiki_dir)
-                if path in entity_paths:
-                    stats["entities_updated"] += 1
-                else:
+                path, is_new = _write_wiki_page(entity, wiki_dir)
+                if is_new:
                     stats["entities_created"] += 1
                     entity_paths.add(path)
+                else:
+                    stats["entities_updated"] += 1
 
-            # Mark as ingested
-            article["ingested_at"] = datetime.now(timezone.utc).isoformat()
-            article["last_ingested_hash"] = article.get("content_hash", "")
+            # Mark as ingested in manifest
+            if article_id in article_lookup:
+                article_lookup[article_id]["ingested_at"] = datetime.now(timezone.utc).isoformat()
+                article_lookup[article_id]["last_ingested_hash"] = article_lookup[article_id].get("content_hash", "")
+
             stats["processed"] += 1
-            processed_articles.append(article["article_id"])
+            processed_articles.append(article_id)
 
         except Exception as e:
-            logger.error("Ingest failed for %s: %s", article["article_id"], e)
+            logger.error("Commit failed for %s: %s", article_id, e)
             stats["errors"] += 1
-            error_articles.append((article["article_id"], str(e)))
+            error_articles.append((article_id, str(e)))
 
+    # Count unprocessed as skipped
+    if pending_ids:
+        processed_set = set(processed_articles)
+        stats["skipped"] = len(pending_ids - processed_set)
+
+    manifest["articles"] = list(article_lookup.values())
     save_manifest(manifest_path, manifest)
 
     # Generate index.md
     _generate_index(wiki_dir, product)
 
     # Generate ingest-report.md
-    _write_ingest_report(manifest_path.parent, stats, processed_articles, error_articles)
+    _write_ingest_report(output_dir, stats, processed_articles, error_articles)
 
     return stats
 
+
+# ── Dry run ────────────────────────────────────────────────────────
+
+def dry_run_ingest(
+    manifest_path: Path,
+    raw_dir: Path,
+    force: bool = False,
+    article_ids: Optional[List[str]] = None,
+) -> dict:
+    """Preview what would be processed."""
+    from zoomkb.manifest import load_manifest
+
+    manifest = load_manifest(manifest_path)
+    articles = manifest.get("articles", [])
+
+    candidates = [
+        a for a in articles
+        if a.get("status") == "accepted" and a.get("confidence") == "high"
+    ]
+    if article_ids:
+        candidates = [a for a in candidates if a["article_id"] in article_ids]
+
+    if not force:
+        candidates = [
+            a for a in candidates
+            if "ingested_at" not in a or a.get("content_hash") != a.get("last_ingested_hash")
+        ]
+
+    missing = sum(1 for a in candidates if not _resolve_raw_path(a, raw_dir))
+
+    return {
+        "dry_run": True,
+        "candidates": [a["article_id"] for a in candidates],
+        "total": len(candidates),
+        "missing_raw_files": missing,
+    }
+
+
+# ── Report & Index generation ──────────────────────────────────────
 
 def _write_ingest_report(
     output_dir: Path,
@@ -422,7 +556,6 @@ def _write_ingest_report(
     processed: list[str],
     errors: list[tuple[str, str]],
 ) -> None:
-    """Write ingest-report.md."""
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     lines = [
         "# Ingest Report",
@@ -458,7 +591,6 @@ def _write_ingest_report(
 
 
 def _generate_index(wiki_dir: Path, product: str) -> None:
-    """Generate wiki/index.md from all wiki pages."""
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     sections: dict[str, list[tuple[str, str]]] = {

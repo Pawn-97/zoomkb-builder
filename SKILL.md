@@ -71,12 +71,14 @@ Checks frontmatter, content quality, dedup. Optional reclassification with `--re
 
 ### `/zoomkb:ingest` — Generate wiki pages via LLM
 
-Reads high-confidence raw articles, calls LLM to extract design-facing entities (concepts, user-roles, task-flows, constraints, UX-patterns).
+Reads high-confidence raw articles, calls LLM to extract design-facing entities (concepts, user-roles, task-flows, constraints, UX-patterns). Entities are deduplicated by normalized slug (trailing 's' and common suffixes merged). Use `--min-sources` to filter out thin single-source stubs.
 
 ```
-/zoomkb:ingest --dry-run          # Preview what would be ingested
-/zoomkb:ingest --force             # Re-ingest all accepted articles
+/zoomkb:ingest --dry-run              # Preview what would be ingested
+/zoomkb:ingest --force                # Re-ingest all accepted articles
 /zoomkb:ingest --article-ids KB0060257 KB0069655  # Specific articles only
+/zoomkb:ingest --commit --min-sources 3  # Only entities backed by ≥ 3 sources
+/zoomkb:ingest --prepare --min-sources 2 --force
 ```
 
 Requires `pip install zoomkb[llm]` and `OPENAI_API_KEY` environment variable.

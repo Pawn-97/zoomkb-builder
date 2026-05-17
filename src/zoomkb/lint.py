@@ -210,6 +210,8 @@ def _check_freshness(
             if last_reviewed:
                 try:
                     reviewed_date = datetime.fromisoformat(last_reviewed)
+                    if reviewed_date.tzinfo is None:
+                        reviewed_date = reviewed_date.replace(tzinfo=timezone.utc)
                     if reviewed_date < cutoff:
                         stale_count += 1
                 except ValueError:

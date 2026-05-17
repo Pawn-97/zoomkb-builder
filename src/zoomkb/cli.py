@@ -146,13 +146,15 @@ def cmd_ingest(args: argparse.Namespace) -> int:
             raw_dir=raw_dir,
             force=args.force,
             article_ids=args.article_ids or None,
+            min_sources=args.min_sources,
         )
         print(f"\nDry run — would prepare {stats['total']} articles for extraction:")
         for aid in stats["candidates"]:
             print(f"  - {aid}")
         if stats["missing_raw_files"]:
             print(f"\nWarning: {stats['missing_raw_files']} articles have missing raw files")
-        print(f"\nWiki output would go to: {wiki_dir}")
+        print(f"\nMin sources filter: {stats['min_sources']}")
+        print(f"Wiki output would go to: {wiki_dir}")
         return 0
 
     # Prepare mode: write extraction prompts
@@ -172,7 +174,7 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         print(f"  Skipped (missing raw file): {qm['skipped_missing']}")
         print(f"\nNext step: Claude Code processes prompts in extraction-queue/")
         print(f"  For each .prompt.md file, extract entities and save as .result.json")
-        print(f"  Then run: zoomkb ingest --output {args.output} --commit")
+        print(f"  Then run: zoomkb ingest --output {args.output} --commit --min-sources {args.min_sources}")
         return 0
 
     # Commit mode: read results, write wiki pages
@@ -185,12 +187,17 @@ def cmd_ingest(args: argparse.Namespace) -> int:
             raw_dir=raw_dir,
             wiki_dir=wiki_dir,
             product=product,
+            min_sources=args.min_sources,
+            min_quality=args.min_quality,
         )
 
         print(f"\nIngest commit complete:")
         print(f"  Articles processed: {stats['processed']}")
         print(f"  Entities created: {stats['entities_created']}")
         print(f"  Entities updated: {stats['entities_updated']}")
+        print(f"  Entities deduped: {stats.get('entities_deduped', 0)}")
+        filter_reason = f"sources < {args.min_sources} or quality < {args.min_quality}"
+        print(f"  Entities filtered ({filter_reason}): {stats.get('entities_filtered', 0)}")
         print(f"  Errors: {stats['errors']}")
         print(f"  Skipped: {stats['skipped']}")
         print(f"\nWiki output: {wiki_dir}")
@@ -438,6 +445,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_ing.add_argument("--force", action="store_true", help="Re-process already ingested articles")
     p_ing.add_argument("--dry-run", action="store_true", help="Preview what would be prepared")
     p_ing.add_argument("--article-ids", nargs="+", help="Process specific articles by ID")
+    p_ing.add_argument("--min-sources", type=int, default=2, help="Minimum source articles per wiki entity (default: 2)")
+    p_ing.add_argument("--min-quality", type=float, default=20.0, help="Minimum entity quality score 0-100 (default: 20)")
     p_ing.set_defaults(func=cmd_ingest)
 
     # lint
@@ -464,6 +473,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_build.add_argument("--strict", action="store_true", help="Exit non-zero on lint issues")
     p_build.add_argument("--skip-discover", action="store_true", help="Skip discovery, use existing candidate URLs")
     p_build.add_argument("--skip-crawl", action="store_true", help="Skip crawl, use existing raw articles")
+    p_build.add_argument("--min-sources", type=int, default=2, help="Minimum source articles per wiki entity (default: 2)")
+    p_build.add_argument("--min-quality", type=float, default=20.0, help="Minimum entity quality score 0-100 (default: 20)")
     p_build.set_defaults(func=cmd_build)
 
     args = parser.parse_args(argv)

@@ -1,278 +1,119 @@
 ---
 name: zoomkb
-description: Build structured, traceable, design-facing knowledge bases from Zoom Support Center articles. Use when designers want to generate a UX KB for a Zoom product line (Zoom Phone, Zoom Contact Center, etc.).
+description: Build structured, traceable, design-facing knowledge bases from Zoom Support Center articles. Use when designers request a UX KB, support article extraction, knowledge base generation, or domain research for Zoom products (Zoom Phone, Zoom Contact Center, Zoom Clips, Zoom Meetings, Zoom Rooms, Shared Zoom Platform).
+license: MIT
+compatibility: Requires Python 3.9+, network access to support.zoom.com
 ---
 
 # Zoom Support KB Builder
 
-Build a structured, design-facing knowledge base from official Zoom Support articles. Produces a "wiki layer" with concept pages, user-role descriptions, task-flows, constraints, and UX patterns — all sourced from raw support articles but transformed into design knowledge by an LLM.
+Build a "wiki layer" from official Zoom Support articles — concept pages, user-role descriptions, task-flows, constraints, and UX patterns. All sourced from raw support articles, transformed into design knowledge by you (the LLM).
 
-## Pipeline
-
-```
-sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → validate → ingest-prepare → Claude Code extract → ingest-commit → lint
-```
-
-## Commands
-
-### `/zoomkb:build` — One-shot full pipeline
-
-Runs the entire pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint.
-
-**Extract step** (step 6) is handled by Claude Code: it reads `extraction-queue/*.prompt.md` files, extracts entities, and writes `extraction-queue/*.result.json` files. No external API required.
+## Quick start
 
 ```
 /zoomkb:build --product "Zoom Phone"
 ```
 
-Options:
-- `--product` — Target product (default: "Zoom Phone")
-- `--output` — KB output directory (default: "./zoom-phone-kb")
-- `--max-candidates N` — Limit discovery to N candidates
-- `--urls URL1 URL2` — Bypass discovery, crawl specific URLs
-- `--url-file path.txt` — Bypass discovery, crawl URLs from file
-- `--dry-run` — Preview without LLM ingest
-- `--force` — Re-ingest already processed articles
-- `--skip-discover` — Skip discovery (use existing candidates)
-- `--skip-crawl` — Skip crawl (use existing raw articles)
-- `--fetch-titles` — Enable title-based filtering in discovery
-- `--locale en` — Language filter (default: en)
-- `--min-sources N` — Minimum source articles per wiki entity (default: 2)
-- `--min-quality N` — Minimum entity quality score 0-100 (default: 20)
+This runs the full pipeline end-to-end. For a complete list of commands and options, see [references/cli-reference.md](references/cli-reference.md).
 
-### `/zoomkb:build-all` — Initialize all product KBs
-
-Creates KB directory structures for all supported Zoom product lines in one shot.
+## Pipeline
 
 ```
-/zoomkb:build-all
+sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → validate → ingest-prepare → extract → ingest-commit → lint
 ```
 
-This initializes KBs for: Zoom Phone, Zoom Contact Center, Zoom Clips, Zoom Meetings, Zoom Rooms, and Shared Zoom Platform. Each product gets its own directory (e.g., `./zoom-phone-kb/`, `./zoom-contact-center-kb/`, etc.).
+## How to run each step
 
-After `build-all`, run `/zoomkb:build --product "Zoom Phone"` (or any other product) to run the full pipeline for that product line.
+### 1. Init — Create KB directory
 
-### `/zoomkb:init` — Initialize KB directory
+Run `/zoomkb:init --product "Zoom Phone"` via the CLI. Creates the directory structure, manifest.json, and log.
 
-Creates directory structure, manifest.json, log.md, crawl-report.md.
+### 2. Discover — Find candidate articles
 
-```
-/zoomkb:init --product "Zoom Phone" --output "./zoom-phone-kb"
-```
+Run `/zoomkb:discover --product "Zoom Phone"`. Reads robots.txt, follows sitemaps, filters by product-relevance signals. Outputs `candidate-articles.json`.
 
-### `/zoomkb:discover` — Discover candidate articles
+### 3. Crawl — Fetch article content
 
-Reads robots.txt → sitemaps → extracts article URLs → filters by relevance signals.
+Run `/zoomkb:crawl`. Fetches each candidate URL, extracts content via JSON-LD (primary) or Trafilatura (fallback). Writes raw markdown with frontmatter to `raw/support-articles/`.
 
-```
-/zoomkb:discover --product "Zoom Phone" --max-candidates 300
-```
+### 4. Validate — Check article quality
 
-### `/zoomkb:crawl` — Crawl and extract articles
+Run `/zoomkb:validate`. Checks frontmatter completeness, content quality, and deduplication. Articles below the quality threshold move to `review/rejected/`.
 
-Fetches articles (requests + JSON-LD primary, Trafilatura fallback), generates raw markdown with frontmatter.
+### 5. Classify — Score relevance
 
-```
-/zoomkb:crawl --urls "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060257"
-/zoomkb:crawl --url-file candidates.txt
-```
+Rule-based scoring by default (keyword matching, title signals, product mentions). If the user sets `ZOOMKB_LLM_CLASSIFIER=1`, an optional LLM refinement pass runs. See [references/architecture.md](references/architecture.md) for the scoring table.
 
-### `/zoomkb:validate` — Validate raw articles
+### 6. Ingest — Prepare extraction prompts
 
-Checks frontmatter, content quality, dedup. Optional reclassification with `--reclassify`.
+Run `/zoomkb:ingest --prepare`. Groups accepted articles by entity (feature, user role, task, etc.) and writes `.prompt.md` files to `extraction-queue/`. Each prompt asks you to extract structured entities from the grouped source articles.
 
-```
-/zoomkb:validate --reclassify
-```
+### 7. Extract — YOU do this step
 
-### `/zoomkb:ingest` — Prepare and commit wiki pages
+This step is your job. No CLI command — you read and process the files directly:
 
-Three-stage pipeline:
-1. `--prepare` — writes `.prompt.md` files to `extraction-queue/`
-2. Claude Code — reads prompts, extracts entities, writes `.result.json`
-3. `--commit` — reads results, deduplicates, filters by quality, writes wiki pages
+1. Read each `extraction-queue/*.prompt.md` file
+2. For each prompt, analyze the source article content and extract entities (concepts, task-flows, user-roles, constraints, ux-patterns)
+3. Write structured JSON to `extraction-queue/*.result.json`
 
-```
-/zoomkb:ingest --dry-run              # Preview what would be ingested
-/zoomkb:ingest --force                # Re-ingest all accepted articles
-/zoomkb:ingest --article-ids KB0060257 KB0069655  # Specific articles only
-/zoomkb:ingest --commit --min-sources 3  # Only entities backed by ≥ 3 sources
-/zoomkb:ingest --prepare --min-sources 2 --force
+Each result.json should follow this schema:
+```json
+{
+  "entities": [
+    {
+      "type": "concept|task-flow|user-role|constraint|ux-pattern",
+      "title": "Entity title (sentence case)",
+      "description": "Concise description from source articles",
+      "source_article_ids": ["KB0060257"],
+      "quality_score": 85
+    }
+  ]
+}
 ```
 
-### `/zoomkb:extract` — Claude Code entity extraction
+Quality scoring guidelines:
+- **80-100**: Entity backed by 3+ articles with clear, consistent descriptions
+- **50-79**: Entity backed by 1-2 articles, descriptions mostly clear
+- **20-49**: Entity inferred from fragments, low confidence
+- **< 20**: Do not emit — below minimum quality threshold
 
-Not a CLI command. When `/zoomkb:build` reaches the extract step, Claude Code reads each `extraction-queue/*.prompt.md` file, analyzes the article content, and writes structured entity JSON to `extraction-queue/*.result.json`.
+### 8. Commit — Write wiki pages
 
-If running extract standalone (e.g., after adding new raw articles to an existing KB), tell Claude Code:
-```
-Process extraction-queue/*.prompt.md files, write .result.json files
-```
+Run `/zoomkb:ingest --commit`. Reads all `.result.json` files, deduplicates entities across extraction batches, filters by `--min-quality` and `--min-sources`, then writes markdown pages to `wiki/`.
 
-### `/zoomkb:refresh` — Re-crawl and detect changes
+### 9. Lint — Quality check
 
-Re-crawls accepted articles, compares content hashes, and flags changed or stale content for review.
+Run `/zoomkb:lint`. Checks traceability (every wiki claim links to a raw source), coverage (no orphan entities), consistency, freshness, and navigation.
 
-```
-/zoomkb:refresh --output ./zoom-phone-kb
-/zoomkb:refresh --force                 # Force refresh even if recently checked
-/zoomkb:refresh --article-ids KB0060257 # Specific articles only
-/zoomkb:refresh --stale-days 14         # Custom stale threshold
-```
+## Decision rules
 
-Output: refreshes `manifest.json` (updates `last_checked_at`, changed articles move to `status: review`). Generates `refresh-report.md`.
+- **Score >= 8**: Auto-accept. These articles clearly match the target product.
+- **Score 4-7**: Move to `review/low-confidence/`. Flag for human review.
+- **Score < 4**: Reject. Move to `review/rejected/`.
+- **Score 0**: Article has zero relevance signals. Always reject.
+- **Shorter than 100 words after extraction**: Reject regardless of score.
 
-### `/zoomkb:freshness` — Source freshness report
+## Validation checklist
 
-Generates a comprehensive source freshness report showing which articles are fresh, stale, or in the review queue.
+After each `/zoomkb:build` run, verify:
 
-```
-/zoomkb:freshness --output ./zoom-phone-kb
-/zoomkb:freshness --stale-days 60       # Custom stale threshold
-```
+- [ ] `manifest.json` exists with valid `kb_type: "zoomkb"` and `kb_version`
+- [ ] `wiki/index.md` covers all five subdirectories (concepts, task-flows, user-roles, constraints, ux-patterns)
+- [ ] Every wiki page has frontmatter with `type`, `source_article_ids`, `quality_score`
+- [ ] No orphan entities — each wiki entity references at least one raw article
+- [ ] `lint-report.md` shows zero critical issues
+- [ ] At least 2 source articles back each wiki entity (unless `--min-sources` is lowered)
+- [ ] All raw articles in manifest have a status (`accepted`, `review`, or `rejected`)
 
-Output: `freshness-report.md` with per-article table, stale article list, and review queue.
+## Refresh and maintenance
 
-### `/zoomkb:lint` — Quality checks
+To detect outdated content: run `/zoomkb:refresh` which re-crawls accepted articles and compares content hashes. Changed articles move to `status: review`.
 
-Checks traceability, coverage, consistency, freshness, navigation, and quality.
+To check freshness without re-crawling: run `/zoomkb:freshness` which generates a staleness report based on `manifest.json` timestamps.
 
-```
-/zoomkb:lint --strict              # Exit non-zero on any issue
-/zoomkb:lint --stale-days 60       # Custom stale threshold
-```
+## Reference files
 
-## Architecture
-
-### Two-layer KB design
-
-```
-raw/support-articles/*.md   ← Source of truth (never LLM-rewritten)
-  ↓ LLM ingest
-wiki/concepts/*.md          ← Design-facing knowledge (LLM-compiled)
-wiki/task-flows/*.md
-wiki/user-roles/*.md
-wiki/constraints/*.md
-wiki/ux-patterns/*.md
-```
-
-### Extraction strategy
-
-1. **JSON-LD** (primary) — Zoom Support pages embed Schema.org Article JSON-LD with clean `articleBody`
-2. **Trafilatura** (fallback 1) — When JSON-LD is missing or empty
-3. **Crawl4AI** (fallback 2, optional) — Headless browser extraction, requires `ZOOMKB_CRAWL4AI=1`
-
-### Classification
-
-Rule-based relevance scoring by default. Optional LLM refinement with `ZOOMKB_LLM_CLASSIFIER=1`.
-
-| Score | Confidence | Action |
-|-------|-----------|--------|
-| ≥ 8 | High | Auto-accept, enters ingest |
-| 4–7 | Medium | Review queue |
-| < 4 | Low | Rejected |
-
-## Supported Products
-
-| Product | CLI key | KB directory |
-|---|---|---|
-| Zoom Phone | `"Zoom Phone"` | `./zoom-phone-kb/` |
-| Zoom Contact Center | `"Zoom Contact Center"` | `./zoom-contact-center-kb/` |
-| Zoom Clips | `"Zoom Clips"` | `./zoom-clips-kb/` |
-| Zoom Meetings | `"Zoom Meetings"` | `./zoom-meetings-kb/` |
-| Zoom Rooms | `"Zoom Rooms"` | `./zoom-rooms-kb/` |
-| Shared Zoom Platform | `"Shared Zoom Platform"` | `./shared-zoom-platform-kb/` |
-
-**Shared Platform KB** is for cross-cutting knowledge that applies to all products: account management, user profiles, admin dashboard, billing, SSO, accessibility, desktop/mobile clients, etc. Individual product KBs reference shared platform concepts via wikilinks.
-
-## Requirements
-
-```
-pip install zoomkb        # Core (crawl, discover, validate, lint, ingest)
-pip install zoomkb[dev]   # Optional: pytest, ruff, mypy
-```
-
-Environment variables (all optional):
-- `ZOOMKB_CRAWL4AI=1` — Enable Crawl4AI fallback for client-side rendered pages
-
-## Permissions
-
-This skill requires:
-- **Network access** — HTTP requests to `support.zoom.com` (discovery + crawl)
-- **File write** — KB output directory (markdown, JSON, reports)
-- **Shell execution** — Python subprocess for zoomkb CLI commands
-
-## Output structure
-
-```
-zoom-phone-kb/
-├── manifest.json
-├── log.md
-├── crawl-report.md
-├── ingest-report.md
-├── lint-report.md
-├── refresh-report.md
-├── freshness-report.md
-├── candidate-articles.json
-├── raw/
-│   └── support-articles/
-│       └── KB0060257-getting-started-with-zoom-phone.md
-├── review/
-│   ├── low-confidence/
-│   └── rejected/
-└── wiki/
-    ├── index.md
-    ├── concepts/
-    ├── user-roles/
-    ├── task-flows/
-    ├── constraints/
-    └── ux-patterns/
-```
-
-## UX-partner Integration
-
-After building a KB with `/zoomkb:build`, the output is directly consumable by
-UX-partner via its `setup-kb` command:
-
-```bash
-# 1. Build the KB
-/zoomkb:build --product "Zoom Phone" --output ./zoom-phone-kb
-
-# 2. In UX-partner, index it for design sessions
-/ux-project:setup-kb ./zoom-phone-kb
-```
-
-### Detection
-
-UX-partner's `setup-kb` detects zoomkb-builder output by checking
-`manifest.json` for `"kb_type": "zoomkb"` (fallback: verifies `wiki/index.md`
-and the five standard wiki subdirectories exist).
-
-### Classification tags
-
-Each wiki page is tagged by its source directory when indexed into
-context-mode FTS5:
-
-| Wiki path | UX-partner tag | Usage |
-|---|---|---|
-| `wiki/concepts/` | CONCEPT | Product concepts and features |
-| `wiki/task-flows/` | TASK-FLOW | User task steps and dependencies |
-| `wiki/user-roles/` | USER-ROLE | Role definitions and permissions |
-| `wiki/constraints/` | CONSTRAINT | Design limitations and rules |
-| `wiki/ux-patterns/` | UX-PATTERN | Reusable interaction patterns |
-| `raw/support-articles/` | RAW-SOURCE | Ground truth — always cite |
-| `wiki/index.md` | META | Navigation index |
-
-### Citation policy
-
-UX-partner applies a cite-or-die policy: every UX claim must reference a KB
-page. Citation priority order (from SKILL.md §cite-or-die):
-
-1. PRD / PM requirement document
-2. KB wiki pages (concepts, task-flows, constraints, user-roles, ux-patterns)
-3. KB raw articles (support articles — ultimate authority)
-4. Project memory files
-5. Assumptions (explicitly marked)
-
-Raw articles are never LLM-rewritten, making them the most authoritative
-source for fact-checking wiki claims.
+- [CLI command reference](references/cli-reference.md) — Full command list with all options
+- [Architecture details](references/architecture.md) — KB design, extraction strategy, classification table, supported products, output structure, permissions
+- [UX-partner integration](references/ux-partner-integration.md) — Detection, classification tags, citation policy

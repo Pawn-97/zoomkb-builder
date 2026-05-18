@@ -9,23 +9,33 @@ logger = logging.getLogger("zoomkb.manifest")
 
 
 def init_manifest(product: str, output_dir: Path) -> Path:
-    """Create initial manifest.json."""
-    manifest = {
-        "product": product,
-        "source_root": "https://support.zoom.com/hc/en",
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "articles": [],
-        "stats": {
-            "total": 0,
-            "accepted": 0,
-            "review": 0,
-            "rejected": 0,
-        },
-    }
+    """Create or update manifest.json. Preserves existing articles if manifest already exists."""
     path = output_dir / "manifest.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    logger.info("Created manifest at %s", path)
+
+    if path.exists():
+        manifest = load_manifest(path)
+        manifest["product"] = manifest.get("product", product)
+        manifest["generated_at"] = datetime.now(timezone.utc).isoformat()
+        if "stats" not in manifest:
+            manifest["stats"] = {"total": 0, "accepted": 0, "review": 0, "rejected": 0}
+        save_manifest(path, manifest)
+        logger.info("Updated existing manifest at %s", path)
+    else:
+        manifest = {
+            "product": product,
+            "source_root": "https://support.zoom.com/hc/en",
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "articles": [],
+            "stats": {
+                "total": 0,
+                "accepted": 0,
+                "review": 0,
+                "rejected": 0,
+            },
+        }
+        path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+        logger.info("Created manifest at %s", path)
     return path
 
 

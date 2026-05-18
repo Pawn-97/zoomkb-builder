@@ -17,7 +17,7 @@ sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → valid
 
 ### `/zoomkb:build` — One-shot full pipeline
 
-Runs the entire pipeline: init → discover → crawl → validate → ingest → lint.
+Runs the entire pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint.
 
 ```
 /zoomkb:build --product "Zoom Phone"
@@ -35,6 +35,9 @@ Options:
 - `--skip-crawl` — Skip crawl (use existing raw articles)
 - `--fetch-titles` — Enable title-based filtering in discovery
 - `--locale en` — Language filter (default: en)
+- `--auto-extract` — Auto-run extract step via OpenAI API
+- `--extract-model MODEL` — Model for auto-extract (default: gpt-4o-mini)
+- `--extract-workers N` — Parallel extract workers (default: 3)
 
 ### `/zoomkb:init` — Initialize KB directory
 
@@ -69,9 +72,12 @@ Checks frontmatter, content quality, dedup. Optional reclassification with `--re
 /zoomkb:validate --reclassify
 ```
 
-### `/zoomkb:ingest` — Generate wiki pages via LLM
+### `/zoomkb:ingest` — Prepare and commit wiki pages
 
-Reads high-confidence raw articles, calls LLM to extract design-facing entities (concepts, user-roles, task-flows, constraints, UX-patterns). Entities are deduplicated by normalized slug (trailing 's' and common suffixes merged). Use `--min-sources` to filter out thin single-source stubs.
+Three-stage pipeline:
+1. `--prepare` — writes `.prompt.md` files to `extraction-queue/`
+2. `zoomkb extract` — processes prompts via OpenAI API → `.result.json`
+3. `--commit` — reads results, deduplicates, filters by quality, writes wiki pages
 
 ```
 /zoomkb:ingest --dry-run              # Preview what would be ingested
@@ -81,7 +87,19 @@ Reads high-confidence raw articles, calls LLM to extract design-facing entities 
 /zoomkb:ingest --prepare --min-sources 2 --force
 ```
 
-Uses Claude Code's built-in LLM for extraction — no external API key required. The `[llm]` extra and `OPENAI_API_KEY` are only needed for the optional LLM classifier (`ZOOMKB_LLM_CLASSIFIER=1`).
+### `/zoomkb:extract` — Batch LLM extraction
+
+Processes `.prompt.md` files in `extraction-queue/` via OpenAI API. Skips articles that already have `.result.json` files (use `--force` to re-extract).
+
+```
+/zoomkb:extract --dry-run             # Preview what would be extracted
+/zoomkb:extract --force               # Re-extract all (ignore existing results)
+/zoomkb:extract --max-workers 5       # Parallel extraction with 5 workers
+/zoomkb:extract --model gpt-4o       # Use specific model
+/zoomkb:extract --article-ids KB0060257 KB0069655  # Specific articles only
+```
+
+Requires `OPENAI_API_KEY` env var. Model defaults to `gpt-4o-mini` (override with `ZOOMKB_LLM_MODEL`).
 
 ### `/zoomkb:lint` — Quality checks
 

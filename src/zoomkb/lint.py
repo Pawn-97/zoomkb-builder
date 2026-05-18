@@ -66,7 +66,10 @@ def lint(
     # --- Quality ---
     _check_quality(wiki_dir, report)
 
-    total_issues = sum(len(v) for v in report.values())
+    total_issues = sum(
+        sum(1 for i in v if not (i.startswith("All ") or i.startswith("No ")))
+        for v in report.values()
+    )
     report["total_issues"] = total_issues
     report["passed"] = total_issues == 0
 

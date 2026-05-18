@@ -1,4 +1,4 @@
-# Zoom Support KB Builder · 极光支持知识库构建器
+# Zoom Support KB Builder · Zoom-UX知识库构建器
 
 > Build structured, design-facing knowledge bases from Zoom Support Center articles.
 > 从 Zoom 支持中心文章构建面向设计的结构化知识库。
@@ -128,7 +128,7 @@ Extracted entities go through three-stage dedup (exact slug → normalized slug 
 
 ### 概述
 
-极光支持知识库构建器（Zoom Support KB Builder）爬取 Zoom 官方支持文章，并将其转化为**面向设计的知识库**（"wiki 层"）。它提取概念页面、用户角色描述、任务流程、约束条件和 UX 模式 —— 全部来源于原始支持文章，但通过 LLM 编译成设计知识。
+Zoom-UX知识库构建器（Zoom Support KB Builder）爬取 Zoom 官方支持文章，并将其转化为**面向设计的知识库**（"wiki 层"）。它提取概念页面、用户角色描述、任务流程、约束条件和 UX 模式 —— 全部来源于原始支持文章，但通过 LLM 编译成设计知识。
 
 **流水线：** `站点地图发现 → 爬取 (JSON-LD) → 分类 → 验证 → LLM 提取 → 质量检查`
 

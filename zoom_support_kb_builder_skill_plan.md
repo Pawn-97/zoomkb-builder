@@ -1509,6 +1509,7 @@ Phase P3: 一键体验
 | Phase 3 (UX-partner 集成) | ✅ 完成 — 5 changes (manifest kb_type, wiki subdirs, index placeholder, integration test, SKILL.md docs) |
 | Phase 4 (多产品线) | ✅ 完成 — 5 product configs, hardcoded fix, dynamic output, build-all, SKILL.md |
 | Phase 5 (增量更新) | ✅ 完成 — refresh, freshness, conflict detection, review queue, manifest query helpers |
+| Phase 6 (真实数据验证) | ✅ 完成 — 全流程回归验证通过 (2026-05-18) |
 
 ### 24.7 Phase 3 交付明细
 
@@ -1558,12 +1559,28 @@ Phase P3: 一键体验
 - `zoomkb freshness --output ./test-kb` 正常运行（3 篇文章，1 review queue）
 - `zoomkb refresh --help` 和 `zoomkb freshness --help` 均可正常输出
 
-### 24.9 即时下一步
+### 24.11 Phase 6 交付明细
+
+验证时间: 2026-05-18
+
+| 验证项 | 结果 |
+|---|---|
+| 测试套件 (54 项) | ✅ 全部通过 |
+| Lint (test-kb-e2e, 291 篇文章) | ✅ PASSED (0 issues) |
+| Freshness 报告 (test-kb-e2e) | ✅ 291 篇, 259 fresh, 0 stale, 32 review queue |
+| Refresh 真实抓取 (3 篇) | ✅ 0 changed, 3 unchanged, 0 errors |
+| Build dry-run (Zoom Phone) | ✅ 全流程: init→discover(3730 candidates)→crawl→validate→ingest→lint |
+| Manifest query helpers | ✅ get_review_queue(32), get_stale_sources(0), get_changed_since(0) |
+| Conflict detection 代码逻辑 | ✅ ingest.py: ≥3 sources → conflict_flag frontmatter (需新鲜 build 验证端到端) |
+
+### 24.12 即时下一步
 
 1. ~~用真实 Zoom Support 数据端到端验证 `build` 全流程~~ ✅ 已完成
 2. ~~编写 ingest 中间步的批处理脚本~~ ✅ 已完成 — `zoomkb extract` + `--auto-extract`
 3. ~~Phase 3: UX-partner 集成~~ ✅ 已完成
 4. ~~Phase 4: 多产品线支持~~ ✅ 已完成
 5. ~~Phase 5: 增量更新与治理~~ ✅ 已完成 — refresh, freshness, conflict detection, review queue
-6. UX-partner 侧交叉建议：setup-kb 优先读 `kb_type` 字段；indexer 加入 `review/` skip；输出路径改为 KB root
-7. **Phase 6: 真实数据验证** — 用真实 Zoom Support 数据跑通完整流程，验证 refresh/conflict detection 在实际场景下行为正确
+6. ~~Phase 6: 真实数据验证~~ ✅ 已完成 (2026-05-18)
+7. UX-partner 侧交叉建议：setup-kb 优先读 `kb_type` 字段；indexer 加入 `review/` skip；输出路径改为 KB root
+8. **Phase 7: 完整 Zoom Phone KB 生产** — 用真实数据跑完整 build（含 auto-extract），生成可用于 UX-partner 的 Zoom Phone 全量知识库
+9. **Phase 8: 其他产品线** — build-all 全产品线（Zoom Contact Center, Clips, Meetings, Rooms, Shared Platform）

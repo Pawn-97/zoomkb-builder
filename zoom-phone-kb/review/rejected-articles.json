@@ -1,0 +1,251 @@
+{
+  "product": "zoom-phone",
+  "count": 35,
+  "rejected": [
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082149",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082149",
+      "title": "Using apps in channels",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085545",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085545",
+      "title": "Troubleshooting amount or currency issue",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
+      "title": "Troubleshooting unable to continue or view payment interface",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
+      "title": "Using Meeting transcripts",
+      "lastmod": "2026-05-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085786",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085786",
+      "title": "Troubleshooting error 10417: Transaction did not complete",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085844",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085844",
+      "title": "Introducing the new Zoom Chat experience",
+      "lastmod": "2026-05-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085534",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085534",
+      "title": "Troubleshooting unknown error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085556",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085556",
+      "title": "Troubleshooting 405: system error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
+      "title": "Troubleshooting 230: Authorization approved but declined",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
+      "title": "Enabling or disabling meeting transcripts",
+      "lastmod": "2026-05-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085552",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085552",
+      "title": "Troubleshooting error 202: Invalid expiration date",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085554",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085554",
+      "title": "Troubleshooting 208: Card is out of date",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
+      "title": "Troubleshooting payment could not be processed",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085532",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085532",
+      "title": "Troubleshooting invalid credit card number",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
+      "title": "Troubleshooting error 10204: Account closed or restricted",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085535",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085535",
+      "title": "Troubleshooting invalid parameters error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085544",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085544",
+      "title": "Troubleshooting invalid card details error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
+      "title": "Troubleshooting PayPal billing agreement canceled",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085548",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085548",
+      "title": "Troubleshooting order placement error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085553",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085553",
+      "title": "Troubleshooting 203: General Decline of Card",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
+      "title": "Troubleshooting exceeded amount attempts to process payment",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
+      "title": "Troubleshooting currency not supported on card",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
+      "title": "Herunterladen der Desktopanwendung oder mobilen App von Zoom\u00a0Workplace",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085521",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085521",
+      "title": "Troubleshooting transaction not allowed on credit card",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085523",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085523",
+      "title": "Troubleshooting system could not process your request at this time",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085791",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085791",
+      "title": "Troubleshooting PayPal transaction declined",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085784",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085784",
+      "title": "Troubleshooting Error UZN5614: Unable to complete purchase",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085551",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085551",
+      "title": "Zoom\u30df\u30fc\u30c6\u30a3\u30f3\u30b0\u306b\u53c2\u52a0\u3059\u308b",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085781",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085781",
+      "title": "Troubleshooting error 5613",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085789",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085789",
+      "title": "Troubleshooting PayPal payment declined for unknown reason",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
+      "title": "Troubleshooting issue with credit card",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085547",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085547",
+      "title": "Troubleshooting invoice payment error",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
+      "title": "Troubleshooting invalid address",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
+      "title": "Troubleshooting payment declined due to insufficient funds",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085765",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085765",
+      "title": "Configuring Survivable Distribution Groups",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "article_id": "KB0085809",
+  "concepts": [
+    {
+      "title": "ZPLS Node Group",
+      "summary": "A node group is a collection of up to 20 ZPLS modules that together support up to 100,000 users. Node groups can enable redundancy, where backup nodes take over if primary nodes fail. Designers should note that node groups are the top-level organizational unit for ZPLS capacity planning.",
+      "key_points": ["Up to 20 ZPLS modules per node group", "Supports up to 100,000 users (50,000 with redundancy)", "Nodes must be unassigned (not tied to a site or other group) to be added"],
+      "related": ["zoom-phone-local-survivability", "zpls-node", "zpls-redundancy"]
+    },
+    {
+      "title": "ZPLS Redundancy",
+      "summary": "Redundancy ensures continuous operation if individual ZPLS modules fail. Backup nodes must be configured at a 2:1 ratio (2 primary : 1 backup). This ratio constraint is a design-relevant rule that should be surfaced during node group setup.",
+      "key_points": ["Enabled at node group creation time", "2:1 primary-to-backup node ratio required", "Redundancy halves effective user capacity (50k vs 100k)"],
+      "related": ["zpls-node-group", "zpls-node"]
+    },
+    {
+      "title": "ZPLS Round-Robin User Distribution",
+      "summary": "When a node group is assigned to a site, users and common areas are automatically distributed across ZPLS nodes using round-robin. This is fully automated and invisible to admins — no manual control is exposed in the admin portal.",
+      "key_points": ["Automatic round-robin distribution across nodes in group", "No manual control or override available in admin UI", "Transparent to end users"],
+      "related": ["zpls-node-group"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin with Edit Privileges",
+      "summary": "Node group creation, assignment, and management require admin privileges. The same role also performs ZPLS validation through the Zoom client's Statistics > Phone tab — this is a rare case where admin actions span both web portal and desktop client.",
+      "key_points": ["Full node group management via web portal", "Validation requires checking desktop client Statistics > Phone tab", "Must have account settings edit privilege"],
+      "related": ["zpls-node-group"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Create ZPLS Node Group",
+      "summary": "Admin navigates: Phone System Management > Company Info > Account Settings > Zoom Node > Local Survivability Manage > Node Groups > New. Key decision points: naming, enabling redundancy toggle, and selecting unassigned nodes from a list. UX note: only unassigned nodes appear in the selection list — this constraint should be communicated inline.",
+      "key_points": ["Path: Phone System Management > Company Info > Account Settings > Zoom Node > Manage > Node Groups > New", "Naming, redundancy toggle, node selection are the core inputs", "Only unassigned nodes appear in selection list"],
+      "related": ["zpls-node-group", "zpls-redundancy"]
+    },
+    {
+      "title": "Assign Node Group to Site and Route Group",
+      "summary": "From the Node Groups tab, admin clicks '...' > Edit on a node group, selects Site and Route Group, then saves. The site assignment triggers automatic round-robin user distribution.",
+      "key_points": ["Access via Node Groups tab > '...' menu > Edit", "Two selections: Site and Route Group", "Auto-triggers round-robin user distribution on save"],
+      "related": ["zpls-node-group", "zpls-round-robin-user-distribution"]
+    },
+    {
+      "title": "Validate ZPLS Configuration on Zoom Client",
+      "summary": "Admin validates ZPLS by opening desktop client: profile > Settings > Statistics > Phone tab. Status shows 'Configured' initially, then 'Registered' once client successfully registers with ZPLS. This is a verification step, not configuration.",
+      "key_points": ["Client-side validation path: Settings > Statistics > Phone", "Status transitions: Configured → Registered", "IP address also displayed for verification"],
+      "related": ["zpls-node-group"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Node Group Redundancy Ratio",
+      "summary": "Backup nodes must be at a 2:1 ratio to primary nodes. This is a hard constraint that should be enforced or warned about during node group setup — adding nodes without correct backup ratio should trigger guidance.",
+      "key_points": ["2 primary : 1 backup ratio required", "Affects user capacity calculation"],
+      "related": ["zpls-redundancy", "zpls-node-group"]
+    },
+    {
+      "title": "Unassigned Node Requirement",
+      "summary": "Only ZPLS modules that are not already assigned to a site or node group can be added to a new node group. The selection UI should filter out already-assigned nodes rather than showing them as disabled.",
+      "key_points": ["Nodes must be unassigned to a site or existing node group", "Max 20 modules per group"],
+      "related": ["zpls-node-group"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Progressive Setup Wizard Pattern",
+      "summary": "ZPLS node group setup follows a multi-step flow: deploy modules → create node group → assign to site → validate on client. Each step depends on the previous, making this a natural wizard pattern with clear dependency indicators.",
+      "key_points": ["Sequential dependency chain: deploy → group → assign → validate", "Each step has its own admin portal section", "Validation step crosses from web portal to desktop client"],
+      "related": ["zpls-node-group", "create-zpls-node-group", "assign-node-group-to-site-and-route-group"]
+    }
+  ]
+}

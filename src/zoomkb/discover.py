@@ -373,6 +373,8 @@ def discover_articles(
             }
             if matched:
                 candidates.append(record)
+                if max_candidates > 0 and len(candidates) >= max_candidates:
+                    break
             else:
                 rejected.append(record)
 

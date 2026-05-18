@@ -1,0 +1,61 @@
+{
+  "article_id": "KB0085766",
+  "concepts": [
+    {
+      "title": "ZPLS Call Forwarding Local Survivability",
+      "summary": "Call Forwarding Local Survivability redirects incoming calls to Zoom Native numbers (or Provider Exchange numbers) to BYOC-P numbers during internet outages. This ensures calls reach users even when Zoom cloud is unreachable. Designers should note this is a pre-configured failover, not an automatic one — admins must manually enable forwarding during an outage.",
+      "key_points": ["Redirects Zoom Native/Provider Exchange numbers to BYOC-P numbers during outage", "Requires pre-configuration of source-to-destination mappings", "Manual enablement required during actual outage", "Separate network infrastructure recommended for PSTN and local internet"],
+      "related": ["zoom-phone-local-survivability", "byoc-premises", "session-border-controller-sbc-integration-with-zpls"]
+    },
+    {
+      "title": "ZPLS Emergency Location Identification Number (ELIN)",
+      "summary": "A dedicated BYOC number used for emergency services in survivability mode. This number must not be assigned to any user or Zoom Phone entity. It's a required configuration, not optional, when setting up call forwarding for ZPLS.",
+      "key_points": ["Dedicated BYOC number, not assigned to any user/entity", "Required for emergency services during survivability", "Configured per site"],
+      "related": ["zpls-call-forwarding-local-survivability", "byoc-premises"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin with Edit Privileges",
+      "summary": "Both configuring call forwarding mappings (pre-outage) and enabling forwarding (during outage) require admin access. The enable action is a critical time-sensitive operation during an outage — the UI should make this action prominent and fast to execute.",
+      "key_points": ["Configures source-to-destination mappings pre-outage", "Manually enables forwarding during outage", "Can use 'Select All' for bulk enable"],
+      "related": ["zpls-call-forwarding-local-survivability"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Configure Call Forwarding Numbers for ZPLS",
+      "summary": "Pre-outage setup: Admin navigates Phone System Management > Company Info > site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage > Add. Maps source numbers (users, common areas, shared lines, call queues, auto receptionists) to destination BYOC numbers assigned to users within the site.",
+      "key_points": ["Path: Phone System Management > Company Info > site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage > Add", "Multiple source numbers can map to single destination", "Destination must be BYOC number assigned to a user in same site", "Main company number cannot be forwarded"],
+      "related": ["zpls-call-forwarding-local-survivability", "byoc-premises"]
+    },
+    {
+      "title": "Enable Call Forwarding During Outage",
+      "summary": "During an outage, admin navigates same path and clicks 'Enable Forwarding'. Select All option available for bulk operations. This is a critical step — until manually triggered, calls are not forwarded despite pre-configuration.",
+      "key_points": ["Same path as configuration: site > Settings > Zoom Node > Call Forwarding > Manage", "'Enable Forwarding' button triggers failover", "'Select All' available for bulk activation", "Must be done during actual outage — not automatic"],
+      "related": ["zpls-call-forwarding-local-survivability"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Call Forwarding Number Constraints",
+      "summary": "Main company number cannot be configured for Call Forwarding Local Survivability. Destination BYOC numbers must be assigned to users within the same site as the source numbers. Source forwarding status defaults to disabled — admins must explicitly enable each mapping.",
+      "key_points": ["Main company number excluded from forwarding", "Destination must be same-site BYOC user number", "All forwarding mappings default to disabled"],
+      "related": ["zpls-call-forwarding-local-survivability"]
+    },
+    {
+      "title": "PSTN and Internet Network Separation",
+      "summary": "PSTN services and local site internet must use separate network infrastructure. If both share the same local loop, a single outage disables both — defeating the purpose of ZPLS. This is an infrastructure constraint admins must verify before relying on ZPLS.",
+      "key_points": ["PSTN and internet must be on separate networks", "Shared local loop = single point of failure for both", "Admins should verify before deploying ZPLS"],
+      "related": ["zpls-call-forwarding-local-survivability"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Pre-Configure / During-Outage-Activate Pattern",
+      "summary": "Call forwarding follows a two-phase temporal pattern: (1) pre-configure mappings during normal operation, (2) manually activate during an outage. This is different from automated failover (like SBC auto-redirect) and requires the admin portal to clearly distinguish 'configured but inactive' from 'active forwarding' states.",
+      "key_points": ["Two distinct temporal phases: configuration (peace-time) and activation (outage)", "Default state after configuration is disabled — must be explicitly activated", "Clear visual distinction between configured-inactive and active-forwarding needed"],
+      "related": ["zpls-call-forwarding-local-survivability"]
+    }
+  ]
+}

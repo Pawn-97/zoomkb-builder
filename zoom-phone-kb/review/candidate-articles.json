@@ -1,0 +1,56 @@
+{
+  "product": "zoom-phone",
+  "count": 5,
+  "candidates": [
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085809",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085809",
+      "title": "Configuring Zoom Phone Local Survivability with a Node group",
+      "lastmod": "2026-05-13",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085804",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085804",
+      "title": "Configuring Zoom Phone Local Survivability with a Session Border Controller (SBC)",
+      "lastmod": "2026-05-13",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085762",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085762",
+      "title": "Manually synchronizing data in Zoom Phone Local Survivability",
+      "lastmod": "2026-05-11",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085763",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085763",
+      "title": "Deploying the Call Bridge service for Zoom Phone Local Survivability",
+      "lastmod": "2026-05-11",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
+      "title": "Configuring call forwarding for Zoom Phone Local Survivability",
+      "lastmod": "2026-05-11",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    }
+  ]
+}

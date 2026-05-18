@@ -1,0 +1,73 @@
+{
+  "article_id": "KB0085804",
+  "concepts": [
+    {
+      "title": "Session Border Controller (SBC) Integration with ZPLS",
+      "summary": "An SBC is a customer-provided network device that connects ZPLS to PSTN and third-party PBX systems during outages. Designers should understand this is a distinct setup path from the standard ZPLS configuration — it requires BYOC-P trunk configuration and involves multiple admin portal sections (BYOC Configuration, Route Groups, Routing Rules).",
+      "key_points": ["Maintains PSTN and third-party PBX connectivity during outages", "Requires BYOC-P trunk configuration alongside ZPLS", "Tested with Audiocodes, Oracle, and Ribbon SBCs"],
+      "related": ["zoom-phone-local-survivability", "byoc-premises", "zpls-route-group"]
+    },
+    {
+      "title": "ZPLS Survivability Route Group",
+      "summary": "A route group of type 'Survivability' links SBCs to ZPLS modules. It defines how calls are routed during failover. This is a separate concept from standard Zoom Phone route groups — the type field ('Survivability') is the key discriminator.",
+      "key_points": ["Type must be set to 'Survivability'", "Associates SBCs with ZPLS modules", "Found under BYOC Configuration > Route Groups"],
+      "related": ["session-border-controller-sbc-integration-with-zpls", "byoc-premises"]
+    },
+    {
+      "title": "ZPLS Emergency Number Pool (ELIN)",
+      "summary": "When SBC is configured with ZPLS, an emergency number pool must be set up for survivability mode. A dedicated BYOC number serves as the Emergency Location Identification Number (ELIN) for the site. Designers should note that emergency services configuration is mandatory, not optional, for SBC + ZPLS setups.",
+      "key_points": ["Dedicated BYOC number required as ELIN", "ELIN must not be assigned to any user or Zoom Phone entity", "Emergency services routing differs in survivability mode"],
+      "related": ["session-border-controller-sbc-integration-with-zpls", "byoc-premises"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin with Edit Privileges",
+      "summary": "SBC integration requires admin access across multiple admin portal sections: BYOC Configuration (Number Management), Route Groups, and Routing Rules. This is a cross-functional setup that spans telephony and network administration domains.",
+      "key_points": ["Requires access to both Number Management and account settings", "Must configure SBC, route groups, routing rules, and emergency numbers", "Multiple Sites must be enabled for Zoom Phone"],
+      "related": ["session-border-controller-sbc-integration-with-zpls"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Integrate SBC with ZPLS",
+      "summary": "Step 1: Navigate Number Management > BYOC Configuration > SBCs > Manage > select SBC > enter Survivability IP Address > Save. The IP address field is critical — for most deployments, this is the SBC's internal (RFC1918) IP.",
+      "key_points": ["Path: Number Management > BYOC Configuration > SBCs > Manage", "Enter SBC's internal IP address (not public IP)", "Ports and protocols must be allowed per firewall requirements"],
+      "related": ["session-border-controller-sbc-integration-with-zpls"]
+    },
+    {
+      "title": "Create Survivability Route Group",
+      "summary": "Navigate Number Management > BYOC Configuration > Route Groups > Manage > Add. Set Display Name, Type = 'Survivability', select SBCs. Key UX note: the type dropdown must include 'Survivability' as a distinct option from normal route group types.",
+      "key_points": ["Path: Number Management > BYOC Configuration > Route Groups > Manage > Add", "Type must be 'Survivability' (not standard route group type)", "Options Ping should be enabled on SBC for connectivity monitoring"],
+      "related": ["zpls-survivability-route-group", "session-border-controller-sbc-integration-with-zpls"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "SBC Auto-Failover Triggers",
+      "summary": "SBC must be configured to redirect to ZPLS when: (1) OPTIONS ping to both Zoom primary and secondary destinations fail, or (2) Zoom Cloud returns SIP 503. These are network-level conditions invisible to admin UI, but the failover status should be surfaced in the admin portal.",
+      "key_points": ["Two failover triggers: OPTIONS ping failure OR SIP 503", "SBC configuration is external to Zoom admin portal", "Failover status should be visible in admin UI"],
+      "related": ["session-border-controller-sbc-integration-with-zpls"]
+    },
+    {
+      "title": "SBC Connectivity Requirements",
+      "summary": "Single node: SBC configured with ZPLS node IP. Node group: SBC must route to at least 2 ZPLS node IPs to avoid single point of failure. This constraint varies based on whether a node group is used.",
+      "key_points": ["Single node: 1 IP required", "Node group: minimum 2 IPs required for redundancy", "Uses internal (RFC1918) IP addresses"],
+      "related": ["session-border-controller-sbc-integration-with-zpls", "zpls-node-group"]
+    },
+    {
+      "title": "ZPLS Routing Rules Limitation",
+      "summary": "During survivability mode, routing rules' Routing Path (SIP Group or PSTN) is ignored — only number translations are preserved. 'Other sites' routing path is limited to same-site extension-to-extension calls only. Designers need to communicate these degraded-mode behaviors.",
+      "key_points": ["Routing Path ignored in survivability mode", "Only number translations preserved", "Cross-site calls via 'Other sites' path not supported in survivability"],
+      "related": ["session-border-controller-sbc-integration-with-zpls"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Multi-Section Admin Configuration Flow",
+      "summary": "SBC + ZPLS setup spans 5+ admin portal sections (SBCs, Route Groups, Routing Rules, Emergency Numbers, Outbound Caller ID). This is a complex cross-cutting configuration that would benefit from a unified setup wizard or status dashboard showing completion state across sections.",
+      "key_points": ["Spans Number Management, Phone System Management, and account settings", "No single dashboard for ZPLS+SBC setup status", "Setup order matters: SBC → Route Group → Routing Rules → Emergency Pool"],
+      "related": ["session-border-controller-sbc-integration-with-zpls", "zpls-survivability-route-group"]
+    }
+  ]
+}

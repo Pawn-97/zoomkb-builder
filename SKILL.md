@@ -10,7 +10,7 @@ Build a structured, design-facing knowledge base from official Zoom Support arti
 ## Pipeline
 
 ```
-sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → validate → ingest (LLM wiki pages) → lint
+sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → validate → ingest-prepare → Claude Code extract → ingest-commit → lint
 ```
 
 ## Commands
@@ -18,6 +18,8 @@ sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → valid
 ### `/zoomkb:build` — One-shot full pipeline
 
 Runs the entire pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint.
+
+**Extract step** (step 6) is handled by Claude Code: it reads `extraction-queue/*.prompt.md` files, extracts entities, and writes `extraction-queue/*.result.json` files. No external API required.
 
 ```
 /zoomkb:build --product "Zoom Phone"
@@ -29,15 +31,14 @@ Options:
 - `--max-candidates N` — Limit discovery to N candidates
 - `--urls URL1 URL2` — Bypass discovery, crawl specific URLs
 - `--url-file path.txt` — Bypass discovery, crawl URLs from file
-- `--dry-run` — Preview without calling LLM ingest
+- `--dry-run` — Preview without LLM ingest
 - `--force` — Re-ingest already processed articles
 - `--skip-discover` — Skip discovery (use existing candidates)
 - `--skip-crawl` — Skip crawl (use existing raw articles)
 - `--fetch-titles` — Enable title-based filtering in discovery
 - `--locale en` — Language filter (default: en)
-- `--auto-extract` — Auto-run extract step via OpenAI API
-- `--extract-model MODEL` — Model for auto-extract (default: gpt-4o-mini)
-- `--extract-workers N` — Parallel extract workers (default: 3)
+- `--min-sources N` — Minimum source articles per wiki entity (default: 2)
+- `--min-quality N` — Minimum entity quality score 0-100 (default: 20)
 
 ### `/zoomkb:build-all` — Initialize all product KBs
 
@@ -88,7 +89,7 @@ Checks frontmatter, content quality, dedup. Optional reclassification with `--re
 
 Three-stage pipeline:
 1. `--prepare` — writes `.prompt.md` files to `extraction-queue/`
-2. `zoomkb extract` — processes prompts via OpenAI API → `.result.json`
+2. Claude Code — reads prompts, extracts entities, writes `.result.json`
 3. `--commit` — reads results, deduplicates, filters by quality, writes wiki pages
 
 ```
@@ -99,19 +100,14 @@ Three-stage pipeline:
 /zoomkb:ingest --prepare --min-sources 2 --force
 ```
 
-### `/zoomkb:extract` — Batch LLM extraction
+### `/zoomkb:extract` — Claude Code entity extraction
 
-Processes `.prompt.md` files in `extraction-queue/` via OpenAI API. Skips articles that already have `.result.json` files (use `--force` to re-extract).
+Not a CLI command. When `/zoomkb:build` reaches the extract step, Claude Code reads each `extraction-queue/*.prompt.md` file, analyzes the article content, and writes structured entity JSON to `extraction-queue/*.result.json`.
 
+If running extract standalone (e.g., after adding new raw articles to an existing KB), tell Claude Code:
 ```
-/zoomkb:extract --dry-run             # Preview what would be extracted
-/zoomkb:extract --force               # Re-extract all (ignore existing results)
-/zoomkb:extract --max-workers 5       # Parallel extraction with 5 workers
-/zoomkb:extract --model gpt-4o       # Use specific model
-/zoomkb:extract --article-ids KB0060257 KB0069655  # Specific articles only
+Process extraction-queue/*.prompt.md files, write .result.json files
 ```
-
-Requires `OPENAI_API_KEY` env var. Model defaults to `gpt-4o-mini` (override with `ZOOMKB_LLM_MODEL`).
 
 ### `/zoomkb:refresh` — Re-crawl and detect changes
 
@@ -192,16 +188,12 @@ Rule-based relevance scoring by default. Optional LLM refinement with `ZOOMKB_LL
 ## Requirements
 
 ```
-pip install zoomkb        # Core (crawl, discover, validate, lint)
-pip install zoomkb[llm]   # Optional: LLM-based relevance classifier (OpenAI)
+pip install zoomkb        # Core (crawl, discover, validate, lint, ingest)
 pip install zoomkb[dev]   # Optional: pytest, ruff, mypy
 ```
 
 Environment variables (all optional):
-- `ZOOMKB_CRAWL4AI=1` — Enable Crawl4AI fallback
-- `ZOOMKB_LLM_CLASSIFIER=1` — Enable LLM classification (requires `[llm]` + `OPENAI_API_KEY`)
-- `ZOOMKB_LLM_MODEL` — Model override for classifier (default: `gpt-4o-mini`)
-- `OPENAI_API_KEY` — Required only with `ZOOMKB_LLM_CLASSIFIER=1`
+- `ZOOMKB_CRAWL4AI=1` — Enable Crawl4AI fallback for client-side rendered pages
 
 ## Permissions
 
@@ -209,7 +201,6 @@ This skill requires:
 - **Network access** — HTTP requests to `support.zoom.com` (discovery + crawl)
 - **File write** — KB output directory (markdown, JSON, reports)
 - **Shell execution** — Python subprocess for zoomkb CLI commands
-- **LLM API access** — OpenAI API for optional LLM classifier (`ZOOMKB_LLM_CLASSIFIER=1`)
 
 ## Output structure
 

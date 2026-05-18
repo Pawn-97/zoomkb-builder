@@ -1,0 +1,55 @@
+{
+  "article_id": "KB0085763",
+  "concepts": [
+    {
+      "title": "ZPLS Call Bridge (Shared Database Node)",
+      "summary": "The Call Bridge is a standalone service that enables call routing between different ZPLS modules or node groups during internet outages. Without it, users on different ZPLS nodes cannot call each other in survivability mode. Designers should highlight this as critical infrastructure — if the Call Bridge goes down, inter-node calling fails entirely.",
+      "key_points": ["Enables inter-node and inter-node-group calling during outages", "Runs on a standalone Node server accessible to all ZPLS modules", "Not required for calls within the same node group", "Synchronizes state information across ZPLS modules"],
+      "related": ["zoom-phone-local-survivability", "zpls-node", "zpls-node-group"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin with Edit Privileges",
+      "summary": "Deploying and assigning the Call Bridge requires admin access to both Node Management (for deployment) and Phone System Management (for assignment). These are separate admin portal sections, meaning the setup spans two different navigation paths.",
+      "key_points": ["Node Management > Modules for deployment", "Phone System Management > Company Info for assignment", "Must have account settings edit privilege"],
+      "related": ["zpls-call-bridge-shared-database-node"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Deploy Call Bridge Service",
+      "summary": "Admin navigates: Node Management > Modules > Phone Local Survivability > Services tab > Add Services > Call Bridge. Configuration: select Zoom Node Phone server, enter Internal IP, optionally add Internal Domain prefix. This flow is distinct from standard ZPLS module deployment.",
+      "key_points": ["Path: Node Management > Modules > Phone Local Survivability > Services > Add Services", "Must select target Node server from dropdown", "Internal IP must match the Node server's configured address"],
+      "related": ["zpls-call-bridge-shared-database-node"]
+    },
+    {
+      "title": "Assign Call Bridge to ZPLS Node or Node Group",
+      "summary": "Admin navigates: Phone System Management > Company Info > Account Settings > Zoom Node > Local Survivability > Shared Database Nodes > Edit. Select ZPLS Node or Node Group from tabbed interface, then manually sync data to complete assignment.",
+      "key_points": ["Path: Phone System Management > Company Info > Account Settings > Zoom Node > Shared Database Nodes > Edit", "Tabbed selection: Node or Node Group", "Must manually sync after assignment"],
+      "related": ["zpls-call-bridge-shared-database-node", "zpls-data-synchronization"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Call Bridge Network Resilience Requirement",
+      "summary": "If connectivity to the Call Bridge is lost during survivability mode, originating nodes cannot locate destination nodes, causing call failure. This means the Call Bridge is a single point of failure for inter-node calling — designers should ensure this risk is communicated in the admin UI.",
+      "key_points": ["Call Bridge is a single point of failure for inter-node calls", "Network topology resilience directly impacts calling availability", "Within same node group, calls work without Call Bridge"],
+      "related": ["zpls-call-bridge-shared-database-node", "zpls-node-group"]
+    },
+    {
+      "title": "Call Bridge Server Requirements",
+      "summary": "Call Bridge must be deployed on a standalone Node server accessible to all ZPLS modules. It cannot share a server with other ZPLS services. This is a hardware/resource constraint with UX implications for capacity planning.",
+      "key_points": ["Must be on a standalone server", "Must be accessible to all ZPLS modules", "Cannot co-reside with other ZPLS services on same server"],
+      "related": ["zpls-call-bridge-shared-database-node"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Two-Phase Service Deployment Pattern",
+      "summary": "Call Bridge deployment follows a two-phase pattern: (1) deploy the service on a Node server, then (2) assign it to ZPLS nodes/groups. Each phase uses a different admin portal section. This separation of deploy-vs-assign is consistent with other ZPLS services (SBC, route groups) and could be designed as a unified 'Link Service' pattern.",
+      "key_points": ["Phase 1: Deploy service (Node Management)", "Phase 2: Assign to target (Phone System Management)", "Consistent pattern across ZPLS services"],
+      "related": ["zpls-call-bridge-shared-database-node"]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import argparse
 import copy
 import json
 import logging
-import os
+
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -12,7 +12,6 @@ from typing import List, Optional
 from zoomkb.classifier import classify_relevance
 from zoomkb.crawler import crawl_article
 from zoomkb.discover import discover_articles
-from zoomkb.extractor import batch_extract
 from zoomkb.ingest import commit_extraction, dry_run_ingest, prepare_extraction_queue
 from zoomkb.manifest import add_article, init_manifest, load_manifest, save_manifest
 from zoomkb.refresh import generate_freshness_report, refresh_articles
@@ -330,61 +329,6 @@ def cmd_lint(args: argparse.Namespace) -> int:
     return report["exit_code"]
 
 
-def cmd_extract(args: argparse.Namespace) -> int:
-    """Batch-extract entities from .prompt.md files via OpenAI API."""
-    output = Path(args.output)
-
-    if args.dry_run:
-        stats = batch_extract(
-            output_dir=output,
-            model=args.model,
-            api_key=args.api_key or None,
-            max_workers=args.max_workers,
-            force=args.force,
-            article_ids=args.article_ids or None,
-            dry_run=True,
-        )
-        if stats.get("error"):
-            print(f"Error: {stats['error']}")
-            return 1
-        if stats.get("queued", 0) == 0:
-            print("No .prompt.md files found. Run 'zoomkb ingest --prepare' first.")
-            return 0
-        print(f"Would extract {stats['would_extract']} articles")
-        print(f"Already have results: {stats['skipped']}")
-        return 0
-
-    print(f"Extracting entities from {output}/extraction-queue/...")
-    print(f"Model: {args.model}, Workers: {args.max_workers}")
-
-    stats = batch_extract(
-        output_dir=output,
-        model=args.model,
-        api_key=args.api_key or None,
-        max_workers=args.max_workers,
-        force=args.force,
-        article_ids=args.article_ids or None,
-    )
-
-    if stats.get("error"):
-        print(f"Error: {stats['error']}")
-        return 1
-
-    print(f"\nExtraction complete:")
-    print(f"  Extracted: {stats['extracted']}")
-    print(f"  Failed: {stats['failed']}")
-    print(f"  Skipped: {stats['skipped']}")
-
-    if stats.get("errors"):
-        print(f"\nErrors:")
-        for err in stats["errors"][:10]:
-            print(f"  - {err}")
-        if len(stats["errors"]) > 10:
-            print(f"  ... and {len(stats['errors']) - 10} more")
-
-    return 0 if stats["failed"] == 0 else 1
-
-
 def cmd_refresh(args: argparse.Namespace) -> int:
     """Re-crawl accepted articles, diff content hashes, detect changes and staleness."""
     output = Path(args.output)
@@ -458,11 +402,11 @@ def cmd_build(args: argparse.Namespace) -> int:
     output = Path(args.output or _default_output(args.product))
 
     print("=" * 50)
-    print("zoomkb:build — full pipeline")
+    print("zoomkb:build — full pipeline (7 steps)")
     print("=" * 50)
 
     # Step 1: init
-    print("\n[1/8] init...")
+    print("\n[1/7] init...")
     rc = cmd_init(args)
     if rc != 0:
         print("init failed — aborting.")
@@ -470,10 +414,10 @@ def cmd_build(args: argparse.Namespace) -> int:
 
     # Step 2: discover
     if args.skip_discover:
-        print("\n[2/8] discover... (skipped)")
+        print("\n[2/7] discover... (skipped)")
         rc = 0
     else:
-        print("\n[2/8] discover...")
+        print("\n[2/7] discover...")
         disc_args = copy.copy(args)
         disc_args.func = None
         rc = cmd_discover(disc_args)
@@ -483,18 +427,19 @@ def cmd_build(args: argparse.Namespace) -> int:
 
     # Step 3: crawl
     if args.skip_crawl:
-        print("\n[3/8] crawl... (skipped)")
+        print("\n[3/7] crawl... (skipped)")
         rc = 0
     elif args.urls or args.url_file:
-        print("\n[3/8] crawl (manual URLs)...")
+        print("\n[3/7] crawl (manual URLs)...")
         crawl_args = copy.copy(args)
         crawl_args.func = None
         rc = cmd_crawl(crawl_args)
     else:
-        print("\n[3/8] crawl...")
-        candidate_file = output / "candidate-articles.json"
+        print("\n[3/7] crawl...")
+        candidate_file = output / "review" / "candidate-articles.json"
         if candidate_file.exists():
-            candidates = json.loads(candidate_file.read_text(encoding="utf-8"))
+            data = json.loads(candidate_file.read_text(encoding="utf-8"))
+            candidates = data if isinstance(data, list) else data.get("candidates", [])
             urls = [c["url"] for c in candidates]
             crawl_args = copy.copy(args)
             crawl_args.func = None
@@ -509,7 +454,7 @@ def cmd_build(args: argparse.Namespace) -> int:
         print("crawl had failures — continuing with validate.")
 
     # Step 4: validate
-    print("\n[4/8] validate...")
+    print("\n[4/7] validate...")
     val_args = copy.copy(args)
     val_args.func = None
     val_args.reclassify = True
@@ -518,11 +463,10 @@ def cmd_build(args: argparse.Namespace) -> int:
         print("validate had issues — continuing.")
 
     # Step 5: ingest (prepare extraction prompts)
-    print("\n[5/8] ingest (prepare)...")
+    print("\n[5/7] ingest (prepare)...")
     if args.dry_run:
         print("Skipping ingest (dry-run mode).")
         rc = 0
-        auto_extract = False
     else:
         ing_args = copy.copy(args)
         ing_args.func = None
@@ -530,30 +474,15 @@ def cmd_build(args: argparse.Namespace) -> int:
         ing_args.article_ids = None
         ing_args.prepare = True
         rc = cmd_ingest(ing_args)
-        auto_extract = getattr(args, "auto_extract", False)
         if rc != 0:
-            print("ingest prepare had issues — continuing without extract.")
-            auto_extract = False
+            print("ingest prepare had issues — continuing.")
 
-    # Step 6: extract (optional — batch process .prompt.md via OpenAI)
-    if auto_extract:
-        print("\n[6/8] extract...")
-        ext_args = copy.copy(args)
-        ext_args.func = None
-        ext_args.model = getattr(args, "extract_model", "gpt-4o-mini")
-        ext_args.api_key = None
-        ext_args.max_workers = getattr(args, "extract_workers", 3)
-        ext_args.force = False
-        ext_args.article_ids = None
-        ext_args.dry_run = False
-        rc = cmd_extract(ext_args)
-        if rc != 0:
-            print("extract had failures — continuing.")
-    else:
-        print("\n[6/8] extract... (skipped — use --auto-extract or run 'zoomkb extract' manually)")
+    # Step 6: extract — Claude Code processes .prompt.md files
+    # (handled by the /zoomkb:build skill command in SKILL.md)
+    print("\n[6/7] extract... (Claude Code processes extraction-queue/*.prompt.md)")
 
     # Step 7: ingest (commit results to wiki)
-    print("\n[7/8] ingest (commit)...")
+    print("\n[7/7] ingest (commit)...")
     if args.dry_run:
         print("Skipping commit (dry-run mode).")
         rc = 0
@@ -569,7 +498,7 @@ def cmd_build(args: argparse.Namespace) -> int:
             print("ingest commit had issues — continuing.")
 
     # Step 8: lint
-    print("\n[8/8] lint...")
+    print("\nLint...")
     rc = cmd_lint(args)
 
     print("\n" + "=" * 50)
@@ -674,16 +603,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_lint.add_argument("--strict", action="store_true", help="Exit non-zero on any issue")
     p_lint.set_defaults(func=cmd_lint)
 
-    # extract
-    p_ext = sub.add_parser("extract", help="Batch-extract entities from .prompt.md via OpenAI API")
-    p_ext.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
-    p_ext.add_argument("--model", default=os.environ.get("ZOOMKB_LLM_MODEL", "gpt-4o-mini"), help="OpenAI model (default: gpt-4o-mini)")
-    p_ext.add_argument("--api-key", default=os.environ.get("OPENAI_API_KEY", ""), help="OpenAI API key (env: OPENAI_API_KEY)")
-    p_ext.add_argument("--max-workers", type=int, default=3, help="Parallel workers (default: 3)")
-    p_ext.add_argument("--force", action="store_true", help="Re-extract even if .result.json exists")
-    p_ext.add_argument("--dry-run", action="store_true", help="Preview without calling API")
-    p_ext.add_argument("--article-ids", nargs="+", help="Process specific articles")
-    p_ext.set_defaults(func=cmd_extract)
+    # extract step is handled by Claude Code (see SKILL.md /zoomkb:build)
+    # The CLI no longer includes a separate extract command since Claude Code
+    # reads .prompt.md files and writes .result.json files directly.
 
     # refresh
     p_refresh = sub.add_parser("refresh", help="Re-crawl accepted articles, diff content hashes, detect changes")
@@ -701,7 +623,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_fresh.set_defaults(func=cmd_freshness)
 
     # build
-    p_build = sub.add_parser("build", help="One-shot full pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint")
+    p_build = sub.add_parser("build", help="One-shot full pipeline: init → discover → crawl → validate → ingest-prepare → ingest-commit → lint")
     p_build.add_argument("--product", default="Zoom Phone", help="Target product")
     p_build.add_argument("--source-root", default="https://support.zoom.com/hc/en", help="Zoom Support root URL")
     p_build.add_argument("--output", default="", help="KB output directory (default: derived from --product)")
@@ -719,9 +641,6 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_build.add_argument("--skip-crawl", action="store_true", help="Skip crawl, use existing raw articles")
     p_build.add_argument("--min-sources", type=int, default=2, help="Minimum source articles per wiki entity (default: 2)")
     p_build.add_argument("--min-quality", type=float, default=20.0, help="Minimum entity quality score 0-100 (default: 20)")
-    p_build.add_argument("--auto-extract", action="store_true", help="Auto-run extract step (OpenAI API)")
-    p_build.add_argument("--extract-model", default=os.environ.get("ZOOMKB_LLM_MODEL", "gpt-4o-mini"), help="Model for auto-extract (default: gpt-4o-mini)")
-    p_build.add_argument("--extract-workers", type=int, default=3, help="Parallel extract workers (default: 3)")
     p_build.set_defaults(func=cmd_build)
 
     # build-all

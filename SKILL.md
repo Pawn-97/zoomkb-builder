@@ -81,7 +81,7 @@ Reads high-confidence raw articles, calls LLM to extract design-facing entities 
 /zoomkb:ingest --prepare --min-sources 2 --force
 ```
 
-Requires `pip install zoomkb[llm]` and `OPENAI_API_KEY` environment variable.
+Uses Claude Code's built-in LLM for extraction — no external API key required. The `[llm]` extra and `OPENAI_API_KEY` are only needed for the optional LLM classifier (`ZOOMKB_LLM_CLASSIFIER=1`).
 
 ### `/zoomkb:lint` — Quality checks
 
@@ -125,16 +125,16 @@ Rule-based relevance scoring by default. Optional LLM refinement with `ZOOMKB_LL
 ## Requirements
 
 ```
-pip install zoomkb        # Core (requests + JSON-LD extraction)
-pip install zoomkb[llm]   # + LLM ingest (OpenAI)
-pip install zoomkb[dev]   # + pytest, ruff, mypy
+pip install zoomkb        # Core (crawl, discover, validate, lint)
+pip install zoomkb[llm]   # Optional: LLM-based relevance classifier (OpenAI)
+pip install zoomkb[dev]   # Optional: pytest, ruff, mypy
 ```
 
-Environment variables:
-- `OPENAI_API_KEY` — Required for ingest
-- `ZOOMKB_LLM_MODEL` — Model override (default: `gpt-4o-mini`)
+Environment variables (all optional):
 - `ZOOMKB_CRAWL4AI=1` — Enable Crawl4AI fallback
-- `ZOOMKB_LLM_CLASSIFIER=1` — Enable LLM classification
+- `ZOOMKB_LLM_CLASSIFIER=1` — Enable LLM classification (requires `[llm]` + `OPENAI_API_KEY`)
+- `ZOOMKB_LLM_MODEL` — Model override for classifier (default: `gpt-4o-mini`)
+- `OPENAI_API_KEY` — Required only with `ZOOMKB_LLM_CLASSIFIER=1`
 
 ## Permissions
 
@@ -142,7 +142,7 @@ This skill requires:
 - **Network access** — HTTP requests to `support.zoom.com` (discovery + crawl)
 - **File write** — KB output directory (markdown, JSON, reports)
 - **Shell execution** — Python subprocess for zoomkb CLI commands
-- **LLM API access** — OpenAI API for ingest phase (if using `--no-dry-run`)
+- **LLM API access** — OpenAI API for optional LLM classifier (`ZOOMKB_LLM_CLASSIFIER=1`)
 
 ## Output structure
 

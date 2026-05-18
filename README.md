@@ -11,9 +11,9 @@
 
 ### Overview
 
-Zoom Support KB Builder crawls Zoom's official support articles and transforms them into a **design-facing knowledge base** (a "wiki layer"). It extracts concept pages, user-role descriptions, task flows, constraints, and UX patterns — all sourced from raw articles but compiled into design knowledge by an LLM.
+Zoom Support KB Builder crawls Zoom's official support articles and transforms them into a **design-facing knowledge base** (a "wiki layer"). It extracts concept pages, user-role descriptions, task flows, constraints, and UX patterns — all sourced from raw articles but compiled into design knowledge by Claude Code.
 
-**Pipeline:** `sitemap discovery → crawl (JSON-LD) → classify → validate → ingest (LLM) → lint`
+**Pipeline:** `sitemap discovery → crawl (JSON-LD) → classify → validate → ingest (Claude Code extract) → lint`
 
 ### Installation in Claude Code
 
@@ -29,8 +29,7 @@ git clone https://github.com/Pawn-97/zoomkb-builder.git
 cd zoomkb-builder
 python3 -m venv .venv && source .venv/bin/activate  # Create & activate venv
 pip install setuptools wheel                        # Ensure build deps available
-pip install -e .          # Core (crawl, discover, validate, lint)
-pip install -e ".[llm]"   # Optional: LLM-based relevance classifier (OpenAI)
+pip install -e .          # Core (crawl, discover, validate, lint, refresh)
 ```
 
 > **macOS SSL fix:** If `pip install -e .` fails with `SSL: CERTIFICATE_VERIFY_FAILED`, re-run with:
@@ -55,11 +54,19 @@ Alternatively, register it per-project by placing `SKILL.md` in your project's `
 All environment variables are optional. The ingest phase uses Claude Code's built-in LLM — no API key required.
 
 ```bash
-export OPENAI_API_KEY="sk-..."            # Optional: for LLM classifier
-export ZOOMKB_LLM_MODEL="gpt-4o-mini"     # Optional: model override for classifier
-export ZOOMKB_LLM_CLASSIFIER=1            # Optional: enable LLM-based classification
-export ZOOMKB_CRAWL4AI=1                  # Optional: headless browser fallback
+export ZOOMKB_CRAWL4AI=1                  # Optional: headless browser fallback for JS-heavy pages
 ```
+
+**LLM-based relevance classifier** (advanced, requires openai package):
+
+```bash
+pip install openai
+export OPENAI_API_KEY="sk-..."            # Required for classifier
+export ZOOMKB_LLM_MODEL="gpt-4o-mini"     # Optional: model override
+export ZOOMKB_LLM_CLASSIFIER=1            # Enable LLM-based classification
+```
+
+The default rule-based classifier works without any API keys and is sufficient for most use cases.
 
 Add these to your shell profile (`.zshrc`, `.bashrc`, or `config.fish`) for persistence.
 
@@ -76,11 +83,14 @@ In Claude Code, type `/zoomkb:build --product "Zoom Phone"` to run the full pipe
 | Command | Purpose |
 |---------|---------|
 | `/zoomkb:build` | One-shot full pipeline (init → discover → crawl → validate → ingest → lint) |
+| `/zoomkb:build-all` | Initialize KB directories for all 6 product lines |
 | `/zoomkb:init` | Initialize KB directory structure |
 | `/zoomkb:discover` | Discover candidate articles from Zoom sitemaps |
 | `/zoomkb:crawl` | Crawl and extract articles (JSON-LD primary, Trafilatura fallback) |
 | `/zoomkb:validate` | Validate raw articles for quality |
-| `/zoomkb:ingest` | Generate wiki pages via LLM extraction |
+| `/zoomkb:ingest` | Generate wiki pages via Claude Code extraction (prepare → extract → commit) |
+| `/zoomkb:refresh` | Re-crawl accepted articles, detect content changes |
+| `/zoomkb:freshness` | Generate source freshness/staleness report |
 | `/zoomkb:lint` | Quality checks (traceability, coverage, consistency, freshness) |
 
 See [SKILL.md](SKILL.md) for full CLI options and flags.
@@ -90,7 +100,7 @@ See [SKILL.md](SKILL.md) for full CLI options and flags.
 ```bash
 cd zoomkb-builder
 git pull origin main                     # Get latest code
-pip install -e ".[llm]"                  # Re-install to pick up dependency changes
+pip install -e .                          # Re-install to pick up dependency changes
 ```
 
 After pulling, verify the skill definition is still current:
@@ -105,7 +115,7 @@ Check for new releases or breaking changes in the [GitHub repo](https://github.c
 
 ```
 raw/support-articles/*.md   ← Source of truth (never LLM-rewritten)
-  ↓ LLM ingest (prepare → extract → commit)
+  ↓ Claude Code extract (prepare → extract → commit)
 wiki/concepts/*.md          ← Design-facing knowledge (dedup + quality filtered)
 wiki/task-flows/*.md
 wiki/user-roles/*.md
@@ -119,10 +129,9 @@ Extracted entities go through three-stage dedup (exact slug → normalized slug 
 
 | Dependency | Purpose |
 |------------|---------|
-| `pip install -e .` | Core: crawl, discover, validate, lint |
-| `pip install -e ".[llm]"` | Optional: LLM-based relevance classifier (OpenAI) |
+| `pip install -e .` | Core: crawl, discover, validate, lint, refresh |
+| `pip install openai` + `OPENAI_API_KEY` | Optional: LLM-based relevance classifier |
 | `pip install -e ".[dev]"` | Tests, linting, type checking |
-| `OPENAI_API_KEY` | Optional: for `ZOOMKB_LLM_CLASSIFIER=1` |
 | `ZOOMKB_CRAWL4AI=1` | Optional: headless browser extraction |
 
 ---
@@ -133,7 +142,7 @@ Extracted entities go through three-stage dedup (exact slug → normalized slug 
 
 Zoom-UX知识库构建器（Zoom Support KB Builder）爬取 Zoom 官方支持文章，并将其转化为**面向设计的知识库**（"wiki 层"）。它提取概念页面、用户角色描述、任务流程、约束条件和 UX 模式 —— 全部来源于原始支持文章，但通过 LLM 编译成设计知识。
 
-**流水线：** `站点地图发现 → 爬取 (JSON-LD) → 分类 → 验证 → LLM 提取 → 质量检查`
+**流水线：** `站点地图发现 → 爬取 (JSON-LD) → 分类 → 验证 → Claude Code 提取 → 质量检查`
 
 ### 在 Claude Code 中安装
 
@@ -149,8 +158,7 @@ git clone https://github.com/Pawn-97/zoomkb-builder.git
 cd zoomkb-builder
 python3 -m venv .venv && source .venv/bin/activate  # 创建并激活虚拟环境
 pip install setuptools wheel                        # 确保构建依赖可用
-pip install -e .          # 核心功能（爬取、发现、验证、质量检查）
-pip install -e ".[llm]"   # 可选：基于 LLM 的相关性分类器（OpenAI）
+pip install -e .          # 核心功能（爬取、发现、验证、质量检查、刷新）
 ```
 
 > **macOS SSL 修复：** 如果 `pip install -e .` 失败并提示 `SSL: CERTIFICATE_VERIFY_FAILED`，可重新运行：
@@ -175,11 +183,19 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md
 所有环境变量均为可选。ingest 阶段使用 Claude Code 内置的 LLM —— 无需 API Key。
 
 ```bash
-export OPENAI_API_KEY="sk-..."            # 可选：为 LLM 分类器提供
-export ZOOMKB_LLM_MODEL="gpt-4o-mini"     # 可选：为分类器指定模型
-export ZOOMKB_LLM_CLASSIFIER=1            # 可选：启用 LLM 分类
-export ZOOMKB_CRAWL4AI=1                  # 可选：无头浏览器回退提取
+export ZOOMKB_CRAWL4AI=1                  # 可选：无头浏览器回退提取（JS 重页面）
 ```
+
+**LLM 分类器**（高级功能，需安装 openai 包）：
+
+```bash
+pip install openai
+export OPENAI_API_KEY="sk-..."            # 必需：供分类器使用
+export ZOOMKB_LLM_MODEL="gpt-4o-mini"     # 可选：指定模型
+export ZOOMKB_LLM_CLASSIFIER=1            # 启用 LLM 分类
+```
+
+默认规则分类器无需任何 API Key，足以应对大多数使用场景。
 
 为确保持久生效，建议将以上变量写入 shell 配置文件（`.zshrc`、`.bashrc` 或 `config.fish`）。
 
@@ -196,11 +212,14 @@ zoomkb --help
 | 命令 | 用途 |
 |---------|---------|
 | `/zoomkb:build` | 一键运行完整流水线 |
+| `/zoomkb:build-all` | 初始化全部 6 条产品线知识库目录 |
 | `/zoomkb:init` | 初始化知识库目录结构 |
 | `/zoomkb:discover` | 从 Zoom 站点地图发现候选文章 |
 | `/zoomkb:crawl` | 爬取并提取文章内容（优先 JSON-LD，备用 Trafilatura） |
 | `/zoomkb:validate` | 验证原始文章质量 |
-| `/zoomkb:ingest` | 通过 LLM 提取生成 wiki 页面 |
+| `/zoomkb:ingest` | 通过 Claude Code 提取生成 wiki 页面 (prepare → extract → commit) |
+| `/zoomkb:refresh` | 重新抓取已收录文章，检测内容变更 |
+| `/zoomkb:freshness` | 生成来源新鲜度/过期状态报告 |
 | `/zoomkb:lint` | 质量检查（可追溯性、覆盖度、一致性、新鲜度） |
 
 详见 [SKILL.md](SKILL.md) 获取完整 CLI 参数和选项。
@@ -210,7 +229,7 @@ zoomkb --help
 ```bash
 cd zoomkb-builder
 git pull origin main                     # 拉取最新代码
-pip install -e ".[llm]"                  # 重新安装以同步依赖变更
+pip install -e .                          # 重新安装以同步依赖变更
 ```
 
 拉取后确认技能定义是最新的：
@@ -225,7 +244,7 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md   # 更新技能定义
 
 ```
 raw/support-articles/*.md   ← 原始来源（永不被 LLM 改写）
-  ↓ LLM 提取（准备 → 提取 → 提交）
+  ↓ Claude Code 提取（准备 → 提取 → 提交）
 wiki/concepts/*.md          ← 设计知识（经过去重和质量过滤）
 wiki/task-flows/*.md
 wiki/user-roles/*.md
@@ -239,10 +258,9 @@ wiki/ux-patterns/*.md
 
 | 依赖 | 用途 |
 |------------|---------|
-| `pip install -e .` | 核心：爬取、发现、验证、质量检查 |
-| `pip install -e ".[llm]"` | 可选：基于 LLM 的相关性分类器（OpenAI） |
+| `pip install -e .` | 核心：爬取、发现、验证、质量检查、刷新 |
+| `pip install openai` + `OPENAI_API_KEY` | 可选：LLM 相关性分类器 |
 | `pip install -e ".[dev]"` | 测试、代码检查、类型检查 |
-| `OPENAI_API_KEY` | 可选：配合 `ZOOMKB_LLM_CLASSIFIER=1` 使用 |
 | `ZOOMKB_CRAWL4AI=1` | 可选：无头浏览器提取 |
 
 ---

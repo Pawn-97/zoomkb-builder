@@ -1510,6 +1510,7 @@ Phase P3: 一键体验
 | Phase 4 (多产品线) | ✅ 完成 — 5 product configs, hardcoded fix, dynamic output, build-all, SKILL.md |
 | Phase 5 (增量更新) | ✅ 完成 — refresh, freshness, conflict detection, review queue, manifest query helpers |
 | Phase 6 (真实数据验证) | ✅ 完成 — 全流程回归验证通过 (2026-05-18) |
+| Phase 7 (Zoom Phone KB 50篇) | ✅ 完成 — 50 candidates, 29 accepted, 358 wiki entities, OpenAI 依赖已移除 (2026-05-18) |
 
 ### 24.7 Phase 3 交付明细
 
@@ -1573,7 +1574,36 @@ Phase P3: 一键体验
 | Manifest query helpers | ✅ get_review_queue(32), get_stale_sources(0), get_changed_since(0) |
 | Conflict detection 代码逻辑 | ✅ ingest.py: ≥3 sources → conflict_flag frontmatter (需新鲜 build 验证端到端) |
 
-### 24.12 即时下一步
+### 24.12 Phase 7 交付明细
+
+验证时间: 2026-05-18
+
+| 项目 | 结果 |
+|---|---|
+| 候选文章发现 | 50 candidates (from 3,733 English sitemap articles) |
+| 接受文章 | 29 accepted (58% acceptance rate) |
+| Wiki entities (总计) | **358** |
+| concepts | 83 |
+| constraints | 97 |
+| task-flows | 70 |
+| user-roles | 28 |
+| ux-patterns | 80 |
+| Conflict-flagged entities | 5 (≥3 unique sources) |
+| Lint | ✅ 0 issues |
+| Freshness | ✅ 33 fresh, 0 stale |
+| 测试 | ✅ 54/54 |
+
+重大架构变更:
+- **OpenAI 依赖完全移除**: `extractor.py` 删除，`cli.py`/`SKILL.md`/`pyproject.toml` 清理所有 OpenAI 引用
+- **Claude Code 作为抽取引擎**: 6 个并行 Claude Code agent 直接读取 `.prompt.md` 写入 `.result.json`
+- **Pipeline 从 8 步缩减为 7 步**: extract 步骤由 Claude Code 接管，不再作为独立 CLI 命令
+
+Bug 修复:
+- `--max-candidates` 在非 `--fetch-titles` 路径不生效 (discover.py)
+- Crawl 无法找到 `review/candidate-articles.json` (cli.py 路径 + JSON 格式检测)
+- Wiki page 模板显示 literal `{entity.title}` 等占位符 (ingest.py `_write_wiki_page()` f-string 拼接)
+
+### 24.13 即时下一步
 
 1. ~~用真实 Zoom Support 数据端到端验证 `build` 全流程~~ ✅ 已完成
 2. ~~编写 ingest 中间步的批处理脚本~~ ✅ 已完成 — `zoomkb extract` + `--auto-extract`
@@ -1581,6 +1611,6 @@ Phase P3: 一键体验
 4. ~~Phase 4: 多产品线支持~~ ✅ 已完成
 5. ~~Phase 5: 增量更新与治理~~ ✅ 已完成 — refresh, freshness, conflict detection, review queue
 6. ~~Phase 6: 真实数据验证~~ ✅ 已完成 (2026-05-18)
-7. UX-partner 侧交叉建议：setup-kb 优先读 `kb_type` 字段；indexer 加入 `review/` skip；输出路径改为 KB root
-8. **Phase 7: 完整 Zoom Phone KB 生产** — 用真实数据跑完整 build（含 auto-extract），生成可用于 UX-partner 的 Zoom Phone 全量知识库
-9. **Phase 8: 其他产品线** — build-all 全产品线（Zoom Contact Center, Clips, Meetings, Rooms, Shared Platform）
+7. ~~Phase 7: Zoom Phone KB 50篇~~ ✅ 已完成 — 29 accepted, 358 wiki entities, OpenAI 依赖已移除 (2026-05-18)
+8. ~~UX-partner 侧交叉建议：setup-kb 优先读 `kb_type` 字段；indexer 加入 `review/` skip；输出路径改为 KB root~~ ✅ 已完成 (2026-05-18)
+9. **Phase 8: Plugin 体验打磨** — 确保 zoomkb-builder 作为 Claude Code Plugin 的完整体验：安装→选产品→一键构建→UX-partner 索引

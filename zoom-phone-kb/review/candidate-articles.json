@@ -1,6 +1,6 @@
 {
   "product": "zoom-phone",
-  "count": 5,
+  "count": 50,
   "candidates": [
     {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085809",
@@ -33,6 +33,16 @@
       ]
     },
     {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
+      "title": "Configuring call forwarding for Zoom Phone Local Survivability",
+      "lastmod": "2026-05-11",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085763",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085763",
       "title": "Deploying the Call Bridge service for Zoom Phone Local Survivability",
@@ -43,10 +53,446 @@
       ]
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085766",
-      "title": "Configuring call forwarding for Zoom Phone Local Survivability",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084068",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084068",
+      "title": "Getting started with Zoom Phone Mobile licenses",
+      "lastmod": "2026-05-12",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085540",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085540",
+      "title": "Configuring Zoom Virtual Agent SMS tool to enable Zoom Phone SMS feature",
+      "lastmod": "2026-04-24",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084727",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084727",
+      "title": "Japan SMS registration guide for Zoom Phone and Contact Center",
+      "lastmod": "2026-04-19",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084689",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084689",
+      "title": "Enabling or disabling Zoom Phone call delegation",
+      "lastmod": "2026-04-16",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone",
+        "strong: call delegation"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085008",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085008",
+      "title": "Setting up business address verification for Zoom Phone Mobile UK",
+      "lastmod": "2026-05-12",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083992",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083992",
+      "title": "Enabling or disabling Zoom Phone conference join/leave tone",
+      "lastmod": "2026-03-25",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084608",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084608",
+      "title": "Configuring caller data sharing between Zoom Phone and Zoom Contact Center",
+      "lastmod": "2026-04-15",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084361",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084361",
+      "title": "Using Zoom Phone eSIM numbers",
+      "lastmod": "2026-04-09",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083506",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083506",
+      "title": "Using Push to Talk AI summary in Zoom Phone",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084041",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084041",
+      "title": "Setting up group rotating in a call queue",
+      "lastmod": "2026-02-27",
+      "matched_signals": [
+        "strong: call queue"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084089",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084089",
+      "title": "Managing eSIMs for Zoom Phone",
+      "lastmod": "2026-04-16",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084830",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084830",
+      "title": "Managing Zoom Phone call summary templates with AI companion",
+      "lastmod": "2026-05-07",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084831",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084831",
+      "title": "Enabling or disabling Zoom Phone call summary templates",
       "lastmod": "2026-05-11",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083729",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083729",
+      "title": "Enabling or disabling Peer-to-Peer media for Zoom Phone",
+      "lastmod": "2026-02-04",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084977",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084977",
+      "title": "Zoom Phone caller ID and routing issues",
+      "lastmod": "2026-05-15",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083812",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083812",
+      "title": "Issues provisioning international phone numbers",
+      "lastmod": "2026-04-21",
+      "matched_signals": [
+        "strong: phone number"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069571",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069571",
+      "title": "Zoom Phone error 432: Your service is affected by a network issue",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067622",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067622",
+      "title": "Zoom Phone error 1001: Poor network connection",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081958",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081958",
+      "title": "Frequently asked questions about purchasing hardware with Zoom Phone",
+      "lastmod": "2026-05-09",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069525",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069525",
+      "title": "Zoom Phone error 481: The service is not available currently",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069355",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069355",
+      "title": "Zoom Phone error 491: The service is not available currently",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069587",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069587",
+      "title": "Zoom Phone error 415: Media type not supported",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083016",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083016",
+      "title": "Transferring call data from Zoom Phone to Contact Center",
+      "lastmod": "2026-04-01",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082364",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082364",
+      "title": "Zoom Contact Center support for SMS for UK and Ireland phone numbers",
+      "lastmod": "2026-05-07",
+      "matched_signals": [
+        "strong: phone number"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069425",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069425",
+      "title": "Zoom Phone error 483: Your service is affected by a network issue",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069559",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069559",
+      "title": "Zoom Phone error 439: Your service is affected by a network issue",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069649",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069649",
+      "title": "Zoom Phone error 406: Your request can not be allowed",
+      "lastmod": "2026-03-10",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069055",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069055",
+      "title": "Zoom Phone error 504: The service is not available currently",
+      "lastmod": "2026-02-26",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068758",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068758",
+      "title": "Zoom Phone error 604: The service is not available currently",
+      "lastmod": "2026-01-27",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075917",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075917",
+      "title": "Managing Zoom Phone Appliance device monitoring",
+      "lastmod": "2026-01-09",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068671",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068671",
+      "title": "Zoom Phone error 702: SSL Certificate failed - Cert Name mismatch",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069672",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069672",
+      "title": "Zoom Phone error 405: Your request can not be allowed",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075512",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075512",
+      "title": "Enabling calls from shared line groups by IP phone",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "strong: shared line group"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074437",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074437",
+      "title": "Using Zoom Phone with the LTI Pro app",
+      "lastmod": "2026-04-01",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069109",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069109",
+      "title": "Zoom Phone error 504: The number you dialed is temporarily unavailable",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069629",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069629",
+      "title": "Zoom Phone error 407: The account is unauthorized",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069399",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069399",
+      "title": "Zoom Phone error 486: The peer is busy",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068470",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068470",
+      "title": "Zoom Phone error 802: Emergency calling not available",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069375",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069375",
+      "title": "Zoom Phone error 487: The service is not available currently",
+      "lastmod": "2026-01-08",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069464",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069464",
+      "title": "Zoom Phone error 482: Your service is affected by a network issue",
+      "lastmod": "2026-02-26",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084020",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084020",
+      "title": "Moving phone numbers between master and sub-accounts in Number Management",
+      "lastmod": "2026-05-11",
+      "matched_signals": [
+        "strong: phone number"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083412",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083412",
+      "title": "Zoom Phone automatic device model detection and correction",
+      "lastmod": "2026-03-22",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068007",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068007",
+      "title": "Zoom Phone error 805: Your service is affected by a network issue",
+      "lastmod": "2026-04-14",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084151",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084151",
+      "title": "Using the Zoom Phone for Zapier integration",
+      "lastmod": "2026-04-28",
+      "matched_signals": [
+        "contains zoom phone",
+        "strong: zoom phone"
+      ]
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068344",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068344",
+      "title": "Zoom Phone error 803: Emergency calling not available",
+      "lastmod": "2026-01-08",
       "matched_signals": [
         "contains zoom phone",
         "strong: zoom phone"

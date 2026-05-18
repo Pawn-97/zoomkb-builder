@@ -10,16 +10,19 @@ confidence: high
 last_reviewed: 2026-05-18
 ---
 
-# {entity.title}
+# Enable Call Forwarding During Outage
 
 ## Summary
 
-{merged_summary}
+The emergency-time workflow where admins activate pre-configured forwarding rules. The interface provides a Select All option for bulk enablement, which is critical for time-sensitive outage scenarios. This flow must be extremely fast and reliable since admins may be under pressure during an actual outage.
 
 ## Key points
 
-{key_points_md}
+- Navigate: Phone System Management > Company Info > Site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage
+- Click Enable Forwarding to activate
+- Select All option available for bulk enablement
+- Executed during live outage -- speed and reliability are critical
 
 ## Related
 
-{related_links}
+- [[call-forwarding-local-survivability]]

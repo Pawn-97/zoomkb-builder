@@ -1,0 +1,84 @@
+{
+  "article_id": "KB0083016",
+  "concepts": [
+    {
+      "title": "Cross-Product Call Data Transfer (Phone to Contact Center)",
+      "summary": "A feature that passes call information from Zoom Phone to Zoom Contact Center when calls are transferred between the two products. Transferred calls carry the caller name/ID of both the original caller and the transfer initiator, preserving context across product boundaries. This is a one-directional setting (Phone to Contact Center) with a separate companion feature for the reverse direction.",
+      "key_points": [
+        "Transfers caller name/ID of both the original caller and the transfer initiator",
+        "One-directional: Phone to Contact Center (reverse transfer uses a different article/setting)",
+        "Controlled by a single account-level checkbox labeled 'Conversation summary'",
+        "Requires account owner or admin privileges to configure"
+      ],
+      "related": ["contact-center", "call-transfer", "conversation-summary", "cross-product-integration"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin",
+      "summary": "Only account owners and admins with permission to edit account settings can enable or disable this feature. The setting is buried in the Phone System Management > Company Info > Account Settings path, which requires admin-level navigation knowledge. End users (agents, call handlers) have no visibility into or control over this setting.",
+      "key_points": [
+        "Must have account owner or admin privileges to edit account settings",
+        "Requires Zoom Workplace license with Phone included, or standalone Zoom Phone calling plan",
+        "Setting is not visible or editable by non-admin users"
+      ],
+      "related": ["admin-privileges", "account-settings", "company-info"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Enable or Disable Call Data Transfer to Contact Center",
+      "summary": "A simple single-checkbox toggle buried four levels deep in the admin navigation. The setting is labeled 'Transferring call data to Contact Center' but the actual control is a checkbox for 'Conversation summary,' which creates a potential terminology mismatch. The flow is a basic enable/disable with no additional configuration or parameters.",
+      "key_points": [
+        "Sign in to Zoom web portal as an admin with edit privileges",
+        "Navigate to Phone System Management > Company Info > Account Settings",
+        "Locate 'Transferring call data to Contact Center' under the Preference section",
+        "Check 'Conversation summary' to enable, uncheck to disable"
+      ],
+      "related": ["account-settings", "contact-center", "conversation-summary", "admin-navigation"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Admin-Only Configuration Access",
+      "summary": "The call data transfer setting is only accessible to account owners and admins with edit privileges. This means that support staff and contact center supervisors who might benefit from understanding this data flow cannot see the setting. Designers should consider whether an info-only view for non-admin roles would improve transparency.",
+      "key_points": [
+        "Setting is invisible to non-admin users",
+        "Only account owners and admins with edit privileges can modify"
+      ],
+      "related": ["admin-privileges", "role-based-access", "account-settings"]
+    },
+    {
+      "title": "License Requirements",
+      "summary": "A valid license is required to access this feature: either a Zoom Workplace license with Phone included, or a standalone Zoom Phone calling plan. Without the correct license, the setting may be hidden or non-functional, and the UI should handle this gracefully.",
+      "key_points": [
+        "Zoom Workplace license with Phone included, OR standalone Zoom Phone calling plan required",
+        "Licenseless accounts should see the setting as disabled or hidden with appropriate messaging"
+      ],
+      "related": ["zoom-phone-license", "zoom-workplace-license"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Deeply Nested Account Setting with Simple Toggle",
+      "summary": "A binary enable/disable setting placed four navigation levels deep (Phone System Management > Company Info > Account Settings > Preference). The depth of navigation is disproportionate to the simplicity of the control (a single checkbox). Designers should evaluate whether this setting warrants a more accessible placement or whether the deep nesting is intentional due to the sensitivity of call data sharing.",
+      "key_points": [
+        "Single checkbox controls the entire feature (no additional parameters)",
+        "Found at path: Phone System Management > Company Info > Account Settings > Preference section",
+        "Label hierarchy: section header ('Transferring call data to Contact Center') differs from the actual checkbox label ('Conversation summary')"
+      ],
+      "related": ["account-settings", "preference-pattern", "checkbox-toggle", "admin-navigation"]
+    },
+    {
+      "title": "Terminology Gap Between Feature Name and Control Label",
+      "summary": "The feature is described as 'Transferring call data to Contact Center,' but the actual UI control is labeled 'Conversation summary.' This terminology mismatch could cause confusion for admins looking to enable the feature. Designers should align the setting's visible label with the terminology used in documentation and navigation.",
+      "key_points": [
+        "Feature name: 'Transferring call data to Contact Center'",
+        "Control label: 'Conversation summary'",
+        "Mismatch may cause admins to overlook the setting",
+        "Consistent terminology across documentation and UI reduces confusion"
+      ],
+      "related": ["terminology-consistency", "checkbox-toggle", "account-settings"]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "article_id": "KB0084151",
+  "concepts": [
+    {
+      "title": "Zoom Phone for Zapier Integration",
+      "summary": "A no-code integration that connects Zoom Phone with Zapier to automate phone-related workflows. Users can create Zaps that trigger on Zoom Phone events (call ended, voicemail received, recording completed, SMS) and perform actions in thousands of third-party apps like CRMs, email, and messaging platforms. It eliminates manual data entry and enables real-time call-driven automations.",
+      "key_points": [
+        "Trigger-based: events like call ended, voicemail received, recording completed, SMS received",
+        "Action capability: send SMS to up to 10 recipients from Zapier",
+        "Field mapping: Zoom Phone data (caller name, number, direction, timestamp) mapped to third-party app fields",
+        "OAuth authentication with shared access option for app-wide triggers"
+      ],
+      "related": ["zap", "trigger-events", "shared-access", "field-mapping"]
+    },
+    {
+      "title": "Zap",
+      "summary": "The core workflow unit in Zapier: a combination of a trigger event from one app and one or more actions in other apps. For Zoom Phone, a Zap might trigger on a completed call and create a CRM contact or send an email with call details.",
+      "key_points": [
+        "Composed of a trigger (Zoom Phone event) and one or more actions (third-party app)",
+        "Created in Zapier's workflow builder interface",
+        "Requires Zoom account to be connected/authenticated within Zapier"
+      ],
+      "related": ["trigger-events", "zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Trigger Events",
+      "summary": "Zoom Phone events that can initiate a Zap workflow. Available triggers include: Phone Call Connected, Phone Call Ended, Phone Call History Completed, Phone Call Recording Completed, and Phone Call Voicemail Received. Each represents a distinct moment in the call lifecycle.",
+      "key_points": [
+        "Five trigger events covering the full call lifecycle",
+        "Connected triggers at call start; Ended/Completed at call conclusion",
+        "Recording Completed and Voicemail Received are media-specific triggers",
+        "Design implication: clear event taxonomy helps users select the right trigger"
+      ],
+      "related": ["zap", "zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Field Mapping",
+      "summary": "The mechanism by which Zoom Phone call data is passed to third-party applications in a Zap. Available fields include Caller/Callee Name, Phone Number, Extension details, Call ID, Direction, and DateTime. These fields can be inserted into email subjects, CRM records, spreadsheet rows, etc.",
+      "key_points": [
+        "16 available Zoom Phone fields covering caller, callee, call metadata, and forwarding info",
+        "Fields include both identity (names, numbers) and context (direction, timestamp, call ID)",
+        "Design implication: field naming and descriptions should make downstream mapping intuitive"
+      ],
+      "related": ["zoom-phone-for-zapier-integration", "zap"]
+    },
+    {
+      "title": "Shared Access",
+      "summary": "A permission model on the Zoom App Marketplace that allows an app to act on behalf of all users in an account, not just the authenticating user. For Zapier, this enables Zaps to trigger for any user's phone activity, making it suitable for team-wide or organization-wide automation.",
+      "key_points": [
+        "Requires User with Shared Access or Admin permission on Zoom App Marketplace",
+        "Selected via a checkbox during OAuth consent flow",
+        "Enables app-wide trigger scope vs. single-user scope",
+        "Design implication: checkbox must clearly explain its scope impact"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "App Marketplace Admin",
+      "summary": "A role on the Zoom App Marketplace with Admin permissions, allowing the user to add and configure the Zapier for Zoom Phone app and grant shared access for all-account triggers. This role manages the connection between Zoom and Zapier at the account level.",
+      "key_points": [
+        "Admin permission on Zoom App Marketplace required for shared access triggers",
+        "Manages app connection and removal from the Marketplace",
+        "Can authenticate Zapier and grant permissions on behalf of the organization"
+      ],
+      "related": ["app-marketplace-user-with-shared-access"]
+    },
+    {
+      "title": "App Marketplace User with Shared Access",
+      "summary": "A user role on the Zoom App Marketplace with Shared Access permission, which grants the ability to trigger the integration for all users in the account. This is an alternative to Admin permission for enabling organization-wide Zap triggers.",
+      "key_points": [
+        "User role with Shared Access permission on App Marketplace",
+        "Can enable all-user trigger scope without full admin rights",
+        "Must be added to Zoom App Marketplace with this specific permission"
+      ],
+      "related": ["app-marketplace-admin"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Connect Zoom to Zapier",
+      "summary": "The initial setup flow where a user adds Zoom Phone for Zapier as a connection in Zapier's platform. The user searches for the Zoom Phone app, initiates the connection, authenticates via a browser-based OAuth flow, and optionally enables shared access for organization-wide triggers.",
+      "key_points": [
+        "Access Zapier Apps page, click Add connection",
+        "Search and select Zoom Phone for Zapier",
+        "Browser-based OAuth: new tab opens for Zoom sign-in and permission grant",
+        "Shared Access checkbox available during authentication",
+        "Once connected, the app appears in Zapier for use in Zaps"
+      ],
+      "related": ["zoom-phone-for-zapier-integration", "shared-access"]
+    },
+    {
+      "title": "Authorize Zoom Account When Creating a Zap",
+      "summary": "Within the Zap creation flow, users must connect their Zoom account to Zapier. They select Zoom Phone as a trigger or action, choose 'Connect a new account', sign in to Zoom, review permissions, and click Allow. This authenticates the specific Zoom account for use in that Zap.",
+      "key_points": [
+        "In Zap editor: select Zoom Phone as trigger or action",
+        "Choose 'Connect a new account' in the Account tab",
+        "Zoom OAuth sign-in and permission grant",
+        "Per-Zap connection model: account is connected within the context of a specific Zap"
+      ],
+      "related": ["zap", "zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Remove Zapier for Zoom Phone App",
+      "summary": "A cross-platform disconnection flow that requires actions in both Zapier and Zoom. In Zapier, the user deletes connected Zoom Phone accounts from Manage Connections. In the Zoom App Marketplace, the user navigates to Manage > Added Apps and removes the Zapier for Phone app.",
+      "key_points": [
+        "Two-platform removal: Zapier (Manage Connections) and Zoom (App Marketplace > Added Apps)",
+        "Zapier side: delete connected Zoom Phone accounts",
+        "Zoom side: navigate to Manage > Added Apps, find Zapier for Phone, click Remove, confirm",
+        "Sequential dependency: Zapier disconnection should happen first"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "License and Marketplace Prerequisites",
+      "summary": "Users must have either a Zoom Workplace license with Phone or a standalone Zoom Phone calling plan. Additionally, Zapier must be added to the Zoom App Marketplace account before the integration can be used.",
+      "key_points": [
+        "Zoom Workplace with Phone, or standalone Zoom Phone calling plan required",
+        "Zapier must be pre-added to Zoom App Marketplace account",
+        "App-wide triggers require User with Shared Access or Admin permission on Marketplace"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "SMS Action Recipient Limit",
+      "summary": "The Zoom Phone for Zapier action can send SMS to a maximum of 10 recipients per Zap execution. This limit applies to the Send SMS action event.",
+      "key_points": [
+        "Maximum 10 recipients per SMS action",
+        "Design implication: validate recipient count in Zap configuration UI"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Two-Platform Removal Requirement",
+      "summary": "Fully disconnecting the integration requires actions on both Zapier and Zoom platforms. Simply removing the connection on one side leaves residual configuration on the other. This cross-platform dependency may confuse users expecting a single removal action.",
+      "key_points": [
+        "Removal requires actions on both Zapier (Manage Connections) and Zoom (App Marketplace)",
+        "No single-click disconnect across platforms",
+        "Design implication: provide clear documentation and in-product guidance for the two-step process"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "OAuth-Based Third-Party Authentication",
+      "summary": "Zoom Phone connects to Zapier via a standard OAuth flow: the user is redirected to a Zoom sign-in page in a new browser tab/window, reviews requested permissions, and grants access. The Shared Access checkbox is presented during this consent step for account-wide scope.",
+      "key_points": [
+        "New browser tab/window for OAuth sign-in",
+        "Permission consent screen with explicit Allow button",
+        "Shared Access checkbox embedded in consent flow",
+        "After authentication, user returns to Zapier to continue building the Zap"
+      ],
+      "related": ["zoom-phone-for-zapier-integration", "shared-access"]
+    },
+    {
+      "title": "Trigger-Event Selection with App Search",
+      "summary": "In the Zap editor, users search for Zoom Phone, select it, and then choose from a list of predefined trigger events. This search-and-select pattern simplifies discovery of the right integration among thousands of apps, and the event list provides a curated set of meaningful trigger points.",
+      "key_points": [
+        "Search bar to find Zoom Phone among Zapier's app catalog",
+        "Event list with human-readable event names",
+        "Covers the call lifecycle: connect, end, complete, recording done, voicemail received"
+      ],
+      "related": ["trigger-events", "zap", "zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Field Mapping Between App Data Models",
+      "summary": "After selecting a trigger, Zapier pulls available Zoom Phone fields (caller name, number, direction, timestamp, etc.) for mapping into subsequent action steps. Users can insert these dynamic values into third-party app fields, creating data pipelines without code.",
+      "key_points": [
+        "Dynamic field discovery: Zapier surfaces available Zoom Phone fields automatically",
+        "Users insert fields into downstream app templates (e.g., Gmail subject line)",
+        "Field labels should be self-explanatory for non-technical users"
+      ],
+      "related": ["field-mapping", "zap", "zoom-phone-for-zapier-integration"]
+    },
+    {
+      "title": "Manage Connections and Added Apps Pattern",
+      "summary": "Connections are managed across two surfaces: Zapier's Manage Connections page lists all connected accounts, and Zoom's App Marketplace shows Added Apps. This dual-management pattern is common for marketplace integrations but requires users to understand both surfaces.",
+      "key_points": [
+        "Zapier: Manage Connections page for account-level disconnection",
+        "Zoom: App Marketplace > Manage > Added Apps for complete removal",
+        "Design consideration: provide clear cross-platform removal instructions"
+      ],
+      "related": ["zoom-phone-for-zapier-integration"]
+    }
+  ]
+}

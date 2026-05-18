@@ -1,0 +1,83 @@
+{
+  "article_id": "KB0083412",
+  "concepts": [
+    {
+      "title": "Device Model Detection and Correction",
+      "summary": "An automated system that validates desk phone models against Zoom's certified device list and silently corrects incorrect model information. Designers should ensure that corrected device details propagate consistently across all web portal pages without requiring manual refresh.",
+      "key_points": [
+        "Automatically detects and corrects incorrect model information for certified devices",
+        "Corrections are reflected across all web portal pages without user intervention",
+        "Non-certified devices trigger a persistent red warning message that cannot be dismissed",
+        "Covers models from AudioCodes, Avaya, Cisco, Grandstream, Mitel, Poly, and Yealink"
+      ],
+      "related": ["certified-devices", "non-certified-device-warning"]
+    },
+    {
+      "title": "Certified Devices",
+      "summary": "A curated list of desk phone models that Zoom officially supports for Phone features. Designers should treat certified devices as the 'happy path' in device management flows, while any model not on this list falls into the non-certified category with warning UI.",
+      "key_points": [
+        "Includes specific models from AudioCodes, Avaya, Cisco, Grandstream, Mitel, Poly, and Yealink",
+        "Certified devices benefit from automatic model detection and correction",
+        "All other desk phone models are treated as a general uncertified category"
+      ],
+      "related": ["device-model-detection-and-correction", "non-certified-device-warning"]
+    },
+    {
+      "title": "Non-Certified Device Warning",
+      "summary": "A persistent red warning message displayed in the web portal when a desk phone model is not on Zoom's certified list. The warning informs admins the device may not work with Zoom Phone features and cannot be dismissed, making it a high-visibility alert that demands attention.",
+      "key_points": [
+        "Persistent red warning message — does not auto-dismiss or fade",
+        "Alerts admins that the device is not supported for Zoom Phone features",
+        "Appears for any device model not in the certified list"
+      ],
+      "related": ["device-model-detection-and-correction", "certified-devices"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin",
+      "summary": "The primary audience for device model validation features. Admins see the corrected device information and any non-certified device warnings in the web portal, enabling them to audit and manage their organization's desk phone fleet.",
+      "key_points": [
+        "Receives automatic device model corrections across the web portal",
+        "Sees persistent red warnings for non-certified devices",
+        "Responsible for device fleet management and deployment accuracy"
+      ],
+      "related": ["device-model-detection-and-correction", "non-certified-device-warning"]
+    }
+  ],
+  "task_flows": [],
+  "constraints": [
+    {
+      "title": "Automatic Correction Limited to Certified Models",
+      "summary": "The automatic model detection and correction system only applies to the specifically listed certified device models. Designers should not assume this feature works for all devices; non-certified models follow a different (warning-only) path.",
+      "key_points": [
+        "Only corrects listed certified models from AudioCodes, Avaya, Cisco, Grandstream, Mitel, Poly, and Yealink",
+        "Non-certified devices or uncategorized models receive warnings only, no automatic correction",
+        "The list of certified models is fixed and versioned per manufacturer"
+      ],
+      "related": ["device-model-detection-and-correction", "certified-devices", "non-certified-device-warning"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Automatic Correction with Cross-Page Reflection",
+      "summary": "When the system corrects a device model, the updated information propagates to all web portal pages automatically. Designers should ensure state consistency across views without requiring manual refresh, providing a seamless admin experience.",
+      "key_points": [
+        "Corrections reflected instantly across all portal pages",
+        "No manual refresh or reload required by the admin",
+        "Affects device detail pages, lists, and any other view showing device models"
+      ],
+      "related": ["device-model-detection-and-correction"]
+    },
+    {
+      "title": "Persistent Warning Banner for Non-Certified Devices",
+      "summary": "A persistent red warning message that remains visible to admins as long as a non-certified device exists. Designers should ensure this warning is prominent but does not block critical workflows, and consider if an acknowledgement or dismissal path is needed.",
+      "key_points": [
+        "Red-colored warning for high visibility",
+        "Persistent — does not auto-dismiss or time out",
+        "Appears alongside device information in the web portal"
+      ],
+      "related": ["non-certified-device-warning"]
+    }
+  ]
+}

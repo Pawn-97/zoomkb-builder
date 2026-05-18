@@ -3,53 +3,83 @@
   "concepts": [
     {
       "title": "Zoom Phone Local Survivability (ZPLS)",
-      "summary": "ZPLS is a cloud-managed failover system that keeps Zoom Phone services running during internet outages. Designers should understand that ZPLS syncs configuration data from the cloud to on-premise nodes, and this sync process is central to the admin experience during setup and maintenance.",
-      "key_points": ["Cloud-managed, auto-syncs config to on-premise nodes", "Supports up to 100,000 users via node groups", "Manual sync limited to once every 30 minutes"],
-      "related": ["zoom-phone-local-survivability", "zpls-node-group", "zpls-data-synchronization"]
+      "summary": "A cloud-managed telephony survivability system that keeps phone services running when internet connectivity to Zoom's cloud is lost. ZPLS nodes and node groups are deployed on-premises and must receive up-to-date configuration data to function correctly during outages. Designers should note that ZPLS is fully managed from the cloud with no local admin interface.",
+      "key_points": [
+        "Fully cloud-managed; no local admin interface on ZPLS modules",
+        "Supports individual nodes and node groups for different deployment scales",
+        "Requires data synchronization after any configuration change (users, phones, groups)"
+      ],
+      "related": ["zpls-node", "zpls-node-group", "zpls-data-synchronization"]
     },
     {
       "title": "ZPLS Data Synchronization",
-      "summary": "Data sync is how ZPLS nodes receive updated configuration from the Zoom cloud. Sync happens on node boot, every 10 hours automatically, or manually via the admin portal. This affects admin UX flows around configuration changes — admins must wait for sync before changes take effect in survivability mode.",
-      "key_points": ["Auto-sync on boot and every 10 hours", "Manual sync limited to once per 30 minutes", "Required after any ZPLS configuration change"],
-      "related": ["zoom-phone-local-survivability", "zpls-node"]
+      "summary": "The mechanism that pushes configuration changes from the Zoom cloud to on-premises ZPLS modules. Without synchronization, nodes operate on stale data during outages. Administrators must be aware that manual sync is rate-limited, providing designers with an opportunity to surface sync status and last-sync timestamps in the admin portal.",
+      "key_points": [
+        "Automatic sync on node boot and every 10 hours",
+        "Manual sync available from admin portal but limited to once per 30 minutes",
+        "Required after adding users, common areas, phone numbers, or Survivable Distribution Groups"
+      ],
+      "related": ["zpls", "zpls-node", "zpls-node-group", "manual-sync-task-flow"]
     }
   ],
   "user_roles": [
     {
-      "title": "Account Owner or Admin with Edit Privileges",
-      "summary": "Only account owners or admins with edit privileges can manually trigger ZPLS data synchronization. The admin portal is the sole interface for this action — no end-user facing controls exist.",
-      "key_points": ["Must have account settings edit privilege", "Accesses Phone System Management > Company Info", "Can trigger sync for individual nodes or node groups"],
-      "related": ["zpls-data-synchronization"]
+      "title": "Account Owner / Administrator",
+      "summary": "The only role authorized to initiate ZPLS data synchronization. Admins must have account-level edit privileges and access to Phone System Management. Designers should ensure the sync action is prominently visible to this role while hidden from users without appropriate permissions.",
+      "key_points": [
+        "Requires account owner or admin privileges",
+        "Must have permission to edit account settings",
+        "Accessed via Phone System Management > Company Info"
+      ],
+      "related": ["manual-sync-task-flow"]
     }
   ],
   "task_flows": [
     {
-      "title": "Manually Synchronize ZPLS Data",
-      "summary": "Admin navigates Phone System Management > Company Info > selects site > Settings > Zoom Node > Local Survivability > Manage. From there, can sync an individual node or a node group. UX note: the sync action is the same button label for both scopes.",
-      "key_points": ["Path: Phone System Management > Company Info > site > Settings > Zoom Node > Manage", "Two sync targets: individual node or node group", "30-minute cooldown between manual syncs"],
-      "related": ["zpls-data-synchronization", "zpls-node", "zpls-node-group"]
+      "title": "Manual ZPLS Data Synchronization",
+      "summary": "A two-path workflow allowing admins to sync either a single ZPLS node or an entire node group. The UI differentiates these paths by placing the Sync button in different sections (Status section for individual nodes, Site section for node groups), which could be confusing if not clearly labeled. The 30-minute rate limit means the interface should display a cooldown timer or disable the button after use.",
+      "key_points": [
+        "Navigate: Phone System Management > Company Info > Site > Settings > Zoom Node > Local Survivability > Manage",
+        "For individual node: scroll to Status section, click Sync",
+        "For node group: scroll to Site section, click Sync",
+        "Manual sync limited to once every 30 minutes",
+        "Sync status should be communicated to admin after initiation"
+      ],
+      "related": ["zpls-data-synchronization", "zpls-node", "zpls-node-group", "admin-role"]
     }
   ],
   "constraints": [
     {
-      "title": "Manual Sync Cooldown",
-      "summary": "Administrators can only initiate manual ZPLS sync once every 30 minutes. UI should communicate this cooldown state — a disabled button with countdown timer would prevent confusion.",
-      "key_points": ["30-minute minimum interval between manual syncs", "Auto-sync (10h) operates independently of manual cooldown"],
-      "related": ["zpls-data-synchronization"]
+      "title": "Manual Sync Rate Limit",
+      "summary": "Manual synchronization is capped at once every 30 minutes. This constraint should be reflected in the admin UI with a clear indication of when the next sync can be performed, preventing user confusion when the Sync button appears unresponsive.",
+      "key_points": [
+        "Maximum one manual sync every 30 minutes",
+        "No workaround available; automatic sync occurs every 10 hours otherwise",
+        "UI must communicate sync availability status"
+      ],
+      "related": ["manual-sync-task-flow", "zpls-data-synchronization"]
     },
     {
-      "title": "ZPLS Account Requirements",
-      "summary": "ZPLS requires Business/Education/Enterprise account, Zoom Node subscription, and Zoom Phone subscription. These are gating prerequisites that should be validated before exposing ZPLS configuration UI.",
-      "key_points": ["Business, Education, or Enterprise account required", "Zoom Node subscription required", "Zoom Phone subscription required", "Deployed ZPLS service module prerequisite"],
-      "related": ["zoom-phone-local-survivability"]
+      "title": "ZPLS Account and Subscription Requirements",
+      "summary": "Only Business, Education, or Enterprise accounts with both Zoom Node and Zoom Phone subscriptions can use ZPLS data synchronization. The admin must also have a deployed ZPLS service module. The UI should gate access to sync features behind these requirements.",
+      "key_points": [
+        "Business, Education, or Enterprise account required",
+        "Zoom Node and Zoom Phone subscriptions required",
+        "ZPLS service module must be deployed before sync is available"
+      ],
+      "related": ["zpls", "admin-role"]
     }
   ],
   "ux_patterns": [
     {
-      "title": "Dual-Scope Sync Action",
-      "summary": "The same 'Sync' button serves two different scopes (individual node vs node group) within the same management page. This is a design pattern where context determines the action's target — care needed to make the scope visually clear.",
-      "key_points": ["Single action label serves two contexts", "Scope determined by location in page (node section vs site section)"],
-      "related": ["zpls-data-synchronization", "zpls-node", "zpls-node-group"]
+      "title": "Admin Portal Sync Action Pattern",
+      "summary": "The sync action is accessed through a consistent drill-down path (Phone System Management > Company Info > Site > Settings > Zoom Node > Local Survivability > Manage) with the Sync button contextualized by scope. For individual nodes the Sync appears in the Status section; for node groups it appears in the Site section. This contextual placement helps admins understand what scope they are syncing.",
+      "key_points": [
+        "Consistent drill-down navigation to Local Survivability settings",
+        "Context-aware Sync button placement (Status section for nodes, Site section for groups)",
+        "Nested management via 'Manage' link under Zoom Node section"
+      ],
+      "related": ["manual-sync-task-flow", "zpls-data-synchronization"]
     }
   ]
 }

@@ -1,0 +1,148 @@
+{
+  "article_id": "KB0084041",
+  "concepts": [
+    {
+      "title": "Group Rotating Call Distribution",
+      "summary": "A call distribution method that rings subsets of call queue members in sequence rather than all members simultaneously. Each group of a defined size is rung for a set duration; if unanswered, the call moves to the next group. The pattern repeats until all members are exhausted, then falls through to overflow settings.",
+      "key_points": [
+        "Configurable group member size and ringing duration per group",
+        "Sequential group ringing: group 1, then group 2, etc., until all members tried",
+        "Calls overflow to voicemail, forwarding, or another queue if all groups fail",
+        "Distinct from simultaneous ringing where all members ring at once"
+      ],
+      "related": ["call-queue", "overflow-settings", "named-rotation-groups", "simultaneous-call-distribution"]
+    },
+    {
+      "title": "Call Queue",
+      "summary": "A Zoom Phone construct that manages incoming call routing to a group of members. Call queues support multiple distribution methods (including group rotating and simultaneous) and overflow behaviors for unanswered calls.",
+      "key_points": [
+        "Accessible under Phone System Management > Call Queues",
+        "Configured via a Profile tab with Business Hours section",
+        "Members are added to the queue and calls are distributed per the chosen method"
+      ],
+      "related": ["group-rotating-call-distribution", "overflow-settings", "named-rotation-groups"]
+    },
+    {
+      "title": "Named Rotation Groups via Multiple Call Queues",
+      "summary": "An alternative to simple group rotating that chains two call queues together via overflow routing. The first queue rings designated primary members simultaneously; if unanswered, overflow routes the call to a second queue with secondary members. This enables named, tiered escalation groups rather than anonymous group-by-group rotation.",
+      "key_points": [
+        "Primary queue uses simultaneous distribution; secondary queue also uses simultaneous",
+        "First queue's overflow routes to second queue",
+        "Second queue's overflow handles final escalation (e.g., voicemail)",
+        "Provides more control over who is rung and in what order than basic group rotating"
+      ],
+      "related": ["call-queue", "group-rotating-call-distribution", "overflow-settings"]
+    },
+    {
+      "title": "Overflow Settings",
+      "summary": "Configuration that defines what happens to calls that are not answered within a call queue. Common overflow destinations include voicemail, call forwarding to another number, or routing to a different call queue. Essential for ensuring no call is dropped.",
+      "key_points": [
+        "Triggered when no member in the queue answers",
+        "In group rotating, triggered after all groups have been tried",
+        "Can route to voicemail, external forwarding, or another call queue"
+      ],
+      "related": ["call-queue", "group-rotating-call-distribution", "named-rotation-groups"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner",
+      "summary": "Has full privileges to create, configure, and manage call queues, including setting up group rotating distribution and named rotation groups. Can access Phone System Management and configure all call queue settings.",
+      "key_points": [
+        "Full access to Phone System Management > Call Queues",
+        "Can configure all distribution methods and overflow settings",
+        "Requires Zoom Workplace license with Phone or standalone Zoom Phone plan"
+      ],
+      "related": ["admin"]
+    },
+    {
+      "title": "Admin",
+      "summary": "Administrators with phone system privileges can manage call queues and configure group rotating settings. Same license and setup prerequisites as account owners.",
+      "key_points": [
+        "Access to Call Queues management interface",
+        "Can configure group rotating and overflow settings",
+        "Requires initial Zoom Phone setup completion"
+      ],
+      "related": ["account-owner"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Configure Group Rotating for a Call Queue",
+      "summary": "Admins enable group rotating distribution on an existing call queue by navigating to the queue's Profile tab, selecting Group Rotating from the Call Distribution dropdown, and setting the group size and ringing duration. Overflow behavior must also be configured before saving.",
+      "key_points": [
+        "Navigate to Call Queues, click queue name, then Profile tab",
+        "Dropdown selection under Business Hours: change from default to Group Rotating",
+        "Two numeric inputs: Group member size and Ringing duration per group",
+        "Requires explicit Confirm action before Save",
+        "Overflow configuration is a recommended follow-up step before saving"
+      ],
+      "related": ["call-queue", "group-rotating-call-distribution", "overflow-settings"]
+    },
+    {
+      "title": "Configure Named Rotation Groups Using Multiple Call Queues",
+      "summary": "A two-phase setup where admins create two separate call queues linked by overflow routing. The primary queue rings a named set of members simultaneously; if unanswered, calls overflow to a secondary queue with a different set of members, which itself has its own overflow escalation.",
+      "key_points": [
+        "Phase 1: Create primary queue, add members, set distribution to Simultaneous, configure overflow to second queue",
+        "Phase 2: Create secondary queue, add different members, configure its overflow to voicemail or forwarding",
+        "End result: named tier-1 group rings first, named tier-2 group rings second, final overflow handles the rest",
+        "Provides deliberate, predictable call routing across known member groups"
+      ],
+      "related": ["call-queue", "named-rotation-groups-via-multiple-call-queues", "overflow-settings"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "License and Setup Prerequisites",
+      "summary": "Call queue management requires either a Zoom Workplace license with Phone included or a standalone Zoom Phone calling plan. Additionally, the initial Zoom Phone setup must be completed before call queues can be created or managed.",
+      "key_points": [
+        "Zoom Workplace with Phone, or standalone Zoom Phone calling plan required",
+        "Initial Zoom Phone setup must be completed first",
+        "Account owner or admin privileges required"
+      ],
+      "related": ["call-queue"]
+    },
+    {
+      "title": "Group Rotating Member Order",
+      "summary": "In the basic group rotating method, there is no guarantee of which specific members are in each group. The system divides members into groups automatically. For precise control over who is rung first, admins must use the named rotation groups pattern with multiple call queues.",
+      "key_points": [
+        "Basic group rotating assigns members to groups arbitrarily—no manual ordering",
+        "Named rotation groups solve this by chaining queues with explicit member lists",
+        "Design implication: clearly communicate this limitation in the UI to prevent confusion"
+      ],
+      "related": ["group-rotating-call-distribution", "named-rotation-groups-via-multiple-call-queues"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Tab-Based Queue Configuration",
+      "summary": "Call queue settings are organized into tabs (e.g., Profile tab). Within a tab, related settings are grouped into logical sections (e.g., Business Hours). This pattern organizes complex configuration into manageable, scannable groups.",
+      "key_points": [
+        "Profile tab contains the Business Hours section with call distribution settings",
+        "Section headers visually group related controls",
+        "Incremental save pattern: Confirm individual changes within a section before saving the whole queue"
+      ],
+      "related": ["call-queue"]
+    },
+    {
+      "title": "Dropdown Distribution Selector",
+      "summary": "The call distribution method is selected via a dropdown control. Changing from the default (e.g., Simultaneous) to Group Rotating reveals additional dependent controls: group member size and ringing duration. This progressive disclosure pattern keeps the UI clean until the relevant option is chosen.",
+      "key_points": [
+        "Dropdown toggle between distribution modes",
+        "Progressive disclosure: numeric inputs appear only when Group Rotating is selected",
+        "Confirm button required to apply the distribution change within the section"
+      ],
+      "related": ["call-queue", "group-rotating-call-distribution"]
+    },
+    {
+      "title": "Overflow Routing as Queue-to-Queue Chaining",
+      "summary": "Overflow configuration acts as an explicit routing link between call queues, enabling a chain-of-responsibility pattern. Designers can treat this as a visual call-routing builder where queues are connected nodes in a flow graph.",
+      "key_points": [
+        "Overflow settings allow selecting another call queue as the destination",
+        "Enables multi-tier escalation chains: queue 1 -> queue 2 -> voicemail",
+        "Low-code routing: admins compose complex call flows without scripting"
+      ],
+      "related": ["named-rotation-groups-via-multiple-call-queues", "overflow-settings", "call-queue"]
+    }
+  ]
+}

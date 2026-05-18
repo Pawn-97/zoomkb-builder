@@ -1,0 +1,177 @@
+{
+  "article_id": "KB0084020",
+  "concepts": [
+    {
+      "title": "Master-Sub Account Number Transfer",
+      "summary": "Allows admins to move phone numbers between related master and sub-accounts without support tickets. All number types (native, BYOC) are supported across Zoom Phone and Zoom Contact Center products. Numbers must be in an unassigned state before moving, and native numbers require a verified business address at the destination.",
+      "key_points": [
+        "Supports individual, bulk, and CSV import transfer methods",
+        "Native numbers require verified business address at destination account",
+        "BYOC numbers can move freely without address validation",
+        "Numbers must be unassigned before they can be transferred",
+        "Destination account must have appropriate licenses (Zoom Phone or Zoom Contact Center)"
+      ],
+      "related": ["master-sub-accounts", "number-management", "business-address-verification"]
+    },
+    {
+      "title": "Number Management",
+      "summary": "The centralized interface within the Zoom web portal where admins manage phone numbers, including viewing, assigning, and transferring them between accounts. It supports both Zoom Phone and Zoom Contact Center product scopes.",
+      "key_points": [
+        "Accessible via navigation menu under Number Management > Phone Numbers",
+        "Displays ellipsis menus per number for individual actions and checkbox selection for bulk operations",
+        "Move-to-account flow uses a guided pop-up wizard with dropdowns for target account, product, subscription, division, and SIP group"
+      ],
+      "related": ["master-sub-accounts", "business-address-verification"]
+    },
+    {
+      "title": "Business Address Verification",
+      "summary": "A prerequisite for moving native phone numbers between accounts: the destination account must have a relevant business address created in a verified state. BYOC numbers are exempt from this requirement.",
+      "key_points": [
+        "Required only for native numbers, not BYOC",
+        "Address must be verified before the transfer can proceed",
+        "Acts as a gate in the move workflow: admin must select business address from a dropdown"
+      ],
+      "related": ["native-phone-numbers", "byoc-phone-numbers"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner",
+      "summary": "Has full privileges to transfer phone numbers between master and sub-accounts. The account owner can enable the feature, manage sub-accounts, and perform all move operations.",
+      "key_points": [
+        "Can transfer numbers between any related master and sub-accounts",
+        "Must have manage sub-accounts privilege enabled",
+        "Responsible for moving numbers from sub-accounts back to master before deleting sub-accounts"
+      ],
+      "related": ["admin", "master-sub-accounts"]
+    },
+    {
+      "title": "Admin",
+      "summary": "Admins with the privilege to manage sub-accounts can also transfer phone numbers between master and sub-accounts. They need the same license and permission prerequisites as account owners.",
+      "key_points": [
+        "Requires explicit manage sub-accounts privilege",
+        "Must have appropriate product licenses (Zoom Phone or Zoom Contact Center)",
+        "Can perform individual, bulk, and CSV transfer operations"
+      ],
+      "related": ["account-owner", "master-sub-accounts"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Move a Single Native Phone Number",
+      "summary": "Admins transfer a single native number from one account to another through a guided pop-up wizard. The flow requires selecting the destination account, product type, subscription, division, SIP group, and verifying the business address before confirming.",
+      "key_points": [
+        "Access via ellipsis menu on the Phone Numbers list page",
+        "Five dropdown fields to fill: account, product, subscription, division, SIP group",
+        "Business address selection is an additional required step for native numbers",
+        "Two-step wizard: configuration first (Next), then address verification (Move)"
+      ],
+      "related": ["move-byoc-phone-number", "move-multiple-phone-numbers", "number-management", "business-address-verification"]
+    },
+    {
+      "title": "Move a Single BYOC Phone Number",
+      "summary": "Similar to the native number flow but simpler, as no business address verification is needed. Admins fill in the destination account, product, subscription, division, and SIP group, then confirm the move in a single wizard step.",
+      "key_points": [
+        "Same entry point via ellipsis menu on Phone Numbers page",
+        "Five dropdown fields but no business address step",
+        "Single confirmation (Move button) completes the transfer",
+        "Simpler UX reflects fewer constraints compared to native numbers"
+      ],
+      "related": ["move-native-phone-number", "move-multiple-phone-numbers", "number-management"]
+    },
+    {
+      "title": "Bulk Move of Multiple Phone Numbers",
+      "summary": "Admins can select multiple numbers at once using checkboxes (including a select-all option) and initiate a batch transfer. This flow includes address verification if any native numbers are in the selection.",
+      "key_points": [
+        "Uses checkbox selection with a select-all shortcut in the column header",
+        "Dedicated toolbar button: 'Move numbers between master/sub account'",
+        "Address verification pop-up appears if native numbers are selected",
+        "Supports moving native, BYOC, or mixed number types in one batch"
+      ],
+      "related": ["move-native-phone-number", "move-byoc-phone-number", "number-management"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Feature Enablement Required",
+      "summary": "The master-sub account number transfer feature is not on by default. Admins must contact Zoom Support to have it enabled on their account before the move UI becomes visible.",
+      "key_points": [
+        "Must contact Zoom Support to enable",
+        "UI options hidden until feature is turned on",
+        "Both master and sub-accounts need Zoom Global Phone Number SKU"
+      ],
+      "related": ["master-sub-accounts", "number-management"]
+    },
+    {
+      "title": "Number State Requirement",
+      "summary": "Numbers must be in an unassigned state before they can be moved between accounts. Assigned numbers cannot be transferred.",
+      "key_points": [
+        "Unassigned status is a hard prerequisite",
+        "Design implication: need clear indication of which numbers are eligible for transfer"
+      ],
+      "related": ["move-native-phone-number", "move-byoc-phone-number"]
+    },
+    {
+      "title": "Feature Reconfiguration After Transfer",
+      "summary": "If the number had messaging services, SPAM monitoring, CNAM, branded calling, or similar features enabled before the move, those features must be reconfigured in the destination account. This includes creating sub-account-specific 10DLC brands and campaigns.",
+      "key_points": [
+        "Design should warn admins about features that will be lost on transfer",
+        "Messaging, SPAM, CNAM, branded calling all require re-setup post-transfer",
+        "10DLC campaigns may need to be recreated per sub-account"
+      ],
+      "related": ["move-native-phone-number"]
+    },
+    {
+      "title": "Sub-Account Deletion Number Loss",
+      "summary": "If an admin deletes a sub-account without first moving its numbers back to the master account, the numbers are permanently deleted and released from the Zoom system. The admin has full responsibility to move numbers before deletion.",
+      "key_points": [
+        "Design implication: warn or block sub-account deletion when numbers still exist",
+        "No automatic recovery of numbers after sub-account deletion",
+        "Numbers released back to Zoom, not recoverable"
+      ],
+      "related": ["master-sub-accounts"]
+    },
+    {
+      "title": "UI Visibility for Master/Sub Classification",
+      "summary": "The move-to-account option should only be visible when the account relationship is a master-sub classification. This implies conditional rendering of UI elements based on account hierarchy.",
+      "key_points": [
+        "Conditional visibility based on account relationship type",
+        "Non-hierarchical accounts should not see the move option"
+      ],
+      "related": ["master-sub-accounts", "number-management"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Ellipsis Menu Row Actions",
+      "summary": "Individual actions on phone number rows are accessed via an ellipsis (three-dot) menu, which opens a contextual action (Move to account). This pattern keeps the list view clean while surfacing per-item actions.",
+      "key_points": [
+        "Ellipsis icon per table row",
+        "Clicking opens a context menu with 'Move to account' option",
+        "Triggers a pop-up modal/window for the action flow"
+      ],
+      "related": ["move-native-phone-number", "move-byoc-phone-number", "number-management"]
+    },
+    {
+      "title": "Checkbox Bulk Selection with Toolbar Action",
+      "summary": "Bulk operations use checkbox selection on each row, with a select-all checkbox in the column header. A contextual toolbar button ('Move numbers between master/sub account') appears or becomes active when selections are made.",
+      "key_points": [
+        "Per-row checkboxes plus a select-all checkbox in the column header",
+        "Toolbar action button activates on selection",
+        "Pop-up window handles additional steps like address verification"
+      ],
+      "related": ["bulk-move-of-multiple-phone-numbers", "number-management"]
+    },
+    {
+      "title": "Step-by-Step Wizard in Pop-up Modal",
+      "summary": "The phone number transfer uses a multi-step wizard pattern within a pop-up window. Step 1 collects configuration (account, product, subscription, etc.), and Step 2 handles address verification. The Next and Move buttons guide the user through sequential steps.",
+      "key_points": [
+        "Multi-step flow in a modal window",
+        "Next button advances to confirmation step",
+        "Clear primary action (Move) completes the flow",
+        "Dropdown-based field selection throughout"
+      ],
+      "related": ["move-native-phone-number", "move-byoc-phone-number", "bulk-move-of-multiple-phone-numbers"]
+    }
+  ]
+}

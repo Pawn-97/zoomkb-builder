@@ -1,0 +1,164 @@
+{
+  "article_id": "KB0084608",
+  "concepts": [
+    {
+      "title": "Transferring Call Data Policy",
+      "summary": "A configuration that controls what caller information is shared when transferring calls from Zoom Phone to Zoom Contact Center, and vice versa. The policy defines which data fields accompany a transferred call -- including original caller info, transfer initiator details, conversation summaries, and CRM data -- giving admins granular control over the information available to receiving agents.",
+      "key_points": [
+        "Configurable independently for both Zoom Phone and Zoom Contact Center directions",
+        "Caller name and caller ID are always included in all transferred calls (non-optional)",
+        "By default, all available data is shared with Zoom Contact Center",
+        "Phone side controls conversation summary sharing; Contact Center side controls original caller info, transfer initiator details, consumer sentiment, CRM ticket info, variables, and address book custom fields"
+      ],
+      "related": ["caller-data-enrichment", "transfer-initiator-information"]
+    },
+    {
+      "title": "Caller Data Enrichment",
+      "summary": "The enriched caller context provided to Contact Center agents when receiving transferred calls from Zoom Phone users, queues, auto receptionists, or shared line groups. This information follows the engagement lifecycle and is designed to give agents progressively deeper context as the interaction evolves.",
+      "key_points": [
+        "Information appears in three stages: incoming notification, active engagement, and completed engagement records",
+        "Includes consumer identity, transfer source details, IVR input, conversation summaries, and CRM ticket info",
+        "Helps agents provide informed support without requiring the caller to repeat context"
+      ],
+      "related": ["transferring-call-data-policy", "transfer-initiator-information", "contact-center-agent", "contact-center-supervisor"]
+    },
+    {
+      "title": "Transfer Initiator Information",
+      "summary": "Metadata about the source of a transferred call, varying by whether the transfer came from a Zoom Phone user, queue, auto receptionist, or shared line group. Each source type provides different identifying fields, so the UI displaying this info must be flexible enough to show the right context for each scenario.",
+      "key_points": [
+        "From Zoom Phone user: user name, extension, and DID (if available)",
+        "From Zoom Phone queue: queue name, extension, and DID (if available)",
+        "From auto receptionist: auto receptionist name, extension, and DID (if available)",
+        "From shared line group: shared line group name, extension, and DID (if available)"
+      ],
+      "related": ["caller-data-enrichment", "transferring-call-data-policy"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin (Call Data Sharing)",
+      "summary": "Configures the Transferring Call Data policy for both Zoom Phone and Zoom Contact Center. Admins set which data fields are shared, manage lock settings to prevent downstream changes, and can optionally configure CRM variables, custom variables, and address book custom fields for Contact Center transfers.",
+      "key_points": [
+        "Configures policies in two separate admin areas: Phone System Management > Company Info and Contact Center Management > Preferences",
+        "Can lock settings at the account level to prevent users from overriding them",
+        "Must have privilege to edit account settings"
+      ],
+      "related": ["transferring-call-data-policy", "contact-center-agent", "contact-center-supervisor"]
+    },
+    {
+      "title": "Contact Center Agent",
+      "summary": "Receives enriched caller information when handling calls transferred from Zoom Phone. Agents see consumer identity, transfer source, IVR selections, and conversation summaries in incoming notifications, and can review the same information during active engagements and in completed records. This progressive disclosure supports workload management -- agents can preview before accepting and retrieve details later if they missed them.",
+      "key_points": [
+        "Sees caller context in three views: incoming notification (before accepting), active engagement (during call), and completed record (after call)",
+        "Enriched data reduces need for callers to repeat information",
+        "Can review information post-acceptance if they didn't have time to review before accepting or if auto-accept is enabled"
+      ],
+      "related": ["caller-data-enrichment", "transfer-initiator-information"]
+    },
+    {
+      "title": "Contact Center Supervisor",
+      "summary": "Can view enriched caller context information in completed engagement records, including consumer name/caller ID, transfer initiator information, and CRM ticket details. This access supports quality assurance and post-call analysis.",
+      "key_points": [
+        "Accesses completed engagement records with full transfer context",
+        "Can review CRM ticket information linked to calls",
+        "Data available based on admin configuration of what to share"
+      ],
+      "related": ["caller-data-enrichment", "completed-engagement-records"]
+    },
+    {
+      "title": "Zoom Phone User (Transfer Initiator)",
+      "summary": "When transferring a call to Contact Center, the Zoom Phone user's identity (name, extension, DID) and conversation summary are shared with the receiving agent based on admin configuration. Designers should consider whether users need visibility into what information is being shared about them and their conversation.",
+      "key_points": [
+        "Caller name and caller ID are always shared on transfer",
+        "Conversation summary sharing is configurable by admin",
+        "Transfers can originate from individual users, queues, auto receptionists, or shared line groups"
+      ],
+      "related": ["transfer-initiator-information", "transferring-call-data-policy"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Configure Transferring Call Data Policy for Zoom Phone",
+      "summary": "Admins enable or disable conversation summary sharing on the Zoom Phone side. The setting is a simple checkbox under Phone System Management > Company Info > Account Settings, with an immediate Save to apply. The simplicity of a single toggle belies the downstream impact on agent experience, so designers should consider adding preview or description text explaining what data appears for agents.",
+      "key_points": [
+        "Navigate to Phone System Management > Company Info > Account Settings > Settings tab",
+        "Under Preferences, toggle 'Conversation summary' checkbox in the Transferring Call Data to Contact Center setting",
+        "Click Save to apply changes immediately"
+      ],
+      "related": ["transferring-call-data-policy", "configure-transferring-call-data-policy-for-contact-center"]
+    },
+    {
+      "title": "Configure Transferring Call Data Policy for Zoom Contact Center",
+      "summary": "Admins configure which data fields are shared when Contact Center transfers calls to Zoom Phone. This is a more complex configuration with multiple data options (original caller info, transfer initiator details with sub-options, consumer sentiment, conversation summary, CRM ticket info, variables, address book custom fields) and sub-configuration flows for CRM variables and custom fields. The complexity here suggests a need for progressive disclosure in the admin UI.",
+      "key_points": [
+        "Navigate to Contact Center Management > Preferences > Account tab",
+        "Select from data options: Original caller information (always available), Transfer initiator (agent name, queue name), Consumer Sentiment, Conversation Summary, CRM ticket info, Variables, Address book custom fields",
+        "CRM ticket info, Variables, and Address book custom fields each have sub-configuration modals for selecting specific fields",
+        "Optional locking prevents all users from changing the setting"
+      ],
+      "related": ["transferring-call-data-policy", "configure-transferring-call-data-policy-for-zoom-phone"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Caller Name and ID Always Shared",
+      "summary": "The caller name and caller ID are non-optional -- they are always included in all transferred calls regardless of policy configuration. This baseline ensures agents always have minimal caller identification, but designers should make this mandatory behavior clear in the configuration UI to avoid confusion about why these fields cannot be toggled off.",
+      "key_points": [
+        "Caller name and caller ID are always passed with transferred calls",
+        "Cannot be disabled or hidden by policy configuration"
+      ],
+      "related": ["transferring-call-data-policy"]
+    },
+    {
+      "title": "License and Privilege Requirements",
+      "summary": "Both Zoom Phone and Zoom Contact Center licenses are required, and only account owners or admins with edit privileges can configure the policy. This dual-product requirement means the feature spans across product boundaries, which affects admin navigation and error messaging.",
+      "key_points": [
+        "Zoom Phone license (or qualifying Zoom Workplace plan) required",
+        "Zoom Contact Center license required",
+        "Account owner or admin with edit privileges required"
+      ],
+      "related": ["transferring-call-data-policy"]
+    },
+    {
+      "title": "Data Sharing Enabled by Default",
+      "summary": "All available data is shared with Zoom Contact Center by default. This opt-out model means agents immediately see enriched information but admins must proactively disable data they want to restrict, which has implications for onboarding guidance and privacy-conscious organizations.",
+      "key_points": [
+        "By default, all available data is shared with Zoom Contact Center",
+        "Admins must proactively deselect checkboxes to restrict data sharing"
+      ],
+      "related": ["transferring-call-data-policy"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Progressive Disclosure of Caller Context",
+      "summary": "Enriched caller information follows the engagement lifecycle in three stages: incoming notification (preview before accepting), active engagement (full context during call), and completed record (post-call reference and QA). This pattern supports time-pressured agents who may not review all details before accepting.",
+      "key_points": [
+        "Incoming notification: summary view for quick scanning before call acceptance",
+        "Active engagement: full detail view available during the call",
+        "Completed record: persistent record for post-call review by agents and supervisors"
+      ],
+      "related": ["caller-data-enrichment", "contact-center-agent"]
+    },
+    {
+      "title": "Lock Propagation for Admin Settings",
+      "summary": "A lock icon toggle allows admins to prevent downstream users from overriding account-level settings. The lock visual is a common admin UX pattern that communicates policy enforcement versus personal preference, and should be consistently applied across all settings that support hierarchical governance.",
+      "key_points": [
+        "Lock icon appears next to settings that can be enforced at the account level",
+        "Locking prevents all users in the account from changing the setting",
+        "Requires confirmation dialog to prevent accidental locking"
+      ],
+      "related": ["transferring-call-data-policy"]
+    },
+    {
+      "title": "Sub-Configuration Modals for Data Selection",
+      "summary": "Complex data options (CRM ticket info, Variables, Address book custom fields) use sub-configuration flows via 'Manage Variable', '+ Add variable(s)', and '+ Add custom field(s)' buttons. This pattern keeps the main configuration page clean while allowing deep customization through drill-down modals.",
+      "key_points": [
+        "Main configuration shows high-level data options as checkboxes",
+        "Options with sub-selections trigger separate modal/pane for field selection",
+        "Each sub-configuration saves independently before the main Save"
+      ],
+      "related": ["configure-transferring-call-data-policy-for-contact-center"]
+    }
+  ]
+}

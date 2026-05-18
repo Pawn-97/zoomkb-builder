@@ -1,0 +1,183 @@
+{
+  "article_id": "KB0084361",
+  "concepts": [
+    {
+      "title": "Zoom Phone eSIM",
+      "summary": "A virtual SIM that allows users to activate their Zoom Phone business number directly on a compatible smartphone's native dialer without a physical SIM card. Designers should consider how activation flows differ from traditional phone setup and ensure clear guidance for users transitioning between personal and business lines on a single device.",
+      "key_points": [
+        "eSIM is a digital SIM provisioned remotely by admins, eliminating physical SIM handling",
+        "Activation supports two paths: QR code scanning via camera app and manual code entry via device settings",
+        "Once activated, the Zoom Phone number integrates with the phone's native dialer for calling while advanced features remain in the Zoom app"
+      ],
+      "related": ["zoom-phone-mobile-package", "esim-activation-message"]
+    },
+    {
+      "title": "eSIM Activation Message",
+      "summary": "An email automatically sent to users when an admin issues an eSIM, containing a QR code, manual activation codes, and installation instructions. Designers should ensure this email is mobile-optimized since users will likely open it on the device they are activating, and that QR codes are prominently displayed with clear fallback instructions for manual entry.",
+      "key_points": [
+        "Contains QR code, manual activation codes (SM-DP+ address, activation code), and step-by-step instructions",
+        "Delivered both via email and accessible through the Zoom web portal under Phone > Settings > eSIM",
+        "QR codes are single-use only and become invalid after successful installation"
+      ],
+      "related": ["zoom-phone-esim", "qr-code-activation"]
+    },
+    {
+      "title": "Zoom Phone Mobile Package",
+      "summary": "The service package assigned by admins that enables eSIM functionality for a Zoom Phone user. From a UX perspective, this package acts as a prerequisite gate -- users cannot activate eSIM without it, so onboarding flows should clearly communicate whether this package has been provisioned before guiding users to activation steps.",
+      "key_points": [
+        "Must be assigned by an account owner or admin before the user can activate eSIM",
+        "Only assignable to Zoom Phone users (not usable by other products)",
+        "Requires a Zoom Phone license or qualifying Zoom Workplace plan"
+      ],
+      "related": ["zoom-phone-esim", "esim-activation-message"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin (eSIM)",
+      "summary": "Responsible for issuing Zoom Phone Mobile eSIM packages to users and generating replacement QR codes or new eSIMs for lost devices. The admin interface separates two important actions: 'New QR code' for device upgrades where the old device is still accessible, and 'New eSIM' for lost devices -- a distinction that must be clear in the UI to prevent accidental service disruption.",
+      "key_points": [
+        "Issues eSIM packages and generates activation QR codes for users",
+        "Has two distinct recovery paths: New QR code for upgrades vs. New eSIM for lost devices",
+        "Manages eSIMs through Phone System Management in the web portal"
+      ],
+      "related": ["zoom-phone-user-esim", "esim-activation-message"]
+    },
+    {
+      "title": "Zoom Phone User (eSIM)",
+      "summary": "End user who activates eSIM on their personal smartphone. The activation experience must accommodate varying technical comfort levels -- QR code scanning is the primary path but manual code entry serves as a critical fallback. Users also need clear guidance on where features live (native dialer vs. Zoom app) to avoid confusion.",
+      "key_points": [
+        "Receives activation email with QR code and manual codes after admin issues eSIM",
+        "Can access activation message through web portal (Phone > Settings > eSIM > View QR Code) as an alternative to email",
+        "Can generate new QR codes themselves when upgrading devices (without losing the old device)"
+      ],
+      "related": ["account-owner-admin-esim", "zoom-phone-esim"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Access eSIM Activation Message",
+      "summary": "Users retrieve their eSIM activation credentials via email on their device or through the Zoom web portal. The dual-channel approach (email + web portal) is a good UX pattern for credential recovery, but designers should ensure the web portal path is equally discoverable since emails can be lost or delayed.",
+      "key_points": [
+        "On mobile: sign into email, find activation email, view QR code and instructions",
+        "On web: navigate to Phone > Settings > eSIM > View QR Code to open a pop-up window",
+        "Both channels display the same information: QR code, manual codes, and installation instructions"
+      ],
+      "related": ["esim-activation-message", "qr-code-activation", "manual-esim-activation"]
+    },
+    {
+      "title": "Install eSIM via QR Code",
+      "summary": "Users scan the QR code from the activation message using their camera app or SIM management settings, then follow on-device prompts to complete activation. This flow partially leaves the Zoom ecosystem (device-native steps), so handoff UX and clear in-context instructions are critical.",
+      "key_points": [
+        "Scan QR code using camera app or SIM management settings",
+        "Tap 'Add Cellular Plan' and follow device manufacturer instructions",
+        "QR code is single-use; once scanned and installed, it becomes invalid"
+      ],
+      "related": ["esim-activation-message", "manual-esim-activation", "generate-new-qr-code"]
+    },
+    {
+      "title": "Install eSIM Manually",
+      "summary": "Fallback activation path for users who cannot scan the QR code. Users copy SM-DP+ address and activation code from the activation message into their device's cellular settings. The manual path requires text entry of long codes, so clear copy affordances and error-tolerant input fields are important UX considerations.",
+      "key_points": [
+        "On iOS: Settings > Cellular > Set Up Cellular Plan > enter SM-DP+ address and activation code",
+        "On Android: Settings > Network & Internet > Mobile network > Add SIM > enter network provider code",
+        "Activation code expires once used",
+        "Android steps may vary by device model"
+      ],
+      "related": ["esim-activation-message", "qr-code-activation"]
+    },
+    {
+      "title": "Generate New QR Code (Device Upgrade)",
+      "summary": "Users upgrading to a new device can regenerate their QR code from the web portal without admin intervention, provided they still have the old device to remove the eSIM. For lost devices, only admins can issue a new eSIM. This self-service vs. admin-assisted distinction is a key UX decision point that affects user autonomy and support burden.",
+      "key_points": [
+        "Available through Phone > Settings > eSIM > View QR Code in the web portal",
+        "Only for device upgrades where the old device is still accessible to remove the eSIM",
+        "For lost devices, only admins can use the 'New eSIM' option"
+      ],
+      "related": ["zoom-phone-esim", "account-owner-admin-esim"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "QR Code Single-Use Limitation",
+      "summary": "Each QR code can only be scanned and activated once. This means any issues during activation (e.g., interrupted process, wrong device) require generating a new QR code or using admin intervention, which impacts the error recovery UX.",
+      "key_points": [
+        "QR codes are single-use: once scanned and installed, the code is invalidated",
+        "Users can self-serve a new QR code for device upgrades",
+        "Lost devices require admin to issue a New eSIM"
+      ],
+      "related": ["qr-code-activation", "generate-new-qr-code"]
+    },
+    {
+      "title": "SMS/MMS Unavailable in Native App",
+      "summary": "SMS and MMS are not supported by the mobile device's native messaging app for Zoom Phone eSIM numbers. The Zoom Workplace mobile app provides read-only messaging, but users cannot send messages from it due to iOS/Android ecosystem restrictions. Designers should set clear expectations to avoid user frustration.",
+      "key_points": [
+        "No SMS/MMS support in native messaging app",
+        "Zoom Workplace app offers read-only messaging view only",
+        "Sending messages is blocked by iOS/Android ecosystem restrictions, not Zoom's design choice"
+      ],
+      "related": ["zoom-phone-esim"]
+    },
+    {
+      "title": "Advanced Features Require Zoom App",
+      "summary": "While basic calling works through the native dialer, advanced Zoom Phone features (voicemail, presence, call transfer, recording) are only accessible through the Zoom Workplace mobile app. This split between native dialer and Zoom app creates a dual-interface experience that designers must account for in onboarding and feature discovery.",
+      "key_points": [
+        "Native dialer: basic call making and receiving only",
+        "Zoom Workplace app: advanced features like voicemail, presence updates, call transfer, and call recording",
+        "Users may be confused about which app to use for which function"
+      ],
+      "related": ["zoom-phone-esim"]
+    },
+    {
+      "title": "eSIM License and Compatibility Prerequisites",
+      "summary": "Users must have a qualifying Zoom Phone license, an assigned eSIM package, and a compatible Android/iOS device running the global minimum version of the Zoom mobile app. This multi-faceted prerequisite check should be surfaced clearly during setup to reduce support tickets.",
+      "key_points": [
+        "Requires Zoom Phone Basic license, Zoom Workplace Pro Plus/Business Plus, or standalone calling plan",
+        "Requires assigned Zoom Phone Mobile eSIM package from admin",
+        "Zoom mobile app global minimum version or higher required"
+      ],
+      "related": ["zoom-phone-mobile-package", "zoom-phone-esim"]
+    },
+    {
+      "title": "eSIM Number Exclusivity",
+      "summary": "Zoom Phone Mobile numbers can only be assigned to Zoom Phone users and cannot be used by other products. This exclusivity constraint affects how designers model the relationship between eSIM numbers and user accounts in admin interfaces.",
+      "key_points": [
+        "eSIM numbers are exclusive to Zoom Phone users",
+        "Cannot be shared with or used by other Zoom products"
+      ],
+      "related": ["zoom-phone-mobile-package"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Dual-Channel Credential Delivery",
+      "summary": "Activation credentials (QR code, manual codes) are delivered through both email and the Zoom web portal, providing an automatic fallback if one channel fails. This pattern is reusable for any provisioning flow where users need to receive credentials on a separate device.",
+      "key_points": [
+        "Email delivery is automatic and pushes to the user",
+        "Web portal access (Phone > Settings > eSIM > View QR Code) allows self-service retrieval",
+        "Both channels show identical content, ensuring consistency"
+      ],
+      "related": ["esim-activation-message", "access-esim-activation-message"]
+    },
+    {
+      "title": "QR Code with Manual Fallback",
+      "summary": "Primary activation path uses QR code scanning for simplicity, with a secondary manual code entry path for devices or situations where scanning is not possible. This ensures all users can complete activation regardless of hardware limitations or environment.",
+      "key_points": [
+        "Primary path: QR code scan (camera or SIM settings) -- fast and error-free",
+        "Fallback path: manual entry of SM-DP+ address and activation/network provider code",
+        "Both paths lead to the same device-native activation flow"
+      ],
+      "related": ["qr-code-activation", "manual-esim-activation"]
+    },
+    {
+      "title": "Admin-Supervised Self-Service Recovery",
+      "summary": "Users can self-serve QR code regeneration for planned device upgrades, but lost-device scenarios require admin intervention (New eSIM). This graduated escalation pattern balances user autonomy with security controls.",
+      "key_points": [
+        "Self-service: 'View QR Code' / regenerate QR for planned upgrades",
+        "Admin-only: 'New eSIM' for lost/stolen devices",
+        "Clear distinction in admin UI between the two actions"
+      ],
+      "related": ["generate-new-qr-code"]
+    }
+  ]
+}

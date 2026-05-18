@@ -1,0 +1,101 @@
+{
+  "article_id": "KB0075512",
+  "concepts": [
+    {
+      "title": "Shared Line Group Opt-in/out via IP Phone Star Codes",
+      "summary": "A mechanism for users to toggle their participation in shared line groups or call queues by dialing a star code (*85 + extension) from a physical desk phone. This provides call-center-style agent state control without requiring the Zoom Workplace desktop or mobile app. The audible confirmation tone tells the user whether they are now opted in or opted out.",
+      "key_points": [
+        "Dial *85 followed by the shared line group extension number from an IP phone handset",
+        "Works for both shared line groups and call queues",
+        "Audible voice prompt confirms 'You are now opted out' or 'You are now opted in'",
+        "Designed for users who do not or cannot use the Zoom Workplace app to manage call participation"
+      ],
+      "related": ["shared-line-groups", "call-queues", "star-codes", "desk-phone"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Shared Line Group Member",
+      "summary": "Users who belong to a shared line group and need to control whether they receive calls from that group. These users interact via IP phone star codes rather than a visual interface, so audible feedback is their sole confirmation mechanism. A user can only belong to one shared line group at a time, and cannot simultaneously be in a call delegation setup.",
+      "key_points": [
+        "Must have a Zoom Phone license and a supported desk phone",
+        "Can only belong to one shared line group—mutually exclusive with call delegation",
+        "No visual UI; relies entirely on dial tones and voice prompts for feedback"
+      ],
+      "related": ["shared-line-groups", "call-queues", "call-delegation"]
+    },
+    {
+      "title": "Call Queue Agent",
+      "summary": "Similar to shared line group members, call queue agents can also use the *85 star code to opt in or out of their queue via IP phone. The same audible confirmation prompt applies. Designers should treat this role as equivalent in experience to the shared line group member for the star-code interaction.",
+      "key_points": [
+        "Uses the same *85 dialing mechanism as shared line group members",
+        "Receives the same audible confirmation prompt"
+      ],
+      "related": ["call-queues", "star-codes"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Toggle Shared Line Group Call Participation via IP Phone",
+      "summary": "A two-step audible-only flow: the user picks up the handset, dials a specific code, and hears a spoken confirmation. There is no screen interaction, so the entire UX is auditory. Designers should ensure the voice prompt is clear, concise, and unambiguously communicates the new state (opted in vs. opted out).",
+      "key_points": [
+        "Pick up the IP phone handset",
+        "Dial *85 followed by the shared line group extension number",
+        "Listen for the confirmation prompt: 'You are now opted out' or 'You are now opted in'"
+      ],
+      "related": ["shared-line-groups", "star-codes", "audible-confirmation"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Single Shared Line Group Membership",
+      "summary": "A user can only belong to one shared line group at a time, and cannot be in both a shared line group and a call delegation setup simultaneously. This mutual exclusivity should be clearly communicated during group assignment to prevent confusion when a user tries to join a second group.",
+      "key_points": [
+        "One shared line group membership per user",
+        "Mutually exclusive with call delegation—cannot have both",
+        "Users can check their current shared line group name via the Zoom Workplace app"
+      ],
+      "related": ["shared-line-groups", "call-delegation", "membership-limits"]
+    },
+    {
+      "title": "Supported Desk Phone Required",
+      "summary": "The star-code opt-in/out feature only works on supported desk phone models. Users with unsupported hardware cannot use this feature and must fall back to the Zoom Workplace app to manage their call participation. Designers should surface hardware compatibility information before the user attempts the star-code flow.",
+      "key_points": [
+        "Only supported desk phone models are compatible with the *85 star code",
+        "Unsupported phones require the Zoom Workplace app as fallback"
+      ],
+      "related": ["supported-desk-phone", "star-codes", "zoom-workplace-app"]
+    },
+    {
+      "title": "Zoom Phone License Required",
+      "summary": "A Zoom Phone license is a prerequisite for using the shared line group opt-in/out feature. Without a license, the star code will not be recognized. This is a gate that should be validated before exposing the feature to users.",
+      "key_points": [
+        "Zoom Phone license is required for the user",
+        "Feature is non-functional without the license"
+      ],
+      "related": ["zoom-phone-license"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Audible Confirmation Prompt for State Changes",
+      "summary": "After dialing the star code, the system plays a voice prompt confirming the user's new call participation state. Since there is no screen on many desk phones, this audible feedback is the sole confirmation mechanism. The prompt must be unambiguous ('opted in' vs. 'opted out') and play immediately after the digits are sent.",
+      "key_points": [
+        "Voice prompt plays immediately after star code digits are sent",
+        "Two distinct messages: 'You are now opted out' and 'You are now opted in'",
+        "Serves as the only state-change confirmation for users without a screen interface"
+      ],
+      "related": ["star-codes", "audible-feedback", "state-confirmation"]
+    },
+    {
+      "title": "Star-Code Dialing for Feature Toggles",
+      "summary": "A telephony interaction pattern where users dial a numeric code on a physical keypad to toggle a system feature, similar to legacy PBX star codes. The pattern uses a prefix (*85) followed by a target identifier (extension number). This is a headless, non-visual interaction that relies entirely on DTMF tones and audible feedback.",
+      "key_points": [
+        "Two-part dialing: feature prefix (*85) + target identifier (extension number)",
+        "No visual interface required—entirely DTMF and audio-based",
+        "Follows established telephony star-code conventions for familiarity"
+      ],
+      "related": ["star-codes", "dtmf-tones", "audible-confirmation"]
+    }
+  ]
+}

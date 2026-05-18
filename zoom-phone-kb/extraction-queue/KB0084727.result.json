@@ -1,0 +1,198 @@
+{
+  "article_id": "KB0084727",
+  "concepts": [
+    {
+      "title": "Japan SMS Registration",
+      "summary": "A two-step registration process required by Japanese mobile carriers to enable business-to-consumer (A2P) SMS messaging on Japan-based phone numbers. The process involves a business registration (company info) followed by an SMS registration (number assignment and carrier approval), with external carrier review taking a minimum of 2 weeks. The multi-step dependency and external approval timeline have significant UX implications for progress tracking and expectation management.",
+      "key_points": [
+        "Two-phase process: business registration (no approval needed) then SMS registration (carrier approval required)",
+        "External carrier approval takes a minimum of 2 weeks",
+        "Business registration must exist before SMS registration can be created",
+        "Numbers are assigned to the SMS registration before it is sent for approval",
+        "Inconsistencies flagged during SMS registration approval may require updating the business registration"
+      ],
+      "related": ["business-registration", "a2p-sms", "sms-registration-lifecycle"]
+    },
+    {
+      "title": "Business Registration (Japan)",
+      "summary": "The first phase of Japan SMS registration where organizations register their legal business information (prefecture, legal company name, corporate number, website, legal form) with Japanese mobile carriers. Unlike SMS registration, business registration has no separate approval -- instead, the information is validated during SMS registration approval. This deferred validation model means errors surface late in the process, so the UX should help catch mismatches early.",
+      "key_points": [
+        "Required prerequisite for SMS registration",
+        "No separate approval process; validated during SMS registration review",
+        "Includes: prefecture, legal company name, department name, corporate number, website, legal form",
+        "Corporate number is verified against legal company name by mobile carriers",
+        "Can be updated at any time unless associated SMS registration is in pending or active status"
+      ],
+      "related": ["japan-sms-registration", "sms-registration"]
+    },
+    {
+      "title": "A2P SMS (Application-to-Person Messaging)",
+      "summary": "Business-to-consumer SMS messaging capability on Japanese phone numbers. In Japan, A2P SMS requires mandatory registration and is outbound-only (business to consumer). A key UX consideration is that for SoftBank recipients, the sender ID shown is not the actual phone number but a unique ID assigned by SoftBank, which can confuse recipients expecting the business number to appear.",
+      "key_points": [
+        "Outbound-only direction: from business numbers to end consumers",
+        "SoftBank recipients see a unique aggregator sender ID instead of the actual phone number",
+        "This sender ID masking is a carrier-imposed restriction, not configurable by Zoom or the business"
+      ],
+      "related": ["japan-sms-registration", "sms-registration"]
+    },
+    {
+      "title": "SMS Registration (Japan)",
+      "summary": "The second phase of Japan SMS registration where phone numbers are assigned to the registration and submitted for external carrier approval. This step includes creating the registration, configuring it, and setting up a sample message for carrier review. The lifecycle state (pending/active/rejected) determines what actions are available, making state-based UI controls essential.",
+      "key_points": [
+        "Created after business registration is complete",
+        "Includes a checklist requirement that users must open and review before proceeding",
+        "Phone numbers are assigned before submission for approval",
+        "Lifecycle states: pending, active, rejected -- each with different available actions"
+      ],
+      "related": ["japan-sms-registration", "business-registration", "sms-registration-lifecycle"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin (SMS Registration)",
+      "summary": "Manages the entire Japan SMS registration process, from creating business registrations to submitting SMS registrations for carrier approval. Must have SMS setup privileges in addition to admin access. This role navigates a multi-step workflow with external dependencies, so the interface should clearly show process status and required actions at each stage.",
+      "key_points": [
+        "Must be account owner or admin with SMS setup privileges",
+        "Manages business registration lifecycle (create, update, delete when allowed)",
+        "Creates SMS registrations, configures sample messages, assigns numbers, manages lifecycle states",
+        "Accesses SMS registration through Number Management > SMS Setup"
+      ],
+      "related": ["japan-sms-registration", "business-registration", "sms-registration"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Access SMS Registration in Web Portal",
+      "summary": "Admins navigate to the SMS setup area and add Japan as a country/region to begin the registration process. This entry point is the gateway to both business and SMS registration, and should clearly indicate the overall process overview and estimated timeline upfront.",
+      "key_points": [
+        "Navigate to Number Management > SMS Setup",
+        "Click 'Add country/region' and select Japan",
+        "Serves as the entry point for both business and SMS registration"
+      ],
+      "related": ["create-business-registration", "create-sms-registration"]
+    },
+    {
+      "title": "Create Business Registration",
+      "summary": "Admins register their organization's legal and business details with Japanese carriers. The form collects prefecture, legal company name, department name, corporate number, website, and legal form. The corporate number-to-company-name verification happens later during SMS registration approval, so inline validation should be as thorough as possible at entry time to prevent late-stage rejections.",
+      "key_points": [
+        "Enter prefecture, legal company name, department name, corporate number, website, and legal form",
+        "Corporate number will be verified against legal company name during SMS registration approval",
+        "Business registration has no separate approval but information is validated later by carriers",
+        "Can be updated/deleted anytime unless associated SMS registration is pending or active"
+      ],
+      "related": ["japan-sms-registration", "business-registration", "manage-business-registration-lifecycle"]
+    },
+    {
+      "title": "Manage Business Registration Lifecycle",
+      "summary": "Admins can update or delete business registrations, but these actions are restricted when an associated SMS registration is in pending or active status. If an SMS registration is rejected, admins may need to update the business registration with corrected information. This state-dependent availability of actions requires clear UI feedback about why certain options are disabled.",
+      "key_points": [
+        "Business registrations are accessible within Japan via SMS setup",
+        "Can be updated or deleted unless linked to pending or active SMS registration",
+        "Rejected SMS registrations may require business registration updates based on the rejection reason"
+      ],
+      "related": ["business-registration", "create-business-registration", "sms-registration-lifecycle"]
+    },
+    {
+      "title": "Create SMS Registration",
+      "summary": "After business registration, admins create an SMS registration by passing through a checklist gate -- they must open and review the Japan SMS registration checklist, then confirm they have read and understood it before the registration form is revealed. This gated pattern forces attention to requirements but adds friction; designers should ensure the checklist is concise and actionable.",
+      "key_points": [
+        "Navigate to Japan SMS registration area within SMS setup",
+        "Checklist Requirement page appears with a link to the Japan SMS registration creation checklist",
+        "User must open and view the checklist link before continuing",
+        "Checkbox confirmation ('I confirm that I have read and understood...') unlocks the registration details section",
+        "After confirmation, registration details form appears for completion"
+      ],
+      "related": ["sms-registration", "japan-sms-registration"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Mandatory Registration for A2P SMS in Japan",
+      "summary": "Both business registration and SMS registration are mandatory before A2P SMS can be used on Japanese phone numbers. There is no bypass or short-circuit path, which means the full registration flow is a hard gate for any organization wanting to use SMS in Japan.",
+      "key_points": [
+        "Both registrations are mandatory -- no SMS capability without completing both",
+        "Business registration is a prerequisite for SMS registration"
+      ],
+      "related": ["japan-sms-registration", "business-registration", "sms-registration"]
+    },
+    {
+      "title": "Outbound-Only SMS",
+      "summary": "SMS capabilities granted through Japan SMS registration support outbound messaging only (from business numbers to consumers). Inbound SMS from consumers to the business number is not supported. This directional limitation must be communicated clearly to set accurate expectations.",
+      "key_points": [
+        "SMS is outbound only: from registered numbers to end consumers",
+        "Inbound SMS from consumers is not supported"
+      ],
+      "related": ["a2p-sms", "sms-registration"]
+    },
+    {
+      "title": "SoftBank Sender ID Masking",
+      "summary": "For recipients on the SoftBank network, the actual phone number will not appear as the sender ID. Instead, SoftBank displays a unique sender ID assigned to each SMS aggregator. This carrier-imposed restriction is beyond Zoom's control, but businesses must be informed so they can set expectations with their customers about what sender ID will appear.",
+      "key_points": [
+        "SoftBank recipients see a unique aggregator Sender ID, not the actual phone number",
+        "This restriction applies to all A2P SMS from any aggregator on SoftBank",
+        "Not configurable -- imposed by the carrier"
+      ],
+      "related": ["a2p-sms"]
+    },
+    {
+      "title": "Minimum 2-Week Approval Timeline",
+      "summary": "The full process including external carrier approval takes a minimum of 2 weeks. Zoom recommends starting early to align with implementation timelines. This timeline constraint should be prominently surfaced at the start of the flow to manage expectations and prevent last-minute registration attempts.",
+      "key_points": [
+        "Full process takes a minimum of 2 weeks",
+        "External carrier approval is the primary time driver",
+        "Zoom recommends starting as early as possible"
+      ],
+      "related": ["japan-sms-registration", "sms-registration"]
+    },
+    {
+      "title": "Business Registration Lock During SMS Review",
+      "summary": "Business registration information cannot be updated when an associated SMS registration is in pending or active status. If carriers reject the SMS registration due to business info inconsistencies, the admin must wait for rejection before making corrections. This lock-then-fix workflow can extend timelines and should be clearly explained.",
+      "key_points": [
+        "Business registration is locked from editing when associated SMS registration is pending or active",
+        "Updates are only possible when no linked SMS registration is in pending/active state",
+        "Rejected SMS registrations may require business info corrections before resubmission"
+      ],
+      "related": ["business-registration", "sms-registration-lifecycle"]
+    },
+    {
+      "title": "Privacy Policy Requirement",
+      "summary": "Organizations must have a compliant privacy policy that states they do not share or sell customers' mobile information with third parties. This is a prerequisite for registration and should be validated early in the flow.",
+      "key_points": [
+        "Must have a privacy policy stating no sharing/selling of customer mobile information with third parties"
+      ],
+      "related": ["japan-sms-registration"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Multi-Phase Registration Wizard with Dependencies",
+      "summary": "The Japan SMS setup is a two-phase wizard (business registration then SMS registration) where phase two cannot start until phase one is complete. Each phase has its own lifecycle states. This pattern requires clear phase indicators, dependency visualization, and the ability to return to completed phases when corrections are needed.",
+      "key_points": [
+        "Sequential phases with hard dependency: business registration must exist before SMS registration",
+        "Each phase has independent lifecycle states (business: editable/locked; SMS: pending/active/rejected)",
+        "Rejected SMS registration can force users back to the business registration phase for corrections"
+      ],
+      "related": ["japan-sms-registration", "business-registration", "sms-registration"]
+    },
+    {
+      "title": "Checklist Confirmation Gate",
+      "summary": "Before proceeding with SMS registration, users must open and review a checklist link, then confirm they have read and understood it via a checkbox. Only after checking the box does the registration form become visible. This pattern forces deliberate acknowledgment of requirements but should balance friction with clarity.",
+      "key_points": [
+        "Checklist link must be opened before the confirmation checkbox is meaningful",
+        "Confirmation checkbox unlocks the registration form",
+        "Acts as a legal/process gate to ensure requirement awareness"
+      ],
+      "related": ["create-sms-registration"]
+    },
+    {
+      "title": "Lifecycle State-Driven UI",
+      "summary": "Both business and SMS registrations have lifecycle states that control what actions are available. Business registration can be edited/deleted only when no linked SMS registration is pending/active. SMS registration goes through pending, active, and rejected states. The UI should use state-based disabling with explanatory tooltips rather than hiding actions entirely.",
+      "key_points": [
+        "Actions are conditionally available based on registration state",
+        "Disabled states should explain why an action is unavailable",
+        "Rejected state triggers corrective actions (update business info, resubmit)"
+      ],
+      "related": ["manage-business-registration-lifecycle", "sms-registration-lifecycle"]
+    }
+  ]
+}

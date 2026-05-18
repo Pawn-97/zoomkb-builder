@@ -1,0 +1,204 @@
+{
+  "article_id": "KB0085008",
+  "concepts": [
+    {
+      "title": "Business Address Verification (Know Your Customer / KYC)",
+      "summary": "A mandatory identity and address verification process required before provisioning or porting UK business mobile numbers in Zoom Phone Mobile. The verification involves submitting business documentation, proof of identity, and proof of address through the admin portal. Designers must treat this as a gating step that blocks number-related actions until completed, with clear status communication during review.",
+      "key_points": [
+        "Mandatory for all UK mobile number porting and provisioning requests",
+        "Known as Know Your Customer (KYC) verification",
+        "Requires legal business name, UK address, proof of business entity, proof of identity, and proof of address",
+        "A single verification can be used for multiple number orders",
+        "Verification status must be communicated clearly since it gates all subsequent actions"
+      ],
+      "related": ["zoom-phone-mobile-uk", "number-porting", "temporary-numbers"]
+    },
+    {
+      "title": "Zoom Phone Mobile UK",
+      "summary": "A mobile eSIM service for UK business customers that requires KYC verification before number provisioning or porting. The service supports business mobile numbers only (not personal), and provides temporary numbers for use while verification is pending. Designers should consider the dual-track experience of verified vs. unverified states and how temporary numbers bridge the gap.",
+      "key_points": [
+        "UK-specific mobile eSIM service for business customers",
+        "Only business mobile numbers are supported, not personal numbers",
+        "Temporary numbers available before verification completes",
+        "Number porting uses PAC codes from existing providers"
+      ],
+      "related": ["business-address-verification", "number-porting", "temporary-numbers", "esim-management"]
+    },
+    {
+      "title": "PAC Code (Port Authorization Code)",
+      "summary": "A code obtained from a current UK business mobile service provider that authorizes number porting to Zoom Phone Mobile. The code is valid for 30 days, creating a time-sensitive constraint on the porting workflow. UX must surface the expiry deadline and prompt users to complete the porting process before the code becomes invalid.",
+      "key_points": [
+        "Obtained from the current business mobile service provider",
+        "Valid for 30 days from issuance",
+        "Required alongside the current supplier name for porting",
+        "Only applicable when porting existing numbers, not for new number provisioning"
+      ],
+      "related": ["number-porting", "zoom-phone-mobile-uk", "expiration-management"]
+    },
+    {
+      "title": "Temporary Numbers in Zoom Phone Mobile",
+      "summary": "Interim phone numbers assigned to users while business address verification is in progress or while waiting for permanent number porting. These numbers allow users to begin using Zoom Phone Mobile service without waiting for full verification. The UX must clearly differentiate temporary from permanent numbers and manage the transition when verification completes.",
+      "key_points": [
+        "Bridges the gap during verification or porting wait times",
+        "Accessible from Number Management after verification is submitted",
+        "Can be assigned to users to enable immediate service usage",
+        "Users need to understand these are temporary and will be replaced"
+      ],
+      "related": ["business-address-verification", "number-provisioning", "zoom-phone-mobile-uk"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin",
+      "summary": "The sole role authorized to submit business address verification and manage document uploads for Zoom Phone Mobile UK. Admins navigate the verification workflow, upload sensitive business documents, manage temporary numbers, and assign numbers to users. The UX must accommodate the responsibility of handling legal documents with clear guidance on requirements, formats, and acceptance criteria.",
+      "key_points": [
+        "Submits business address verification and uploads documentation",
+        "Manages temporary numbers and assigns them to users",
+        "Must have privilege to edit account settings",
+        "Acts as the intermediary between Zoom verification and end users",
+        "Needs clear feedback on document acceptance, rejection, and resubmission"
+      ],
+      "related": ["business-address-verification", "temporary-numbers", "number-provisioning"]
+    },
+    {
+      "title": "Authorized Company Representative",
+      "summary": "An individual within the company whose identity documents (specifically a valid passport) and contact information are submitted as part of KYC verification. This is a distinct role from the admin performing the upload who may or may not be the same person—the UX should clarify whose documents are needed.",
+      "key_points": [
+        "Must provide a valid passport as proof of identity (other ID forms not accepted)",
+        "Name, contact number, and email address are required in the submission",
+        "May be the same person as the admin or a different individual",
+        "Their identity document is core to the verification approval"
+      ],
+      "related": ["business-address-verification", "document-upload"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Submit Business Address and Documents for KYC Verification",
+      "summary": "Admins navigate to Number Management > Phone Numbers > Related Features > Business Address & Documents, then complete a multi-section form including product selection, country, number type, business information, and document uploads. The flow involves a three-level dropdown cascade (Product > Country > Number Type) to scope the verification correctly, and multiple document upload fields each with format and size constraints that must be validated inline.",
+      "key_points": [
+        "Path: Number Management > Phone Numbers > Related Features > Business Address & Documents > Add Address",
+        "Three-level dropdown cascade: Product (Phone) > Country (United Kingdom) > Number Type (Mobile - eSIM)",
+        "Business information section: address, legal business name, registration info",
+        "Three document uploads: Proof of Business, Proof of Identity (passport only), Proof of Address",
+        "Accepted formats: JPG, JPEG, PNG, PDF, DOC, DOCX; max 10MB per file",
+        "Documents must be clear, legible, dated within last 3 months, and show complete information"
+      ],
+      "related": ["business-address-verification", "document-upload", "dropdown-cascade"]
+    },
+    {
+      "title": "Manage Temporary Numbers After Verification Submission",
+      "summary": "After submitting verification, admins can access temporary numbers to assign to users while waiting for approval. The flow involves accessing the temporary numbers list, viewing available numbers, and assigning them to specific users. Designers should ensure the transition from verification submission to temporary number management feels like a natural continuation rather than a disconnected workflow.",
+      "key_points": [
+        "Temporary numbers become accessible after verification is submitted",
+        "Admins view available numbers and assign to users",
+        "Bridges the waiting period during document review",
+        "Transition to permanent numbers must be smooth when verification is approved"
+      ],
+      "related": ["temporary-numbers", "business-address-verification", "number-provisioning"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "UK Business Address Requirement",
+      "summary": "Only UK business addresses are accepted for Zoom Phone Mobile UK eSIM verification. Worldwide addresses are explicitly rejected. The UX must validate the address country early in the flow to prevent wasted effort on ineligible submissions.",
+      "key_points": [
+        "Must be a valid business address in the United Kingdom",
+        "Worldwide addresses are not accepted",
+        "Validation of address country should occur early in the workflow"
+      ],
+      "related": ["business-address-verification", "zoom-phone-mobile-uk", "address-validation"]
+    },
+    {
+      "title": "Document Freshness (3-Month Rule)",
+      "summary": "All uploaded documents must be dated within the last 3 months. This means returning customers may need to re-upload documents even if previously verified. The UX should warn users when documents are approaching or past the 3-month threshold to avoid rejection.",
+      "key_points": [
+        "All documents must be dated within the last 3 months",
+        "Proof of address (utility bill) has a secondary limit of 6 months",
+        "Previously verified documents may expire and require re-upload",
+        "Clear date-validation feedback is needed during upload"
+      ],
+      "related": ["business-address-verification", "document-upload", "expiration-management"]
+    },
+    {
+      "title": "Proof of Identity: Passport Only",
+      "summary": "For the proof of identity document, only a valid passport is accepted. Other government-issued ID forms are explicitly not accepted. This is a stricter requirement than many other KYC processes and must be communicated prominently to avoid rejection and resubmission delays.",
+      "key_points": [
+        "Only a valid passport is accepted for proof of identity",
+        "Other ID forms (e.g., driver's license, national ID card) are not accepted",
+        "This is stricter than many KYC processes users may be familiar with",
+        "Must be communicated prominently in the upload interface"
+      ],
+      "related": ["business-address-verification", "document-upload", "authorized-representative"]
+    },
+    {
+      "title": "Business-Only Number Porting",
+      "summary": "Only business mobile numbers can be ported to Zoom Phone Mobile UK. Personal mobile number porting is not supported. This restriction means the UX should help users distinguish between business and personal lines and prevent attempts to port ineligible numbers.",
+      "key_points": [
+        "Porting is only available for business mobile numbers",
+        "Personal mobile number porting is not supported",
+        "PAC code must be obtained from the business mobile provider",
+        "Users may not know whether their number is classified as business or personal"
+      ],
+      "related": ["number-porting", "zoom-phone-mobile-uk", "pac-code"]
+    },
+    {
+      "title": "PAC Code 30-Day Expiry",
+      "summary": "PAC codes obtained from current business mobile providers are valid for only 30 days. The porting workflow has a hard time constraint that, if missed, requires obtaining a new code from the provider, adding friction to the process.",
+      "key_points": [
+        "PAC code expires 30 days after issuance",
+        "Expired codes require obtaining a new one from the provider",
+        "UX should display expiry countdown and send reminders",
+        "Porting request must include both PAC code and expiry date"
+      ],
+      "related": ["pac-code", "number-porting", "expiration-management"]
+    },
+    {
+      "title": "File Upload Format and Size Constraints",
+      "summary": "Uploaded documents must be in JPG, PNG, PDF, DOC, or DOCX format with a 10MB maximum size per file. Documents must be clear, legible, and show complete information with no cropped or partially visible content. These constraints require client-side validation with clear error messaging for each rule.",
+      "key_points": [
+        "Accepted formats: JPG, JPEG, PNG, PDF, DOC, DOCX",
+        "Maximum file size: 10MB per document",
+        "Documents must be clear and legible (no automated check, relies on human review)",
+        "No cropped or partially visible documents allowed",
+        "All information on the document must be complete and visible"
+      ],
+      "related": ["document-upload", "business-address-verification", "file-validation"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Multi-Level Dropdown Cascade for Verification Scoping",
+      "summary": "The verification setup uses a three-level dropdown cascade (Product > Country > Number Type) that progressively narrows options. Each selection determines what appears in the next dropdown, and the combination scopes the verification context. This pattern requires clear dependency indicators and may benefit from wizard-style progression rather than a flat form.",
+      "key_points": [
+        "Three-level cascade: Product > Country/Region > Number Type & Capability",
+        "Each dropdown choice filters the next dropdown's options",
+        "The combination (Phone + United Kingdom + Mobile - eSIM) determines verification requirements",
+        "Could benefit from visual progression indicators to show where the user is in the scoping process"
+      ],
+      "related": ["business-address-verification", "dropdown-cascade", "form-wizard"]
+    },
+    {
+      "title": "Multi-Document Upload with Individual Constraints",
+      "summary": "The verification form requires three distinct document uploads (Proof of Business, Proof of Identity, Proof of Address), each with its own accepted document types. The UX must handle per-field validation, partial upload progress, and clear distinction between the three document categories to prevent users from uploading the wrong document type in each slot.",
+      "key_points": [
+        "Three separate upload slots, each for a different document category",
+        "Each slot has specific accepted document types (e.g., passport only for identity)",
+        "Inline validation for format, size, clarity, and date freshness per slot",
+        "Users should be able to save partial progress and return to complete"
+      ],
+      "related": ["business-address-verification", "document-upload", "file-validation"]
+    },
+    {
+      "title": "Verification Status and Rejection Handling",
+      "summary": "After submission, verification undergoes human review. If documents are rejected, admins need clear feedback on what was wrong and how to fix it. The article FAQ indicates a single verification can be reused for multiple orders, suggesting a status dashboard pattern where verification state is visible across different workflows. Designers should plan for the full lifecycle: pending, approved, rejected-with-reason, and expired.",
+      "key_points": [
+        "Verification is not instant; there is a review and approval period",
+        "Rejection requires specific guidance on what to fix and resubmit",
+        "A single verification can cover multiple number orders (don't force re-verification)",
+        "Status should be visible from any workflow that depends on verification"
+      ],
+      "related": ["business-address-verification", "rejection-flow", "status-dashboard"]
+    }
+  ]
+}

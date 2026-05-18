@@ -1,15 +1,15 @@
 # Lint Report
 
-_Generated: 2026-05-18 08:38:06 UTC_
+_Generated: 2026-05-18 09:23:59 UTC_
 
-## Result: FAILED (1 issues)
+## Result: PASSED (0 issues)
 
 ### Traceability — OK
 
 
-### Coverage — 1 issue(s)
+### Coverage — OK
 
-- 5 high-confidence articles not yet ingested: KB0085809, KB0085804, KB0085762, KB0085763, KB0085766
+- All high-confidence articles have been ingested.
 
 ### Consistency — OK
 

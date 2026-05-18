@@ -4,7 +4,7 @@ product: zoom-phone
 article_id: KB0085809
 title: Configuring Zoom Phone Local Survivability with a Node group
 source_url: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085809
-captured_at: 2026-05-18T08:37:59.186389+00:00
+captured_at: 2026-05-18T09:08:48.652606+00:00
 retrieval_tool: jsonld
 relevance_score: 15
 confidence: high

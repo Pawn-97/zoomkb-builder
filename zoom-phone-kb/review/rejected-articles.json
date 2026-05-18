@@ -1,6 +1,6 @@
 {
   "product": "zoom-phone",
-  "count": 35,
+  "count": 558,
   "rejected": [
     {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082149",
@@ -14,20 +14,6 @@
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085545",
       "title": "Troubleshooting amount or currency issue",
       "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
-      "title": "Troubleshooting unable to continue or view payment interface",
-      "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
-      "title": "Using Meeting transcripts",
-      "lastmod": "2026-05-18",
       "matched_signals": []
     },
     {
@@ -45,6 +31,34 @@
       "matched_signals": []
     },
     {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085682",
+      "title": "Using Meeting transcripts",
+      "lastmod": "2026-05-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085550",
+      "title": "Troubleshooting unable to continue or view payment interface",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
+      "title": "Enabling or disabling meeting transcripts",
+      "lastmod": "2026-05-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
+      "title": "Troubleshooting 230: Authorization approved but declined",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085534",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085534",
       "title": "Troubleshooting unknown error",
@@ -59,23 +73,16 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085555",
-      "title": "Troubleshooting 230: Authorization approved but declined",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
+      "title": "Troubleshooting payment could not be processed",
       "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085675",
-      "title": "Enabling or disabling meeting transcripts",
-      "lastmod": "2026-05-18",
       "matched_signals": []
     },
     {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085552",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085552",
-      "title": "Troubleshooting error 202: Invalid expiration date",
+      "title": "Changing your name on Zoom",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -87,23 +94,9 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085527",
-      "title": "Troubleshooting payment could not be processed",
-      "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085532",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085532",
       "title": "Troubleshooting invalid credit card number",
-      "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
-      "title": "Troubleshooting error 10204: Account closed or restricted",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -122,9 +115,9 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
-      "title": "Troubleshooting PayPal billing agreement canceled",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085787",
+      "title": "Troubleshooting error 10204: Account closed or restricted",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -143,23 +136,9 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
-      "title": "Troubleshooting exceeded amount attempts to process payment",
-      "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
-      "title": "Troubleshooting currency not supported on card",
-      "lastmod": "2026-05-12",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
-      "title": "Herunterladen der Desktopanwendung oder mobilen App von Zoom\u00a0Workplace",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085790",
+      "title": "Troubleshooting PayPal billing agreement canceled",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -174,6 +153,20 @@
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085523",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085523",
       "title": "Troubleshooting system could not process your request at this time",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085528",
+      "title": "Troubleshooting exceeded amount attempts to process payment",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085520",
+      "title": "Uso del add-on de Zoom para Google Workspace",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -194,7 +187,7 @@
     {
       "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085551",
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085551",
-      "title": "Zoom\u30df\u30fc\u30c6\u30a3\u30f3\u30b0\u306b\u53c2\u52a0\u3059\u308b",
+      "title": "Troubleshooting error 200: Address mismatch",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -213,9 +206,16 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
-      "title": "Troubleshooting issue with credit card",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085788",
+      "title": "Troubleshooting error 10009: Refund already processed by PayPal",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
+      "title": "Troubleshooting payment declined due to insufficient funds",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -227,16 +227,9 @@
       "matched_signals": []
     },
     {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
-      "title": "Troubleshooting invalid address",
-      "lastmod": "2026-05-15",
-      "matched_signals": []
-    },
-    {
-      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
-      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085519",
-      "title": "Troubleshooting payment declined due to insufficient funds",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085522",
+      "title": "Troubleshooting issue with credit card",
       "lastmod": "2026-05-12",
       "matched_signals": []
     },
@@ -245,6 +238,3674 @@
       "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085765",
       "title": "Configuring Survivable Distribution Groups",
       "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085530",
+      "title": "Troubleshooting invalid address",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085632",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085632",
+      "title": "Using Zoom Meetings for Dynamics",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085173",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085173",
+      "title": "Release notes for Zoom Auto Dialer",
+      "lastmod": "2026-05-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085783",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085783",
+      "title": "Troubleshooting error 7000",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073485",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073485",
+      "title": "Sharing Zone Controllers with sub accounts",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085546",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085546",
+      "title": "Release notes for Zoom CX Insights",
+      "lastmod": "2026-04-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084944",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084944",
+      "title": "Enabling or disabling AI Formula",
+      "lastmod": "2026-04-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085330",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085330",
+      "title": "Using Zoom Virtual Agent with the Okta CRM integration",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085421",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085421",
+      "title": "Integrating Salesloft with Zoom Auto Dialer",
+      "lastmod": "2026-04-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085405",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085405",
+      "title": "Zoom Web App\u2019i kullanmaya ba\u015flama",
+      "lastmod": "2026-04-17",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084859",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084859",
+      "title": "Partager son \u00e9cran ou son bureau sur Zoom",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085601",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085601",
+      "title": "Generating Zoom Contact Center Engagement Brief",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085309",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085309",
+      "title": "Customizing workspace reservation email templates",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085600",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085600",
+      "title": "Enabling Zoom Contact Center Engagement Brief",
+      "lastmod": "2026-04-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085268",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085268",
+      "title": "Managing any host distribution logic",
+      "lastmod": "2026-04-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085223",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085223",
+      "title": "Enabling or disabling IP address access control in whiteboard",
+      "lastmod": "2026-04-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085084",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085084",
+      "title": "Advance notice of end of support for Zoom Rooms for Mac on macOS 10.13 and 10.14",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084846",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084846",
+      "title": "Configuring Zendesk as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084986",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084986",
+      "title": "Using the Todoist Connector",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085449",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085449",
+      "title": "Native Zoom Rooms and Zoom for Cisco Rooms (Signed-In Mode) comparison",
+      "lastmod": "2026-04-17",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084849",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084849",
+      "title": "Configuring Salesforce as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084848",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084848",
+      "title": "Configuring Box as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084747",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084747",
+      "title": "Using the Veradigm integration",
+      "lastmod": "2026-03-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084847",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084847",
+      "title": "Configuring ServiceNow as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084845",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084845",
+      "title": "Configuring OneDrive as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085104",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085104",
+      "title": "Enabling Zoom Virtual Agent Box integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084983",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084983",
+      "title": "Using the Audioscrape Connector",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085149",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085149",
+      "title": "Using the Zoom Docs for Zapier integration",
+      "lastmod": "2026-03-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084984",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084984",
+      "title": "Using the Jotform Connector",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084842",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084842",
+      "title": "Issues using WebView with the Zoom VDI client",
+      "lastmod": "2026-03-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084883",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084883",
+      "title": "Enabling Zoom Virtual Agent Zoho Inventory integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084995",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084995",
+      "title": "Enabling Zoom Virtual Agent Miro integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084881",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084881",
+      "title": "Enabling Zoom Virtual Agent SmartSheet integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084850",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084850",
+      "title": "Configuring Workday as an organizational data source",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084893",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084893",
+      "title": "Enabling Zoom Virtual Agent DocuSign integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084858",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084858",
+      "title": "Enabling Zoom Virtual Agent Mailchimp integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084884",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084884",
+      "title": "Enabling Zoom Virtual Agent Zoho Books integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084892",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084892",
+      "title": "Enabling Zoom Virtual Agent SendGrid integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084985",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084985",
+      "title": "Using the Klaviyo Connector",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084880",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084880",
+      "title": "Enabling Zoom Virtual Agent Sentry integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085064",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085064",
+      "title": "Managing visitor watchlists and security notifications",
+      "lastmod": "2026-04-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084618",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084618",
+      "title": "Preparing your organization's content for AI Companion indexing",
+      "lastmod": "2026-04-03",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084890",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084890",
+      "title": "Enabling Zoom Virtual Agent Linear integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085121",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085121",
+      "title": "Using voting in Zoom Whiteboard",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085094",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085094",
+      "title": "Using Zoom Contact Center for Epic integration",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084875",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084875",
+      "title": "Enabling Zoom Virtual Agent Olo integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084877",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084877",
+      "title": "Enabling Zoom Virtual Agent Notion integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084886",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084886",
+      "title": "Enabling Zoom Virtual Agent BambooHR integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084860",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084860",
+      "title": "Enabling Zoom Virtual Agent Apollo integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084891",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084891",
+      "title": "\u52a0\u5165 Zoom \u4f1a\u8bae",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084888",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084888",
+      "title": "Enabling Zoom Virtual Agent Apify integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084862",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084862",
+      "title": "Enabling Zoom Virtual Agent QuickBooks integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084822",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084822",
+      "title": "Setting up the SharePoint Data Source",
+      "lastmod": "2026-03-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084878",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084878",
+      "title": "Enabling Zoom Virtual Agent Airtable integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084873",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084873",
+      "title": "Enabling Zoom Virtual Agent Github integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084821",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084821",
+      "title": "Setting up the Confluence Data Source integration",
+      "lastmod": "2026-03-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085081",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085081",
+      "title": "Enabling Zoom Virtual Agent Tavily integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084887",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084887",
+      "title": "Partecipare a una riunione Zoom",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084869",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084869",
+      "title": "Enabling the Zoom Virtual Agent PagerDuty integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085048",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085048",
+      "title": "Using the Zoom Contact Center Unified View for ServiceNow",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084882",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084882",
+      "title": "Enabling Zoom Virtual Agent Datadog integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084976",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084976",
+      "title": "Enabling Zoom Virtual Agent Microsoft Dynamics 365 integration",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083874",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083874",
+      "title": "Zoom Knowledge Article",
+      "lastmod": "2026-03-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085088",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085088",
+      "title": "Advance notice of end of support for iOS 13.x and iPadOS 13.x",
+      "lastmod": "2026-03-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084861",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084861",
+      "title": "Enabling Zoom Virtual Agent Stripe integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084876",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084876",
+      "title": "Enabling Zoom Virtual Agent Zoho integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085031",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085031",
+      "title": "Upgrading voice calls to video calls in Zoom Contact Center",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084863",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084863",
+      "title": "Release notes for Linux",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084804",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084804",
+      "title": "Managing workspace reservations for deactivated users",
+      "lastmod": "2026-03-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085190",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085190",
+      "title": "Wymagania systemowe Zoom: Zoom Web App",
+      "lastmod": "2026-05-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084476",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084476",
+      "title": "Enabling Zoom Virtual Agent Shopify integration",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084874",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084874",
+      "title": "Enabling Zoom Virtual Agent Freshservice integration",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085095",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085095",
+      "title": "Assigning Zoom CX Insights license",
+      "lastmod": "2026-05-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085559",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085559",
+      "title": "Understanding Webinars monthly subscription cancellation and pause",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084621",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084621",
+      "title": "Configuring the Zoom Virtual Agent Epic Connector",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084889",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084889",
+      "title": "Enabling Zoom Virtual Agent Calendly integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085049",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085049",
+      "title": "Setting up the Zoom Contact Center Unified View for ServiceNow",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085093",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085093",
+      "title": "Setting up the Zoom Contact Center Epic integration",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084439",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084439",
+      "title": "Embedding Figma files in Zoom Whiteboard",
+      "lastmod": "2026-02-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085188",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085188",
+      "title": "Configuring a custom manifest file for Zoom Outlook add-in",
+      "lastmod": "2026-05-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084481",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084481",
+      "title": "Managing notes on workspace cards",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084292",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084292",
+      "title": "Hiding social media buttons in Zoom Docs",
+      "lastmod": "2026-01-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083296",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083296",
+      "title": "Enrolling profile to Smart recognition",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084871",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084871",
+      "title": "Enabling Zoom Virtual Agent Dropbox integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085189",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085189",
+      "title": "Frequently asked questions about Zoom Virtual Agent Receptionist",
+      "lastmod": "2026-05-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084342",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084342",
+      "title": "Using OneDrive for Organizations (Application) app",
+      "lastmod": "2026-02-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085248",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085248",
+      "title": "Agendamento de reuni\u00f5es",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084752",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084752",
+      "title": "Sharing your Zoom Calendar and calendar events with others",
+      "lastmod": "2026-03-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084732",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084732",
+      "title": "Enabling or disabling Zoom chat notifications in whiteboard",
+      "lastmod": "2026-04-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084162",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084162",
+      "title": "Integrating Outreach with Zoom Auto Dialer",
+      "lastmod": "2026-01-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085179",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085179",
+      "title": "Creating Agentic AI Expert Assist assets",
+      "lastmod": "2026-05-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085162",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085162",
+      "title": "Enable Continuous Meeting Chat setting renamed for improved user understanding",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085380",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085380",
+      "title": "Using personal workflows with AI Companion",
+      "lastmod": "2026-05-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084341",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084341",
+      "title": "Configuring the Seismic for Zoom app",
+      "lastmod": "2026-02-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085004",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085004",
+      "title": "\u041e\u0431\u0440\u0430\u0442\u0438\u0442\u0435\u0441\u044c \u0432 \u0441\u043b\u0443\u0436\u0431\u0443 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438 Zoom",
+      "lastmod": "2026-03-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084340",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084340",
+      "title": "Using ServiceNow with AI Companion and Zoom Virtual Agent",
+      "lastmod": "2026-04-10",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083990",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083990",
+      "title": "Using scorecard notifications for Zoom Revenue Accelerator",
+      "lastmod": "2026-05-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083966",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083966",
+      "title": "Bulk deploying Hybrid Meeting module services",
+      "lastmod": "2026-01-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083963",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083963",
+      "title": "Bulk deploying Meeting Connector module services",
+      "lastmod": "2026-01-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081491",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081491",
+      "title": "Using MoMo Pay as a Zoom payment method",
+      "lastmod": "2026-02-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084339",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084339",
+      "title": "Using Google Sheets with AI Companion and Zoom Virtual Agent",
+      "lastmod": "2026-03-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085180",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085180",
+      "title": "Using Zoom Contact Center Agentic AI Expert Assist",
+      "lastmod": "2026-04-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084800",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084800",
+      "title": "Using alphanumeric sender IDs for SMS in the United Kingdom",
+      "lastmod": "2026-04-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083799",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083799",
+      "title": "Managing Frontline licensing and shift group roles via SAML",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083436",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083436",
+      "title": "Managing host display from linked accounts on Zoom Kiosk",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083996",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083996",
+      "title": "Using activities in Zoom Whiteboard",
+      "lastmod": "2026-01-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084143",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084143",
+      "title": "Managing retention policy for Zoom Docs",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083483",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083483",
+      "title": "Managing workspace reservation check-in authentication",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084981",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084981",
+      "title": "Changing sub-account ownership issue",
+      "lastmod": "2026-05-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083580",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083580",
+      "title": "Understanding Chat Channel member roles in Zoom Frontline Worker",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083423",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083423",
+      "title": "Using the Engagement tab in multi-session analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083433",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083433",
+      "title": "Using facial recognition for visitor check-in",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083464",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083464",
+      "title": "Privacywaarschuwingen van Zoom begrijpen",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083438",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083438",
+      "title": "Filtering workspace usage data by seating capacity",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084338",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084338",
+      "title": "Using Google Docs with AI Companion and Zoom Virtual Agent",
+      "lastmod": "2026-03-23",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085176",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085176",
+      "title": "Configuring Zoom Contact Center Agentic AI Expert Assist",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084163",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084163",
+      "title": "Integrating HubSpot with Zoom Auto Dialer",
+      "lastmod": "2026-04-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083531",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083531",
+      "title": "Adding Pexels stock images to your Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083422",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083422",
+      "title": "Using the Attendees tab in multi-session analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083591",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083591",
+      "title": "Using ZECO connectors in custom script tool",
+      "lastmod": "2026-03-04",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083421",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083421",
+      "title": "Using the Registration tab in multi-session analytics",
+      "lastmod": "2026-01-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084432",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084432",
+      "title": "Using URL parameters with Zoom Scheduler booking links",
+      "lastmod": "2026-04-22",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083450",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083450",
+      "title": "Using AI companion for workspace reservations",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083267",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083267",
+      "title": "Using the Engagement tab in VOD analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083533",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083533",
+      "title": "Using Present Canvas in Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083972",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083972",
+      "title": "Zoom Workplace for Clinicians",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084679",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084679",
+      "title": "Enabling or disabling Only authenticated users can join from web client",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083279",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083279",
+      "title": "How to export a Zoom Revenue Accelerator conversation to Zoom Docs",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082373",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082373",
+      "title": "Setting up Canvas with AI Companion",
+      "lastmod": "2026-01-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084023",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084023",
+      "title": "Using individual whiteboard mode in Zoom Whiteboard",
+      "lastmod": "2026-03-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083592",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083592",
+      "title": "Using Zoom App Marketplace authentication inside the custom script tool",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084101",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084101",
+      "title": "Configuring the Google Drive for Organizations app",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083971",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083971",
+      "title": "OnZoom",
+      "lastmod": "2026-01-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083420",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083420",
+      "title": "Penginstal Zoom",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082296",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082296",
+      "title": "Setting a language for a booking page",
+      "lastmod": "2026-03-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083266",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083266",
+      "title": "Using the Viewers tab in VOD analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084440",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084440",
+      "title": "Using Pix as a Zoom payment method",
+      "lastmod": "2026-02-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085246",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085246",
+      "title": "Zoom Workplace app Connecting... issue on versions 7.0.0 and 7.0.1",
+      "lastmod": "2026-05-04",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083415",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083415",
+      "title": "Zoom Webinars Plus event level analytics glossary",
+      "lastmod": "2026-03-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083803",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083803",
+      "title": "Using Zoom Whiteboard's AI diagramming with Amazon Quick Suite",
+      "lastmod": "2026-01-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083494",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083494",
+      "title": "\u52a0\u5165 Zoom \u6703\u8b70",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084343",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084343",
+      "title": "Configuring third-party data sources in AI Studio",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083011",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083011",
+      "title": "Using Deal retrospectives for win/loss analysis with Zoom Revenue Accelerator",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082737",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082737",
+      "title": "Restricting joining with Zoom Mesh",
+      "lastmod": "2026-01-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083322",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083322",
+      "title": "The meeting list is not displayed on my Zoom Room appliance",
+      "lastmod": "2026-03-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083419",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083419",
+      "title": "Zoom Webinars Plus and Events VOD Analytics glossary",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083870",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083870",
+      "title": "Release notes for the Meeting Connector module",
+      "lastmod": "2026-01-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082750",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082750",
+      "title": "Using Canvas with AI Companion and Zoom Virtual Agent",
+      "lastmod": "2026-03-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082500",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082500",
+      "title": "Using the Zoom Tasks Help menu",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082938",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082938",
+      "title": "Using the Videos tab in VOD analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082384",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082384",
+      "title": "Enabling or disabling persistent collaboration on cloud-saved notes",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083400",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083400",
+      "title": "Frequently asked questions about Zoom Contact Center Bring Your Own Storage (BYOS)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082429",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082429",
+      "title": "Enabling or disabling Pexel integration in whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083278",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083278",
+      "title": "How to view and manage Accounts for Zoom Revenue Accelerator",
+      "lastmod": "2026-04-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082322",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082322",
+      "title": "\u5728 Zoom Web \u61c9\u7528\u7a0b\u5f0f\u4e2d\u5141\u8a31\u9ea5\u514b\u98a8\u3001\u651d\u5f71\u6a5f\u8207\u756b\u9762\u5206\u4eab\u6b0a\u9650",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083277",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083277",
+      "title": "Using AI indicators for Zoom Revenue Accelerator",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082319",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082319",
+      "title": "Using the Attendees tab in single-session analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083839",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083839",
+      "title": "Using multi-party conference merging with shared line appearances on supported deskphone models",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082324",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082324",
+      "title": "Using the Engagement tab in recurring sessions analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083553",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083553",
+      "title": "Setting a primary host for group booking pages",
+      "lastmod": "2026-03-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083682",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083682",
+      "title": "Using the Zoom Tasks dashboard",
+      "lastmod": "2026-04-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082956",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082956",
+      "title": "Enabling or disabling video channel creation",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083872",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083872",
+      "title": "Release notes for the Meetings Hybrid module",
+      "lastmod": "2026-03-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082246",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082246",
+      "title": "Using Zoom Docs with LTI Pro",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082323",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082323",
+      "title": "Using the Attendees tab in recurring sessions analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083798",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083798",
+      "title": "Troubleshooting switching a call to your phone carrier",
+      "lastmod": "2026-05-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083397",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083397",
+      "title": "Managing incoming engagements on multiple platforms",
+      "lastmod": "2026-04-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083814",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083814",
+      "title": "Advance Notice: Zoom Rooms to End Support for Windows 10 Retail/GAC",
+      "lastmod": "2026-04-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082343",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082343",
+      "title": "How to create a task in Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081350",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081350",
+      "title": "Enabling or disabling users to comment on whiteboards",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082338",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082338",
+      "title": "Sharing and requesting access to a private task",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082485",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082485",
+      "title": "Using advanced shapes for technical diagrams in Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081195",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081195",
+      "title": "Setting up Visitor Receptionist roles",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083976",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083976",
+      "title": "Using enhanced voice commands in Zoom Rooms",
+      "lastmod": "2026-04-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083970",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083970",
+      "title": "\u8b8a\u66f4\u5e33\u6236\u5b89\u5168\u8a2d\u5b9a",
+      "lastmod": "2026-04-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085052",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085052",
+      "title": "Common port rejections",
+      "lastmod": "2026-05-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082466",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082466",
+      "title": "Enabling or disabling comments for Zoom Tasks",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081663",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081663",
+      "title": "Share reservation location in chat",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080633",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080633",
+      "title": "Configuring Zoom Docs sharing in a Zoom Room",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083605",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083605",
+      "title": "Managing multiple subscriptions license for Zoom Webinars Plus and Events",
+      "lastmod": "2026-04-23",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082683",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082683",
+      "title": "Managing facial recognition check-in for visitors",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084678",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084678",
+      "title": "Memberikan izin ke mikrofon, kamera, dan berbagi layar di Aplikasi Web Zoom",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082382",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082382",
+      "title": "Setting up Zoom Virtual Agent Salesforce Messaging",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082774",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082774",
+      "title": "Best practices for content creation",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081675",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081675",
+      "title": "Selecting work profiles on shared common areas",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082245",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082245",
+      "title": "Integrating Zoom Docs with LTI Pro",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082353",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082353",
+      "title": "Using Zoom Video Management with LTI Pro for instructors",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085033",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085033",
+      "title": "Using Zoom CX Insights",
+      "lastmod": "2026-05-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081193",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081193",
+      "title": "Setting Up Delivery Receptionist Roles",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083532",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083532",
+      "title": "Using Presentation mode in Zoom Whiteboard",
+      "lastmod": "2026-01-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081333",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081333",
+      "title": "Adding and managing comments in Zoom Tasks",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080216",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080216",
+      "title": "Preventing deletion of Zoom Contact Center consumer surveys and reports when the owner is removed",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082318",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082318",
+      "title": "Using the Registration tab in single-session analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082886",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082886",
+      "title": "Cr\u00e9er et utiliser un chat de r\u00e9union continu",
+      "lastmod": "2026-05-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083889",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083889",
+      "title": "Setting up the Telegram for Zoom CX",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080116",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080116",
+      "title": "Enabling Shift Swaps and Covers",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083457",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083457",
+      "title": "Understanding Zoom Contact Center contact callable hours",
+      "lastmod": "2026-04-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082153",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082153",
+      "title": "Managing automated conversation tags for Zoom Revenue Accelerator",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082320",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082320",
+      "title": "Using the Engagement tab in single-session analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078511",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078511",
+      "title": "Restricting autopopulated user list on visitor kiosk",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076597",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076597",
+      "title": "Using the SignalFx chat app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079795",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079795",
+      "title": "Changing data retention settings for Visitor Management",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078452",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078452",
+      "title": "Enabling the Revenue Accelerator welcome email",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081198",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081198",
+      "title": "Using Coda within AI Companion",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082550",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082550",
+      "title": "Provisioning shared mobile devices (smartphones) with IP subnet detection",
+      "lastmod": "2026-05-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080692",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080692",
+      "title": "Minimum supported version for the Zoom for Salesforce Lightning app",
+      "lastmod": "2026-03-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085187",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085187",
+      "title": "Anv\u00e4nda end-to-end-kryptering (E2EE) i Zoom-m\u00f6ten",
+      "lastmod": "2026-05-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077029",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077029",
+      "title": "Using the Workast app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079866",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079866",
+      "title": "Integrating Zoom Revenue Accelerator with Outreach",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083403",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083403",
+      "title": "Troubleshooting issues with Zoom Contact Center Bring Your Own Storage (BYOS)",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081342",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081342",
+      "title": "Understanding the 'On Hold' Limitation in Android Auto",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082391",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082391",
+      "title": "Zoom VDI Client support for Citrix Local App Access",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080115",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080115",
+      "title": "Enabling Shifts Punch-in/out",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081648",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081648",
+      "title": "Using AI suggestions for task lists",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080800",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080800",
+      "title": "Troubleshooting Zoom Meetings PMI in Salesforce (Zoom for Lightning)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081487",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081487",
+      "title": "Enabling AI Topics for Quality Management",
+      "lastmod": "2026-05-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082321",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082321",
+      "title": "Using the Summary tab in recurring sessions analytics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076553",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076553",
+      "title": "Using the New Relic chat app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081505",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081505",
+      "title": "Using the Payment report for paid events",
+      "lastmod": "2026-02-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080684",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080684",
+      "title": "Using the Coda for Zoom Connector",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083890",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083890",
+      "title": "Setting up LINE for Zoom CX",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078626",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078626",
+      "title": "Deploying the Meeting Survivability token",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081678",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081678",
+      "title": "Importing shift groups and batch updating via CSV",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080755",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080755",
+      "title": "Adding workspace reservations rooms to existing meetings as a delegate",
+      "lastmod": "2026-04-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082924",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082924",
+      "title": "SCIM attributes for provisioning Zoom Contact Center users",
+      "lastmod": "2026-02-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082036",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082036",
+      "title": "Using Customer Managed Key Hybrid with AWS",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079145",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079145",
+      "title": "VDI version compatibility check between the VDI Host and Plugin",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079443",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079443",
+      "title": "Creating a Zoom Virtual Agent knowledge base with Kustomer",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077860",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077860",
+      "title": "Adding Dropbox files into Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081489",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081489",
+      "title": "Using the UKG Pro Workforce Management for Zoom  Admin app",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081392",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081392",
+      "title": "\u5728 Zoom Web \u61c9\u7528\u7a0b\u5f0f\u4e2d\u5141\u8a31\u9ea5\u514b\u98a8\u3001\u651d\u5f71\u6a5f\u8207\u756b\u9762\u5206\u4eab\u6b0a\u9650",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080283",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080283",
+      "title": "Configuring Gainsight for Zoom Revenue Accelerator",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080791",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080791",
+      "title": "Enabling Allow skip registration for Visitor Management",
+      "lastmod": "2026-03-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077327",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077327",
+      "title": "Optimizing Zoom Virtual Agent knowledge base",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080753",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080753",
+      "title": "Checking in to workspace reservations on behalf of users",
+      "lastmod": "2026-04-20",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082895",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082895",
+      "title": "Using stethoscope devices with Zoom Rooms",
+      "lastmod": "2026-01-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083801",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083801",
+      "title": "Notice of Zoom Certificate Update for Zoom Plugin Management",
+      "lastmod": "2026-03-03",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078177",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078177",
+      "title": "Configuring email auto-close time frame",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080069",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080069",
+      "title": "Meeting status indicator controls",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080122",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080122",
+      "title": "Using Shift summary",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078760",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078760",
+      "title": "Sharing Zoom Contact Center variables to third-party apps",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077362",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077362",
+      "title": "Enabling Automatic fallback to Zoom's key (CMK)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083776",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083776",
+      "title": "Enabling or disabling Meeting coach with AI Companion",
+      "lastmod": "2026-04-23",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080128",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080128",
+      "title": "Connecting a UKG account with Zoom Workplace for Frontline",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073530",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073530",
+      "title": "Selecting required visitor information in invitations",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081252",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081252",
+      "title": "Sync Zoom Room, workspace room and desk names with Zoom Calendar resources",
+      "lastmod": "2026-02-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083522",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083522",
+      "title": "Managing host permissions with the Zoom VDI Plugin Management tool",
+      "lastmod": "2026-01-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077709",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077709",
+      "title": "Enabling Visitor management dashboard view-only role",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080819",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080819",
+      "title": "Getting started with Ask Quality Management (Ask QM)",
+      "lastmod": "2026-01-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074140",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074140",
+      "title": "Using article preview",
+      "lastmod": "2026-02-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074444",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074444",
+      "title": "Managing the Zoom Mail Reporting tab",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079448",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079448",
+      "title": "Creating a Zoom Virtual Agent knowledge base with OneDrive",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082913",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082913",
+      "title": "Creating event automation for outbound engagement",
+      "lastmod": "2026-04-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079537",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079537",
+      "title": "Using rolling updates for Zoom Node",
+      "lastmod": "2026-01-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078247",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078247",
+      "title": "Frequently asked questions about Zoom's partnership with HoneyBook",
+      "lastmod": "2026-02-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076599",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076599",
+      "title": "Using the Zapier app for Zoom Chat",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079059",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079059",
+      "title": "Updating from V1 to V2 JavaScript syntax in Zoom Contact Center",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082017",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082017",
+      "title": "How to disable join by phone",
+      "lastmod": "2026-02-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065260",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065260",
+      "title": "Creating a template for SIP/H.323 rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081896",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081896",
+      "title": "Reserving multiple workspaces across locations",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077349",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077349",
+      "title": "Optimizing customer engagement using Zoom Virtual Agent campaigns",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076601",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076601",
+      "title": "Using the Airtable chat app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066782",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066782",
+      "title": "Setting the LTI Pro time zone from Canvas",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074446",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074446",
+      "title": "Configuring activity management for Zoom Mail",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067142",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067142",
+      "title": "Using the Librato Notifications app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079611",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079611",
+      "title": "Allowing users to ask AI Companion questions about the phone call",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080094",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080094",
+      "title": "Managing assets in Workspace Reservation",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076946",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076946",
+      "title": "Colombian Significant Economic Presence Rules",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080112",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080112",
+      "title": "Customizing the Connector widget in Zoom Virtual Agent",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080962",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080962",
+      "title": "Using page publish for Zoom Docs",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082035",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082035",
+      "title": "Customizing the Set Skills widget",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073137",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073137",
+      "title": "Generating an offsite campaign URL for Zoom Virtual Agent",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077352",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077352",
+      "title": "Viewing Customer Managed Key (CMK) reports",
+      "lastmod": "2026-04-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081536",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081536",
+      "title": "Using Zoom meetings with reservation only rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080119",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080119",
+      "title": "Enabling UKG Pro Workforce Management Integration",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080873",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080873",
+      "title": "Managing auto-deletion of recommended tasks",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078417",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078417",
+      "title": "Frequently asked questions about Revenue Accelerator recorder for meetings",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058721",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058721",
+      "title": "Auto import course roster for breakout rooms in Schoology",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070278",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070278",
+      "title": "Zoom error code 104105",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070158",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070158",
+      "title": "Zoom error code 104124",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078759",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078759",
+      "title": "Managing failed tickets in Zoom Virtual Agent",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058615",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058615",
+      "title": "Configuring LTI Pro 1.1 for Blackboard Calendar",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082295",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082295",
+      "title": "Frequently asked questions about Zoom Scheduler GST and VAT",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074102",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074102",
+      "title": "Importing and exporting bot flows",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078414",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078414",
+      "title": "Viewing scheduled engagements in Zoom Contact Center",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065882",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065882",
+      "title": "Bulk disassociating meetings via LTI Pro API",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079475",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079475",
+      "title": "Setting up alerts for Zoom Virtual Agent",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068916",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068916",
+      "title": "\u5728\u865a\u62df\u4f1a\u8bae\u671f\u95f4\u8c03\u6574\u60a8\u7684\u89c6\u9891\u5e03\u5c40",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075090",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075090",
+      "title": "\u5728iOS\u8bbe\u5907\u4e0a\u5171\u4eab\u5c4f\u5e55",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060919",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060919",
+      "title": "Integrating LTI Pro with Schoology Calendar",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070170",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070170",
+      "title": "Zoom error code 104123",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070198",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070198",
+      "title": "Zoom error code 104118",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075836",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075836",
+      "title": "Configuring deal risk signals",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077930",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077930",
+      "title": "Frequently asked questions about Zoom's partnership with Dropbox",
+      "lastmod": "2026-02-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070190",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070190",
+      "title": "Zoom error code 104121",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080382",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080382",
+      "title": "Enabling Notifications in Visitor Management",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070146",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070146",
+      "title": "Zoom error code 104125",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081488",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081488",
+      "title": "Using AI Topics for Quality Management",
+      "lastmod": "2026-04-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057759",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057759",
+      "title": "Configuring Zoom Room Tags in LTI Pro",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070262",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070262",
+      "title": "Zoom error code 104110",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070222",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070222",
+      "title": "Zoom error code 104115",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067616",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067616",
+      "title": "Unable to delete Chat location",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082776",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082776",
+      "title": "Replying to messages and meeting reminders from device notifications",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082154",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082154",
+      "title": "Using automated conversation tags for Zoom Revenue Accelerator",
+      "lastmod": "2026-03-10",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066390",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066390",
+      "title": "Configuring Canvas to support multiple domains",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070238",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070238",
+      "title": "Zoom error code 104113",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070246",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070246",
+      "title": "Zoom error code 104112",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081218",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081218",
+      "title": "Understanding error messages for visitor invitations",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078159",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078159",
+      "title": "Enabling Workspace Reservation across linked accounts",
+      "lastmod": "2026-04-02",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078636",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078636",
+      "title": "Zoom managed room systems dropping from Teams meetings",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076641",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076641",
+      "title": "Do\u0142\u0105czanie do spotkania Zoom",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084404",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084404",
+      "title": "Using the Consumer History tab",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075307",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075307",
+      "title": "Creating and managing Node groups",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073349",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073349",
+      "title": "Bulk deploying Zoom Node servers",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070270",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070270",
+      "title": "Zoom error code 104106",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082397",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082397",
+      "title": "Creating and managing clinical note templates",
+      "lastmod": "2026-03-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073531",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073531",
+      "title": "Allowing users to manually check in their invited visitors",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084960",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084960",
+      "title": "Setting up Zoom Virtual Agent Receptionist",
+      "lastmod": "2026-05-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057856",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057856",
+      "title": "Allowing hosts to enable networking in Zoom Events",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062883",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062883",
+      "title": "Configuring Autocomplete for Breakout Rooms in Moodle",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066575",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066575",
+      "title": "Kernel extension changes in macOS High Sierra",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062880",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062880",
+      "title": "Configuring Autocomplete for Breakout Rooms in Brightspace",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078411",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078411",
+      "title": "Script widget examples (old version)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066767",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066767",
+      "title": "Enable scheduling LTI meetings for Zoom Rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083816",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083816",
+      "title": "Advance Notice: Zoom Rooms End of Support for Android 8 or Older",
+      "lastmod": "2026-03-10",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075860",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075860",
+      "title": "Using Zoom Revenue Accelerator deal risk signals",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063874",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063874",
+      "title": "Purchasing an OnZoom ticket through PayPal",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070206",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070206",
+      "title": "Zoom error code 104117",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079123",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079123",
+      "title": "Naming convention for Zoom Contact Center files",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076618",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076618",
+      "title": "Using the coaching activity tracker",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069874",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069874",
+      "title": "Revolabs UC500 integration with Zoom Rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073605",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073605",
+      "title": "Designating users to invite visitors on this location in Visitor Management",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083547",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083547",
+      "title": "Rating and reviewing apps on the Zoom App Marketplace",
+      "lastmod": "2026-03-23",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079446",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079446",
+      "title": "Creating a Zoom Virtual Agent knowledge base with Zendesk",
+      "lastmod": "2026-02-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058367",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058367",
+      "title": "Creating meeting templates for LTI scheduling",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069885",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069885",
+      "title": "Revolabs integration with Zoom Rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079901",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079901",
+      "title": "Managing admin roles for Zoom Tasks",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070214",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070214",
+      "title": "Silenciar o microfone ao entrar em uma reuni\u00e3o",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079854",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079854",
+      "title": "Using adaptive buttons in Zoom Virtual Agent",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073651",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073651",
+      "title": "Managing auto-deletion for notes",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078535",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078535",
+      "title": "Assigning Revenue Accelerator roles in Entra ID",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073003",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073003",
+      "title": "Enabling on-premise Chat message storage",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070303",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070303",
+      "title": "Zoom error code 104102",
+      "lastmod": "2026-01-22",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058722",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058722",
+      "title": "Auto import course roster for breakout rooms in Blackboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077325",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077325",
+      "title": "Optimizing Zoom Virtual Agent bot flows",
+      "lastmod": "2026-04-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059183",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059183",
+      "title": "Bahrain VAT",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078288",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078288",
+      "title": "Using Zoom Tasks with Jira",
+      "lastmod": "2026-03-03",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082369",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082369",
+      "title": "Managing visitor types in Visitor Management",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081154",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081154",
+      "title": "Using Zendesk within AI Companion",
+      "lastmod": "2026-04-23",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079055",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079055",
+      "title": "Blocking sensitive information in Zoom Virtual Agent",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078421",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078421",
+      "title": "How to enable stereo audio for content share",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080118",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080118",
+      "title": "Enabling Frontline Worker Shifts Tab",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074517",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074517",
+      "title": "Using answer preview",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064544",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064544",
+      "title": "Yealink Windows Huddle Space (up to 7 people)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058951",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058951",
+      "title": "Authenticating Chat cloud storage with Box",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081270",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081270",
+      "title": "Troubleshooting automatic check-in for Zoom Workspace Reservation",
+      "lastmod": "2026-04-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076617",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076617",
+      "title": "Configuring coaching activity tracker settings",
+      "lastmod": "2026-04-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063801",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063801",
+      "title": "Security and privacy with LTI Pro",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078285",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078285",
+      "title": "Managing Zoom Tasks as an administrator",
+      "lastmod": "2026-02-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073533",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073533",
+      "title": "Adding brand color in Visitor Management",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083333",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083333",
+      "title": "Error code 1020",
+      "lastmod": "2026-03-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058719",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058719",
+      "title": "Auto import course roster for breakout rooms in Brightspace",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080797",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080797",
+      "title": "Using the Box Connector",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058674",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058674",
+      "title": "Viewing the Failed PSTN Connections report",
+      "lastmod": "2026-02-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074371",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074371",
+      "title": "Managing the single-session lite Interpreters section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076336",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076336",
+      "title": "Managing Revenue Accelerator notification settings",
+      "lastmod": "2026-03-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073350",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073350",
+      "title": "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u0430, \u043a\u0430\u043c\u0435\u0440\u044b \u0438 \u0434\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0430\u0446\u0438\u044e \u044d\u043a\u0440\u0430\u043d\u0430 \u0432 \u0432\u0435\u0431-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0438 Zoom",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080114",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080114",
+      "title": "Disabling notifications when off-work",
+      "lastmod": "2026-04-01",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073602",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073602",
+      "title": "Adding a privacy statement in Visitor Management",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066960",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066960",
+      "title": "Zoom Rooms does not work with Chrome OS",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074202",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074202",
+      "title": "Resolving insufficient access to data folders",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080631",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080631",
+      "title": "Managing page publish settings and content for Zoom Docs",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067499",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067499",
+      "title": "Disabling touch-functions on a Zoom Room display",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074352",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074352",
+      "title": "Managing the single-session lite Overview section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083480",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083480",
+      "title": "Enterprise Auto Update policies for the Zoom VDI plugin",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080076",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080076",
+      "title": "Exporting and importing content from Mural to Zoom Whiteboard",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070286",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070286",
+      "title": "Zoom error code 104104",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059210",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059210",
+      "title": "Reporting on educational account statuses of sub accounts",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070023",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070023",
+      "title": "Zoom installation error code 13003",
+      "lastmod": "2026-03-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082820",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082820",
+      "title": "State-Specific Tax Exemptions",
+      "lastmod": "2026-02-06",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074390",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074390",
+      "title": "Managing the single-session lite Post Event section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069832",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069832",
+      "title": "Soundbar Setup - JBL & Samsung",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079026",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079026",
+      "title": "Managing the Zoom Virtual Agent block list for campaigns",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081245",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081245",
+      "title": "Using Layers in Zoom Whiteboard",
+      "lastmod": "2026-02-13",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058368",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058368",
+      "title": "Advance notice of end of support for Alexa for Business integration with Zoom Rooms",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058720",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058720",
+      "title": "Auto import course roster for breakout rooms in Moodle",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069860",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069860",
+      "title": "Upgrading Panasonic HE40",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082474",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082474",
+      "title": "Enabling Zoom Virtual Agent Freshdesk integration",
+      "lastmod": "2026-04-22",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080096",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080096",
+      "title": "Configuring the support button for Zoom Rooms",
+      "lastmod": "2026-04-28",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063111",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063111",
+      "title": "Paying with PayPal or credit card as an OnZoom attendee",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065314",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065314",
+      "title": "Managing your OnZoom sold-to address",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082027",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082027",
+      "title": "Content Encryption for Zoom Chat with Customer Managed Key or Customer Managed Key Hybrid",
+      "lastmod": "2026-05-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059947",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059947",
+      "title": "Joining an event as a OnZoom Attendee",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082911",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082911",
+      "title": "Setting up the Zoom Amazon Connect integration",
+      "lastmod": "2026-02-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081234",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081234",
+      "title": "Porting away from Japan numbers",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057734",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057734",
+      "title": "Setting up Zoom Virtual Agent Sunshine support channel",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082066",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082066",
+      "title": "Managing sharing Zoom Video Management channels",
+      "lastmod": "2026-04-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085751",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085751",
+      "title": "Rotating LTI Pro credentials for Canvas",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067133",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067133",
+      "title": "Auto import course roster for breakout rooms from Canvas",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057566",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057566",
+      "title": "Managing the video channel Integrations section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074369",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074369",
+      "title": "Managing the single-session lite Resources section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068020",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068020",
+      "title": "Corporate matching for Zoom Events fundraisers",
+      "lastmod": "2026-04-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073603",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073603",
+      "title": "Selecting required visitor information on badges",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070073",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070073",
+      "title": "Zoom error message \u201cThere is no disk in the drive. Please insert a disk into drive\u201d",
+      "lastmod": "2026-02-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079449",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079449",
+      "title": "Creating a Zoom Virtual Agent knowledge base with Google Drive",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082604",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082604",
+      "title": "Using Conversation Briefs for Zoom Revenue Accelerator",
+      "lastmod": "2026-05-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079437",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079437",
+      "title": "Minimum privileges required for Microsoft Dynamics 365 integration",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077072",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077072",
+      "title": "Consentire le autorizzazioni di condivisione di microfono, videocamera e schermo nell\u2019app web Zoom",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075936",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075936",
+      "title": "Managing recommended ranges for conversational metrics",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058151",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058151",
+      "title": "Integrating People.ai with Zoom Revenue Accelerator",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065995",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065995",
+      "title": "OnZoom Host Public Profile URL guidelines",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078343",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078343",
+      "title": "Managing Recording Zones",
+      "lastmod": "2026-04-28",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076740",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076740",
+      "title": "Removing Zoom Virtual Agent from the website",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063960",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063960",
+      "title": "Creating an OnZoom Host Public Profile URL",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062892",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062892",
+      "title": "Scheduling meetings with Tracking Fields in LTI Pro",
+      "lastmod": "2026-04-29",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081548",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081548",
+      "title": "Understanding Zoom Auto Dialer analytics",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078455",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078455",
+      "title": "Assigning Revenue Accelerator roles and licenses in Okta",
+      "lastmod": "2026-01-22",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080125",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080125",
+      "title": "\u52a0\u5165 Zoom \u4f1a\u8bae",
+      "lastmod": "2026-02-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057553",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057553",
+      "title": "Tracking encryption changes in Zoom Mail",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057735",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057735",
+      "title": "Enabling Zoom Virtual Agent Sunshine integration",
+      "lastmod": "2026-05-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073487",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073487",
+      "title": "Managing the Embedded Single Video Channel Detail section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079442",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079442",
+      "title": "Creating a Zoom Virtual Agent knowledge base with Confluence",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082317",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082317",
+      "title": "Using the Summary tab in single-session analytics",
+      "lastmod": "2026-04-29",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058053",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058053",
+      "title": "On-premise meeting support for LTI",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059409",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059409",
+      "title": "Inviting exhibitors to edit their information",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078705",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078705",
+      "title": "Migrating Lucidchart files to Zoom Whiteboard",
+      "lastmod": "2026-01-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058149",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058149",
+      "title": "Viewing People.ai insights in Zoom Revenue Accelerator conversations",
+      "lastmod": "2026-02-03",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062792",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062792",
+      "title": "Yealink Collaborative Touch Space (up to 7 people)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077712",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077712",
+      "title": "Forwarding emails in Zoom Mail",
+      "lastmod": "2026-01-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076367",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076367",
+      "title": "Embedding Whiteboard into a Coda page",
+      "lastmod": "2026-02-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081551",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081551",
+      "title": "Understanding Zoom Auto Dialer call status",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077182",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077182",
+      "title": "Managing Points of Interest (POIs) in Workspace Reservation",
+      "lastmod": "2026-05-15",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078761",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078761",
+      "title": "Managing Zoom Events add-ons",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079767",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079767",
+      "title": "Sending a Zoom Contact Center outbound email message",
+      "lastmod": "2026-05-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059735",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059735",
+      "title": "Enabling window compositing for IGEL",
+      "lastmod": "2026-03-17",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081197",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081197",
+      "title": "Using Box with AI Companion and Zoom Virtual Agent",
+      "lastmod": "2026-03-30",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059168",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059168",
+      "title": "May 2022: Yealink VP59 stuck on bootup issue",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080307",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080307",
+      "title": "Troubleshooting for Microsoft Dynamics 365",
+      "lastmod": "2026-03-04",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073540",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073540",
+      "title": "Enabling the visitor questionnaire in Visitor Management",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083394",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083394",
+      "title": "Adding follow-up notes in Online Fax",
+      "lastmod": "2026-02-12",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065849",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065849",
+      "title": "Frequently asked questions about Now Virtual Agent app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059012",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059012",
+      "title": "Call monitoring for AudioCodes IP Phones",
+      "lastmod": "2026-03-11",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058991",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058991",
+      "title": "Camera is disabled when launching a meeting on DTEN GO devices",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0061982",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0061982",
+      "title": "Using LTI Pro authentication exception",
+      "lastmod": "2026-03-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079406",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079406",
+      "title": "Meeting Hybrid and Recording Hybrid modules data center migration",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084064",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084064",
+      "title": "Understanding the Zoom client file directory",
+      "lastmod": "2026-04-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073528",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0073528",
+      "title": "Allowing visitors at a location",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075309",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075309",
+      "title": "Configuring firewall access rules for  Node services",
+      "lastmod": "2026-01-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069169",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0069169",
+      "title": "AWDL affecting Zoom video quality",
+      "lastmod": "2026-03-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080121",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080121",
+      "title": "Using Workplace for Frontline role management",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076739",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076739",
+      "title": "Using the web portal Events and Webinars Plus tab",
+      "lastmod": "2026-04-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066429",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066429",
+      "title": "Best Practices for ZDM Mac/Win (ZR)",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062935",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062935",
+      "title": "Citrix device default configurations (Linux)",
+      "lastmod": "2026-05-04",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079447",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079447",
+      "title": "Do\u0142\u0105czanie do spotkania Zoom",
+      "lastmod": "2026-03-18",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075893",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075893",
+      "title": "Getting started with Outlook plugin and add-in",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079624",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079624",
+      "title": "Using the OneDrive Connector",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079717",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079717",
+      "title": "Setting up a Delivery space",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065405",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065405",
+      "title": "Canceling a ticket as an OnZoom Attendee",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077090",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077090",
+      "title": "Adding cloud recording links to Salesforce",
+      "lastmod": "2026-03-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080124",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080124",
+      "title": "Requesting and managing shift swaps and covers",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059602",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059602",
+      "title": "Using the Sentry Notifications app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074104",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074104",
+      "title": "Managing bot responses",
+      "lastmod": "2026-03-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076331",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076331",
+      "title": "Customizing the VDI Plugin update prompt",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078275",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078275",
+      "title": "Using email variables in Zoom Contact Center",
+      "lastmod": "2026-02-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075301",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075301",
+      "title": "Enabling AI matches and suggestions, automated training and publishing for intents",
+      "lastmod": "2026-02-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074365",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074365",
+      "title": "Managing the single-session lite Event Configuration section",
+      "lastmod": "2026-03-26",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078402",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078402",
+      "title": "How to take a screenshot of a Zoom Room or controller display",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080815",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080815",
+      "title": "Managing workspace reservation approval flow",
+      "lastmod": "2026-04-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058998",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058998",
+      "title": "Scheduling meetings with Zoom Rooms using LTI Pro",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063921",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063921",
+      "title": "Assigning users to receive exceeded meeting duration limit notification emails",
+      "lastmod": "2026-04-28",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081964",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081964",
+      "title": "Setting up Zoom AI Companion in Slack",
+      "lastmod": "2026-02-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076792",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076792",
+      "title": "Enabling Meeting Survivability",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066095",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066095",
+      "title": "Resolving MXL AC360Z hardware issues",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065097",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065097",
+      "title": "No video using Polycom HDX series endpoints",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058098",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058098",
+      "title": "Using course-level publishing",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057889",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0057889",
+      "title": "Creating a custom disclaimer for Zoom Whiteboard",
+      "lastmod": "2026-03-05",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076692",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076692",
+      "title": "Deploying the Hybrid Room Load Balancer service",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066013",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0066013",
+      "title": "Importing and exporting SIP/H.323 rooms",
+      "lastmod": "2026-04-03",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064560",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064560",
+      "title": "Modifying settings for Zoom Node",
+      "lastmod": "2026-04-21",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079445",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0079445",
+      "title": "Creating a Zoom Virtual Agent knowledge base with ServiceNow",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080255",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080255",
+      "title": "Enabling or disabling Custom AI Companion to use third-party indexing services",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064725",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064725",
+      "title": "Zoom United USF Taxes",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081307",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081307",
+      "title": "Creating and managing personal task lists",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078704",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078704",
+      "title": "Managing Zoom Whiteboard shape libraries",
+      "lastmod": "2026-02-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077001",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077001",
+      "title": "Canary Islands IGIC",
+      "lastmod": "2026-02-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080964",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080964",
+      "title": "Using Visitor Management on the mobile app",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080323",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080323",
+      "title": "Using the UKG Pro Workforce Management for Zoom app",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074221",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074221",
+      "title": "Using the Ellkay integration",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059736",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059736",
+      "title": "Screen sharing is not working",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080370",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080370",
+      "title": "Enabling or disabling Clinical Notes in Zoom Workplace for Clinicians",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058133",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058133",
+      "title": "Creating in-meeting whiteboard from a template",
+      "lastmod": "2026-02-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068569",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068569",
+      "title": "\u5728 Zoom Web \u5e94\u7528\u4e2d\u542f\u7528\u9ea6\u514b\u98ce\u3001\u6444\u50cf\u5934\u548c\u5c4f\u5e55\u5171\u4eab\u6743\u9650",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081965",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081965",
+      "title": "Using Zoom AI Companion in Slack",
+      "lastmod": "2026-02-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074366",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074366",
+      "title": "Managing the single-session lite Setup section",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068668",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068668",
+      "title": "Managing private lobby chats",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082578",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082578",
+      "title": "Enrolling profile to automatic smart name tags",
+      "lastmod": "2026-05-14",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076579",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076579",
+      "title": "Enabling Automatic Reservations Check in through USB",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080120",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080120",
+      "title": "Managing shift groups and shift channels",
+      "lastmod": "2026-04-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068479",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068479",
+      "title": "Configuring LTI Pro 1.1 for Sakai",
+      "lastmod": "2026-02-25",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065901",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065901",
+      "title": "Barbados VAT",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077932",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0077932",
+      "title": "Zoom error \"You don't have enough licenses\"",
+      "lastmod": "2026-05-07",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058526",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058526",
+      "title": "Troubleshooting removing a playlist from Zoom Rooms",
+      "lastmod": "2026-05-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083142",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083142",
+      "title": "Configuring Zoom VDI  to support WebRTC redirection for the Zoom Web App",
+      "lastmod": "2026-04-22",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058083",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058083",
+      "title": "Enabling expo session livestreaming",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081170",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081170",
+      "title": "Configuring Zoom Virtual Agent Genesys cloud integration",
+      "lastmod": "2026-03-16",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081490",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081490",
+      "title": "Aan de slag met de functies van Zoom AI Companion",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058826",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058826",
+      "title": "Disabling chat for unmanaged Zoom Clients",
+      "lastmod": "2026-01-31",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068485",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068485",
+      "title": "Using the Adobe Creative Cloud app for Chat",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062886",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062886",
+      "title": "Configuring LTI Pro 1.1 for Canvas Calendar and Conversations",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064645",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064645",
+      "title": "Buying OnZoom tickets with a credit/debit card",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076580",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076580",
+      "title": "Enabling no hold conference multi-party calls",
+      "lastmod": "2026-03-27",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058193",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058193",
+      "title": "Reviewing changes made by Zoom Webinars Plus speakers",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081351",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081351",
+      "title": "Enabling or disabling email notifications in whiteboard",
+      "lastmod": "2026-04-10",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070254",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0070254",
+      "title": "Zoom error code 104111",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068814",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0068814",
+      "title": "Setting up a direct Wi-Fi connection for a Zoom Room Mac",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058469",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058469",
+      "title": "Using Zoom Chat with LTI Pro",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076291",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076291",
+      "title": "Managing Revenue Accelerator data retention settings",
+      "lastmod": "2026-02-09",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082742",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082742",
+      "title": "Configuring automatic inactivity detection for Zoom Rooms",
+      "lastmod": "2026-04-10",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081509",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0081509",
+      "title": "Setting up operating hours and booking restrictions in Workspace Reservation",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080502",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080502",
+      "title": "Optimizing intents for AI intent routing",
+      "lastmod": "2026-03-17",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058101",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058101",
+      "title": "Using the Microsoft Dynamics 365 app for Chat",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067390",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067390",
+      "title": "Using Zoom's Jenkins app",
+      "lastmod": "2026-03-24",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058850",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058850",
+      "title": "Displaying users' profile pictures on floor maps",
+      "lastmod": "2026-01-08",
+      "matched_signals": []
+    },
+    {
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058614",
+      "original_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058614",
+      "title": "Configuring LTI Pro 1.3 for Blackboard Calendar",
+      "lastmod": "2026-01-08",
       "matched_signals": []
     }
   ]

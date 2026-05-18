@@ -1,0 +1,145 @@
+{
+  "article_id": "KB0083812",
+  "concepts": [
+    {
+      "title": "International Phone Number Provisioning",
+      "summary": "The process of acquiring phone numbers for specific countries through Zoom Phone's Provider Exchange portal. This is a compliance-heavy workflow requiring verified business addresses and documentation, and represents a high-friction experience where regulatory gates directly shape the UI flow.",
+      "key_points": [
+        "Phone numbers must be provisioned per-country with a matching verified business address",
+        "Uses Provider Exchange portal for number selection and purchase",
+        "Selection controls are deactivated until verification prerequisites are met",
+        "Some countries (e.g., Spain, Australia) require additional documentation beyond basic address verification"
+      ],
+      "related": ["business-address-and-documents-verification", "provider-exchange-portal"]
+    },
+    {
+      "title": "Business Address and Documents Verification",
+      "summary": "A compliance prerequisite flow where admins must submit and verify business addresses and supporting documents (ID, proof of address) before phone numbers can be provisioned. This is an essential gate in the provisioning UI that shapes whether downstream controls are active or grayed out.",
+      "key_points": [
+        "Requires verified business address in the same country as target phone numbers",
+        "Involves document upload (company verification, tax residence proof)",
+        "Verification status is displayed as 'Verified' when complete",
+        "Admins receive email notifications at review start and completion"
+      ],
+      "related": ["international-phone-number-provisioning", "deactivated-selection-controls"]
+    },
+    {
+      "title": "Provider Exchange Portal",
+      "summary": "An external portal used for phone number provisioning that shows country availability. When countries appear as unavailable, this could indicate missing verification prerequisites in the Zoom web portal rather than a provider-level restriction.",
+      "key_points": [
+        "Shows country availability for number provisioning",
+        "May display countries as unavailable if verification prerequisites are incomplete",
+        "Works in conjunction with the Zoom web portal for address verification"
+      ],
+      "related": ["international-phone-number-provisioning"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin",
+      "summary": "The only role with privileges to manage phone numbers and complete business address verification. Admins encounter a gated workflow where multiple prerequisites (address verification, document upload, additional country-specific requirements) must be satisfied before being able to select and purchase numbers.",
+      "key_points": [
+        "Must have privilege to edit account settings and manage phone numbers",
+        "Responsible for uploading business verification and tax documents",
+        "Receives email notifications about document review status",
+        "Must navigate both Zoom web portal and Provider Exchange portal"
+      ],
+      "related": ["business-address-and-documents-verification", "international-phone-number-provisioning"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Complete Business Address and Documents Verification",
+      "summary": "A prerequisite flow accessed via a Related Features dropdown on the Phone Numbers page. Admins add a business address, upload required documents, and wait for verification. The UI must make it clear that this step is blocking number provisioning and provide status visibility during the review process.",
+      "key_points": [
+        "Step 1: Sign in to Zoom web portal as an admin",
+        "Step 2: Navigate to Number Management > Phone Numbers",
+        "Step 3: Open Related Features dropdown and select Business Address & Documents",
+        "Step 4: Click Add Address and complete all required fields",
+        "Step 5: Upload required documentation if prompted",
+        "Admins receive email when review starts and when complete"
+      ],
+      "related": ["business-address-and-documents-verification", "deactivated-selection-controls"]
+    },
+    {
+      "title": "Add and Verify International Business Address to Purchase Phone Numbers",
+      "summary": "After completing initial verification, admins add country-specific business addresses, confirm verification status, and proceed to search and select phone numbers. The flow ties address verification status directly to the availability of number selection controls — designers must ensure the relationship is clear to admins.",
+      "key_points": [
+        "Step 1: Complete business address and documents verification",
+        "Step 2: Verify that Verification Status shows Verified on the Business Address page",
+        "Step 3: Navigate to Number Management > Phone Numbers > Add Number > Get Number",
+        "Step 4: Select Product, Country/Region, Type, State, and Area Code",
+        "Step 5: Click Search and select desired numbers",
+        "Some countries require additional documentation before numbers can be assigned"
+      ],
+      "related": ["business-address-and-documents-verification", "international-phone-number-provisioning", "verification-status-indicator"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Regulatory and Compliance Requirements",
+      "summary": "International phone number provisioning is governed by telecom regulations (KYC, emergency services compliance) and anti-fraud measures. These requirements are non-negotiable and cannot be bypassed — without a verified business address in the target country, the system will not allow provisioning regardless of license status.",
+      "key_points": [
+        "Verified business address in the same country as the target phone number is mandatory",
+        "KYC procedures require specific documentation (ID, proof of address)",
+        "Emergency services compliance mandates verified physical addresses",
+        "Anti-fraud measures require valid identification regardless of physical location",
+        "Regulatory requirements cannot be bypassed — no workaround exists"
+      ],
+      "related": ["business-address-and-documents-verification", "deactivated-selection-controls"]
+    },
+    {
+      "title": "Country-Specific Documentation Requirements",
+      "summary": "Certain countries like Spain and Australia impose additional documentation requirements beyond the standard address verification. Designers should plan for country-specific conditional steps in the provisioning flow and surface these requirements at the right time — ideally before the admin commits significant effort.",
+      "key_points": [
+        "Spain and Australia explicitly require additional documentation",
+        "Country-specific requirements are listed at zoom.com/phone-number-requirements/",
+        "Additional docs may include valid identification and proof of address"
+      ],
+      "related": ["business-address-and-documents-verification", "international-phone-number-provisioning"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Deactivated Selection Controls",
+      "summary": "When prerequisites (address verification, documentation) are not met, phone number selection boxes are deactivated (grayed out). This communicates that action is blocked without explaining why — designers should pair deactivated controls with inline explanatory messages that guide admins to the resolution.",
+      "key_points": [
+        "Selection boxes grayed out when prerequisites are incomplete",
+        "Currently displayed without inline explanation of the blocking reason",
+        "Common cause: unverified business address or missing documentation",
+        "Admins must discover the Business Address & Documents page via a Related Features dropdown"
+      ],
+      "related": ["business-address-and-documents-verification", "related-features-dropdown"]
+    },
+    {
+      "title": "Related Features Dropdown Navigation",
+      "summary": "Secondary or related features (like Business Address & Documents) are accessed through a dropdown menu on the Phone Numbers page. This pattern surfaces non-primary actions that are contextually related to the current page. However, when these features are prerequisites for the primary action, the dropdown may not provide enough visibility.",
+      "key_points": [
+        "Dropdown labeled 'Related Features' on the Phone Numbers page",
+        "Contains links to Business Address & Documents and potentially other features",
+        "Discovery of prerequisite features depends on admin recognizing the relationship"
+      ],
+      "related": ["deactivated-selection-controls", "business-address-and-documents-verification"]
+    },
+    {
+      "title": "Verification Status Indicator",
+      "summary": "The Business Address & Documents page displays a Verification Status field that reads 'Verified' when the review is complete. This status indicator is a critical checkpoint that admins must confirm before proceeding to purchase numbers. Designers should consider making this status visible from the number selection flow itself.",
+      "key_points": [
+        "Verification Status shown on the Business Address & Documents page",
+        "Status must be 'Verified' before numbers can be purchased",
+        "Currently located one navigation level away from the number selection flow"
+      ],
+      "related": ["business-address-and-documents-verification", "international-phone-number-provisioning"]
+    },
+    {
+      "title": "Email Notification for Review Milestones",
+      "summary": "Admins receive email notifications when their document review begins and when it completes. This offline notification pattern compensates for the asynchronous nature of document verification, but designers should also consider in-product status visibility to reduce reliance on email.",
+      "key_points": [
+        "Two email notifications: at review start and at review completion",
+        "Bridges the gap between submission and asynchronous verification result",
+        "No in-product notification alternative mentioned"
+      ],
+      "related": ["business-address-and-documents-verification", "verification-status-indicator"]
+    }
+  ]
+}

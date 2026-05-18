@@ -1,0 +1,99 @@
+---
+source_type: zoom_support_article
+product: zoom-phone
+article_id: KB0083812
+title: Issues provisioning international phone numbers
+source_url: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0083812
+captured_at: 2026-05-18T09:09:12.823452+00:00
+retrieval_tool: jsonld
+relevance_score: 15
+confidence: high
+content_hash: sha256:2db057e67a8b6c3f5958adabe02d937aed52937fe7822b9c04cc5304eed00638
+status: raw
+---
+
+# Issues provisioning international phone numbers
+
+## Table of Contents
+
+  * Issue
+  * Environment
+  * Cause
+  * Resolution
+    * Complete business address and documents verification
+    * Add and verify international business address to purchase phone numbers
+
+
+
+## **Issue**
+
+You are unable to provision international phone numbers in Zoom Phone and may experience the following:
+
+  * Cannot select or add phone numbers for specific countries, such as Albania, Montenegro, the Netherlands, Spain, the UK, or Australia.
+  * Selection boxes are deactivated when attempting to assign numbers.
+  * System requests emergency address verification or business address documentation.
+  * Required to upload the company verification and tax residence proof documents.
+  * Cannot proceed to purchase numbers despite having Zoom Phone licenses.
+  * Provider Exchange portal shows countries as unavailable in your region.
+
+
+
+## **Environment**
+
+  * Zoom web portal
+  * Provider Exchange portal for number provisioning
+
+
+
+## **Cause**
+
+The issue occurs due to one or more of the following regulatory and compliance requirements:
+
+  * Zoom requires verified business addresses in the same country as the phone number being provisioned for emergency services compliance.
+  * International telecom regulations mandate Know Your Customer (KYC) procedures with specific documentation requirements.
+  * Business address and documents verification process must be completed before phone numbers can be assigned.
+  * Anti-fraud measures require valid identification and address proof regardless of physical location.
+
+
+
+## **Resolution**
+
+Use the steps below to resolve international phone number provisioning issues. The solution depends on your specific situation and the country you're trying to provision numbers for. You must be the account owner or an admin with privileges to perform those steps.
+
+### **Complete business address and documents verification**
+
+If you cannot order or assign phone numbers because selection boxes are deactivated, you need to complete the business address and documents verification process first.
+
+  1. Sign in to the[ Zoom web portal](https://zoom.us/signin) as an admin with the privilege to edit account settings.
+  2. In the navigation menu, click **Number Management** , then click **Phone Numbers**.
+  3. At the top of the **Phone Numbers** page, click the **Related Features** dropdown, then select **Business Address & Documents**.
+  4. In the top-right corner, click **Add Address**.
+  5. Complete all required fields.
+  6. Upload any required documentation if prompted.
+  7. Click **Save**.  
+You will receive an email notification when your documents are under review and again once the review is complete.  
+**Note** : Refer to this[ link](https://www.zoom.com/en/phone-number-requirements/) for each country's requirements and the estimated review timelines.
+
+
+
+### **Add and verify international business addresses to purchase phone numbers**
+
+To obtain phone numbers for a specific country, you must first add and verify a business address within that country. Phone numbers cannot be activated or assigned unless there is a corresponding verified address that matches the country of the number.
+
+  1. Complete your business address and documents verification as mentioned above.  
+**Note** : Some countries, like Spain and Australia, require additional documentation before phone numbers can be assigned or activated. Follow the prompts to upload the required verification documents, including valid identification and proof of address, in accordance with local regulations.
+  2. Sign in to the[ Zoom web portal](https://zoom.us/signin) as an admin with the privilege to edit account settings.
+  3. In the navigation menu, click **Number Management** , then click **Phone Numbers**.
+  4. At the top of the **Phone Numbers** page, click the **Related Features** dropdown, then select **Business Address & Documents**.
+  5. On the **Business Address & Documents** page, verify that the **Verification Status** is marked as **Verified**.
+  6. Click **Number Management** , then click **Phone Numbers**.
+  7. Click **Add Number** , then **Get Number**.
+  8. Select the **Product** , **Country/Region** , **Type & Capability**, **State/Province/Territory** , and **Area Code - City**.
+  9. Click **Search** , then select your desired numbers from the list.
+  10. Click **Done**.
+
+
+
+Learn more about[ obtaining phone numbers](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0074457#h_19454551955341712763914028).
+
+**Note:** Without a valid business address in the target country, you cannot provision phone numbers for that country. This is a regulatory requirement that cannot be bypassed.

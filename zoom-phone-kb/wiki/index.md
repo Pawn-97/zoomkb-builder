@@ -5,52 +5,373 @@ _Last updated: 2026-05-18_
 
 ## Concepts
 
+- [[a2p-sms-application-to-person-messaging]] — A2P Sms Application To Person Messaging
+- [[ai-studio]] — Ai Studio
+- [[alert-notifications-via-email-and-chat]] — Alert Notifications Via Email And Chat
+- [[alert-rules-for-device-monitoring]] — Alert Rules For Device Monitoring
+- [[alert-targets]] — Alert Targets
+- [[approved-messaging-campaign]] — Approved Messaging Campaign
+- [[auto-receptionist-caller-id-configuration]] — Auto Receptionist Caller Id Configuration
+- [[automatic-failover-via-sbc]] — Automatic Failover Via Sbc
+- [[business-address-and-documents-verification]] — Business Address And Documents Verification
+- [[business-address-verification-know-your-customer-kyc]] — Business Address Verification Know Your Customer Kyc
+- [[business-address-verification]] — Business Address Verification
+- [[business-registration-japan]] — Business Registration Japan
+- [[byoc-bring-your-own-carrier-numbers-for-survivability]] — Byoc Bring Your Own Carrier Numbers For Survivability
+- [[byoc-p-bring-your-own-carrier-premises]] — Byoc P Bring Your Own Carrier Premises
+- [[call-bridge-shared-database-nodes]] — Call Bridge Shared Database Nodes
+- [[call-delegation-shared-line-appearance]] — Call Delegation Shared Line Appearance
+- [[call-forwarding-local-survivability]] — Call Forwarding Local Survivability
+- [[call-queue-membership-and-caller-id]] — Call Queue Membership And Caller Id
+- [[call-queue]] — Call Queue
+- [[call-summary-templates-with-ai-companion]] — Call Summary Templates With Ai Companion
+- [[caller-data-enrichment]] — Caller Data Enrichment
+- [[catch-me-up-with-ai-companion]] — Catch Me Up With Ai Companion
+- [[certified-devices]] — Certified Devices
+- [[conference-join-leave-tone]] — Conference Join Leave Tone
+- [[cross-product-call-data-transfer-phone-to-contact-center]] — Cross Product Call Data Transfer Phone To Contact Center
+- [[custom-ai-companion]] — Custom Ai Companion
+- [[delegation-toggle]] — Delegation Toggle
+- [[device-assignment-after-purchase]] — Device Assignment After Purchase
+- [[device-model-detection-and-correction]] — Device Model Detection And Correction
+- [[e-164-caller-id-formatting]] — E 164 Caller Id Formatting
+- [[emergency-location-identification-number-elin]] — Emergency Location Identification Number Elin
+- [[esim-activation-message]] — Esim Activation Message
+- [[esim-management]] — Esim Management
+- [[esim-package]] — Esim Package
+- [[esim-reissuance]] — Esim Reissuance
+- [[field-mapping]] — Field Mapping
+- [[group-rotating-call-distribution]] — Group Rotating Call Distribution
+- [[hardware-order-fulfillment-via-uc-direct]] — Hardware Order Fulfillment Via Uc Direct
+- [[international-phone-number-provisioning]] — International Phone Number Provisioning
+- [[international-roaming-day-pass]] — International Roaming Day Pass
+- [[japan-sms-registration]] — Japan Sms Registration
+- [[lti-contacts]] — Lti Contacts
+- [[master-sub-account-number-transfer]] — Master Sub Account Number Transfer
+- [[named-rotation-groups-via-multiple-call-queues]] — Named Rotation Groups Via Multiple Call Queues
+- [[node-group-redundancy]] — Node Group Redundancy
+- [[non-certified-device-warning]] — Non Certified Device Warning
+- [[number-management]] — Number Management
+- [[outbound-caller-id-in-zoom-phone]] — Outbound Caller Id In Zoom Phone
+- [[overflow-settings]] — Overflow Settings
+- [[pac-code-port-authorization-code]] — Pac Code Port Authorization Code
+- [[peer-to-peer-media]] — Peer To Peer Media
+- [[phone-number-bulk-import]] — Phone Number Bulk Import
+- [[primary-line]] — Primary Line
+- [[provider-exchange-portal]] — Provider Exchange Portal
+- [[push-to-talk-ai-summary]] — Push To Talk Ai Summary
+- [[round-robin-user-distribution]] — Round Robin User Distribution
+- [[secondary-line]] — Secondary Line
+- [[self-serve-hardware-purchase-for-zoom-phone]] — Self Serve Hardware Purchase For Zoom Phone
 - [[session-border-controller-sbc-integration-with-zpls]] — Session Border Controller Sbc Integration With Zpls
+- [[shared-access]] — Shared Access
+- [[shared-line-group-opt-in-out-via-ip-phone-star-codes]] — Shared Line Group Opt In Out Via Ip Phone Star Codes
+- [[source-destination-number-mapping]] — Source Destination Number Mapping
+- [[survivability-route-group]] — Survivability Route Group
+- [[survivability-routing-rules]] — Survivability Routing Rules
+- [[template-collaboration]] — Template Collaboration
+- [[temporary-numbers-in-zoom-phone-mobile]] — Temporary Numbers In Zoom Phone Mobile
+- [[transfer-initiator-information]] — Transfer Initiator Information
+- [[transferring-call-data-policy]] — Transferring Call Data Policy
+- [[trigger-events]] — Trigger Events
+- [[voice-agent-instruction-builder]] — Voice Agent Instruction Builder
+- [[zap]] — Zap
+- [[zoom-client-zpls-validation]] — Zoom Client Zpls Validation
+- [[zoom-phone-appliance-zpa-device-monitoring]] — Zoom Phone Appliance Zpa Device Monitoring
+- [[zoom-phone-call-summary-templates]] — Zoom Phone Call Summary Templates
+- [[zoom-phone-esim]] — Zoom Phone Esim
+- [[zoom-phone-for-zapier-integration]] — Zoom Phone For Zapier Integration
 - [[zoom-phone-local-survivability-zpls]] — Zoom Phone Local Survivability Zpls
-- [[zpls-call-bridge-shared-database-node]] — Zpls Call Bridge Shared Database Node
-- [[zpls-call-forwarding-local-survivability]] — Zpls Call Forwarding Local Survivability
+- [[zoom-phone-lti-pro-integration]] — Zoom Phone Lti Pro Integration
+- [[zoom-phone-mobile]] — Zoom Phone Mobile
+- [[zoom-phone-sms-feature]] — Zoom Phone Sms Feature
+- [[zoom-virtual-agent-sms-tool]] — Zoom Virtual Agent Sms Tool
 - [[zpls-data-synchronization]] — Zpls Data Synchronization
-- [[zpls-emergency-location-identification-number-elin]] — Zpls Emergency Location Identification Number Elin
-- [[zpls-emergency-number-pool-elin]] — Zpls Emergency Number Pool Elin
 - [[zpls-node-group]] — Zpls Node Group
-- [[zpls-redundancy]] — Zpls Redundancy
-- [[zpls-round-robin-user-distribution]] — Zpls Round Robin User Distribution
-- [[zpls-survivability-route-group]] — Zpls Survivability Route Group
 
 ## User Roles
 
-- [[account-owner-or-admin-with-edit-privileges]] — Account Owner Or Admin With Edit Privileges
+- [[account-admin]] — Account Admin
+- [[account-owner-admin-call-data-sharing]] — Account Owner Admin Call Data Sharing
+- [[account-owner-admin-call-summary-templates]] — Account Owner Admin Call Summary Templates
+- [[account-owner-admin-delegation]] — Account Owner Admin Delegation
+- [[account-owner-admin-esim]] — Account Owner Admin Esim
+- [[account-owner-admin-sms-registration]] — Account Owner Admin Sms Registration
+- [[account-owner-administrator]] — Account Owner Administrator
+- [[account-owner-or-admin]] — Account Owner Or Admin
+- [[account-owner]] — Account Owner
+- [[admin]] — Admin
+- [[app-marketplace-admin]] — App Marketplace Admin
+- [[app-marketplace-user-with-shared-access]] — App Marketplace User With Shared Access
+- [[authorized-company-representative]] — Authorized Company Representative
+- [[call-queue-agent]] — Call Queue Agent
+- [[contact-center-agent]] — Contact Center Agent
+- [[contact-center-supervisor]] — Contact Center Supervisor
+- [[end-user-zoom-client-user]] — End User Zoom Client User
+- [[end-user]] — End User
+- [[group-member-with-custom-ai-companion-license]] — Group Member With Custom Ai Companion License
+- [[individual-phone-user]] — Individual Phone User
+- [[lti-instructor-admin]] — Lti Instructor Admin
+- [[phone-user-call-queue-member]] — Phone User Call Queue Member
+- [[shared-line-group-member]] — Shared Line Group Member
+- [[template-collaborator]] — Template Collaborator
+- [[zoom-phone-purchaser-self-serve-customer]] — Zoom Phone Purchaser Self Serve Customer
+- [[zoom-phone-push-to-talk-user]] — Zoom Phone Push To Talk User
+- [[zoom-phone-user-allow-list-member]] — Zoom Phone User Allow List Member
+- [[zoom-phone-user-transfer-initiator]] — Zoom Phone User Transfer Initiator
 
 ## Task Flows
 
-- [[assign-call-bridge-to-zpls-node-or-node-group]] — Assign Call Bridge To Zpls Node Or Node Group
+- [[access-alerts-and-notifications-for-zpa-devices]] — Access Alerts And Notifications For Zpa Devices
+- [[access-call-summary-templates]] — Access Call Summary Templates
+- [[access-sms-registration-in-web-portal]] — Access Sms Registration In Web Portal
+- [[add-a-call-queue-number-to-a-phone-user-s-profile]] — Add A Call Queue Number To A Phone User S Profile
+- [[add-a-new-alert]] — Add A New Alert
+- [[add-and-verify-international-business-address-to-purchase-phone-numbers]] — Add And Verify International Business Address To Purchase Phone Numbers
+- [[add-phone-numbers-to-lti-contacts]] — Add Phone Numbers To Lti Contacts
+- [[add-users-as-members-of-a-call-queue]] — Add Users As Members Of A Call Queue
+- [[adjust-template-settings-collaboration]] — Adjust Template Settings Collaboration
+- [[assign-call-bridge-to-zpls-module-or-node-group]] — Assign Call Bridge To Zpls Module Or Node Group
 - [[assign-node-group-to-site-and-route-group]] — Assign Node Group To Site And Route Group
-- [[configure-call-forwarding-numbers-for-zpls]] — Configure Call Forwarding Numbers For Zpls
-- [[create-survivability-route-group]] — Create Survivability Route Group
+- [[assign-zoom-phone-mobile-license-to-a-user]] — Assign Zoom Phone Mobile License To A User
+- [[authorize-zoom-account-when-creating-a-zap]] — Authorize Zoom Account When Creating A Zap
+- [[authorize-zoom-phone-in-lti-pro-end-user]] — Authorize Zoom Phone In Lti Pro End User
+- [[bulk-import-phone-numbers-into-contacts]] — Bulk Import Phone Numbers Into Contacts
+- [[bulk-move-of-multiple-phone-numbers]] — Bulk Move Of Multiple Phone Numbers
+- [[configure-auto-receptionist-caller-id-to-prevent-call-failures]] — Configure Auto Receptionist Caller Id To Prevent Call Failures
+- [[configure-call-forwarding-numbers]] — Configure Call Forwarding Numbers
+- [[configure-group-rotating-for-a-call-queue]] — Configure Group Rotating For A Call Queue
+- [[configure-lti-pro-for-zoom-phone-admin]] — Configure Lti Pro For Zoom Phone Admin
+- [[configure-named-rotation-groups-using-multiple-call-queues]] — Configure Named Rotation Groups Using Multiple Call Queues
+- [[configure-the-sms-tool-within-a-voice-agent]] — Configure The Sms Tool Within A Voice Agent
+- [[configure-transferring-call-data-policy-for-zoom-contact-center]] — Configure Transferring Call Data Policy For Zoom Contact Center
+- [[configure-transferring-call-data-policy-for-zoom-phone]] — Configure Transferring Call Data Policy For Zoom Phone
+- [[configure-zoom-phone-auto-receptionist-for-sms]] — Configure Zoom Phone Auto Receptionist For Sms
+- [[connect-zoom-to-zapier]] — Connect Zoom To Zapier
+- [[create-an-esim-package]] — Create An Esim Package
+- [[create-business-registration]] — Create Business Registration
+- [[create-sms-registration]] — Create Sms Registration
+- [[create-template-from-predefined-options]] — Create Template From Predefined Options
+- [[create-template-from-scratch]] — Create Template From Scratch
+- [[customize-existing-template-content]] — Customize Existing Template Content
+- [[delete-an-alert]] — Delete An Alert
 - [[deploy-call-bridge-service]] — Deploy Call Bridge Service
+- [[edit-an-existing-alert]] — Edit An Existing Alert
+- [[edit-existing-template-details]] — Edit Existing Template Details
 - [[enable-call-forwarding-during-outage]] — Enable Call Forwarding During Outage
+- [[enable-disable-delegation-at-account-level]] — Enable Disable Delegation At Account Level
+- [[enable-disable-delegation-at-common-area-level]] — Enable Disable Delegation At Common Area Level
+- [[enable-disable-delegation-at-group-level]] — Enable Disable Delegation At Group Level
+- [[enable-disable-delegation-at-phone-user-level]] — Enable Disable Delegation At Phone User Level
+- [[enable-disable-delegation-at-site-level]] — Enable Disable Delegation At Site Level
+- [[enable-or-disable-call-data-transfer-to-contact-center]] — Enable Or Disable Call Data Transfer To Contact Center
+- [[enable-or-disable-call-summary-templates-at-account-level]] — Enable Or Disable Call Summary Templates At Account Level
+- [[enable-or-disable-call-summary-templates-at-phone-user-level]] — Enable Or Disable Call Summary Templates At Phone User Level
+- [[enable-or-disable-conference-join-leave-tone-at-account-level]] — Enable Or Disable Conference Join Leave Tone At Account Level
+- [[enable-or-disable-peer-to-peer-media-at-account-level]] — Enable Or Disable Peer To Peer Media At Account Level
+- [[enable-or-disable-peer-to-peer-media-for-individual-phone-user]] — Enable Or Disable Peer To Peer Media For Individual Phone User
+- [[generate-ai-summary-during-a-push-to-talk-call]] — Generate Ai Summary During A Push To Talk Call
+- [[generate-new-qr-code-device-upgrade]] — Generate New Qr Code Device Upgrade
+- [[install-esim-manually]] — Install Esim Manually
+- [[install-esim-via-qr-code]] — Install Esim Via Qr Code
 - [[integrate-sbc-with-zpls]] — Integrate Sbc With Zpls
-- [[manually-synchronize-zpls-data]] — Manually Synchronize Zpls Data
+- [[issue-a-new-esim-reissuance]] — Issue A New Esim Reissuance
+- [[manage-business-registration-lifecycle]] — Manage Business Registration Lifecycle
+- [[manage-esim-activation-and-roaming]] — Manage Esim Activation And Roaming
+- [[manage-international-roaming]] — Manage International Roaming
+- [[manage-temporary-numbers-after-verification-submission]] — Manage Temporary Numbers After Verification Submission
+- [[move-a-single-byoc-phone-number]] — Move A Single Byoc Phone Number
+- [[move-a-single-native-phone-number]] — Move A Single Native Phone Number
+- [[obtain-mobile-esim-numbers]] — Obtain Mobile Esim Numbers
+- [[open-zoom-phone-in-lti-pro-daily-use]] — Open Zoom Phone In Lti Pro Daily Use
+- [[purchase-zoom-phone-mobile-licenses]] — Purchase Zoom Phone Mobile Licenses
+- [[remove-zapier-for-zoom-phone-app]] — Remove Zapier For Zoom Phone App
+- [[select-a-call-summary-template]] — Select A Call Summary Template
+- [[submit-business-address-and-documents-for-kyc-verification]] — Submit Business Address And Documents For Kyc Verification
+- [[test-and-publish-call-summary-templates]] — Test And Publish Call Summary Templates
+- [[toggle-shared-line-group-call-participation-via-ip-phone]] — Toggle Shared Line Group Call Participation Via Ip Phone
 - [[validate-zpls-configuration-on-zoom-client]] — Validate Zpls Configuration On Zoom Client
+- [[view-and-manage-user-esim-details]] — View And Manage User Esim Details
 
 ## Constraints
 
-- [[call-bridge-network-resilience-requirement]] — Call Bridge Network Resilience Requirement
-- [[call-bridge-server-requirements]] — Call Bridge Server Requirements
-- [[call-forwarding-number-constraints]] — Call Forwarding Number Constraints
-- [[manual-sync-cooldown]] — Manual Sync Cooldown
-- [[node-group-redundancy-ratio]] — Node Group Redundancy Ratio
-- [[pstn-and-internet-network-separation]] — Pstn And Internet Network Separation
-- [[sbc-auto-failover-triggers]] — Sbc Auto Failover Triggers
-- [[sbc-connectivity-requirements]] — Sbc Connectivity Requirements
-- [[unassigned-node-requirement]] — Unassigned Node Requirement
-- [[zpls-account-requirements]] — Zpls Account Requirements
-- [[zpls-routing-rules-limitation]] — Zpls Routing Rules Limitation
+- [[10-digit-phone-number-requirement]] — 10 Digit Phone Number Requirement
+- [[30-day-return-window-with-unopened-box-requirement]] — 30 Day Return Window With Unopened Box Requirement
+- [[30-day-tax-exemption-certificate-window]] — 30 Day Tax Exemption Certificate Window
+- [[account-and-enablement-requirements]] — Account And Enablement Requirements
+- [[account-and-subscription-prerequisites]] — Account And Subscription Prerequisites
+- [[account-only-scope-with-no-subordinate-controls]] — Account Only Scope With No Subordinate Controls
+- [[admin-only-configuration-access]] — Admin Only Configuration Access
+- [[admin-only-template-creation-and-management]] — Admin Only Template Creation And Management
+- [[admin-privilege-required]] — Admin Privilege Required
+- [[advanced-features-require-zoom-app]] — Advanced Features Require Zoom App
+- [[approved-messaging-campaign-required-for-phone-number]] — Approved Messaging Campaign Required For Phone Number
+- [[automated-distribution-limitation]] — Automated Distribution Limitation
+- [[automatic-correction-limited-to-certified-models]] — Automatic Correction Limited To Certified Models
+- [[business-only-number-porting]] — Business Only Number Porting
+- [[business-registration-lock-during-sms-review]] — Business Registration Lock During Sms Review
+- [[call-bridge-network-resiliency-requirements]] — Call Bridge Network Resiliency Requirements
+- [[call-forwarding-obscures-original-caller-id]] — Call Forwarding Obscures Original Caller Id
+- [[caller-id-selection-restriction-by-association]] — Caller Id Selection Restriction By Association
+- [[caller-name-and-id-always-shared]] — Caller Name And Id Always Shared
+- [[client-version-and-feature-compatibility-restrictions]] — Client Version And Feature Compatibility Restrictions
+- [[country-specific-documentation-requirements]] — Country Specific Documentation Requirements
+- [[custom-ai-companion-add-on-required]] — Custom Ai Companion Add On Required
+- [[data-sharing-enabled-by-default]] — Data Sharing Enabled By Default
+- [[data-speed-throttling-thresholds]] — Data Speed Throttling Thresholds
+- [[desktop-app-version-requirement]] — Desktop App Version Requirement
+- [[device-compatibility-and-carrier-lock]] — Device Compatibility And Carrier Lock
+- [[document-freshness-3-month-rule]] — Document Freshness 3 Month Rule
+- [[dual-license-requirement]] — Dual License Requirement
+- [[e-164-format-cannot-be-disabled]] — E 164 Format Cannot Be Disabled
+- [[email-matching-requirement-for-authorization]] — Email Matching Requirement For Authorization
+- [[esim-license-and-compatibility-prerequisites]] — Esim License And Compatibility Prerequisites
+- [[esim-management-access-prerequisites]] — Esim Management Access Prerequisites
+- [[esim-number-exclusivity]] — Esim Number Exclusivity
+- [[feature-enablement-required]] — Feature Enablement Required
+- [[feature-reconfiguration-after-transfer]] — Feature Reconfiguration After Transfer
+- [[file-upload-format-and-size-constraints]] — File Upload Format And Size Constraints
+- [[group-rotating-member-order]] — Group Rotating Member Order
+- [[hardware-purchase-requires-zoom-phone-license]] — Hardware Purchase Requires Zoom Phone License
+- [[hierarchical-setting-locking]] — Hierarchical Setting Locking
+- [[hierarchy-lock-override-rule]] — Hierarchy Lock Override Rule
+- [[irreversible-esim-deactivation]] — Irreversible Esim Deactivation
+- [[license-and-add-on-prerequisites]] — License And Add On Prerequisites
+- [[license-and-marketplace-prerequisites]] — License And Marketplace Prerequisites
+- [[license-and-privilege-requirements]] — License And Privilege Requirements
+- [[license-and-setup-prerequisites]] — License And Setup Prerequisites
+- [[license-requirements]] — License Requirements
+- [[license-sim-configuration-mismatch-detection]] — License Sim Configuration Mismatch Detection
+- [[lms-must-support-lti-1-3-with-nrps-scope]] — Lms Must Support Lti 1 3 With Nrps Scope
+- [[mandatory-registration-for-a2p-sms-in-japan]] — Mandatory Registration For A2P Sms In Japan
+- [[manual-sync-rate-limit]] — Manual Sync Rate Limit
+- [[maximum-50-devices-per-order]] — Maximum 50 Devices Per Order
+- [[maximum-limits-for-targets-and-recipients]] — Maximum Limits For Targets And Recipients
+- [[minimum-2-week-approval-timeline]] — Minimum 2 Week Approval Timeline
+- [[multi-step-enablement-prerequisites]] — Multi Step Enablement Prerequisites
+- [[network-infrastructure-separation-requirement]] — Network Infrastructure Separation Requirement
+- [[node-group-module-assignment-restrictions]] — Node Group Module Assignment Restrictions
+- [[number-state-requirement]] — Number State Requirement
+- [[one-alert-per-target-per-rule-type]] — One Alert Per Target Per Rule Type
+- [[outbound-caller-id-dropdown-display-limit]] — Outbound Caller Id Dropdown Display Limit
+- [[outbound-only-sms]] — Outbound Only Sms
+- [[pac-code-30-day-expiry]] — Pac Code 30 Day Expiry
+- [[phone-numbers-stored-for-180-days]] — Phone Numbers Stored For 180 Days
+- [[post-purchase-address-changes-require-uc-direct]] — Post Purchase Address Changes Require Uc Direct
+- [[previous-esim-deactivation-on-reissuance]] — Previous Esim Deactivation On Reissuance
+- [[privacy-policy-requirement]] — Privacy Policy Requirement
+- [[proof-of-identity-passport-only]] — Proof Of Identity Passport Only
+- [[qr-code-single-use-limitation]] — Qr Code Single Use Limitation
+- [[redundancy-ratio-requirement]] — Redundancy Ratio Requirement
+- [[regulatory-and-compliance-requirements]] — Regulatory And Compliance Requirements
+- [[roaming-default-off-and-date-bounded-access]] — Roaming Default Off And Date Bounded Access
+- [[roaming-defaults-and-day-pass-model]] — Roaming Defaults And Day Pass Model
+- [[rule-target-compatibility-matrix]] — Rule Target Compatibility Matrix
+- [[sbc-and-zpls-prerequisites]] — Sbc And Zpls Prerequisites
+- [[sbc-ip-configuration-requirements]] — Sbc Ip Configuration Requirements
+- [[single-shared-line-group-membership]] — Single Shared Line Group Membership
+- [[site-scoped-byoc-number-restriction]] — Site Scoped Byoc Number Restriction
+- [[sms-action-recipient-limit]] — Sms Action Recipient Limit
+- [[sms-allow-list-minimum-requirement]] — Sms Allow List Minimum Requirement
+- [[sms-mms-app-restriction]] — Sms Mms App Restriction
+- [[sms-mms-unavailable-in-native-app]] — Sms Mms Unavailable In Native App
+- [[softbank-sender-id-masking]] — Softbank Sender Id Masking
+- [[sub-account-deletion-number-loss]] — Sub Account Deletion Number Loss
+- [[supported-desk-phone-required]] — Supported Desk Phone Required
+- [[supported-zpa-device-requirement]] — Supported Zpa Device Requirement
+- [[survivability-routing-rule-limitations]] — Survivability Routing Rule Limitations
+- [[two-platform-removal-requirement]] — Two Platform Removal Requirement
+- [[two-stage-license-assignment-requirement]] — Two Stage License Assignment Requirement
+- [[uc-direct-may-deny-orders]] — Uc Direct May Deny Orders
+- [[ui-visibility-for-master-sub-classification]] — Ui Visibility For Master Sub Classification
+- [[uk-business-address-requirement]] — Uk Business Address Requirement
+- [[us-only-hardware-purchases-with-street-address-requirement]] — Us Only Hardware Purchases With Street Address Requirement
+- [[voice-agent-type-restriction]] — Voice Agent Type Restriction
+- [[zoom-desktop-client-required-for-call-routing]] — Zoom Desktop Client Required For Call Routing
+- [[zoom-phone-license-required]] — Zoom Phone License Required
+- [[zpls-account-and-subscription-requirements]] — Zpls Account And Subscription Requirements
+- [[zpls-and-account-prerequisites]] — Zpls And Account Prerequisites
+- [[zpls-prerequisites-for-node-groups]] — Zpls Prerequisites For Node Groups
 
 ## UX Patterns
 
-- [[dual-scope-sync-action]] — Dual Scope Sync Action
-- [[multi-section-admin-configuration-flow]] — Multi Section Admin Configuration Flow
-- [[pre-configure-during-outage-activate-pattern]] — Pre Configure During Outage Activate Pattern
-- [[progressive-setup-wizard-pattern]] — Progressive Setup Wizard Pattern
-- [[two-phase-service-deployment-pattern]] — Two Phase Service Deployment Pattern
+- [[account-level-toggle-with-verification-dialog]] — Account Level Toggle With Verification Dialog
+- [[action-bar-with-primary-and-destructive-buttons]] — Action Bar With Primary And Destructive Buttons
+- [[admin-portal-sync-action-pattern]] — Admin Portal Sync Action Pattern
+- [[admin-supervised-self-service-recovery]] — Admin Supervised Self Service Recovery
+- [[ai-companion-icon-in-call-toolbar]] — Ai Companion Icon In Call Toolbar
+- [[ai-prompt-based-template-generation]] — Ai Prompt Based Template Generation
+- [[alert-configuration-wizard-with-conditional-sections]] — Alert Configuration Wizard With Conditional Sections
+- [[audible-confirmation-prompt-for-state-changes]] — Audible Confirmation Prompt For State Changes
+- [[audio-source-selector-in-call-ui]] — Audio Source Selector In Call Ui
+- [[auto-created-device-endpoint-in-call-handling]] — Auto Created Device Endpoint In Call Handling
+- [[automatic-correction-with-cross-page-reflection]] — Automatic Correction With Cross Page Reflection
+- [[automatic-esim-creation-with-email-notification]] — Automatic Esim Creation With Email Notification
+- [[automatic-qr-code-email-on-provisioning]] — Automatic Qr Code Email On Provisioning
+- [[byoc-configuration-hub-pattern]] — Byoc Configuration Hub Pattern
+- [[checkbox-bulk-selection-with-toolbar-action]] — Checkbox Bulk Selection With Toolbar Action
+- [[checklist-confirmation-gate]] — Checklist Confirmation Gate
+- [[click-to-dial-from-contact-roster]] — Click To Dial From Contact Roster
+- [[client-side-status-validation-pattern]] — Client Side Status Validation Pattern
+- [[cross-system-configuration-zva-zoom-phone]] — Cross System Configuration Zva Zoom Phone
+- [[deactivated-selection-controls]] — Deactivated Selection Controls
+- [[deeply-nested-account-setting-with-simple-toggle]] — Deeply Nested Account Setting With Simple Toggle
+- [[dropdown-distribution-selector]] — Dropdown Distribution Selector
+- [[dual-channel-credential-delivery]] — Dual Channel Credential Delivery
+- [[dynamic-variable-insertion-in-message-composition]] — Dynamic Variable Insertion In Message Composition
+- [[ellipsis-menu-for-row-level-actions]] — Ellipsis Menu For Row Level Actions
+- [[ellipsis-menu-row-actions]] — Ellipsis Menu Row Actions
+- [[email-notification-for-review-milestones]] — Email Notification For Review Milestones
+- [[faq-as-decision-support-for-ecommerce]] — Faq As Decision Support For Ecommerce
+- [[field-mapping-between-app-data-models]] — Field Mapping Between App Data Models
+- [[floating-phone-window-smart-embed]] — Floating Phone Window Smart Embed
+- [[grayed-out-control-with-inline-explanation]] — Grayed Out Control With Inline Explanation
+- [[hierarchical-settings-lock]] — Hierarchical Settings Lock
+- [[hierarchical-settings-with-lock-propagation]] — Hierarchical Settings With Lock Propagation
+- [[inline-add-for-multi-value-fields-email-chat-recipients]] — Inline Add For Multi Value Fields Email Chat Recipients
+- [[inline-edit-in-detail-sections]] — Inline Edit In Detail Sections
+- [[inline-hardware-upsell-across-purchase-funnel]] — Inline Hardware Upsell Across Purchase Funnel
+- [[lifecycle-state-driven-ui]] — Lifecycle State Driven Ui
+- [[local-survivability-management-hub-pattern]] — Local Survivability Management Hub Pattern
+- [[lock-propagation-for-admin-settings]] — Lock Propagation For Admin Settings
+- [[manage-connections-and-added-apps-pattern]] — Manage Connections And Added Apps Pattern
+- [[manage-pattern-for-site-level-feature-configuration]] — Manage Pattern For Site Level Feature Configuration
+- [[multi-document-upload-with-individual-constraints]] — Multi Document Upload With Individual Constraints
+- [[multi-level-dropdown-cascade-for-verification-scoping]] — Multi Level Dropdown Cascade For Verification Scoping
+- [[multi-level-settings-navigation]] — Multi Level Settings Navigation
+- [[multi-phase-registration-wizard-with-dependencies]] — Multi Phase Registration Wizard With Dependencies
+- [[oauth-based-third-party-authentication]] — Oauth Based Third Party Authentication
+- [[oauth-style-authorization-prompt]] — Oauth Style Authorization Prompt
+- [[overflow-routing-as-queue-to-queue-chaining]] — Overflow Routing As Queue To Queue Chaining
+- [[persistent-warning-banner-for-non-certified-devices]] — Persistent Warning Banner For Non Certified Devices
+- [[policy-tab-for-feature-specific-settings]] — Policy Tab For Feature Specific Settings
+- [[pop-up-modal-for-create-and-confirmation-flows]] — Pop Up Modal For Create And Confirmation Flows
+- [[progressive-disclosure-of-caller-context]] — Progressive Disclosure Of Caller Context
+- [[provider-validated-configuration-references]] — Provider Validated Configuration References
+- [[qr-code-with-manual-fallback]] — Qr Code With Manual Fallback
+- [[related-features-dropdown-navigation]] — Related Features Dropdown Navigation
+- [[restricted-dropdown-with-invisible-options]] — Restricted Dropdown With Invisible Options
+- [[roaming-opt-in-with-default-off-safety]] — Roaming Opt In With Default Off Safety
+- [[separate-metadata-and-content-editing]] — Separate Metadata And Content Editing
+- [[split-admin-surface-for-user-vs-mobile-management]] — Split Admin Surface For User Vs Mobile Management
+- [[star-code-dialing-for-feature-toggles]] — Star Code Dialing For Feature Toggles
+- [[step-by-step-wizard-in-pop-up-modal]] — Step By Step Wizard In Pop Up Modal
+- [[structured-ai-summary-card]] — Structured Ai Summary Card
+- [[sub-configuration-modals-for-data-selection]] — Sub Configuration Modals For Data Selection
+- [[tab-based-queue-configuration]] — Tab Based Queue Configuration
+- [[template-selection-with-named-variants]] — Template Selection With Named Variants
+- [[terminology-gap-between-feature-name-and-control-label]] — Terminology Gap Between Feature Name And Control Label
+- [[test-before-publish-workflow]] — Test Before Publish Workflow
+- [[third-party-fulfillment-handoff-communication]] — Third Party Fulfillment Handoff Communication
+- [[toggle-for-enable-disable-active-status]] — Toggle For Enable Disable Active Status
+- [[toggle-with-dependent-configuration]] — Toggle With Dependent Configuration
+- [[tool-insertion-via-search-and-forward-slash-shortcut]] — Tool Insertion Via Search And Forward Slash Shortcut
+- [[trigger-event-selection-with-app-search]] — Trigger Event Selection With App Search
+- [[troubleshooting-follow-through-references]] — Troubleshooting Follow Through References
+- [[two-path-destructive-action-inline-page-level-delete]] — Two Path Destructive Action Inline Page Level Delete
+- [[two-phase-call-forwarding-pattern-configure-then-enable]] — Two Phase Call Forwarding Pattern Configure Then Enable
+- [[two-phase-service-setup-pattern-deploy-then-assign]] — Two Phase Service Setup Pattern Deploy Then Assign
+- [[verification-dialog-for-toggle-changes]] — Verification Dialog For Toggle Changes
+- [[verification-dialog-on-toggle]] — Verification Dialog On Toggle
+- [[verification-status-and-rejection-handling]] — Verification Status And Rejection Handling
+- [[verification-status-indicator]] — Verification Status Indicator

@@ -1,0 +1,172 @@
+{
+  "article_id": "KB0084689",
+  "concepts": [
+    {
+      "title": "Call Delegation (Shared Line Appearance)",
+      "summary": "A feature that allows phone users to assign assistants or colleagues to handle calls on their behalf, also known as shared line appearance. From a UX perspective, delegation creates a dual-role relationship where delegates can answer, place, and manage calls for the delegator, requiring clear visual indicators to distinguish between acting on one's own behalf versus on behalf of another user.",
+      "key_points": [
+        "Enables phone users to designate others to make and receive calls on their behalf",
+        "Functions at multiple hierarchy levels: Account, Group, Site, Phone User, and Common Area",
+        "Requires enabling by an admin before users can set up delegation relationships"
+      ],
+      "related": ["delegation-toggle", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "Delegation Toggle",
+      "summary": "A simple enable/disable toggle for the delegation feature, consistently used across all hierarchy levels (Account, Group, Site, Phone User, Common Area). The toggle is the primary interaction for controlling delegation availability, and its consistent placement and behavior across levels reduces admin learning curve.",
+      "key_points": [
+        "Same toggle interaction across all five hierarchy levels",
+        "Requires verification dialog confirmation on change",
+        "Grayed-out state indicates the setting is locked at a higher hierarchy level",
+        "Optional lock icon allows enforcement at current level to prevent lower-level override"
+      ],
+      "related": ["call-delegation", "hierarchical-settings-lock", "verification-dialog"]
+    },
+    {
+      "title": "Hierarchical Settings Lock",
+      "summary": "A governance mechanism where settings configured at a higher hierarchy level (Account) propagate down and can be locked to prevent changes at lower levels (Group, Site, User). When locked, lower-level toggles appear grayed out with a note directing admins to change the setting at the locking level. This pattern is foundational to Zoom Phone's admin UX and must clearly communicate the lock source to avoid confusion.",
+      "key_points": [
+        "Account > Group/Site > Phone User/Common Area hierarchy",
+        "Lock icon enforces the current setting and prevents lower-level changes",
+        "Grayed-out toggle with note indicates the setting is locked at a higher level",
+        "Admins must navigate to the locking level to make changes"
+      ],
+      "related": ["delegation-toggle", "call-delegation"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin (Delegation)",
+      "summary": "Enables or disables the call delegation feature at any hierarchy level. Must have specific privilege scopes depending on the level being configured: account settings for Account level, group management for Group level, and site management for Site level. The UI must clearly indicate which privilege is needed at each level and provide appropriate access controls.",
+      "key_points": [
+        "Account level: requires privilege to edit account settings",
+        "Group level: requires privilege to edit groups",
+        "Site level: requires privilege to edit sites",
+        "Can lock settings to prevent lower-level overrides",
+        "Manages delegation through different navigation paths depending on hierarchy level"
+      ],
+      "related": ["call-delegation", "hierarchical-settings-lock"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Enable/Disable Delegation at Account Level",
+      "summary": "The top-level control for delegation that affects all users in the account. When locked, this setting becomes the single source of truth, and all lower levels are forced to comply. Admins access this through Account Management > Account Settings > Zoom Phone, emphasizing that delegation is a phone-specific feature.",
+      "key_points": [
+        "Navigate to Account Management > Account Settings > Zoom Phone tab",
+        "Toggle Delegation under the General section",
+        "Confirm change via verification dialog",
+        "Optional: lock to prevent group/site/user level changes"
+      ],
+      "related": ["enable-disable-delegation-at-group-level", "enable-disable-delegation-at-site-level", "delegation-toggle"]
+    },
+    {
+      "title": "Enable/Disable Delegation at Group Level",
+      "summary": "Allows admins to control delegation for a specific user group. If the account-level setting is locked, the group toggle appears grayed out. The navigation path (User Management > Groups) differs from the account path, which could cause confusion -- designers should consider consistent navigation patterns for settings that span hierarchy levels.",
+      "key_points": [
+        "Navigate to User Management > Groups > select group > Zoom Phone tab",
+        "Toggle Delegation under the General section",
+        "Grayed out if locked at account level",
+        "Optional: lock to prevent user-level changes within the group"
+      ],
+      "related": ["enable-disable-delegation-at-account-level", "enable-disable-delegation-at-site-level", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "Enable/Disable Delegation at Site Level",
+      "summary": "Controls delegation for users within a specific site. The navigation path (Phone System Management > Company Info > Policy tab) differs from both Account and Group paths, introducing a third admin navigation pattern for the same feature. Consistent Policy tab placement at the Site level provides some predictability.",
+      "key_points": [
+        "Navigate to Phone System Management > Company Info > select site > Policy tab",
+        "Toggle Delegation under the General section",
+        "Grayed out if locked at account level",
+        "Optional: lock to prevent user-level changes within the site"
+      ],
+      "related": ["enable-disable-delegation-at-account-level", "enable-disable-delegation-at-group-level", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "Enable/Disable Delegation at Phone User Level",
+      "summary": "The most granular delegation control, applied to individual phone users. Includes an additional option not present at higher levels: 'Restrict from adding delegation to users outside their own site', which limits cross-site delegation. This site-boundary constraint is a privacy/governance feature that only appears at the user level and should be clearly explained.",
+      "key_points": [
+        "Navigate to Phone System Management > Users & Rooms > Users tab > select user > Policy tab",
+        "Toggle Delegation under the General section",
+        "Additional option: Restrict from adding delegation to users outside their own site (checkbox)",
+        "Verification dialog confirms each change"
+      ],
+      "related": ["enable-disable-delegation-at-common-area-level", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "Enable/Disable Delegation at Common Area Level",
+      "summary": "Controls delegation for common area phones (shared devices like lobby or conference room phones). The flow mirrors the phone user level but with a simplified set of options (no site-restriction checkbox). Navigation is through the Common Areas tab next to Users under Users & Rooms, providing a parallel but distinct path.",
+      "key_points": [
+        "Navigate to Phone System Management > Users & Rooms > Common Areas tab > select common area > Policy tab",
+        "Toggle Delegation under the General section",
+        "No site-restriction option (unlike phone user level)",
+        "Changes apply only to the selected common area"
+      ],
+      "related": ["enable-disable-delegation-at-phone-user-level", "delegation-toggle"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Hierarchy Lock Override Rule",
+      "summary": "When a setting is locked at a higher hierarchy level (e.g., Account), lower-level toggles are grayed out and cannot be changed. Admins must navigate to the locking level to modify the setting. This constraint is communicated through UI state (grayed out toggle + informational note) rather than blocking navigation, which preserves exploration while preventing changes.",
+      "key_points": [
+        "Account-level lock overrides all lower levels",
+        "Grayed-out toggle indicates the setting is locked upstream",
+        "Informational note directs admin to the locking level"
+      ],
+      "related": ["hierarchical-settings-lock", "delegation-toggle"]
+    },
+    {
+      "title": "Admin Privilege Required",
+      "summary": "Only account owners or admins with appropriate privileges can enable or disable delegation. Different hierarchy levels require different privilege scopes (edit account settings, edit groups, edit sites), which means the same admin may have access at some levels but not others.",
+      "key_points": [
+        "Account owner or admin privileges required at all levels",
+        "Group level requires privilege to edit groups",
+        "Site level requires privilege to edit sites",
+        "Account level requires privilege to edit account settings"
+      ],
+      "related": ["account-owner-admin-delegation", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "License Requirement",
+      "summary": "Enabling delegation requires either a Zoom Workplace license with Phone included or a standalone Zoom Phone calling plan. This prerequisite should be validated before showing the delegation toggle to avoid exposing non-functional UI.",
+      "key_points": [
+        "Requires Zoom Workplace license with Phone included, or standalone Zoom Phone calling plan"
+      ],
+      "related": ["call-delegation"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Hierarchical Settings with Lock Propagation",
+      "summary": "A governance pattern where settings cascade from Account > Group/Site > Phone User/Common Area, with lock mechanisms at each level to prevent downstream overrides. This pattern is reusable across all Zoom Phone policy settings and should use consistent visual language (toggle, lock icon, grayed-out disabled state) to build admin familiarity.",
+      "key_points": [
+        "Top-down cascade: Account overrides Group/Site, which override Phone User/Common Area",
+        "Lock icon at each level enforces the current setting downward",
+        "Grayed-out state + informational note communicates upstream lock",
+        "Consistent toggle component across all five levels"
+      ],
+      "related": ["hierarchical-settings-lock", "delegation-toggle", "verification-dialog"]
+    },
+    {
+      "title": "Verification Dialog on Toggle",
+      "summary": "When toggling delegation on or off, a verification dialog appears requiring explicit confirmation. This pattern prevents accidental changes to settings that have broad downstream impact, particularly important for Account and Group level changes that affect many users.",
+      "key_points": [
+        "Appears after toggling delegation at any level",
+        "Requires clicking Enable or Disable to confirm the change",
+        "Acts as a safety net for high-impact settings changes"
+      ],
+      "related": ["delegation-toggle", "hierarchical-settings-lock"]
+    },
+    {
+      "title": "Policy Tab for Feature-Specific Settings",
+      "summary": "At the Site, Phone User, and Common Area levels, delegation settings are located under a Policy tab rather than a general settings tab. This separation of policy controls from other configuration creates a predictable location for governance-related settings across different entity types.",
+      "key_points": [
+        "Policy tab appears at Site, Phone User, and Common Area levels",
+        "Separates governance/compliance settings from general configuration",
+        "Account and Group levels use Zoom Phone tab instead, creating an inconsistency worth noting"
+      ],
+      "related": ["delegation-toggle", "hierarchical-settings-lock"]
+    }
+  ]
+}

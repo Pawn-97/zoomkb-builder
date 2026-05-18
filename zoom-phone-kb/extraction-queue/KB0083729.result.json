@@ -1,0 +1,124 @@
+{
+  "article_id": "KB0083729",
+  "concepts": [
+    {
+      "title": "Peer-to-Peer Media",
+      "summary": "A feature that allows Zoom clients and supported desk phones to send media (audio/video) directly to each other rather than routing through Zoom's servers. This can improve call quality and reduce latency, but introduces design considerations around feature compatibility (e.g., recording, monitoring) and the need for client restarts after toggling.",
+      "key_points": [
+        "Media flows directly between devices instead of through Zoom servers",
+        "Available for Zoom clients and supported desk phones",
+        "Requires Zoom Workplace app version 6.7.0 or later",
+        "Client and device restart required for setting changes to take effect",
+        "Feature rolling out in phases over several months"
+      ],
+      "related": ["peer-to-peer-media-toggle", "hierarchical-settings-lock"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin",
+      "summary": "Has the privilege to enable or disable Peer-to-Peer Media at multiple hierarchy levels (account, group, site, and individual phone user). Admins can also lock the setting to prevent lower-level changes, making this role responsible for both configuration and governance of the feature.",
+      "key_points": [
+        "Can configure at account, group, site, and individual user levels",
+        "Can lock settings to prevent changes at lower hierarchy levels",
+        "Requires edit privileges for the relevant scope (account settings, groups, etc.)",
+        "Must have a Zoom Workplace license with Phone or standalone Zoom Phone calling plan"
+      ],
+      "related": ["peer-to-peer-media", "hierarchical-settings-lock"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Enable or Disable Peer-to-Peer Media at Account Level",
+      "summary": "Admins navigate to Account Settings > Zoom Phone > General and toggle the Peer to Peer Media setting. A verification dialog confirms the change, and an optional lock prevents lower-level overrides. Designers should ensure the toggle, dialog, and lock icon are clearly associated and the grayed-out state at lower levels communicates the lock relationship.",
+      "key_points": [
+        "Navigate: Account Management > Account Settings > Zoom Phone tab",
+        "Toggle Peer to Peer Media under General section",
+        "Confirm via verification dialog (Enable/Disable)",
+        "Optional: click lock icon to prevent user-level changes"
+      ],
+      "related": ["hierarchical-settings-lock", "peer-to-peer-media", "verification-dialog"]
+    },
+    {
+      "title": "Enable or Disable Peer-to-Peer Media at Group Level",
+      "summary": "Similar to account-level flow but accessed through User Management > Groups. When the option is grayed out, a note explains it is locked at the account level. This pattern reinforces the lock hierarchy for admins managing subsets of users.",
+      "key_points": [
+        "Navigate: User Management > Groups > select group > Zoom Phone tab",
+        "Toggle Peer to Peer Media under General section",
+        "Option grayed out if locked at account level, with explanatory note",
+        "Optional: click lock icon to prevent user-level changes within group"
+      ],
+      "related": ["hierarchical-settings-lock", "peer-to-peer-media", "verification-dialog"]
+    },
+    {
+      "title": "Enable or Disable Peer-to-Peer Media at Site Level",
+      "summary": "Site-level configuration accessed through Phone System Management > Company Info. Follows the same toggle-and-lock pattern, but the navigation path differs due to site management being under Phone System Management rather than Account/User Management.",
+      "key_points": [
+        "Navigate: Phone System Management > Company Info > select site > Policy tab",
+        "Toggle Peer to Peer Media under General section",
+        "Confirm via verification dialog",
+        "Optional: lock to prevent user-level changes within site"
+      ],
+      "related": ["hierarchical-settings-lock", "peer-to-peer-media", "verification-dialog"]
+    },
+    {
+      "title": "Enable or Disable Peer-to-Peer Media for Individual Phone User",
+      "summary": "Individual user configuration through Phone System Management > Users & Rooms. When grayed out, the note explicitly tells the admin the setting is locked at group or account level and advises contacting the Zoom admin, providing clear guidance on next steps.",
+      "key_points": [
+        "Navigate: Phone System Management > Users & Rooms > Users tab > select user > Policy tab",
+        "Toggle Peer to Peer Media under General section",
+        "Option grayed out if locked at group or account level",
+        "Grayed-out note instructs admin to contact higher-level admin"
+      ],
+      "related": ["hierarchical-settings-lock", "peer-to-peer-media", "verification-dialog"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Client Version and Feature Compatibility Restrictions",
+      "summary": "Peer-to-Peer media requires Zoom Workplace app version 6.7.0 or later, and is incompatible with certain features like recording or monitoring. Designers should consider how to communicate these incompatibilities — either by preventing toggling when incompatible features are active or by warning about the conflict.",
+      "key_points": [
+        "Requires Zoom Workplace app version 6.7.0 or later",
+        "Incompatible with recording or monitoring features being enabled",
+        "Client and desk phone restart required after enabling/disabling",
+        "Feature rolling out in phases over the next few months"
+      ],
+      "related": ["peer-to-peer-media"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Hierarchical Settings Lock",
+      "summary": "A cascading permission model where settings configured at a higher level (account) can be locked to prevent modification at lower levels (group, site, user). When locked, the toggle appears grayed out with an explanatory note. This pattern is used across Zoom Phone settings and should be consistently designed.",
+      "key_points": [
+        "Lock cascades from account > group > site > user",
+        "Grayed-out toggle with descriptive note when locked at higher level",
+        "Lock icon displayed next to toggle when lockable",
+        "Note at user level explicitly directs admin to contact higher-level admin"
+      ],
+      "related": ["peer-to-peer-media", "verification-dialog"]
+    },
+    {
+      "title": "Verification Dialog for Toggle Changes",
+      "summary": "When an admin toggles a setting on or off, a verification dialog appears requiring explicit confirmation (Enable or Disable button). This prevents accidental changes and provides a confirmation step, which is especially important for settings that require device restarts.",
+      "key_points": [
+        "Dialog appears after toggling a setting",
+        "Requires explicit Enable or Disable confirmation",
+        "Provides a safeguard against accidental configuration changes"
+      ],
+      "related": ["hierarchical-settings-lock"]
+    },
+    {
+      "title": "Multi-Level Settings Navigation",
+      "summary": "The same setting (Peer to Peer Media) is accessible through four different navigation paths depending on scope: Account Settings, Groups, Company Info (Sites), and Users & Rooms. Designers should ensure consistent toggle behavior and labeling across all these paths while allowing for context-appropriate navigation.",
+      "key_points": [
+        "Account: Account Management > Account Settings > Zoom Phone > General",
+        "Group: User Management > Groups > [group] > Zoom Phone > General",
+        "Site: Phone System Management > Company Info > [site] > Policy > General",
+        "User: Phone System Management > Users & Rooms > Users > [user] > Policy > General",
+        "Toggle label, behavior, and verification dialog are consistent across all paths"
+      ],
+      "related": ["hierarchical-settings-lock", "verification-dialog"]
+    }
+  ]
+}

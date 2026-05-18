@@ -10,16 +10,19 @@ confidence: high
 last_reviewed: 2026-05-18
 ---
 
-# {entity.title}
+# Assign Node Group to Site and Route Group
 
 ## Summary
 
-{merged_summary}
+An assignment workflow that links a node group to a specific Site and a pre-configured Survivability Route Group. The edit interface uses a modal window, and the assignment triggers automatic round-robin user distribution. The admin cannot control which users land on which nodes after assignment.
 
 ## Key points
 
-{key_points_md}
+- Navigate: Phone System Management > Company Info > Account Settings > Zoom Node > Local Survivability > Manage > Node groups tab
+- Click '...' (More), Edit, select Site and Route Group
+- Assignment triggers automatic round-robin user distribution
+- Route Group must be pre-created (dependency on KB0085804)
 
 ## Related
 
-{related_links}
+- [[zpls-node-group]]

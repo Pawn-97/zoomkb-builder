@@ -452,6 +452,7 @@ def _write_wiki_page(
     if len(unique_source_aids) >= 3:
         conflict_flag = "multiple-sources"
 
+    conflict_line = f"conflict_flag: {conflict_flag}\n" if conflict_flag else ""
     page = f"""---
 type: {entity.type}
 product: {product}
@@ -460,7 +461,7 @@ sources:
 {sources_yaml}
 confidence: high
 last_reviewed: {today}
-""" + (f"conflict_flag: {conflict_flag}\n" if conflict_flag else "") + """---
+{conflict_line}---
 
 # {entity.title}
 

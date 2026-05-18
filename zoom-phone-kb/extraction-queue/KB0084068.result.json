@@ -1,0 +1,245 @@
+{
+  "article_id": "KB0084068",
+  "concepts": [
+    {
+      "title": "Zoom Phone Mobile",
+      "summary": "A service that extends Zoom Phone to employees' mobile devices using eSIM technology, making the smartphone a native Zoom Phone endpoint. Users make and receive business calls through their phone's native dialer while retaining enterprise features (presence, voicemail, call recording) from the Zoom Phone platform. Calls can route over cellular voice networks for carrier-grade reliability.",
+      "key_points": [
+        "eSIM-based integration with mobile network providers",
+        "Native dialer for calls; Zoom Workplace app for advanced features",
+        "Business and personal communication separation on one device",
+        "Centralized admin control via eSIM Management in the web portal"
+      ],
+      "related": ["esim-management", "zoom-phone-mobile-license", "primary-line", "secondary-line"]
+    },
+    {
+      "title": "Zoom Phone Mobile License",
+      "summary": "A per-user license that enables Zoom Phone Mobile service. Licenses come in Primary and Secondary line types, each with distinct data allowances and hotspot policies. The license type must match the SIM configuration on the user's device or the service is automatically deactivated.",
+      "key_points": [
+        "Per-user license, assigned via eSIM Management (not User Management)",
+        "Two types: Primary line (50GB data, 20GB hotspot) and Secondary line (2GB data, no hotspot)",
+        "License type must match device SIM configuration or data connectivity is auto-deactivated",
+        "Must assign Zoom Phone Basic license in User Management before assigning Mobile license in eSIM Management"
+      ],
+      "related": ["zoom-phone-mobile", "primary-line", "secondary-line", "esim-management"]
+    },
+    {
+      "title": "Primary Line",
+      "summary": "The higher-tier Zoom Phone Mobile license type providing 50GB of high-speed data per billing cycle with up to 20GB of mobile hotspot usage. After data limits are reached, speeds are throttled: general data to 500 kbps, hotspot to 128 kbps. Resets each billing cycle.",
+      "key_points": [
+        "50GB high-speed data monthly",
+        "Up to 20GB high-speed mobile hotspot included",
+        "Post-limit throttling: 500 kbps general, 128 kbps hotspot",
+        "Must be configured as primary SIM on device"
+      ],
+      "related": ["secondary-line", "zoom-phone-mobile-license"]
+    },
+    {
+      "title": "Secondary Line",
+      "summary": "The lower-tier Zoom Phone Mobile license type providing 2GB of high-speed data per billing cycle with no mobile hotspot capability. After 2GB, general data speeds are reduced to 500 kbps. Suitable for lighter usage scenarios.",
+      "key_points": [
+        "2GB high-speed data monthly",
+        "No mobile hotspot available",
+        "Post-limit: 500 kbps for remainder of billing cycle",
+        "Must be configured as secondary SIM on device"
+      ],
+      "related": ["primary-line", "zoom-phone-mobile-license"]
+    },
+    {
+      "title": "eSIM Management",
+      "summary": "The admin interface within Zoom web portal for managing Zoom Phone Mobile users, their eSIMs, numbers, and roaming. This is a separate management surface from User Management, reflecting the distinct lifecycle of mobile eSIM provisioning.",
+      "key_points": [
+        "Accessible under Phone System Management > eSIM Management",
+        "Manages eSIM creation, issuance, deactivation, and reissuance",
+        "Separate from User Management—license assignment requires two-step process",
+        "Automatically creates a mobile device endpoint for the user in call handling settings"
+      ],
+      "related": ["zoom-phone-mobile", "zoom-phone-mobile-license"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner",
+      "summary": "Has full privileges to purchase Zoom Phone Mobile licenses, obtain mobile numbers, assign licenses to users, and manage eSIMs. Can control international roaming access and deactivate/activate service per user.",
+      "key_points": [
+        "Can purchase and assign Zoom Phone Mobile licenses",
+        "Manages eSIM issuance and international roaming",
+        "Receives roaming control toggles per user",
+        "Automatically issued eSIM on first license assignment"
+      ],
+      "related": ["admin"]
+    },
+    {
+      "title": "Admin",
+      "summary": "Admins can perform the same Zoom Phone Mobile management actions as account owners: assign licenses, issue/reissue eSIMs, manage roaming, and deactivate/activate service. Requires appropriate admin privileges for eSIM Management access.",
+      "key_points": [
+        "Access to eSIM Management for license assignment and eSIM operations",
+        "Can control roaming access and deactivate/activate user service",
+        "Same capabilities as account owner within eSIM Management scope"
+      ],
+      "related": ["account-owner"]
+    },
+    {
+      "title": "End User",
+      "summary": "Zoom Phone users who receive a Zoom Phone Mobile license. After an admin issues their eSIM, the user receives an activation email with a QR code to install on their device. Users make and receive business calls via their phone's native dialer, with advanced Zoom Phone features available through the Zoom Workplace mobile app.",
+      "key_points": [
+        "Receives activation email with QR code after admin assigns license",
+        "Uses native dialer for business calls on mobile device",
+        "Accesses advanced features (presence, voicemail, recording) via Zoom Workplace app",
+        "SMS/MMS through device's native messaging app; Zoom app is read-only for messages"
+      ],
+      "related": ["zoom-phone-mobile"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Purchase Zoom Phone Mobile Licenses",
+      "summary": "Admins acquire Zoom Phone Mobile licenses (Primary or Secondary line types) for their organization. The purchasing flow distinguishes between UK-specific license variants (Primary with premium data, Secondary with essential data).",
+      "key_points": [
+        "License type selection: Primary line or Secondary line",
+        "Regional variants exist (e.g., UK-specific SKUs)",
+        "Per-user licensing model"
+      ],
+      "related": ["zoom-phone-mobile-license", "primary-line", "secondary-line"]
+    },
+    {
+      "title": "Obtain Mobile eSIM Numbers",
+      "summary": "A two-step process where admins first create or verify a business address, then obtain mobile eSIM numbers (new or port-in). Verified business address is a gate: eSIM numbers cannot be obtained without one.",
+      "key_points": [
+        "Step 1: Create or verify business address",
+        "Step 2: Obtain mobile eSIM numbers (new acquisition or port-in)",
+        "Business address verification is a prerequisite gate"
+      ],
+      "related": ["zoom-phone-mobile", "esim-management", "business-address-verification"]
+    },
+    {
+      "title": "Assign Zoom Phone Mobile License to a User",
+      "summary": "A two-stage assignment flow: first, the admin assigns at least a Zoom Phone Basic license to the user in User Management; then, they assign the Zoom Phone Mobile license in eSIM Management. This split reflects the different lifecycle domains (user identity vs. mobile connectivity).",
+      "key_points": [
+        "Stage 1: Assign Zoom Phone Basic license in User Management",
+        "Stage 2: Assign Zoom Phone Mobile license in eSIM Management",
+        "First-time assignment auto-generates an eSIM and sends QR code email to user",
+        "Mobile device endpoint auto-created in user's call handling settings"
+      ],
+      "related": ["zoom-phone-mobile-license", "esim-management", "end-user"]
+    },
+    {
+      "title": "Manage eSIM Activation and Roaming",
+      "summary": "Admins manage the eSIM lifecycle from eSIM Management, including issuing first-time eSIMs (automated on license assignment), reissuing eSIMs for lost devices, and deactivating/activating service. International roaming is controlled per user and is disabled by default to prevent unexpected charges.",
+      "key_points": [
+        "Auto-issuance on first license assignment",
+        "Reissue for lost/stolen devices",
+        "Deactivate/activate service per user",
+        "Roaming disabled by default; admin must explicitly enable",
+        "Day-pass roaming model: only active when user actually roams"
+      ],
+      "related": ["esim-management", "zoom-phone-mobile", "end-user"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Device Compatibility and Carrier Lock",
+      "summary": "Users must have a compatible eSIM-enabled smartphone on iOS or Android. The device must not be carrier-locked; locked devices will prevent eSIM installation and activation.",
+      "key_points": [
+        "eSIM-capable smartphone required (iOS and Android supported)",
+        "Carrier-locked devices are incompatible",
+        "Design implication: pre-activation compatibility check should flag locked devices"
+      ],
+      "related": ["zoom-phone-mobile", "end-user"]
+    },
+    {
+      "title": "SMS/MMS App Restriction",
+      "summary": "SMS and MMS are only supported through the mobile device's native messaging app. The Zoom Workplace app shows messages in read-only mode but cannot send them due to iOS and Android platform restrictions.",
+      "key_points": [
+        "Native messaging app for sending SMS/MMS",
+        "Zoom Workplace app: read-only message view",
+        "Important UX implication: users need clear guidance on which app to use for which function"
+      ],
+      "related": ["zoom-phone-mobile", "end-user"]
+    },
+    {
+      "title": "Two-Stage License Assignment Requirement",
+      "summary": "Admins must assign licenses in a specific order: first Zoom Phone Basic in User Management, then Zoom Phone Mobile in eSIM Management. eSIM Management cannot assign a Mobile license to a user who lacks the Basic license. This split assignment flow adds operational complexity.",
+      "key_points": [
+        "Design implication: cross-surface workflow with dependency",
+        "eSIM Management should indicate which users are eligible (already have Basic license)",
+        "Error prevention: block or warn if Mobile license assigned without Basic license"
+      ],
+      "related": ["zoom-phone-mobile-license", "esim-management"]
+    },
+    {
+      "title": "License-SIM Configuration Mismatch Detection",
+      "summary": "The Zoom Phone Mobile license type (Primary vs. Secondary) must match the SIM configuration on the device. If a mismatch is detected, the user's data connectivity is automatically deactivated, enforcing the Acceptable Fair Use Policy.",
+      "key_points": [
+        "Auto-detection of mismatch between license type and device SIM config",
+        "Consequence: automatic data deactivation",
+        "Design implication: clear in-product warnings during activation, not just policy text"
+      ],
+      "related": ["primary-line", "secondary-line", "zoom-phone-mobile-license"]
+    },
+    {
+      "title": "Data Speed Throttling Thresholds",
+      "summary": "Both Primary and Secondary lines have hard data caps after which speeds are significantly throttled. Primary: 50GB general / 20GB hotspot. Secondary: 2GB general / no hotspot. Throttled speeds (500 kbps general, 128 kbps hotspot) persist until the billing cycle resets.",
+      "key_points": [
+        "Primary: 50GB cap, throttles to 500 kbps (data) / 128 kbps (hotspot)",
+        "Secondary: 2GB cap, throttles to 500 kbps, no hotspot available",
+        "Resets at billing cycle boundary",
+        "Design implication: usage meter and threshold warnings in admin/end-user views"
+      ],
+      "related": ["primary-line", "secondary-line"]
+    },
+    {
+      "title": "Roaming Defaults and Day-Pass Model",
+      "summary": "International roaming is deactivated by default for all users to prevent bill shock. Roaming operates on a day-pass model with two tiers: included roaming locations at no extra cost, and day-pass locations that incur per-day charges.",
+      "key_points": [
+        "Deactivated by default—admin must opt in per user",
+        "Day-pass only activates when user actually roams, not at purchase time",
+        "Two tiers: included roaming (free) and day-pass roaming (paid per day)"
+      ],
+      "related": ["zoom-phone-mobile", "esim-management"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Split Admin Surface for User vs. Mobile Management",
+      "summary": "User identity management and mobile license assignment occur in two separate admin interfaces (User Management vs. eSIM Management). This split-surface pattern requires admins to understand the dependency order and navigate between contexts to complete a single user's setup.",
+      "key_points": [
+        "User Management handles Basic license and user identity",
+        "eSIM Management handles Mobile license, eSIM issuance, and roaming",
+        "Sequential dependency: Basic license first, then Mobile license",
+        "Design consideration: cross-link between surfaces to reduce friction"
+      ],
+      "related": ["esim-management", "zoom-phone-mobile-license"]
+    },
+    {
+      "title": "Automatic eSIM Creation with Email Notification",
+      "summary": "When a Zoom Phone Mobile license is first assigned to a user, the system automatically creates an eSIM, generates a QR code, and sends a welcome email to the user. This zero-touch provisioning pattern removes manual admin steps for initial setup.",
+      "key_points": [
+        "eSIM auto-created on license assignment",
+        "QR code delivered via email for user self-activation",
+        "Reduces admin burden for initial provisioning"
+      ],
+      "related": ["esim-management", "end-user"]
+    },
+    {
+      "title": "Auto-Created Device Endpoint in Call Handling",
+      "summary": "Assigning a Zoom Phone Mobile license automatically creates a mobile device endpoint in the user's call handling settings. This ensures the mobile device appears as a destination in call routing and handling configurations without additional admin setup.",
+      "key_points": [
+        "Mobile endpoint auto-created on license assignment",
+        "Integrates into existing call handling and routing UX",
+        "Reduces manual device registration steps"
+      ],
+      "related": ["zoom-phone-mobile", "esim-management"]
+    },
+    {
+      "title": "Roaming Opt-In with Default-Off Safety",
+      "summary": "International roaming is deactivated by default, requiring explicit admin opt-in per user. This default-off pattern protects against unexpected charges (bill shock) and shifts the decision burden to admins who must deliberately enable roaming.",
+      "key_points": [
+        "Default-off for financial safety",
+        "Per-user toggle with optional date range limits",
+        "Design consideration: surface roaming status clearly in admin overview"
+      ],
+      "related": ["zoom-phone-mobile", "esim-management"]
+    }
+  ]
+}

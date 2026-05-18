@@ -1,0 +1,187 @@
+{
+  "article_id": "KB0075917",
+  "concepts": [
+    {
+      "title": "Zoom Phone Appliance (ZPA) Device Monitoring",
+      "summary": "An alerting system that allows admins to monitor the online/offline status of Zoom Phone Appliance devices and receive notifications when thresholds are crossed. Three alert rule types cover individual device status changes and site-level offline percentages. This is a proactive monitoring feature designed to surface hardware issues before end users report them.",
+      "key_points": [
+        "Monitors ZPA devices for online/offline status changes",
+        "Three alert rules: devices go offline, devices go online, and offline devices rate",
+        "Alerts can be targeted at individual devices, specific sites, or the entire account"
+      ],
+      "related": ["zoom-phone-appliance", "device-management", "alerts-and-notifications"]
+    },
+    {
+      "title": "Alert Rules for Device Monitoring",
+      "summary": "Three distinct alert rules define the conditions that trigger a notification. 'Devices go offline' and 'Devices go online' monitor individual device state transitions, while 'Offline Devices Rate' triggers when a percentage of devices at a site level goes offline. Each rule type has different target options and configuration parameters, requiring context-aware form controls.",
+      "key_points": [
+        "Devices go offline: triggers on individual device disconnection, targetable to a single device or entire account",
+        "Devices go online: triggers on individual device reconnection, targetable to a single device or entire account",
+        "Offline Devices Rate: triggers when a percentage threshold is crossed at the site level, with separate warning and critical percentage values",
+        "Each rule type can only be set once per target"
+      ],
+      "related": ["zpa-device-monitoring", "alert-targets", "alert-notifications"]
+    },
+    {
+      "title": "Alert Targets",
+      "summary": "Determines the scope of monitoring for each alert rule. The three target types (Account, Specify Device up to 5, Site) are conditionally available based on the selected rule. This conditional availability means the target dropdown must dynamically filter options based on the rule selection, a design consideration for form ordering.",
+      "key_points": [
+        "Account: monitors all devices in the account (available for Devices go offline/online rules only)",
+        "Specify Device (up to 5): monitors individually selected desk phones by user or extension (available for Devices go offline/online rules only)",
+        "Site: monitors all devices at a site (available for Offline Devices Rate rule only)"
+      ],
+      "related": ["alert-rules", "zpa-device-monitoring", "conditional-form-fields"]
+    },
+    {
+      "title": "Alert Notifications via Email and Chat",
+      "summary": "Each alert can be configured with up to 10 email recipients and up to 3 chat channel integrations. A frequency and time-frame setting controls when and how often notifications are sent. The combination of email and chat channels means notifications may arrive in multiple places, requiring consistent message formatting across channels.",
+      "key_points": [
+        "Up to 10 email recipients per alert with acknowledgement checkbox",
+        "Up to 3 chat channel integrations (requires verification token and endpoint)",
+        "Configurable notification frequency and time frame, including a 24-hour continuous option"
+      ],
+      "related": ["alert-rules", "notification-settings", "chat-channel-integration"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin",
+      "summary": "Only account owners and admins with edit privileges can access, create, edit, and delete ZPA device monitoring alerts. This role gate is enforced at the Zoom web portal level. Designers should ensure the Alerts & Notifications menu item and the Zoom Devices tab are only visible to users with sufficient privileges.",
+      "key_points": [
+        "Must have account owner or admin privileges with permission to edit account settings",
+        "Requires a Zoom Phone license",
+        "Access to alert configuration is via Account Management > Alerts & Notifications in the web portal"
+      ],
+      "related": ["admin-privileges", "account-management", "alerts-and-notifications"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Access Alerts and Notifications for ZPA Devices",
+      "summary": "Admins navigate through the Zoom web portal to reach the alert configuration interface. The path involves two levels of navigation (Account Management > Alerts & Notifications) and a tab selection (Zoom Devices), which may benefit from deep-linking for frequent access.",
+      "key_points": [
+        "Sign in to Zoom web portal as an admin with edit privileges",
+        "Navigate to Account Management > Alerts & Notifications",
+        "Click the Zoom Devices tab"
+      ],
+      "related": ["account-management", "alerts-and-notifications", "admin-navigation"]
+    },
+    {
+      "title": "Add a New Alert",
+      "summary": "A guided configuration flow with multiple interdependent form sections. The rule selection drives which target options and parameters appear, creating conditional form behavior. The flow separates configuration into Rule, Notification, and Active Status sections, providing a structured but potentially complex form experience.",
+      "key_points": [
+        "Click Add an alert to enter the creation page",
+        "Under Rule: set Name, ensure Module is ZPA Management, select a Rule type, and configure Target based on rule selection",
+        "Under Notification: set Frequency, Time frame, Email Recipients (up to 10), and optionally Chat Channels (up to 3)",
+        "Under Active Status: toggle to enable or disable (defaults to active)",
+        "Click Save to create"
+      ],
+      "related": ["alert-rules", "alert-targets", "alert-notifications", "conditional-form"]
+    },
+    {
+      "title": "Edit an Existing Alert",
+      "summary": "Admins can modify any aspect of a configured alert. The rename action is separate from editing rule, target, and notification parameters. Email recipients can be added but the article does not describe a removal mechanism, which may be a UX gap for alert management.",
+      "key_points": [
+        "Click the alert name to open its detail/edit view",
+        "Rename via a separate Rename button next to the alert name",
+        "Edit Rule, Target, and Time frame via individual Edit buttons",
+        "Add email recipients via Add button",
+        "Toggle Active Status to enable or disable the alert"
+      ],
+      "related": ["alert-rules", "alert-notifications", "edit-pattern"]
+    },
+    {
+      "title": "Delete an Alert",
+      "summary": "Two deletion paths are available: an inline action via the ellipsis menu on the alert list, or a delete button at the bottom of the alert detail page. Both paths include a confirmation dialog to prevent accidental deletion.",
+      "key_points": [
+        "Option A: Click the ellipsis next to the alert name in the list and select Delete",
+        "Option B: Open the alert, scroll to the bottom, and click Delete",
+        "Confirm deletion in the confirmation dialog"
+      ],
+      "related": ["alert-list", "confirmation-dialog", "destructive-action"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "One Alert Per Target Per Rule Type",
+      "summary": "For each rule type (Devices go offline, Devices go online, Offline Devices Rate), only one alert can be created per target. This prevents duplicate alerts but means the UI must enforce this constraint during alert creation, either by hiding ineligible options or showing an inline error.",
+      "key_points": [
+        "Single alert per rule type per target (e.g., cannot create two 'Devices go offline' alerts for the same device)",
+        "Attempting to create a duplicate should be prevented or clearly flagged in the UI"
+      ],
+      "related": ["alert-rules", "alert-targets", "duplicate-prevention"]
+    },
+    {
+      "title": "Maximum Limits for Targets and Recipients",
+      "summary": "Alerts have hard limits: up to 5 devices per 'Specify Device' target, up to 10 email recipients, and up to 3 chat channels. These limits should be enforced in the form with clear counter indicators and disable the add button when the limit is reached.",
+      "key_points": [
+        "Maximum 5 devices per 'Specify Device' target",
+        "Maximum 10 email recipients per alert",
+        "Maximum 3 chat channels per alert"
+      ],
+      "related": ["alert-targets", "alert-notifications", "input-limits"]
+    },
+    {
+      "title": "Rule-Target Compatibility Matrix",
+      "summary": "Not all target types work with all rule types. The 'Account' and 'Specify Device' targets are only available for the 'Devices go offline' and 'Devices go online' rules, while 'Site' is only available for 'Offline Devices Rate'. This conditional relationship must be reflected in the UI with dynamic form controls.",
+      "key_points": [
+        "Account target: only for Devices go offline and Devices go online rules",
+        "Specify Device target: only for Devices go offline and Devices go online rules",
+        "Site target: only for Offline Devices Rate rule"
+      ],
+      "related": ["alert-rules", "alert-targets", "conditional-form-fields"]
+    },
+    {
+      "title": "Supported ZPA Device Requirement",
+      "summary": "Only supported Zoom Phone Appliance devices can be monitored through this alerting system. Unsupported or third-party devices are not eligible for alert configuration and should be excluded from the device selection interface.",
+      "key_points": [
+        "Monitoring only works with supported Zoom Phone Appliances",
+        "Unsupported devices should be excluded from target selection"
+      ],
+      "related": ["zoom-phone-appliance", "supported-devices"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Alert Configuration Wizard with Conditional Sections",
+      "summary": "A multi-section form where the Rule selection dynamically changes which Target options and parameters appear. This is a classic conditional form pattern where field visibility depends on a prior selection. The form is organized into labeled sections (Rule, Notification, Active Status) with a final Save action, providing clear structure despite the complexity.",
+      "key_points": [
+        "Three major sections: Rule, Notification, Active Status",
+        "Rule dropdown selection drives conditional target options and parameter fields",
+        "Section labeling provides scannable structure for a complex form",
+        "Single Save button at the bottom commits all settings at once"
+      ],
+      "related": ["conditional-form-fields", "wizard-pattern", "form-sections"]
+    },
+    {
+      "title": "Toggle for Enable/Disable (Active Status)",
+      "summary": "Each alert has an Active Status toggle that enables or disables the alert without deleting it. New alerts default to active. This soft-disable pattern allows admins to temporarily silence an alert while preserving its configuration for later reactivation.",
+      "key_points": [
+        "Single toggle control for enable/disable state",
+        "New alerts default to active",
+        "Allows pausing alerts without losing configuration"
+      ],
+      "related": ["toggle-control", "enable-disable", "alert-management"]
+    },
+    {
+      "title": "Two-Path Destructive Action (Inline + Page-Level Delete)",
+      "summary": "Alerts can be deleted via two paths: an inline ellipsis menu on the list view, or a Delete button at the bottom of the detail page. Both paths show a confirmation dialog. This dual-path pattern gives users flexibility but requires consistent confirmation behavior across both entry points.",
+      "key_points": [
+        "Inline ellipsis menu on alert list row for quick deletion",
+        "Page-level Delete button at the bottom of the alert detail view",
+        "Confirmation dialog required before deletion in both paths"
+      ],
+      "related": ["destructive-action", "confirmation-dialog", "ellipsis-menu"]
+    },
+    {
+      "title": "Inline Add for Multi-Value Fields (Email/Chat Recipients)",
+      "summary": "Email recipients and chat channels use an inline 'Add' pattern rather than a separate configuration modal. The acknowledgement checkbox for email recipients ('I acknowledge that the email I filled in is correct') adds a deliberate confirmation step to prevent misdirected alerts.",
+      "key_points": [
+        "Add button for appending email recipients and chat channels inline",
+        "Email recipients require an explicit acknowledgement checkbox for correctness",
+        "Chat channel addition opens a dialog for verification token and endpoint configuration"
+      ],
+      "related": ["inline-add", "multi-value-fields", "acknowledgement-checkbox"]
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "article_id": "KB0084831",
+  "concepts": [
+    {
+      "title": "Zoom Phone Call Summary Templates",
+      "summary": "AI Companion-powered templates that structure how call summaries are formatted and presented to users. Designers should consider that templates can be predefined (system-provided) or custom (admin-created), each offering different levels of flexibility in how call intelligence is surfaced.",
+      "key_points": [
+        "Admins can create custom templates to match business-specific formatting needs",
+        "Templates apply across call summaries, transcripts, voicemail transcriptions, and recordings",
+        "Predefined and custom template types coexist, with admins selecting which to apply",
+        "Setting can be configured at multiple hierarchy levels: account, group, site, phone user, and personal"
+      ],
+      "related": ["call-summary-ai-companion", "custom-ai-companion-addon", "hierarchical-setting-locking"]
+    },
+    {
+      "title": "Call Summary with AI Companion",
+      "summary": "An AI-powered feature that generates structured summaries of Zoom Phone calls. The UX must communicate that this is a prerequisite for template functionality, and that summaries are generated automatically at the end of each call when enabled.",
+      "key_points": [
+        "Must be enabled before call summary templates can be used",
+        "Works in conjunction with custom dictionaries for improved transcription accuracy",
+        "Available under the AI Companion section of Zoom Phone settings"
+      ],
+      "related": ["call-summary-templates", "custom-ai-companion-addon"]
+    },
+    {
+      "title": "Custom AI Companion Add-on",
+      "summary": "A licensed add-on that unlocks advanced AI Companion features including custom call summary templates and dictionaries. Designers need to account for gating and upsell moments when the add-on is not present.",
+      "key_points": [
+        "Required alongside a Zoom Workplace or standalone Zoom Phone license",
+        "Enables custom template creation and custom dictionary features",
+        "Feature availability may be hidden or disabled without this add-on"
+      ],
+      "related": ["call-summary-templates", "license-gating"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin",
+      "summary": "The highest privilege level for configuring call summary templates. Account owners and admins can enable/disable the feature at any level (account, group, site, user) and can lock settings to prevent lower-level overrides. This hierarchical control model means admin workflows often involve setting defaults and then selectively unlocking for teams.",
+      "key_points": [
+        "Can configure at account, group, site, and individual phone user levels",
+        "Can lock settings to prevent changes by lower-level roles",
+        "Can select default call summary templates for each level",
+        "Must have Custom AI Companion add-on and call summary enabled"
+      ],
+      "related": ["hierarchical-setting-locking", "verification-dialog"]
+    },
+    {
+      "title": "Individual Phone User",
+      "summary": "Individual users can enable or disable call summary templates for their own account via Settings > Phone, unless locked by an admin at a higher level. The UX must clearly indicate when settings are locked (grayed out) and guide users to contact their admin for changes.",
+      "key_points": [
+        "Can configure personal setting unless locked at group or account level",
+        "Accesses setting via Settings > Phone > Settings > Others",
+        "Does not require admin privileges to change their own setting",
+        "Sees grayed-out toggle with explanation when locked by admin"
+      ],
+      "related": ["hierarchical-setting-locking", "grayed-out-controls"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Enable or Disable Call Summary Templates at Account Level",
+      "summary": "Admins navigate through Account Management > Account Settings > Zoom Phone > AI Companion to toggle call summary templates for all users. The flow includes an optional lock step to prevent lower-level changes, and an optional default template selection step. Designers should structure this as a single coherent settings section with clear hierarchy indicators.",
+      "key_points": [
+        "Path: Account Management > Account Settings > Zoom Phone > AI Companion",
+        "Toggle with verification dialog for enable/disable confirmation",
+        "Optional lock icon to prevent lower-level overrides",
+        "Optional default template selection step"
+      ],
+      "related": ["hierarchical-setting-locking", "verification-dialog", "call-summary-templates"]
+    },
+    {
+      "title": "Enable or Disable Call Summary Templates at Group Level",
+      "summary": "Admins configure the setting for a specific user group via User Management > Groups > [group] > Zoom Phone > AI Companion. The setting is grayed out if locked at the account level, requiring the admin to understand the hierarchical relationship. This flow is nearly identical to the account-level flow but scoped to a group.",
+      "key_points": [
+        "Path: User Management > Groups > [group name] > Zoom Phone > AI Companion",
+        "Grayed out if locked at account level, with note directing to account-level change",
+        "Optional lock and default template selection",
+        "Changes apply only to users in the selected group"
+      ],
+      "related": ["hierarchical-setting-locking", "grayed-out-controls", "verification-dialog"]
+    },
+    {
+      "title": "Enable or Disable Call Summary Templates at Site Level",
+      "summary": "Admins configure the setting for a specific site via Phone System Management > Company Info > [site] > Policy > AI Companion. Similar to the group flow but navigated through site-related menus, which could lead to discoverability issues if admins are unsure where site settings live versus group settings.",
+      "key_points": [
+        "Path: Phone System Management > Company Info > [site name] > Policy > AI Companion",
+        "Uses Policy tab rather than a dedicated Zoom Phone tab, which differs from account/group flows",
+        "Grayed out if locked at account level"
+      ],
+      "related": ["hierarchical-setting-locking", "grayed-out-controls", "site-management"]
+    },
+    {
+      "title": "Enable or Disable Call Summary Templates at Phone User Level",
+      "summary": "Admins configure the setting for an individual phone user via Phone System Management > Users & Rooms > [user] > Policy > AI Companion. As the most granular setting level, designers should consider how admins efficiently manage individual overrides alongside group and site defaults.",
+      "key_points": [
+        "Path: Phone System Management > Users & Rooms > Users > [user] > Policy > AI Companion",
+        "Grayed out if locked at account level",
+        "Changes apply only to the selected phone user"
+      ],
+      "related": ["hierarchical-setting-locking", "grayed-out-controls"]
+    },
+    {
+      "title": "Select a Call Summary Template",
+      "summary": "After enabling the feature, admins or users select from predefined or custom templates. The UX must differentiate between system-provided predefined templates and custom admin-created templates, with clear labeling so users understand the origin and purpose of each option.",
+      "key_points": [
+        "Two template categories: predefined (system-provided) and custom (admin-created)",
+        "Available at every configuration level (account, group, site, user, personal)",
+        "Template selection is optional but likely to be the primary action after enabling"
+      ],
+      "related": ["call-summary-templates"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Desktop App Version Requirement",
+      "summary": "Call summary templates require Zoom Workplace desktop app version 7.0.0 or later. Designers should consider graceful degradation or an upgrade prompt for users on older versions, as the setting may appear in the web portal but not function on outdated clients.",
+      "key_points": [
+        "Minimum version: Zoom Workplace desktop app 7.0.0+",
+        "Older clients may not respect the web portal's template configuration",
+        "Consider upgrade nudge or version-awareness in the settings UI"
+      ],
+      "related": ["call-summary-templates", "version-gating"]
+    },
+    {
+      "title": "License and Add-on Prerequisites",
+      "summary": "Three prerequisites must be met: a Zoom Workplace license with Phone (or standalone Zoom Phone plan), the Custom AI Companion add-on, and call summary with AI Companion enabled. The UX must handle the case where one or more prerequisites are missing, with clear messaging about what is needed and how to obtain it.",
+      "key_points": [
+        "Zoom Workplace with Phone license OR standalone Zoom Phone calling plan",
+        "Custom AI Companion add-on required",
+        "Call summary with AI Companion must be enabled first",
+        "Missing prerequisites should surface contextual upgrade paths"
+      ],
+      "related": ["custom-ai-companion-addon", "call-summary-ai-companion", "license-gating"]
+    },
+    {
+      "title": "Hierarchical Setting Locking",
+      "summary": "When a setting is locked at a higher level (account), it becomes grayed out and immutable at lower levels (group, site, user, personal). Designers must ensure the disabled state clearly explains why the control is unavailable and points the user to the level where the lock was applied.",
+      "key_points": [
+        "Account-level lock cascades down to all lower levels",
+        "Grayed-out controls must include explanatory text about where to change the setting",
+        "Individual users are told to contact their admin when locked",
+        "Lock icon is a visual indicator used across all admin configuration pages"
+      ],
+      "related": ["hierarchical-setting-locking-ux", "grayed-out-controls", "lock-icon"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Hierarchical Setting Locking",
+      "summary": "A cascading permissions pattern where admins can lock a setting at any level (account, group, site), preventing lower-level roles from modifying it. The UI uses a lock icon button paired with a lock confirmation dialog. This pattern appears across Zoom Phone admin settings and needs visual consistency in how locks are represented, confirmed, and unlocked.",
+      "key_points": [
+        "Lock icon toggle with confirmation dialog",
+        "Grayed-out state for locked settings at lower levels",
+        "Informational text explaining where the lock was applied",
+        "Pattern repeats identically across account, group, site, and user configuration pages"
+      ],
+      "related": ["grayed-out-controls", "verification-dialog"]
+    },
+    {
+      "title": "Verification Dialog for Toggle Changes",
+      "summary": "When toggling call summary templates on or off, a verification dialog appears requiring the user to confirm by clicking Enable or Disable. This pattern prevents accidental toggles of impactful settings and is part of a broader confirmation pattern used throughout the Zoom web portal. Designers should maintain consistency in dialog wording and button labeling.",
+      "key_points": [
+        "Appears after toggling the setting, not preemptively",
+        "Two-button pattern: Enable/Disable vs. implicit cancel",
+        "Consistent with verification patterns in other Zoom Phone settings"
+      ],
+      "related": ["hierarchical-setting-locking", "toggle-confirmation"]
+    },
+    {
+      "title": "Grayed-out Control with Inline Explanation",
+      "summary": "When a setting is locked at a higher level, the toggle becomes grayed out with an inline note explaining the restriction. For group/site/user levels, the note indicates the setting is locked at the account level; for personal settings, it directs users to contact their admin. This inline explanation pattern avoids modal dialogs and keeps context visible.",
+      "key_points": [
+        "Toggle rendered as disabled/grayed out, not hidden",
+        "Inline note appears adjacent to the control explaining the restriction",
+        "Different messaging for admins (where to change) vs. individual users (contact admin)",
+        "Preserves visibility of the setting so users know it exists"
+      ],
+      "related": ["hierarchical-setting-locking"]
+    }
+  ]
+}

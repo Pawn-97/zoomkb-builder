@@ -1,0 +1,177 @@
+{
+  "article_id": "KB0074437",
+  "concepts": [
+    {
+      "title": "Zoom Phone + LTI Pro Integration",
+      "summary": "Embeds Zoom Phone calling capability directly into LTI Pro within an LMS course. Instructors and admins can make calls, send SMS, and view recordings without leaving their course environment. The integration relies on the Zoom client for call routing, meaning users must be signed into both the LMS and the Zoom desktop client.",
+      "key_points": [
+        "Click-to-dial from within LTI Pro for automatic phone number detection",
+        "Floating phone window powered by Zoom Phone Smart Embed",
+        "Call logs, voicemails, and SMS accessible within the LTI interface",
+        "Uses Zoom client to route calls—separate sign-in required"
+      ],
+      "related": ["zoom-phone-smart-embed", "lti-pro-credentials", "lms-integration"]
+    },
+    {
+      "title": "LTI Contacts",
+      "summary": "The course roster displayed within LTI Pro with the ability to attach phone numbers to individual students. Once populated, contacts become click-to-dial or click-to-SMS targets. Designers should treat this as an editable directory that bridges LMS roster data with Zoom Phone communication.",
+      "key_points": [
+        "Course roster pre-populated from LMS, initially without phone numbers",
+        "Inline editing to add phone numbers per contact",
+        "Dedicated Phone and SMS action icons per contact row",
+        "Phone numbers expire after 180 days"
+      ],
+      "related": ["lti-contacts", "click-to-dial", "bulk-import-contacts"]
+    },
+    {
+      "title": "Phone Number Bulk Import",
+      "summary": "CSV-based workflow to populate phone numbers for the entire LTI course roster at once. Admins download a template, fill in numbers, and upload it back. This pattern is commonly used for batch operations where manual entry would be impractical.",
+      "key_points": [
+        "Downloadable CSV template provides the correct format",
+        "Upload replaces manual per-contact number entry",
+        "Import dialog guides the user through the three-step process"
+      ],
+      "related": ["lti-contacts", "bulk-operations", "csv-import"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "LTI Instructor / Admin",
+      "summary": "Instructors and LMS admins are the only roles permitted to use Zoom Phone within LTI Pro. Their LMS role determines whether the Phone button appears in the interface. Designers must ensure unauthorized users (students) never see telephony controls, and that role-based visibility is enforced at the LMS level via NRPS.",
+      "key_points": [
+        "Only teachers or admins of the LMS Course have Zoom Phone access in LTI Pro",
+        "The user's Zoom account email must match the LMS login email",
+        "Role is determined by LMS membership, not Zoom permissions"
+      ],
+      "related": ["names-and-role-provisioning-service", "lti-pro"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Configure LTI Pro for Zoom Phone (Admin)",
+      "summary": "Admins enable Zoom Phone for an existing LTI 1.3 integration through the Zoom Marketplace. This is a single toggle within the LTI Pro app configuration. The flow assumes the LTI 1.3 credential is already set up; if not, the admin must configure that first before the Zoom Phone toggle becomes available.",
+      "key_points": [
+        "Navigate to Zoom Marketplace > Manage > Apps on Account > LTI Pro App",
+        "Open Configure and select the LTI 1.3 credential",
+        "Enable the Zoom Phone toggle",
+        "LTI 1.3 credential must exist before the toggle appears"
+      ],
+      "related": ["lti-pro-credentials", "zoom-marketplace", "admin-setup"]
+    },
+    {
+      "title": "Authorize Zoom Phone in LTI Pro (End User)",
+      "summary": "Each instructor or admin must individually authorize Zoom Phone the first time they launch it within LTI Pro. This OAuth-style redirection asks the user to log in and grant permissions. The matching-email requirement between Zoom and LMS accounts is a potential friction point that designers should account for with clear error messaging.",
+      "key_points": [
+        "Launch LTI Pro and click the Phone button",
+        "Complete OAuth-style connection dialog and log in with Zoom credentials",
+        "Click Allow to grant permissions and see a success message",
+        "Zoom account email must match LMS login email—mismatch blocks authorization",
+        "User must also be signed into the Zoom desktop client for calls to route"
+      ],
+      "related": ["zoom-client-sign-in", "oauth-authorization", "user-authorization"]
+    },
+    {
+      "title": "Open Zoom Phone in LTI Pro (Daily Use)",
+      "summary": "After initial authorization, the Phone button in LTI Pro opens the Zoom Phone floating window. Users must be signed into the Zoom desktop client beforehand. This two-app dependency (LMS browser + Zoom client) creates a persistent setup step that designers should consider surfacing as a pre-flight check.",
+      "key_points": [
+        "Sign in to Zoom desktop client with the same Zoom user account",
+        "Click the Phone button in LTI Pro to open the floating phone window"
+      ],
+      "related": ["zoom-phone-smart-embed", "zoom-client-sign-in"]
+    },
+    {
+      "title": "Add Phone Numbers to LTI Contacts",
+      "summary": "Instructors populate phone numbers for their course roster by selecting a contact and manually adding the number. Each contact row then exposes Phone and SMS action icons for one-click communication.",
+      "key_points": [
+        "Open Contacts tab to view the course roster",
+        "Click Edit on a contact row",
+        "Enter phone number and click Add",
+        "Use Phone icon or SMS icon next to the contact to initiate communication"
+      ],
+      "related": ["lti-contacts", "click-to-dial", "sms-messaging"]
+    },
+    {
+      "title": "Bulk Import Phone Numbers into Contacts",
+      "summary": "A CSV-based import flow for populating the entire course roster with phone numbers at once. The downloadable template ensures format consistency. This is a classic bulk-operation pattern: download template, edit offline, upload, confirm.",
+      "key_points": [
+        "Click Import Phone Numbers in the Contacts tab",
+        "Download the CSV template",
+        "Edit the CSV with phone numbers",
+        "Upload the edited file via the import dialog and click Upload"
+      ],
+      "related": ["lti-contacts", "csv-import", "bulk-operations"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "LMS Must Support LTI 1.3 with NRPS Scope",
+      "summary": "Zoom Phone in LTI Pro only works with LMS platforms that support LTI 1.3 and have the Names and Role Provisioning Services (NRPS) scope enabled. This limits the feature to specific LMS configurations (Canvas, Moodle, Blackboard, Brightspace) and adds a prerequisite admin setup step before Zoom Phone can be enabled.",
+      "key_points": [
+        "Only LTI 1.3 integrations are supported (not earlier LTI versions)",
+        "NRPS scope must be enabled in the LMS before Zoom Phone integration",
+        "Specific configuration steps exist for Canvas, Moodle, Blackboard, and Brightspace"
+      ],
+      "related": ["names-and-role-provisioning-service", "lti-pro-credentials"]
+    },
+    {
+      "title": "Phone Numbers Stored for 180 Days",
+      "summary": "Phone numbers in the LTI course contacts list expire after 180 days. This means instructors may need to re-enter or re-import contact numbers each semester. Designers should consider surfacing expiration warnings and providing a re-import affordance.",
+      "key_points": [
+        "180-day retention on contact phone numbers",
+        "Impacts semester-to-semester workflows where courses are resubscribed"
+      ],
+      "related": ["lti-contacts", "data-retention"]
+    },
+    {
+      "title": "Email Matching Requirement for Authorization",
+      "summary": "The Zoom user account email must be identical to the email used to log into the LMS. A mismatch silently blocks authorization with a login failure. Designers should provide clear, specific error messaging when email mismatch is detected.",
+      "key_points": [
+        "Zoom account email must match LMS login email exactly",
+        "Mismatch results in a confusing login failure if not clearly surfaced"
+      ],
+      "related": ["user-authorization", "lti-pro"]
+    },
+    {
+      "title": "Zoom Desktop Client Required for Call Routing",
+      "summary": "The Zoom Phone widget in LTI Pro uses the Zoom desktop client to route calls. Users cannot make or receive calls through LTI Pro without the Zoom client installed and signed in. This creates a two-application dependency that should be clearly communicated in the UI.",
+      "key_points": [
+        "Zoom desktop client must be installed and signed in",
+        "Same Zoom user must be signed into both LTI Pro and the Zoom client",
+        "Without the client, the Phone button in LTI Pro is non-functional"
+      ],
+      "related": ["zoom-client-sign-in", "zoom-phone-smart-embed"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Floating Phone Window (Smart Embed)",
+      "summary": "Zoom Phone opens in a floating window within LTI Pro, sharing the same interaction model as Zoom Phone Smart Embed. This pattern allows telephony functionality to live alongside LMS course content without leaving the page. The floating window handles calls, SMS, voicemail, and call history in a compact persistent panel.",
+      "key_points": [
+        "Floating panel that overlays LMS course content",
+        "Contains Contacts, Phone, and SMS tabs",
+        "Shares design and behavior with Zoom Phone Smart Embed"
+      ],
+      "related": ["zoom-phone-smart-embed", "floating-panel"]
+    },
+    {
+      "title": "Click-to-Dial from Contact Roster",
+      "summary": "Each contact row in LTI Pro provides a Phone icon and SMS icon that initiate calls or messages with a single click. This inline-action pattern reduces the steps needed to communicate with a course member and should be visually distinct for quick scanning.",
+      "key_points": [
+        "Phone icon and SMS icon per contact row",
+        "Single-click initiates the respective communication mode",
+        "Works only after a phone number has been added to the contact"
+      ],
+      "related": ["lti-contacts", "click-to-dial", "inline-actions"]
+    },
+    {
+      "title": "OAuth-Style Authorization Prompt",
+      "summary": "The first-time Zoom Phone authorization in LTI Pro uses an OAuth-style redirect: the user clicks Connect, is redirected to log in, and must click Allow to grant permissions. A success message confirms the connection. This familiar delegation pattern should follow platform OAuth conventions for trust and clarity.",
+      "key_points": [
+        "Connect button triggers redirect to Zoom login",
+        "Allow/Deny permission prompt after login",
+        "Success confirmation message on completion"
+      ],
+      "related": ["oauth-authorization", "user-authorization"]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "article_id": "KB0085540",
+  "concepts": [
+    {
+      "title": "Zoom Virtual Agent SMS Tool",
+      "summary": "An integration that allows Zoom Virtual Agent voice agents to send SMS messages during live calls, enabling agents to deliver rich content (URLs, survey links, dynamic text) that would be difficult to convey over voice alone. Designers must consider how the SMS interaction co-exists with the ongoing voice call and how recipients experience the transition between modalities.",
+      "key_points": [
+        "Embeds SMS capabilities within voice agent interactions during live calls",
+        "Messages can contain dynamic text, URLs, or survey links",
+        "Configured as a 'tool' within the voice agent's instruction builder",
+        "Uses forward-slash (/) keyboard shortcut for variable and tool insertion"
+      ],
+      "related": ["zoom-phone-sms", "voice-agent", "auto-receptionist-sms", "tool-insertion"]
+    },
+    {
+      "title": "Zoom Phone SMS Feature",
+      "summary": "SMS messaging capability within Zoom Phone that, when combined with Zoom Virtual Agent, enables automated text messaging during voice calls. The feature requires an approved messaging campaign for the phone number and an allow list of users who can view incoming SMS replies. The dual-configuration nature (ZVA side + ZP side) means designers must consider two separate setup interfaces working in concert.",
+      "key_points": [
+        "Requires both Zoom Virtual Agent and Zoom Phone licenses",
+        "Phone number must have an Approved Messaging Campaign",
+        "Allow List controls which users can view incoming customer SMS replies",
+        "SMS toggle is under Auto Receptionist Policy > General section"
+      ],
+      "related": ["zva-sms-tool", "auto-receptionist-sms", "approved-messaging-campaign", "sms-allow-list"]
+    },
+    {
+      "title": "Approved Messaging Campaign",
+      "summary": "A prerequisite registration for phone numbers used in SMS messaging, required before a number can send SMS through Zoom Phone. The article notes that if a campaign does not exist, one must be created. This introduces a potentially hidden dependency in the setup flow that could block users who are unaware of the requirement.",
+      "key_points": [
+        "Required for any phone number used for SMS in Zoom Phone",
+        "Must be created before the SMS toggle can function",
+        "Referenced as a prerequisite rather than a step in the main flow",
+        "Potential hidden blocker for admins setting up SMS for the first time"
+      ],
+      "related": ["zoom-phone-sms", "auto-receptionist-sms", "sms-setup"]
+    },
+    {
+      "title": "Voice Agent Instruction Builder",
+      "summary": "The interface within Zoom Virtual Agent where voice agent behavior is defined through skills, triggers, and instructions. The SMS tool is inserted into instructions using a search or forward-slash shortcut, with dynamic variables for sender number, recipient number, and message content. Designers should ensure the variable insertion experience is intuitive for non-technical admins building conversation flows.",
+      "key_points": [
+        "Skills section defines trigger name and description",
+        "Instruction section is where tools like SMS are inserted",
+        "Forward-slash (/) shortcut or Insert button to add tools/variables",
+        "Content field supports dynamic variables for message personalization"
+      ],
+      "related": ["zva-sms-tool", "tool-insertion", "voice-agent"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin",
+      "summary": "Admins configure both sides of the SMS integration: the ZVA voice agent's SMS tool and the Zoom Phone Auto Receptionist's SMS settings. They must understand the interplay between the two systems and navigate between different admin interfaces (Virtual Agent configuration vs. Phone System Management) to complete the setup.",
+      "key_points": [
+        "Configures SMS tool within the voice agent's instruction builder",
+        "Sets up Zoom Phone Auto Receptionist SMS policy and Allow List",
+        "Assigns 10-digit phone numbers with approved messaging campaigns",
+        "Must have privileges for both Zoom Virtual Agent and Zoom Phone settings"
+      ],
+      "related": ["zva-sms-tool", "zoom-phone-sms", "auto-receptionist-sms", "sms-allow-list"]
+    },
+    {
+      "title": "Zoom Phone User (Allow List Member)",
+      "summary": "Zoom Phone users who are added to the SMS Allow List gain the ability to view incoming SMS replies from customers. This role is distinct from the admin who configures the system—the UX must make clear that being on the Allow List is what grants visibility to customer SMS responses, not general Zoom Phone user status.",
+      "key_points": [
+        "Must be explicitly added to the Allow List to view incoming SMS replies",
+        "At least one user must be on the Allow List for the feature to function",
+        "Distinct from general Zoom Phone user role; SMS reply visibility is opt-in",
+        "No admin privileges required for this role"
+      ],
+      "related": ["sms-allow-list", "zoom-phone-sms", "auto-receptionist-sms"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Configure the SMS Tool Within a Voice Agent",
+      "summary": "Admins create or edit a voice agent, define a skill with trigger description, then insert the SMS tool into the instruction using search or forward-slash. They configure the sender number (entry point), recipient phone number variable, and SMS content with dynamic variables. The flow ends with Save and Publish. The UX challenge is making tool configuration accessible to admins who may not be familiar with variable-driven message composition.",
+      "key_points": [
+        "Start from an existing or new instruction-based voice agent",
+        "Define a skill name and trigger description in the Skills section",
+        "Insert SMS tool via search or forward-slash (/) shortcut",
+        "Configure: sender number (entry point), recipient number (variable), message content (with dynamic variables)",
+        "Save and add, then publish the voice agent to apply changes"
+      ],
+      "related": ["voice-agent-instruction-builder", "zva-sms-tool", "tool-insertion"]
+    },
+    {
+      "title": "Configure Zoom Phone Auto Receptionist for SMS",
+      "summary": "Admins navigate to Phone System Management > AI Receptionist > Virtual Agent, select the associated auto receptionist, assign a 10-digit phone number with an approved messaging campaign, enable the SMS toggle under Policy, and add Zoom Phone users to the Allow List. Each step has dependencies (number needs campaign, toggle needs Allow List) that must be validated in sequence.",
+      "key_points": [
+        "Path: Phone System Management > AI Receptionist > Virtual Agent tab",
+        "Select auto receptionist associated with the voice agent",
+        "Assign a 10-digit phone number (must have Approved Messaging Campaign)",
+        "Enable SMS toggle under Policy > General",
+        "Add at least one Zoom Phone user to the Allow List for SMS replies"
+      ],
+      "related": ["auto-receptionist-sms", "zoom-phone-sms", "approved-messaging-campaign", "sms-allow-list"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Dual License Requirement",
+      "summary": "Both Zoom Virtual Agent and Zoom Phone licenses are required to use the SMS tool integration. The UX must handle scenarios where one or both licenses are missing with clear upgrade guidance, and should not surface SMS configuration options if prerequisites are not met.",
+      "key_points": [
+        "Zoom Virtual Agent license required",
+        "Zoom Phone license required",
+        "Both must be present for the SMS tool to be available",
+        "Missing license should result in gated or hidden configuration options"
+      ],
+      "related": ["zva-sms-tool", "zoom-phone-sms", "license-gating"]
+    },
+    {
+      "title": "Approved Messaging Campaign Required for Phone Number",
+      "summary": "The phone number assigned to the auto receptionist for SMS must have an Approved Messaging Campaign. If no campaign exists, one must be created before the SMS feature can be enabled. This creates a prerequisite sub-flow that may not be obvious to admins setting up SMS for the first time.",
+      "key_points": [
+        "Phone number must have an Approved Messaging Campaign before SMS can be enabled",
+        "If no campaign exists, one must be created separately",
+        "This is noted as a prerequisite rather than a step in the main flow",
+        "Admins may be blocked if they are unaware of this requirement"
+      ],
+      "related": ["approved-messaging-campaign", "zoom-phone-sms", "auto-receptionist-sms"]
+    },
+    {
+      "title": "SMS Allow List Minimum Requirement",
+      "summary": "At least one Zoom Phone user must be added to the SMS Allow List for the feature to function. The UX should validate this and prevent enabling SMS without at least one user, and should communicate why an Allow List is needed (so someone can view incoming customer replies).",
+      "key_points": [
+        "At least one Zoom Phone user must be on the Allow List",
+        "Allow List users are the only ones who can view incoming SMS replies",
+        "Validation should prevent enabling SMS without at least one Allow List entry"
+      ],
+      "related": ["sms-allow-list", "zoom-phone-sms", "auto-receptionist-sms"]
+    },
+    {
+      "title": "10-Digit Phone Number Requirement",
+      "summary": "Only 10-digit phone numbers can be assigned to the auto receptionist for SMS functionality. Numbers with other digit counts are not supported. The UX should filter or validate number selections to prevent assignment of ineligible numbers.",
+      "key_points": [
+        "Assigned phone number must be 10 digits",
+        "Numbers with other digit lengths are not supported for SMS",
+        "Should be validated at the number selection step"
+      ],
+      "related": ["auto-receptionist-sms", "phone-number-assignment"]
+    },
+    {
+      "title": "Voice Agent Type Restriction",
+      "summary": "This SMS tool configuration applies specifically to voice agents in Zoom Virtual Agent. Chat agents and classic chatbots use different setup and deployment methods. Designers should ensure the SMS configuration interface is only surfaced for voice agent types to avoid confusion.",
+      "key_points": [
+        "SMS tool is specific to instruction-based voice agents",
+        "Chat agents and classic chatbots have separate setup processes",
+        "The SMS configuration should only appear for applicable agent types",
+        "Different agent types may have different documentation references"
+      ],
+      "related": ["voice-agent", "zva-sms-tool", "agent-type-selection"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Tool Insertion via Search and Forward-Slash Shortcut",
+      "summary": "Within the voice agent instruction builder, tools and variables are inserted either by clicking Insert and searching, or by typing a forward-slash (/) to invoke an inline picker. This dual-path insertion pattern (mouse + keyboard shortcut) provides efficiency for power users while remaining discoverable for new users. The forward-slash pattern is common in modern editing interfaces but may need onboarding cues.",
+      "key_points": [
+        "Forward-slash (/) keyboard shortcut for quick tool/variable insertion",
+        "Insert button provides a click-based alternative for discoverability",
+        "Search-as-you-type within the insertion interface",
+        "Pattern likely extends to other tools beyond SMS"
+      ],
+      "related": ["voice-agent-instruction-builder", "tool-insertion", "keyboard-shortcut"]
+    },
+    {
+      "title": "Dynamic Variable Insertion in Message Composition",
+      "summary": "The SMS content field supports dynamic variables (e.g., recipient phone number, custom text) inserted via the same forward-slash or Insert mechanism. This allows admins to compose template messages that personalize at runtime. The UX must provide a clear variable picker with descriptive labels so non-technical users understand what each variable represents.",
+      "key_points": [
+        "Variables inserted into SMS content using forward-slash or Insert button",
+        "Recipient phone number is configured as a variable, not a static value",
+        "Dynamic text variables enable personalized messaging at scale",
+        "Variable names should be descriptive to guide non-technical admins"
+      ],
+      "related": ["tool-insertion", "voice-agent-instruction-builder", "message-template"]
+    },
+    {
+      "title": "Toggle with Dependent Configuration",
+      "summary": "The SMS toggle in the Auto Receptionist Policy tab cannot function independently—it requires a phone number with an approved messaging campaign and at least one user on the Allow List. This pattern of a master toggle with prerequisite sub-configurations should provide inline validation and guided setup rather than allowing the toggle to be enabled in a non-functional state.",
+      "key_points": [
+        "SMS toggle under Policy > General is the master enable/disable",
+        "Depends on: assigned 10-digit number with campaign, Allow List with at least one user",
+        "Enabling without prerequisites met should surface validation errors or guided setup",
+        "Relationship between toggle and its dependencies should be visually clear"
+      ],
+      "related": ["zoom-phone-sms", "auto-receptionist-sms", "approved-messaging-campaign", "sms-allow-list"]
+    },
+    {
+      "title": "Cross-System Configuration (ZVA + Zoom Phone)",
+      "summary": "Setting up SMS requires configuration in two separate admin interfaces: Zoom Virtual Agent (voice agent settings) and Zoom Phone (auto receptionist settings). This split-configuration pattern increases cognitive load and the risk of partial setup. Designers should consider a unified setup wizard that guides admins through both sides or at minimum cross-links between the two configuration surfaces.",
+      "key_points": [
+        "Configuration split between ZVA voice agent builder and Phone System Management",
+        "Each side has distinct prerequisites and steps",
+        "No mention of a unified or wizard-based setup flow",
+        "Admins must understand the relationship between the two systems to complete setup",
+        "Cross-linking between the two configuration surfaces would reduce confusion"
+      ],
+      "related": ["zva-sms-tool", "zoom-phone-sms", "auto-receptionist-sms", "setup-wizard"]
+    }
+  ]
+}

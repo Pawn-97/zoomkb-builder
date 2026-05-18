@@ -1,0 +1,152 @@
+{
+  "article_id": "KB0081958",
+  "concepts": [
+    {
+      "title": "Self-Serve Hardware Purchase for Zoom Phone",
+      "summary": "An online purchase flow that lets customers buy desk phone hardware directly through Zoom's self-service pricing page, checkout, and order confirmation screens. This embeds hardware sales into the software purchasing journey, turning what was likely a separate sales-assisted process into a self-guided ecommerce experience.",
+      "key_points": [
+        "Hardware options appear on the Zoom Phone pricing page, checkout, and order confirmation screen",
+        "Customers self-select and purchase hardware without contacting sales",
+        "Hardware can only be bought alongside a new Zoom Phone license or as a bundle (US only)"
+      ],
+      "related": ["zoom-phone-pricing", "self-serve-checkout", "hardware-fulfillment"]
+    },
+    {
+      "title": "Hardware Order Fulfillment via UC Direct",
+      "summary": "Zoom partners with UC Direct for hardware order fulfillment, technical support, returns, and post-purchase order changes. This third-party relationship means the customer journey splits after purchase: Zoom handles the software/license while UC Direct handles all physical hardware logistics. Designers must clearly communicate this handoff to avoid customer confusion about who to contact.",
+      "key_points": [
+        "UC Direct manages hardware shipping, tracking, technical support, and returns",
+        "Customers receive order tracking from UC Direct via email and the Zoom Billing Portal",
+        "Post-purchase address changes must be handled through UC Direct, not Zoom",
+        "UC Direct has the right to reject orders independently of Zoom"
+      ],
+      "related": ["uc-direct", "order-tracking", "post-purchase-support", "hardware-returns"]
+    },
+    {
+      "title": "Device Assignment After Purchase",
+      "summary": "After purchasing hardware, customers must assign the device to a specific user to complete setup. If forgotten, the system sends reminders via email and the Billing Portal. This post-purchase assignment step is critical to the hardware activation workflow and should be prominently surfaced after checkout.",
+      "key_points": [
+        "Device assignment to a user is required to complete hardware setup",
+        "Email and Billing Portal reminders are sent if assignment is not completed",
+        "Assignment likely happens in a separate interface from the purchase flow"
+      ],
+      "related": ["device-assignment", "billing-portal", "post-purchase-flow"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Zoom Phone Purchaser (Self-Serve Customer)",
+      "summary": "The end customer who buys hardware through Zoom's self-serve online flow. This role is restricted to US-based customers purchasing with a new Zoom Phone license. The experience is entirely self-guided, so the interface must anticipate and answer common questions (shipping, returns, device limits) inline without requiring sales intervention.",
+      "key_points": [
+        "Must be purchasing with a new Zoom Phone license or bundle",
+        "Restricted to US customers with valid US street addresses (no P.O. boxes)",
+        "Limited to 50 devices per order at checkout",
+        "Expected to self-manage device assignment, tracking, and returns"
+      ],
+      "related": ["zoom-phone-license", "self-serve-checkout", "device-assignment"]
+    }
+  ],
+  "task_flows": [],
+  "constraints": [
+    {
+      "title": "Hardware Purchase Requires Zoom Phone License",
+      "summary": "Hardware cannot be purchased independently; it must be bought alongside a new Zoom Phone license or as part of a bundle. This bundling constraint means the hardware selection UI should only appear when a qualifying license is in the cart, and should be hidden or disabled otherwise.",
+      "key_points": [
+        "No standalone hardware purchase—must accompany a new license or bundle",
+        "Enforced at the pricing page and checkout level"
+      ],
+      "related": ["zoom-phone-license", "bundled-purchase", "self-serve-checkout"]
+    },
+    {
+      "title": "US-Only Hardware Purchases with Street Address Requirement",
+      "summary": "Hardware purchasing is only available to customers in the United States, and shipments require a valid US street address (P.O. boxes are not accepted). The checkout form must validate US address formats and reject P.O. box entries with a clear error message.",
+      "key_points": [
+        "Geographically restricted to the United States only",
+        "Valid US street address required for shipping—P.O. boxes are rejected",
+        "Address validation should occur at checkout before order submission"
+      ],
+      "related": ["shipping-address", "geo-restriction", "checkout-validation"]
+    },
+    {
+      "title": "Maximum 50 Devices Per Order",
+      "summary": "A hard limit of 50 devices per order is enforced at checkout to filter out large enterprise purchases that should go through a different sales channel. The quantity selector should display this limit and provide guidance for enterprise customers who exceed it.",
+      "key_points": [
+        "50-device maximum per single order",
+        "Enforced at checkout—quantities above 50 should be rejected or redirected to enterprise sales",
+        "Designed to keep self-serve focused on SMB purchases"
+      ],
+      "related": ["device-quantity-limit", "checkout-validation", "enterprise-sales"]
+    },
+    {
+      "title": "30-Day Return Window with Unopened Box Requirement",
+      "summary": "Hardware returns and refunds are available within 30 days of purchase, but only if the box remains unopened. Returns are handled through UC Direct's RMA form and return policy. This strict condition should be clearly communicated before purchase and reinforced in post-purchase communications.",
+      "key_points": [
+        "30-day return window from date of purchase",
+        "Box must be unopened to qualify for return/refund",
+        "RMA form and return process managed by UC Direct, not Zoom"
+      ],
+      "related": ["hardware-returns", "uc-direct", "rma-process", "refund-policy"]
+    },
+    {
+      "title": "30-Day Tax Exemption Certificate Window",
+      "summary": "Tax exemption certificates submitted within 30 days of purchase are reviewed by Zoom's tax team. Certificates submitted after 30 days are presumably not accepted, though the article does not explicitly state the consequence. The post-purchase UI should surface this window and provide a submission mechanism.",
+      "key_points": [
+        "Tax exemption certificates must be submitted within 30 days of purchase",
+        "Reviewed by Zoom's internal tax team (not automated)",
+        "Implicit cutoff at 30 days"
+      ],
+      "related": ["tax-exemption", "post-purchase", "billing"]
+    },
+    {
+      "title": "Post-Purchase Address Changes Require UC Direct",
+      "summary": "Customers who need to change their shipping address after purchase must contact UC Direct directly. Zoom does not handle post-purchase order modifications. This handoff should be clearly communicated to customers, and the post-purchase UI should provide direct links or contact information for UC Direct.",
+      "key_points": [
+        "Shipping address changes after purchase are not handled by Zoom",
+        "Customers must contact UC Direct help form for any post-purchase order changes"
+      ],
+      "related": ["uc-direct", "post-purchase-support", "shipping-address"]
+    },
+    {
+      "title": "UC Direct May Deny Orders",
+      "summary": "UC Direct reserves the right to reject hardware orders. Zoom can review software-related cases if applicable, but hardware order denial is ultimately UC Direct's decision. The UI should set appropriate expectations and provide recourse paths if an order is denied.",
+      "key_points": [
+        "UC Direct has independent authority to reject hardware orders",
+        "Zoom can review cases only if they involve the software portion of the order"
+      ],
+      "related": ["uc-direct", "order-rejection", "order-fulfillment"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Inline Hardware Upsell Across Purchase Funnel",
+      "summary": "Hardware purchase options appear at multiple touchpoints in the customer journey: the Zoom Phone pricing page (consideration), checkout (conversion), and order confirmation screen (post-purchase add-on). This pattern of surfacing hardware options throughout the funnel increases exposure without being intrusive, but requires consistent presentation across all touchpoints.",
+      "key_points": [
+        "Hardware options surfaced on the pricing page for early consideration",
+        "Hardware add-on available during checkout as part of the purchase flow",
+        "Post-purchase confirmation screen offers another opportunity to add hardware"
+      ],
+      "related": ["self-serve-checkout", "purchase-funnel", "upsell-pattern", "cross-sell"]
+    },
+    {
+      "title": "Third-Party Fulfillment Handoff Communication",
+      "summary": "Since UC Direct handles all hardware logistics, the Zoom interface must clearly communicate the handoff at each relevant touchpoint: tracking information, technical support, returns, and address changes. This pattern requires consistent messaging that redirects customers to UC Direct while maintaining Zoom's brand experience.",
+      "key_points": [
+        "Tracking info surfaces in Zoom Billing Portal but originates from UC Direct",
+        "Technical support links point to UC Direct help page, not Zoom support",
+        "Return/refund process starts from Zoom's UI but completes on UC Direct's RMA form",
+        "Clear 'managed by our partner' messaging reduces confusion about who to contact"
+      ],
+      "related": ["uc-direct", "third-party-integration", "post-purchase-support", "handoff-pattern"]
+    },
+    {
+      "title": "FAQ as Decision Support for Ecommerce",
+      "summary": "The article uses a FAQ format to address common purchase-friction questions inline. For a self-serve ecommerce flow, designers should consider embedding these answers contextually (e.g., return policy near the purchase button, device limit in the quantity selector) rather than requiring customers to find a separate help article.",
+      "key_points": [
+        "FAQ covers shipping, returns, device limits, tax exemption, and order tracking",
+        "Answers should be surfaced contextually at relevant points in the purchase flow",
+        "Reduces support tickets by preemptively addressing purchase anxiety"
+      ],
+      "related": ["contextual-help", "faq-pattern", "self-serve-checkout"]
+    }
+  ]
+}

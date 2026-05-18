@@ -1,0 +1,112 @@
+{
+  "article_id": "KB0083506",
+  "concepts": [
+    {
+      "title": "Push to Talk AI Summary",
+      "summary": "An AI Companion feature that generates structured summaries of push-to-talk phone calls, including time period, quick recap, next steps, and full summary sections. The summary is available post-call in call history logs and can be edited and emailed, making it both a real-time catch-up tool and a persistent reference.",
+      "key_points": [
+        "Generates summaries with timed sections: Summary time period, Quick recap, Next steps, Full summary",
+        "Available both during the call (catch-up) and after the call via call history",
+        "Summaries can be edited by the user and emailed",
+        "Requires account-level enablement of Push to Talk AI summary and email report"
+      ],
+      "related": ["ai-companion", "push-to-talk", "catch-me-up-with-ai-companion"]
+    },
+    {
+      "title": "Catch Me Up with AI Companion",
+      "summary": "A feature that lets users request an AI-generated summary of an ongoing push-to-talk conversation from a selected point in time. The UI presents multiple time-based catch-up options, and the AI returns a structured summary that helps users quickly rejoin the conversation context.",
+      "key_points": [
+        "Accessible via an AI Companion icon in the top-right of the call screen",
+        "Presents multiple time-based options for how far back to summarize",
+        "Returns structured output: time period, quick recap, next steps, full summary",
+        "Useful for users joining a push-to-talk channel mid-conversation"
+      ],
+      "related": ["push-to-talk-ai-summary", "push-to-talk", "ai-companion"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Zoom Phone Push-to-Talk User",
+      "summary": "End users who participate in push-to-talk channels and can trigger AI summaries. They interact with the AI Companion icon during calls and access summaries afterward in call history. The experience is mobile-first, available on Android and iOS.",
+      "key_points": [
+        "Uses push-to-talk on Zoom Phone mobile app",
+        "Can trigger AI summaries during or after push-to-talk calls",
+        "Can select audio source (Bluetooth, Speaker, Mute, Headphones) before triggering summary",
+        "Can edit and email generated summaries"
+      ],
+      "related": ["push-to-talk-ai-summary", "catch-me-up-with-ai-companion", "push-to-talk"]
+    },
+    {
+      "title": "Account Admin",
+      "summary": "Responsible for enabling Push to Talk AI summary and the associated email report at the account level. The admin's configuration determines whether the AI Companion icon and summary features are available to end users.",
+      "key_points": [
+        "Enables Push to Talk AI summary at account level",
+        "Enables Push to Talk AI summary email report",
+        "Must have a Zoom Workplace Pro, Business, or Enterprise account"
+      ],
+      "related": ["push-to-talk-ai-summary"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Generate AI Summary During a Push-to-Talk Call",
+      "summary": "A mobile-first flow where the user selects an audio source, taps the AI Companion icon, chooses a catch-up time option, and receives a structured summary. Designers should ensure the icon is easily discoverable in the call UI and the time options are clear and meaningful.",
+      "key_points": [
+        "Step 1: Use push-to-talk on Zoom Phone",
+        "Step 2: Optionally select audio source (Bluetooth, Speaker, Mute, Headphones) from top-left",
+        "Step 3: Tap the AI Companion icon in the top-right corner",
+        "Step 4: Select a catch-up time option from the presented choices",
+        "AI Companion generates summary with time period, quick recap, next steps, and full summary"
+      ],
+      "related": ["push-to-talk-ai-summary", "catch-me-up-with-ai-companion", "push-to-talk"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Account and Enablement Requirements",
+      "summary": "The feature requires a Pro, Business, or Enterprise Zoom Workplace account and both the Push to Talk AI summary and email report settings enabled by an admin. Designers should plan for graceful degradation when prerequisites are not met, with clear messaging about missing requirements.",
+      "key_points": [
+        "Requires Zoom Workplace Pro, Business, or Enterprise account",
+        "Push to Talk AI summary must be enabled at account level",
+        "Push to Talk AI summary email report must also be enabled",
+        "Requires Zoom mobile app for Android or iOS at minimum global version or higher",
+        "AI Companion may not be available for select verticals and regional customers"
+      ],
+      "related": ["push-to-talk-ai-summary", "account-admin"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "AI Companion Icon in Call Toolbar",
+      "summary": "The AI Companion feature is exposed as a dedicated icon button in the top-right corner of the call screen. Tapping it opens a modal or screen with catch-up time options, following a pattern of contextual AI actions surfaced as toolbar icons during live calls.",
+      "key_points": [
+        "Icon placed in top-right of the push-to-talk call screen",
+        "Single tap opens the catch-up options screen",
+        "Consistent with other AI Companion entry points across Zoom products"
+      ],
+      "related": ["catch-me-up-with-ai-companion", "push-to-talk-ai-summary"]
+    },
+    {
+      "title": "Audio Source Selector in Call UI",
+      "summary": "A selector in the top-left corner of the call screen allowing users to choose between Bluetooth, Speaker, Mute, and Headphones. This follows a standard media control pattern and must be easily accessible during an active push-to-talk session.",
+      "key_points": [
+        "Located in top-left corner of call screen",
+        "Options include Bluetooth, Speaker, Mute, and Headphones",
+        "Optional step — user can proceed without changing audio source"
+      ],
+      "related": ["push-to-talk", "catch-me-up-with-ai-companion"]
+    },
+    {
+      "title": "Structured AI Summary Card",
+      "summary": "AI-generated summaries are presented with consistent sections: Summary time period, Quick recap, Next steps, and Full summary. This structured format helps users quickly scan and locate the information they need, and provides a predictable design pattern for AI-generated content in the product.",
+      "key_points": [
+        "Consistent four-section structure for all AI summaries",
+        "Summary time period clarifies the temporal scope of the summary",
+        "Quick recap provides scannable overview",
+        "Next steps surfaces actionable items from the conversation",
+        "Full summary provides comprehensive detail"
+      ],
+      "related": ["push-to-talk-ai-summary", "catch-me-up-with-ai-companion"]
+    }
+  ]
+}

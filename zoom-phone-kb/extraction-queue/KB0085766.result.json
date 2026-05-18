@@ -2,60 +2,138 @@
   "article_id": "KB0085766",
   "concepts": [
     {
-      "title": "ZPLS Call Forwarding Local Survivability",
-      "summary": "Call Forwarding Local Survivability redirects incoming calls to Zoom Native numbers (or Provider Exchange numbers) to BYOC-P numbers during internet outages. This ensures calls reach users even when Zoom cloud is unreachable. Designers should note this is a pre-configured failover, not an automatic one — admins must manually enable forwarding during an outage.",
-      "key_points": ["Redirects Zoom Native/Provider Exchange numbers to BYOC-P numbers during outage", "Requires pre-configuration of source-to-destination mappings", "Manual enablement required during actual outage", "Separate network infrastructure recommended for PSTN and local internet"],
-      "related": ["zoom-phone-local-survivability", "byoc-premises", "session-border-controller-sbc-integration-with-zpls"]
+      "title": "Call Forwarding Local Survivability",
+      "summary": "A survivability feature that redirects inbound calls to Zoom native numbers (or Provider Exchange numbers) through BYOC PSTN numbers when internet connectivity is lost. This ensures users receive calls even during outages by routing through the local PSTN network. Designers should understand this as a pre-configured failover mechanism that admins must plan and activate.",
+      "key_points": [
+        "Automatically forwards Zoom native numbers to BYOC numbers during survivability mode",
+        "Inbound calls rerouted through PSTN to local site when Zoom cloud is unreachable",
+        "Forwarding rules must be configured before an outage; enabling is a manual step during outage"
+      ],
+      "related": ["byoc-numbers", "source-destination-mapping", "elin", "configure-forwarding-flow", "enable-forwarding-flow"]
     },
     {
-      "title": "ZPLS Emergency Location Identification Number (ELIN)",
-      "summary": "A dedicated BYOC number used for emergency services in survivability mode. This number must not be assigned to any user or Zoom Phone entity. It's a required configuration, not optional, when setting up call forwarding for ZPLS.",
-      "key_points": ["Dedicated BYOC number, not assigned to any user/entity", "Required for emergency services during survivability", "Configured per site"],
-      "related": ["zpls-call-forwarding-local-survivability", "byoc-premises"]
+      "title": "BYOC (Bring Your Own Carrier) Numbers for Survivability",
+      "summary": "Customer-provided PSTN phone numbers that serve as the destination for forwarded calls during survivability mode. The number of BYOC extensions must match the count of unique extensions needed during failover (a 1:1 mapping requirement). One additional BYOC number must be reserved for emergency services (ELIN) and cannot be assigned to any user or entity.",
+      "key_points": [
+        "Must be acquired from BYOC provider and assigned to users within the site",
+        "1:1 mapping needed: N users requiring DID equals N BYOC extensions required",
+        "One BYOC number must be reserved exclusively for emergency services (ELIN)",
+        "Only BYOC numbers assigned to users within the same site can be used"
+      ],
+      "related": ["call-forwarding-local-survivability", "source-destination-mapping", "elin"]
+    },
+    {
+      "title": "Emergency Location Identification Number (ELIN)",
+      "summary": "A dedicated BYOC number required for emergency services support during survivability mode. The ELIN is configured at the Site level and must remain unassigned to any user or Zoom Phone entity. Designers should ensure the admin interface clearly distinguishes the ELIN from regular BYOC forwarding numbers and prevents accidental assignment.",
+      "key_points": [
+        "Required for emergency services during survivability mode",
+        "Configured per Site, must not be assigned to any user or entity",
+        "Separate from call forwarding BYOC numbers"
+      ],
+      "related": ["byoc-numbers", "call-forwarding-local-survivability"]
+    },
+    {
+      "title": "Source-Destination Number Mapping",
+      "summary": "The pre-configured forwarding logic that defines which Zoom native numbers (sources) redirect to which BYOC numbers (destinations) during an outage. Multiple source numbers can map to a single destination number. Sources can come from Users, Common Area Phones, Share Line Groups, Call Queues, and Auto Receptionists, making this a flexible but complex mapping interface.",
+      "key_points": [
+        "Many-to-one mapping: multiple source numbers can forward to single destination",
+        "Sources can be from Users, Common Area Phones, Share Line Groups, Call Queues, Auto Receptionists",
+        "Default forwarding status is disabled; must be individually enabled",
+        "Main company number cannot be used as a source number"
+      ],
+      "related": ["call-forwarding-local-survivability", "byoc-numbers", "configure-forwarding-flow"]
     }
   ],
   "user_roles": [
     {
-      "title": "Account Owner or Admin with Edit Privileges",
-      "summary": "Both configuring call forwarding mappings (pre-outage) and enabling forwarding (during outage) require admin access. The enable action is a critical time-sensitive operation during an outage — the UI should make this action prominent and fast to execute.",
-      "key_points": ["Configures source-to-destination mappings pre-outage", "Manually enables forwarding during outage", "Can use 'Select All' for bulk enable"],
-      "related": ["zpls-call-forwarding-local-survivability"]
+      "title": "Account Owner / Administrator",
+      "summary": "The only role that can configure call forwarding mappings and enable forwarding during an outage. This places a critical burden on admins during emergency situations -- they must be able to quickly access the portal and execute the enable workflow. Designers should prioritize discoverability and speed of the enable action.",
+      "key_points": [
+        "Configures forwarding rules before outage (planning phase)",
+        "Manually enables forwarding during outage (emergency phase)",
+        "Requires account owner or admin privileges with edit access"
+      ],
+      "related": ["configure-forwarding-flow", "enable-forwarding-flow"]
     }
   ],
   "task_flows": [
     {
-      "title": "Configure Call Forwarding Numbers for ZPLS",
-      "summary": "Pre-outage setup: Admin navigates Phone System Management > Company Info > site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage > Add. Maps source numbers (users, common areas, shared lines, call queues, auto receptionists) to destination BYOC numbers assigned to users within the site.",
-      "key_points": ["Path: Phone System Management > Company Info > site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage > Add", "Multiple source numbers can map to single destination", "Destination must be BYOC number assigned to a user in same site", "Main company number cannot be forwarded"],
-      "related": ["zpls-call-forwarding-local-survivability", "byoc-premises"]
+      "title": "Configure Call Forwarding Numbers",
+      "summary": "A pre-outage planning workflow where admins define the source-to-destination number mappings. The interface uses an Add dialog with Source Number(s) and Destination Number selectors. With support for multiple source types (Users, Common Area Phones, Share Line Groups, Call Queues, Auto Receptionists), the source selector must handle grouped/filtered selection. The disabled-by-default state means admins should be prompted to review and enable individual entries after saving.",
+      "key_points": [
+        "Navigate: Phone System Management > Company Info > Site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage > Add",
+        "Select Source Number(s) from multiple entity types, then Destination Number from BYOC pool",
+        "Multiple source numbers can map to one destination",
+        "Default forwarding status is disabled after save; must be explicitly enabled",
+        "Main company number excluded from source selection"
+      ],
+      "related": ["source-destination-mapping", "byoc-numbers", "enable-forwarding-flow"]
     },
     {
       "title": "Enable Call Forwarding During Outage",
-      "summary": "During an outage, admin navigates same path and clicks 'Enable Forwarding'. Select All option available for bulk operations. This is a critical step — until manually triggered, calls are not forwarded despite pre-configuration.",
-      "key_points": ["Same path as configuration: site > Settings > Zoom Node > Call Forwarding > Manage", "'Enable Forwarding' button triggers failover", "'Select All' available for bulk activation", "Must be done during actual outage — not automatic"],
-      "related": ["zpls-call-forwarding-local-survivability"]
+      "summary": "The emergency-time workflow where admins activate pre-configured forwarding rules. The interface provides a Select All option for bulk enablement, which is critical for time-sensitive outage scenarios. This flow must be extremely fast and reliable since admins may be under pressure during an actual outage.",
+      "key_points": [
+        "Navigate: Phone System Management > Company Info > Site > Settings > Zoom Node > Call Forwarding Local Survivability > Manage",
+        "Click Enable Forwarding to activate",
+        "Select All option available for bulk enablement",
+        "Executed during live outage -- speed and reliability are critical"
+      ],
+      "related": ["configure-forwarding-flow", "call-forwarding-local-survivability"]
     }
   ],
   "constraints": [
     {
-      "title": "Call Forwarding Number Constraints",
-      "summary": "Main company number cannot be configured for Call Forwarding Local Survivability. Destination BYOC numbers must be assigned to users within the same site as the source numbers. Source forwarding status defaults to disabled — admins must explicitly enable each mapping.",
-      "key_points": ["Main company number excluded from forwarding", "Destination must be same-site BYOC user number", "All forwarding mappings default to disabled"],
-      "related": ["zpls-call-forwarding-local-survivability"]
+      "title": "Site-Scoped BYOC Number Restriction",
+      "summary": "Zoom native numbers can only be forwarded to BYOC numbers assigned to users within the same Site being configured. This site-scoping constraint means the destination number selector must filter available BYOC numbers by site membership. The main company number is also excluded from forwarding configuration entirely.",
+      "key_points": [
+        "BYOC destination numbers must be assigned to users within the same site",
+        "Main company number cannot be configured as a forwarding source",
+        "Source numbers must be associated with the site being configured"
+      ],
+      "related": ["source-destination-mapping", "configure-forwarding-flow"]
     },
     {
-      "title": "PSTN and Internet Network Separation",
-      "summary": "PSTN services and local site internet must use separate network infrastructure. If both share the same local loop, a single outage disables both — defeating the purpose of ZPLS. This is an infrastructure constraint admins must verify before relying on ZPLS.",
-      "key_points": ["PSTN and internet must be on separate networks", "Shared local loop = single point of failure for both", "Admins should verify before deploying ZPLS"],
-      "related": ["zpls-call-forwarding-local-survivability"]
+      "title": "Network Infrastructure Separation Requirement",
+      "summary": "PSTN services and the local site internet connection must use separate network infrastructure. If both share the same local loop, an outage will affect both simultaneously, defeating the purpose of survivability. This is a critical infrastructure constraint that should be communicated during setup.",
+      "key_points": [
+        "PSTN and internet must use separate physical network infrastructure",
+        "Shared local loop causes simultaneous failure during outages",
+        "Administrator must verify this separation during deployment planning"
+      ],
+      "related": ["call-forwarding-local-survivability"]
+    },
+    {
+      "title": "Account and Subscription Prerequisites",
+      "summary": "Call Forwarding Local Survivability requires Business/Education/Enterprise account tier, Zoom Node and Zoom Phone subscriptions, admin privileges, and a deployed ZPLS module. These are consistent across all ZPLS features, indicating a shared eligibility gate in the admin experience.",
+      "key_points": [
+        "Business, Education, or Enterprise account",
+        "Zoom Node and Zoom Phone subscriptions required",
+        "ZPLS service module must be deployed"
+      ],
+      "related": ["call-forwarding-local-survivability"]
     }
   ],
   "ux_patterns": [
     {
-      "title": "Pre-Configure / During-Outage-Activate Pattern",
-      "summary": "Call forwarding follows a two-phase temporal pattern: (1) pre-configure mappings during normal operation, (2) manually activate during an outage. This is different from automated failover (like SBC auto-redirect) and requires the admin portal to clearly distinguish 'configured but inactive' from 'active forwarding' states.",
-      "key_points": ["Two distinct temporal phases: configuration (peace-time) and activation (outage)", "Default state after configuration is disabled — must be explicitly activated", "Clear visual distinction between configured-inactive and active-forwarding needed"],
-      "related": ["zpls-call-forwarding-local-survivability"]
+      "title": "Two-Phase Call Forwarding Pattern (Configure then Enable)",
+      "summary": "Call forwarding uses a two-phase design: pre-configure mappings during planning, then manually enable during outage. This separation is necessary because forwarding rules are complex to set up and should not be rushed during an emergency. However, the enable action must be immediately accessible and support bulk operations (Select All) for rapid activation.",
+      "key_points": [
+        "Planning phase: Add/Save forwarding mappings (complex, pre-outage)",
+        "Emergency phase: Enable Forwarding (simple, one-click with bulk option)",
+        "Select All for bulk enable acknowledged as design pattern for emergency speed",
+        "Clear visual distinction between configured-but-disabled and actively-forwarding states"
+      ],
+      "related": ["configure-forwarding-flow", "enable-forwarding-flow", "source-destination-mapping"]
+    },
+    {
+      "title": "Manage Pattern for Site-Level Feature Configuration",
+      "summary": "The consistent pattern of navigating to a Site, opening Settings, and finding Zoom Node sub-features with a 'Manage' link is repeated across all call forwarding interactions. This establishes the Site Settings page as a hub for all ZPLS-related features, with Manage links acting as drill-down entry points to feature-specific configuration panels.",
+      "key_points": [
+        "Site > Settings > Zoom Node serves as hub for ZPLS features",
+        "'Manage' link is the consistent entry point for detailed configuration",
+        "Consistent across configure and enable workflows"
+      ],
+      "related": ["configure-forwarding-flow", "enable-forwarding-flow"]
     }
   ]
 }

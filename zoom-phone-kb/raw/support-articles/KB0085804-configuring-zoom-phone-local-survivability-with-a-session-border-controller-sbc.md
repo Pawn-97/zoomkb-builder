@@ -4,7 +4,7 @@ product: zoom-phone
 article_id: KB0085804
 title: Configuring Zoom Phone Local Survivability with a Session Border Controller (SBC)
 source_url: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0085804
-captured_at: 2026-05-18T08:38:00.602327+00:00
+captured_at: 2026-05-18T09:08:50.807860+00:00
 retrieval_tool: jsonld
 relevance_score: 23
 confidence: high

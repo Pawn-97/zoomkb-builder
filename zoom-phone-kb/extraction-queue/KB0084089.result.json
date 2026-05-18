@@ -1,0 +1,227 @@
+{
+  "article_id": "KB0084089",
+  "concepts": [
+    {
+      "title": "eSIM Management",
+      "summary": "The centralized admin interface within the Zoom web portal for managing Zoom Phone Mobile eSIMs. Admins can create eSIM packages for users, issue and manage eSIMs, view roaming details, and control activation states. It provides a single pane of glass for mobile connectivity administration.",
+      "key_points": [
+        "Accessible under Phone System Management > eSIM Management",
+        "Displays users, packages, numbers, status, roaming details, and available actions",
+        "Search bar for finding specific users",
+        "Ellipsis menu per user row for actions like View, Issue new eSIM"
+      ],
+      "related": ["esim-package", "zoom-phone-mobile", "international-roaming"]
+    },
+    {
+      "title": "eSIM Package",
+      "summary": "The combination of a Zoom Phone user, a Zoom Phone Mobile package (license type), and a phone number that constitutes a fully provisioned eSIM service. Creating a package automatically provisions the subscriber, generates eSIM details, and triggers a welcome email with a QR code.",
+      "key_points": [
+        "Three components: user, package (license tier), and phone number",
+        "Auto-provisions subscriber and eSIM on creation",
+        "Triggers welcome email with QR code for user activation",
+        "Can be disabled, enabled, or reissued by admin"
+      ],
+      "related": ["esim-management", "zoom-phone-mobile"]
+    },
+    {
+      "title": "eSIM Reissuance",
+      "summary": "The process of issuing a new eSIM for a user, which deactivates the previous eSIM and generates a new QR code welcome email. Used when a user loses their device or an eSIM needs to be regenerated.",
+      "key_points": [
+        "Previous eSIM is automatically deactivated",
+        "New QR code sent via email",
+        "Available from both list view (Action column) and user detail page",
+        "Requires admin confirmation in a pop-up modal"
+      ],
+      "related": ["esim-management", "esim-package"]
+    },
+    {
+      "title": "International Roaming Day Pass",
+      "summary": "A time-bounded roaming add-on that admins can enable per user. Roaming is disabled by default and operates on a day-pass model: the pass is only activated when the user actually starts roaming, not at purchase time. Admins can set start and end dates per roaming plan.",
+      "key_points": [
+        "Disabled by default for all new eSIM packages",
+        "Day pass activates on actual roaming, not on purchase",
+        "Date range specified by admin (start and end dates)",
+        "Can be added, edited, or deleted per user",
+        "Helps limit unintended roaming charges"
+      ],
+      "related": ["esim-management", "esim-package"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner",
+      "summary": "Has full access to eSIM Management to create eSIM packages, manage eSIM lifecycle (issue, deactivate, enable), control roaming, and view user details. Can provision new users and manage all aspects of mobile connectivity.",
+      "key_points": [
+        "Full access to eSIM Management under Phone System Management",
+        "Can create, view, edit, deactivate, and reissue eSIM packages",
+        "Manages international roaming plans (add, edit, delete)",
+        "Requires privilege to edit account settings"
+      ],
+      "related": ["admin"]
+    },
+    {
+      "title": "Admin",
+      "summary": "Admins with the privilege to edit account settings can access eSIM Management and perform the same operations as account owners: creating packages, managing eSIMs, and controlling roaming. Same license prerequisites apply.",
+      "key_points": [
+        "Must have privilege to edit account settings",
+        "Full eSIM Management capabilities matching account owner",
+        "Requires Zoom Phone Mobile license per user to provision"
+      ],
+      "related": ["account-owner"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Access eSIM Management",
+      "summary": "Admins navigate to eSIM Management via Phone System Management in the navigation menu. The landing page displays a table of provisioned users with their packages, numbers, status, roaming details, and available row actions.",
+      "key_points": [
+        "Navigation: Phone System Management > eSIM Management",
+        "Landing page: tabular view with user, package, number, status, roaming, and actions columns",
+        "Search bar at top for user lookup",
+        "Ellipsis menu and action buttons per row"
+      ],
+      "related": ["esim-management", "esim-package"]
+    },
+    {
+      "title": "Create an eSIM Package",
+      "summary": "Admins create a new eSIM package by selecting a user, a package tier, and a phone number from dropdowns in a pop-up modal. On save, the system auto-provisions the subscriber, generates eSIM details, and sends a welcome email with a QR code to the user.",
+      "key_points": [
+        "Accessed via Create button in top-right corner of eSIM Management",
+        "Three dropdown selections: Username, Package, Number",
+        "Phone number must already exist in the account",
+        "Auto-provisioning on save: subscriber created, eSIM generated, QR email sent"
+      ],
+      "related": ["esim-management", "esim-package", "esim-reissuance"]
+    },
+    {
+      "title": "View and Manage User eSIM Details",
+      "summary": "Admins drill into a specific user's eSIM details by clicking the ellipsis menu and selecting View. The detail page shows General Info (user name, package, number, status, roaming details) and provides action buttons at the top (Issue new eSIM, Deactivate, Enable).",
+      "key_points": [
+        "Access via ellipsis > View on the eSIM Management list",
+        "Detail page organized into action bar and General Info section",
+        "Editable fields: user name, phone number (Edit buttons inline)",
+        "Roaming details sub-panel with Add, Edit, Delete actions"
+      ],
+      "related": ["esim-management", "esim-package", "esim-reissuance"]
+    },
+    {
+      "title": "Issue a New eSIM (Reissuance)",
+      "summary": "When a user loses their device or an eSIM needs replacement, admins click 'Issue new eSIM' from either the list view or detail page. A confirmation modal warns that the previous eSIM will be deactivated. On confirm, a new eSIM is generated and a welcome email with new QR code is sent.",
+      "key_points": [
+        "Two access points: Action column in list view, or action bar in detail page",
+        "Confirmation modal with warning about previous eSIM deactivation",
+        "Triggers new QR code email to user",
+        "Use case: lost/stolen devices, or eSIM regeneration"
+      ],
+      "related": ["esim-reissuance", "esim-management", "esim-package"]
+    },
+    {
+      "title": "Manage International Roaming",
+      "summary": "Admins control roaming for each user from the user detail page. They can add a new roaming plan with start and end dates, edit existing plan dates, or delete active roaming service. Roaming is disabled by default for all new packages.",
+      "key_points": [
+        "Add roaming: click Add International Roaming, set start/end dates, confirm",
+        "Edit roaming: click Edit on existing entry, modify dates, confirm",
+        "Delete roaming: ellipsis > Delete on existing entry, confirm deletion",
+        "Date picker UI for start/end dates",
+        "Day pass only activates on actual roaming"
+      ],
+      "related": ["international-roaming-day-pass", "esim-management"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "eSIM Management Access Prerequisites",
+      "summary": "Accessing and operating eSIM Management requires account owner or admin privileges with permission to edit account settings. Additionally, each user being provisioned must have a Zoom Phone Mobile license, and their device must be a compatible eSIM-enabled smartphone.",
+      "key_points": [
+        "Account owner or admin with edit account settings privilege",
+        "Zoom Phone Mobile license required per user",
+        "Compatible eSIM-enabled smartphone (iOS or Android) required",
+        "Verified business address required for mobile eSIM numbers"
+      ],
+      "related": ["esim-management", "esim-package"]
+    },
+    {
+      "title": "Irreversible eSIM Deactivation",
+      "summary": "When an admin deactivates a user's eSIM, the action cannot be undone. This is explicitly noted in the UI. Design implication: a clear, unambiguous warning modal should precede this destructive action.",
+      "key_points": [
+        "Deactivation is permanent and irreversible",
+        "Design must include explicit warning before confirming",
+        "Consider secondary confirmation pattern for destructive actions"
+      ],
+      "related": ["esim-management", "esim-package"]
+    },
+    {
+      "title": "Previous eSIM Deactivation on Reissuance",
+      "summary": "Issuing a new eSIM automatically deactivates the previous eSIM. This is an important side effect admins must understand before reissuing, especially if the original device is not actually lost.",
+      "key_points": [
+        "New eSIM issuance renders previous eSIM inactive",
+        "Only one active eSIM per user at a time",
+        "Design should clearly communicate this in the confirmation modal"
+      ],
+      "related": ["esim-reissuance", "esim-management"]
+    },
+    {
+      "title": "Roaming Default-Off and Date-Bounded Access",
+      "summary": "International roaming is disabled by default for all new eSIM packages. Admins must explicitly enable it and set an end date. The day pass only activates when the user actually begins roaming, not at the time of admin configuration.",
+      "key_points": [
+        "Default-off: admin must opt in per user",
+        "End date required to limit unintended charges",
+        "Day pass activated by user's actual roaming behavior, not admin action",
+        "Design implication: clearly display roaming status and dates in user detail"
+      ],
+      "related": ["international-roaming-day-pass", "esim-management"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Ellipsis Menu for Row-Level Actions",
+      "summary": "Each user row in the eSIM Management list uses an ellipsis menu to surface secondary actions (e.g., View). This keeps the list view clean while making contextual actions discoverable.",
+      "key_points": [
+        "Ellipsis icon per table row",
+        "Clicking reveals contextual menu options",
+        "Used for drill-down navigation (View) rather than inline editing"
+      ],
+      "related": ["esim-management"]
+    },
+    {
+      "title": "Pop-Up Modal for Create and Confirmation Flows",
+      "summary": "Creating eSIM packages, issuing new eSIMs, and managing roaming dates all use pop-up modal windows. This pattern keeps the admin anchored in context while performing focused tasks.",
+      "key_points": [
+        "Create user flow: pop-up with dropdown fields (Username, Package, Number)",
+        "Confirmation modals for destructive actions (deactivate, delete roaming)",
+        "Roaming date edits: pop-up with date picker fields"
+      ],
+      "related": ["esim-management", "create-an-esim-package"]
+    },
+    {
+      "title": "Action Bar with Primary and Destructive Buttons",
+      "summary": "The user detail page presents a set of action buttons at the top (Issue new eSIM, Deactivate, Enable), clearly separating primary actions from destructive ones. The irreversible Deactivate action is noted explicitly.",
+      "key_points": [
+        "Top action bar with multiple action buttons",
+        "Deactivate noted as irreversible",
+        "Enable/Deactivate toggle pattern based on current state"
+      ],
+      "related": ["esim-management", "view-and-manage-user-esim-details"]
+    },
+    {
+      "title": "Inline Edit in Detail Sections",
+      "summary": "Within the General Info section of the user detail page, editable fields (user name, phone number) feature an Edit button that enables inline editing rather than navigating to a separate form.",
+      "key_points": [
+        "Edit buttons inline next to field labels",
+        "Limited to specific fields (user name, phone number)",
+        "Read-only fields (Package, Status) have no Edit button"
+      ],
+      "related": ["esim-management", "view-and-manage-user-esim-details"]
+    },
+    {
+      "title": "Automatic QR Code Email on Provisioning",
+      "summary": "Creating an eSIM package or issuing a new eSIM automatically triggers a welcome email containing a QR code to the user. This zero-touch pattern delegates device setup to the end user while keeping the admin informed that provisioning is complete.",
+      "key_points": [
+        "QR code delivered via email automatically",
+        "No admin intervention needed after creation",
+        "User self-service activation reduces support burden"
+      ],
+      "related": ["esim-package", "create-an-esim-package", "esim-reissuance"]
+    }
+  ]
+}

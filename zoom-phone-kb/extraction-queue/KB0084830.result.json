@@ -1,0 +1,238 @@
+{
+  "article_id": "KB0084830",
+  "concepts": [
+    {
+      "title": "Call Summary Templates with AI Companion",
+      "summary": "A feature that allows account owners and admins to create and manage custom templates for AI-generated call summaries, integrated with Zoom's Custom AI Companion. Templates define the format, sections, and terminology used in post-call summaries, enabling organizations to standardize call documentation for industry requirements, compliance, or business processes. The feature supports both predefined templates for common call types and custom templates generated via natural language prompts.",
+      "key_points": [
+        "Integrates with Custom AI Companion to generate formatted call summaries",
+        "Supports predefined templates (General, One-on-one, Project update, Discussion, Customer success) and custom templates created from scratch via AI prompts",
+        "Custom dictionaries improve transcription accuracy across all Zoom Phone communications (summaries, transcripts, voicemail, recordings)",
+        "Templates can be assigned to specific users or groups with Custom AI Companion licenses"
+      ],
+      "related": ["custom-ai-companion", "ai-studio", "template-collaboration"]
+    },
+    {
+      "title": "Custom AI Companion",
+      "summary": "An add-on to Zoom's AI Companion that enables custom call summary templates and dictionary management. It is required for the call summary template feature to work. Designers should treat this as a feature-gating license -- without it, template functionality is unavailable, so the UI should gracefully handle the unlicensed state.",
+      "key_points": [
+        "Required add-on for call summary templates",
+        "Group members with a Custom AI Companion license can use templates assigned to them",
+        "Powers the AI prompt-based template generation and custom dictionary features"
+      ],
+      "related": ["call-summary-templates", "ai-studio"]
+    },
+    {
+      "title": "AI Studio",
+      "summary": "The admin interface for managing AI-generated content templates, accessed through AI Companion > AI Studio > Custom Templates > Call Summary Templates. This is the central hub where admins create, edit, test, publish, and manage templates. The navigation path (under AI Companion rather than Phone settings) could be unexpected for admins focused on phone features.",
+      "key_points": [
+        "Accessible via AI Companion > AI Studio > Custom Templates > Call Summary Templates",
+        "Central hub for all template lifecycle actions: create, edit, customize, test, publish, manage",
+        "Not under Phone settings -- located in the AI Companion admin area"
+      ],
+      "related": ["call-summary-templates", "custom-ai-companion"]
+    },
+    {
+      "title": "Template Collaboration",
+      "summary": "A feature that controls who can edit call summary templates. Two modes: 'Everyone' (all users can edit) and 'Restricted' (only the creator and explicitly added collaborators can edit). This pattern balances collaborative iteration with governance control, important for organizations where template content may have compliance implications.",
+      "key_points": [
+        "Two collaboration modes: Everyone (open edit access) and Restricted (creator + named collaborators only)",
+        "Collaborators appear in a managed list",
+        "Accessible via Settings icon on the template page"
+      ],
+      "related": ["call-summary-templates", "adjust-template-settings"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner / Admin (Call Summary Templates)",
+      "summary": "Creates, edits, customizes, tests, publishes, and manages call summary templates. Has full control over template lifecycle, collaboration settings, and user assignment. Must navigate to AI Studio (not Phone settings) to manage templates, which may not be immediately intuitive for phone-focused admins.",
+      "key_points": [
+        "Full lifecycle control: create, edit, customize, test, publish, manage templates",
+        "Sets 'Who can use this?' assignment and collaboration mode",
+        "Accesses templates through AI Companion > AI Studio (not Phone settings)"
+      ],
+      "related": ["call-summary-templates", "ai-studio", "template-collaboration"]
+    },
+    {
+      "title": "Group Member with Custom AI Companion License",
+      "summary": "End users who can use call summary templates assigned to their group. They must have a Custom AI Companion license in addition to the standard Zoom Phone license. This dual-license requirement means license assignment visibility is important for both admins assigning templates and users wondering why templates are unavailable.",
+      "key_points": [
+        "Must have a Custom AI Companion license to use templates",
+        "Can only use templates assigned to their group or to 'Everyone'",
+        "Cannot create or edit templates (admin-only)"
+      ],
+      "related": ["custom-ai-companion", "call-summary-templates"]
+    },
+    {
+      "title": "Template Collaborator",
+      "summary": "A user explicitly added to a template's restricted collaboration list who can edit that template. This role enables distributed template management without granting full admin access, useful for subject matter experts who need to refine templates for their domain.",
+      "key_points": [
+        "Has edit access to specific templates when added as a collaborator",
+        "Only relevant when collaboration mode is set to 'Restricted'",
+        "Managed in the Settings panel under Collaboration"
+      ],
+      "related": ["template-collaboration", "adjust-template-settings"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Access Call Summary Templates",
+      "summary": "Admins navigate to the template management interface through AI Companion > AI Studio > Custom Templates > Call Summary Templates. The four-level navigation depth signals that this is a specialized admin area, but designers should ensure breadcrumbs or persistent navigation help admins maintain orientation.",
+      "key_points": [
+        "Sign in as account owner or admin",
+        "Navigate to AI Companion > AI Studio > Custom Templates tab > Call Summary Templates tab",
+        "This is the entry point for all template operations"
+      ],
+      "related": ["ai-studio", "call-summary-templates"]
+    },
+    {
+      "title": "Create Template from Predefined Options",
+      "summary": "Admins select from five predefined template types (General, One-on-one, Project update, Discussion, Customer success), each designed for a specific call scenario. After selecting a type, admins configure icon, name, description, and user assignment. This flow is lower-friction than creating from scratch and helps admins get started quickly with battle-tested formats.",
+      "key_points": [
+        "Click '+ Create from template', select from five predefined options in a pop-up",
+        "Five templates: General (recap + next steps), One-on-one (recap of every topic), Project update (progress + next steps), Discussion (key points overview), Customer success (feedback + next steps)",
+        "Configure icon, name, optional description, and 'Who can use this?' assignment",
+        "Save creates the template and makes it available for further customization"
+      ],
+      "related": ["create-template-from-scratch", "call-summary-templates"]
+    },
+    {
+      "title": "Create Template from Scratch",
+      "summary": "Admins use an AI prompt interface to generate a completely custom template by describing the desired format, sections, key information, and industry-specific terminology. After generation, the template can be reviewed, adjusted, and saved. This natural-language-to-template workflow is a novel UX pattern that puts significant weight on prompt quality and review affordances.",
+      "key_points": [
+        "Click 'Create from scratch', enter a detailed prompt describing format, sections, highlights, and terminology",
+        "Click 'Create template' to generate via AI",
+        "Review the generated template and adjust icon, name, description, and user assignment",
+        "Save to make it available for editing and customization"
+      ],
+      "related": ["create-template-from-predefined-options", "call-summary-templates"]
+    },
+    {
+      "title": "Edit Existing Template Details",
+      "summary": "Admins modify template metadata (icon, name, description, user assignment) via a pencil icon-triggered pop-up. Templates can also be deleted from this view. The pencil icon edit pattern separates metadata editing from content customization, helping admins understand which changes affect template content vs. template management.",
+      "key_points": [
+        "Click a template, then click the pencil icon",
+        "Edit icon, name, optional description, and 'Who can use this?' assignment",
+        "Option to delete the template with a confirmation dialog",
+        "Save to apply changes"
+      ],
+      "related": ["customize-existing-template", "adjust-template-settings"]
+    },
+    {
+      "title": "Customize Existing Template Content",
+      "summary": "Admins modify the actual template formatting and structure: adjusting length, adding/removing sections, changing terminology, and setting the level of detail. This is the content-authoring part of template management and requires direct manipulation of the AI-generated structure.",
+      "key_points": [
+        "Select a template, then modify content directly",
+        "Adjust formatting: select Length, add/remove sections, change terminology and detail level via text boxes",
+        "Use '+ Add a section' to expand the template structure"
+      ],
+      "related": ["edit-existing-template-details", "adjust-template-settings"]
+    },
+    {
+      "title": "Adjust Template Settings (Collaboration)",
+      "summary": "Admins configure the collaboration mode for a template via a Settings icon panel. Choose between Everyone (open editing) and Restricted (creator + named collaborators). When Restricted is selected, an Add Users flow appears to populate the Collaborators list. This panel-based settings pattern separates collaboration controls from content editing.",
+      "key_points": [
+        "Click Settings icon on the template page to open a settings panel",
+        "Select 'Everyone' for open editing or 'Restricted' for limited access",
+        "Under Restricted, add users to the Collaborators list",
+        "Collaborators appear in a managed list with presumably add/remove capabilities"
+      ],
+      "related": ["template-collaboration", "customize-existing-template"]
+    },
+    {
+      "title": "Test and Publish Call Summary Templates",
+      "summary": "The final stage of template creation where admins test the template before making it available to users. The article content for this section is truncated, but the test-before-publish workflow suggests a sandbox/preview pattern where admins can verify template output quality before end users rely on it.",
+      "key_points": [
+        "Access call summary templates",
+        "Test the template (specific steps were truncated in the source article)",
+        "Publish to make the template available to assigned users"
+      ],
+      "related": ["call-summary-templates", "ai-studio"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Custom AI Companion Add-On Required",
+      "summary": "The Custom AI Companion add-on is a prerequisite for call summary templates. Without it, the feature is unavailable. This license gate should be handled gracefully in the UI, with clear upgrade paths for admins who discover the feature but lack the required add-on.",
+      "key_points": [
+        "Custom AI Companion add-on is required",
+        "Call summary with AI Companion must be enabled first",
+        "Call summary templates must be enabled separately (KB0084831)"
+      ],
+      "related": ["custom-ai-companion", "call-summary-templates"]
+    },
+    {
+      "title": "Desktop App Version Requirement",
+      "summary": "The Zoom desktop app must be version 7.0.0 or higher on Windows, macOS, and Linux. This version constraint affects rollout timing and should be validated before surfacing template features to users.",
+      "key_points": [
+        "Windows: 7.0.0 or higher",
+        "macOS: 7.0.0 or higher",
+        "Linux: 7.0.0 or higher"
+      ],
+      "related": ["call-summary-templates"]
+    },
+    {
+      "title": "Admin-Only Template Creation and Management",
+      "summary": "Only account owners and admins can create, edit, and manage templates. End users are limited to using templates assigned to them. This means all template customization must go through an admin, which could create bottlenecks in organizations that need frequent template adjustments.",
+      "key_points": [
+        "Only account owners and admins can create and manage templates",
+        "End users can only use assigned templates",
+        "Collaborators can edit specific templates when granted access"
+      ],
+      "related": ["account-owner-admin-call-summary-templates", "group-member-custom-ai-companion-license", "template-collaborator"]
+    },
+    {
+      "title": "Multi-Step Enablement Prerequisites",
+      "summary": "Before templates can be used, several prerequisites must be met: Custom AI Companion add-on, call summary with AI Companion enabled, call summary templates enabled, and desktop app 7.0.0+. This chain of dependencies should be visualized clearly so admins can see what's blocking template availability.",
+      "key_points": [
+        "Requires: Zoom Phone license (or qualifying plan), Custom AI Companion add-on, admin privileges",
+        "Call summary with AI Companion must be enabled",
+        "Call summary templates feature must be enabled separately"
+      ],
+      "related": ["call-summary-templates", "custom-ai-companion"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "AI Prompt-Based Template Generation",
+      "summary": "Admins describe desired call summary format in natural language, and AI generates a structured template from the prompt. This is a text-to-configuration pattern where prompt quality determines output quality. The UX should include prompt guidance, examples, and robust review/edit capabilities since AI output may need refinement.",
+      "key_points": [
+        "Natural language prompt defines template format, sections, highlights, and terminology",
+        "AI generates a complete template that can be reviewed and adjusted before saving",
+        "Post-generation editing allows correcting AI misinterpretations"
+      ],
+      "related": ["create-template-from-scratch", "call-summary-templates"]
+    },
+    {
+      "title": "Template Selection with Named Variants",
+      "summary": "Predefined templates are offered as named, purpose-specific options (General, One-on-one, Project update, Discussion, Customer success), each with a short description of its focus. This pattern helps admins quickly identify which template fits their use case without needing to preview each one.",
+      "key_points": [
+        "Five named templates with short purpose descriptions",
+        "Each targets a specific call type (general, 1:1 meetings, projects, discussions, customer interactions)",
+        "Reduces cognitive load by offering curated starting points"
+      ],
+      "related": ["create-template-from-predefined-options"]
+    },
+    {
+      "title": "Test-Before-Publish Workflow",
+      "summary": "Templates must be tested before being published to end users, creating a draft-to-live lifecycle. This pattern is critical for AI-generated content where output quality is not deterministic and admins need to verify that templates produce useful summaries before users rely on them.",
+      "key_points": [
+        "Templates can be created and edited in a draft state",
+        "Testing verifies template output before release",
+        "Publishing makes the template available to assigned users"
+      ],
+      "related": ["test-and-publish-call-summary-templates", "call-summary-templates"]
+    },
+    {
+      "title": "Separate Metadata and Content Editing",
+      "summary": "Template metadata (icon, name, description, user assignment) is edited via a pencil icon pop-up, while template content (sections, formatting, terminology) is edited directly on the template view. This separation helps admins understand which changes affect template appearance/availability vs. the actual output format.",
+      "key_points": [
+        "Pencil icon triggers metadata editing popup (icon, name, description, user assignment, delete)",
+        "Content editing is done inline on the template page (length, sections, terminology)",
+        "Settings icon opens a panel for collaboration configuration"
+      ],
+      "related": ["edit-existing-template-details", "customize-existing-template", "adjust-template-settings"]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+---
+source_type: zoom_support_article
+product: zoom-phone
+article_id: KB0075917
+title: Managing Zoom Phone Appliance device monitoring
+source_url: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075917
+captured_at: 2026-05-18T09:09:27.669992+00:00
+retrieval_tool: jsonld
+relevance_score: 13
+confidence: high
+content_hash: sha256:7ddf40f6e1e1138edd5d8a3bcadb6fc1a56aae41c79229387b521d529139d66e
+status: raw
+---
+
+# Managing Zoom Phone Appliance device monitoring
+
+Account owners and admins can set up alerts and notifications to monitor the status of [Zoom Phone Appliance (ZPA) devices](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064658). New rules can be created for scenarios like ZPA devices going offline or online, or when the rate of offline ZPA devices at a site exceeds a certain threshold. The alerts can be configured to target specific ZPA devices, sites, or accounts. This feature informs admins about potential issues with ZPA devices.
+
+Account owners and admins can also [configure Zoom Phone Appliance alerts and notifications in **Device Management**](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0075893).
+
+### Requirements for managing Zoom Phone Appliance device monitoring with alerts and notifications
+
+  * Account owner or admin privileges
+  * Zoom Phone license
+  * [Supported Zoom Phone Appliance](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0065959)
+
+
+
+## Table of Contents
+
+  * How to access alerts and notifications for Zoom Phone Appliance devices
+  * How to add alerts and notifications
+  * How to edit an alert
+  * How to delete an alert
+
+
+
+## How to access alerts and notifications for Zoom Phone Appliance devices
+
+  1. Sign in to the Zoom web portal as an admin with the privilege to edit account settings.
+  2. In the navigation menu, click **Account Management** then **Alerts & Notifications**.
+  3. Click the **Zoom Devices** tab.
+
+
+
+## How to add alerts and notifications
+
+  1. Access alerts and notifications for Zoom Phone Appliance devices.
+  2. Click **Add an alert**.  
+You will be directed to the alert creation page.
+  3. Under **Rule** , configure the alert settings: 
+     1. **Name** : Enter a name for the alert.
+     2. **Module** : Ensure that **Zoom Phone Appliance Management** is selected.
+     3. **Rule** : The selection of your rule is determined by the module. Click the dropdown menu and select from the following options for the rule: 
+        1. **Devices go offline** : Alert persons when a device goes offline. The target will be a single device or account.  
+
+           1. **Alert** : Select the time range of the device status.
+        2. **Devices go online** : Alert persons when a device goes online. The target will be a single device or account. 
+           1. **Alert** : Select the time range of the device status.
+        3. **Offline Devices Rate** : Alert persons when offline devices hit a specified percentage. The target will be a site. When the percentage of ZPA devices go offline at a certain rate from the site level, the alert will be triggered. 
+           1. **Warning** : Enter a percentage for warning.
+           2. **Critical** : Enter a percentage for critical.
+     4. **Target** : Click the dropdown menu and select from the following options for the target, depending on the **Rule** selection: 
+        1. **Account** : Select this target to reach the entire account.  
+**Note** : This option is only available for the **Devices go offline** and **Devices go online** rule options.
+        2. **Specify Device (Up to 5)** : Select this target to reach selected devices.  
+**Note** : This option is only available for the **Devices go offline** and **Devices go online** rule options.  
+
+           1. Search and enter the desk phone by user or extension, then click **Save**.
+        3. **Site** : Select this target if you have sites enabled.   
+**Note** : This option is only available for the **Offline Devices Rate** rule option.  
+
+           1. Search for and specify the site, then click **Save**.
+  4. Under **Notification** , configure the alert's notification settings: 
+     1. **Frequency** : Select the frequency for your alert.  
+**Notes** : You will not receive an alert if problems persist for a specified period of time.
+     2. **Time frame** : Select a time range to receive notification or select the **24 Hours** checkbox.
+     3. Under **Email Recipients (Up to 10)** , enter the email addresses of the users that need to receive notifications, separated by commas, then select the **I acknowledge that the email I filled in is correct** checkbox.
+     4. (Optional) Under **Chat Channels (Up to 3)** , click **Add** , then follow the directions in the dialog box, and click **Save**.  
+**Note** : Follow these [instructions](https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067640) to get your verification token and endpoint.
+  5. Under **Active Status** , click the toggle to enable or disable it.  
+**Note** : By default, after creating an alert and notification, the status of the item is active.
+  6. Click **Save**.
+
+
+
+**Note** : For the **Devices go offline** , **Devices go online** , and **Offline Devices Rate** rule options, you can only set an alert once per target.
+
+## How to edit an alert
+
+  1. Access alerts and notifications for Zoom Phone Appliance devices.
+  2. Click the alert name.
+  3. To the right of the alert name, click **Rename** , then edit the name and click **Save**.
+  4. Click **Edit** for the following: 
+     * **Rule**
+     * **Target**
+     * **Time frame**
+  5. To modify **Email Recipients** , click **Add**.
+  6. Under **Active Status** , click the toggle to enable or disable it.
+
+
+
+## How to delete an alert
+
+  1. Access alerts and notifications for Zoom Phone Appliance devices.
+  2. To the right of the alert name, click the ellipsis , then click **Delete**.  
+Alternatively, click the alert name, scroll down to the bottom of the page, then click **Delete**.
+  3. In the confirmation window, click **Delete**.

@@ -2,54 +2,88 @@
   "article_id": "KB0085763",
   "concepts": [
     {
-      "title": "ZPLS Call Bridge (Shared Database Node)",
-      "summary": "The Call Bridge is a standalone service that enables call routing between different ZPLS modules or node groups during internet outages. Without it, users on different ZPLS nodes cannot call each other in survivability mode. Designers should highlight this as critical infrastructure — if the Call Bridge goes down, inter-node calling fails entirely.",
-      "key_points": ["Enables inter-node and inter-node-group calling during outages", "Runs on a standalone Node server accessible to all ZPLS modules", "Not required for calls within the same node group", "Synchronizes state information across ZPLS modules"],
-      "related": ["zoom-phone-local-survivability", "zpls-node", "zpls-node-group"]
+      "title": "Call Bridge (Shared Database Nodes)",
+      "summary": "A standalone Node server service that synchronizes state information across ZPLS modules and enables call routing between different ZPLS nodes or node groups during internet outages. Without a Call Bridge, users at different sites cannot call each other when survivability mode is active. Designers should understand this as critical inter-site communication infrastructure that must remain accessible to all ZPLS modules.",
+      "key_points": [
+        "Enables cross-site calls during outages when Zoom cloud is unreachable",
+        "Must be deployed on a standalone Node server accessible to all ZPLS modules",
+        "Also known as Shared Database Nodes in the UI",
+        "Not required for communication between nodes within the same node group"
+      ],
+      "related": ["zpls", "zpls-node", "zpls-node-group", "call-bridge-deployment-flow", "call-bridge-assignment-flow"]
     }
   ],
   "user_roles": [
     {
-      "title": "Account Owner or Admin with Edit Privileges",
-      "summary": "Deploying and assigning the Call Bridge requires admin access to both Node Management (for deployment) and Phone System Management (for assignment). These are separate admin portal sections, meaning the setup spans two different navigation paths.",
-      "key_points": ["Node Management > Modules for deployment", "Phone System Management > Company Info for assignment", "Must have account settings edit privilege"],
-      "related": ["zpls-call-bridge-shared-database-node"]
+      "title": "Account Owner / Administrator",
+      "summary": "Responsible for deploying the Call Bridge service and assigning it to ZPLS modules or node groups. Requires access to both Node Management (for deployment) and Phone System Management (for assignment), meaning designers should ensure consistent navigation patterns between these two admin areas.",
+      "key_points": [
+        "Requires account owner or admin privileges with edit access",
+        "Must access both Node Management and Phone System Management interfaces",
+        "Task spans two separate admin workflows (deploy and assign)"
+      ],
+      "related": ["call-bridge-deployment-flow", "call-bridge-assignment-flow"]
     }
   ],
   "task_flows": [
     {
       "title": "Deploy Call Bridge Service",
-      "summary": "Admin navigates: Node Management > Modules > Phone Local Survivability > Services tab > Add Services > Call Bridge. Configuration: select Zoom Node Phone server, enter Internal IP, optionally add Internal Domain prefix. This flow is distinct from standard ZPLS module deployment.",
-      "key_points": ["Path: Node Management > Modules > Phone Local Survivability > Services > Add Services", "Must select target Node server from dropdown", "Internal IP must match the Node server's configured address"],
-      "related": ["zpls-call-bridge-shared-database-node"]
+      "summary": "A modal-based workflow where admins add the Call Bridge service on a Node server. The flow includes selecting the target Node server, providing the internal IP, and optionally setting an internal domain prefix. The step-by-step dialog approach minimizes confusion for this one-time setup task, but the IP address field requires knowledge of the initial Node server configuration.",
+      "key_points": [
+        "Navigate: Node Management > Modules > Phone Local Survivability > Services tab > Add Services > Call Bridge",
+        "Select target Node server, enter internal IP from initial Node configuration",
+        "Optional internal domain prefix",
+        "Modal dialog guides admin through service addition"
+      ],
+      "related": ["call-bridge", "call-bridge-assignment-flow"]
     },
     {
-      "title": "Assign Call Bridge to ZPLS Node or Node Group",
-      "summary": "Admin navigates: Phone System Management > Company Info > Account Settings > Zoom Node > Local Survivability > Shared Database Nodes > Edit. Select ZPLS Node or Node Group from tabbed interface, then manually sync data to complete assignment.",
-      "key_points": ["Path: Phone System Management > Company Info > Account Settings > Zoom Node > Shared Database Nodes > Edit", "Tabbed selection: Node or Node Group", "Must manually sync after assignment"],
-      "related": ["zpls-call-bridge-shared-database-node", "zpls-data-synchronization"]
+      "title": "Assign Call Bridge to ZPLS Module or Node Group",
+      "summary": "After deployment, the Call Bridge must be explicitly linked to ZPLS nodes or groups through the Phone System Management interface. The assignment flow ends with a recommendation to manually synchronize ZPLS data, creating a dependency on the sync workflow from KB0085762. The tab-based selection (Node or Node Group) provides clear scope differentiation.",
+      "key_points": [
+        "Navigate: Phone System Management > Company Info > Account Settings > Zoom Node > Local Survivability > Shared database nodes",
+        "Click More icon, Edit, then select ZPLS Node or Node Group from corresponding tab",
+        "Final step requires manual ZPLS data synchronization (KB0085762 dependency)",
+        "Tab-based UI for selecting between Node and Node Group assignment"
+      ],
+      "related": ["call-bridge", "call-bridge-deployment-flow", "zpls-data-synchronization"]
     }
   ],
   "constraints": [
     {
-      "title": "Call Bridge Network Resilience Requirement",
-      "summary": "If connectivity to the Call Bridge is lost during survivability mode, originating nodes cannot locate destination nodes, causing call failure. This means the Call Bridge is a single point of failure for inter-node calling — designers should ensure this risk is communicated in the admin UI.",
-      "key_points": ["Call Bridge is a single point of failure for inter-node calls", "Network topology resilience directly impacts calling availability", "Within same node group, calls work without Call Bridge"],
-      "related": ["zpls-call-bridge-shared-database-node", "zpls-node-group"]
+      "title": "Call Bridge Network Resiliency Requirements",
+      "summary": "The Call Bridge must be deployed on a standalone Node server with connectivity to all ZPLS modules. If the Call Bridge becomes unreachable during survivability mode, cross-site calls fail because the originating node cannot determine the destination node's location. This single-point-of-failure risk should be clearly communicated in the admin UI.",
+      "key_points": [
+        "Standalone Node server required, accessible to all ZPLS modules",
+        "Loss of Call Bridge connectivity causes cross-site call failure",
+        "Within same node group, nodes communicate without Call Bridge",
+        "Network topology resiliency must be considered by admin"
+      ],
+      "related": ["call-bridge"]
     },
     {
-      "title": "Call Bridge Server Requirements",
-      "summary": "Call Bridge must be deployed on a standalone Node server accessible to all ZPLS modules. It cannot share a server with other ZPLS services. This is a hardware/resource constraint with UX implications for capacity planning.",
-      "key_points": ["Must be on a standalone server", "Must be accessible to all ZPLS modules", "Cannot co-reside with other ZPLS services on same server"],
-      "related": ["zpls-call-bridge-shared-database-node"]
+      "title": "ZPLS and Account Prerequisites",
+      "summary": "Call Bridge deployment requires Business/Education/Enterprise account, Zoom Node and Zoom Phone subscriptions, admin privileges, and a deployed ZPLS service module. These are the same prerequisites as other ZPLS features, suggesting a unified account eligibility check should be implemented across the admin interface.",
+      "key_points": [
+        "Business, Education, or Enterprise account",
+        "Zoom Node and Zoom Phone subscriptions",
+        "ZPLS service module must already be deployed",
+        "Account owner or admin privileges required"
+      ],
+      "related": ["call-bridge-deployment-flow", "call-bridge-assignment-flow"]
     }
   ],
   "ux_patterns": [
     {
-      "title": "Two-Phase Service Deployment Pattern",
-      "summary": "Call Bridge deployment follows a two-phase pattern: (1) deploy the service on a Node server, then (2) assign it to ZPLS nodes/groups. Each phase uses a different admin portal section. This separation of deploy-vs-assign is consistent with other ZPLS services (SBC, route groups) and could be designed as a unified 'Link Service' pattern.",
-      "key_points": ["Phase 1: Deploy service (Node Management)", "Phase 2: Assign to target (Phone System Management)", "Consistent pattern across ZPLS services"],
-      "related": ["zpls-call-bridge-shared-database-node"]
+      "title": "Two-Phase Service Setup Pattern (Deploy then Assign)",
+      "summary": "The Call Bridge follows a two-phase setup: first deployment via Node Management (a technical infrastructure step), then assignment via Phone System Management (a business configuration step). This separation of concerns is logical but creates a disjointed experience across two admin areas. Designers should consider whether a unified wizard or post-deployment prompt would improve completion rates.",
+      "key_points": [
+        "Phase 1: Node Management > Modules > Services tab (infrastructure)",
+        "Phase 2: Phone System Management > Company Info (business configuration)",
+        "Assignment step explicitly prompts manual data sync as final action",
+        "Two separate navigation paths; no wizard connecting them"
+      ],
+      "related": ["call-bridge-deployment-flow", "call-bridge-assignment-flow", "zpls-data-synchronization"]
     }
   ]
 }

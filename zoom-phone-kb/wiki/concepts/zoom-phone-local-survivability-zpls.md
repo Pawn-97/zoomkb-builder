@@ -10,16 +10,19 @@ confidence: high
 last_reviewed: 2026-05-18
 ---
 
-# {entity.title}
+# Zoom Phone Local Survivability (ZPLS)
 
 ## Summary
 
-{merged_summary}
+A cloud-managed telephony survivability system that keeps phone services running when internet connectivity to Zoom's cloud is lost. ZPLS nodes and node groups are deployed on-premises and must receive up-to-date configuration data to function correctly during outages. Designers should note that ZPLS is fully managed from the cloud with no local admin interface.
 
 ## Key points
 
-{key_points_md}
+- Fully cloud-managed; no local admin interface on ZPLS modules
+- Supports individual nodes and node groups for different deployment scales
+- Requires data synchronization after any configuration change (users, phones, groups)
 
 ## Related
 
-{related_links}
+- [[zpls-data-synchronization]]
+- [[zpls-node-group]]

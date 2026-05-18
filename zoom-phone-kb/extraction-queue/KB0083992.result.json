@@ -1,0 +1,68 @@
+{
+  "article_id": "KB0083992",
+  "concepts": [
+    {
+      "title": "Conference Join/Leave Tone",
+      "summary": "An audio tone that plays when users join or leave a Zoom Phone conference. Enabled by default, it provides an audible awareness cue for conference participants. Designers should consider the audio UX implications of this default-on behavior — the tone signals presence changes but may be disruptive in certain organizational contexts.",
+      "key_points": [
+        "Audible tone played when a participant joins or leaves a Zoom Phone conference",
+        "Enabled by default for all users in the account",
+        "Configurable only at the account level, not per group/site/user",
+        "Does not affect shared line appearance conference-join options"
+      ],
+      "related": ["account-level-toggle"]
+    }
+  ],
+  "user_roles": [
+    {
+      "title": "Account Owner or Admin",
+      "summary": "The only role that can configure the conference join/leave tone setting. The setting is account-level only with no subordinate controls, meaning admins make a single decision that applies uniformly to all users. There is no user-level override or opt-out.",
+      "key_points": [
+        "Must have account owner or admin privileges",
+        "Configures the setting at the account level only",
+        "Requires Zoom Workplace license with Phone or standalone Zoom Phone calling plan",
+        "Setting applies to all users in the account with no per-user override"
+      ],
+      "related": ["conference-join-leave-tone", "account-level-toggle"]
+    }
+  ],
+  "task_flows": [
+    {
+      "title": "Enable or Disable Conference Join/Leave Tone at Account Level",
+      "summary": "A straightforward single-level configuration accessed through Account Settings. The simplicity of this flow (no group, site, or user variants) means the toggle and confirmation dialog bear the full responsibility for communicating the scope and impact of the change.",
+      "key_points": [
+        "Step 1: Sign in to Zoom web portal as an admin with account settings privileges",
+        "Step 2: Navigate to Account Management > Account Settings > Zoom Phone tab",
+        "Step 3: Under General, toggle Conference join/leave tone on or off",
+        "Step 4: Confirm via verification dialog (Enable or Disable)"
+      ],
+      "related": ["conference-join-leave-tone", "verification-dialog"]
+    }
+  ],
+  "constraints": [
+    {
+      "title": "Account-Only Scope with No Subordinate Controls",
+      "summary": "The conference join/leave tone can only be toggled at the account level — there are no group, site, or individual user overrides. Designers should note that this is a simpler configuration model compared to other Zoom Phone settings that support hierarchical locking, and it means all users share the same experience.",
+      "key_points": [
+        "Only configurable at account level — no group, site, or user options",
+        "No lock mechanism needed since there are no lower-level settings to lock",
+        "Enabled by default for all users",
+        "Does not affect shared line appearance conference-join settings"
+      ],
+      "related": ["conference-join-leave-tone", "account-level-toggle"]
+    }
+  ],
+  "ux_patterns": [
+    {
+      "title": "Account-Level Toggle with Verification Dialog",
+      "summary": "A simple binary toggle with a confirmation dialog, representing the most basic form of the Zoom Phone settings pattern. Unlike settings with hierarchical lock support, this toggle has no lock icon, no grayed-out states, and no group/site/user variants — making it the simplest setting configuration UX in the system.",
+      "key_points": [
+        "Single toggle in Account Settings > Zoom Phone > General",
+        "Verification dialog confirms the change (Enable/Disable)",
+        "No lock icon or subordinate configuration levels",
+        "Represents the baseline pattern for account-scoped settings"
+      ],
+      "related": ["conference-join-leave-tone", "verification-dialog"]
+    }
+  ]
+}

@@ -1503,16 +1503,17 @@ Phase P3: 一键体验
 |---|---|
 | Phase 1 (本地 MVP) | ✅ 完成 — init/discover/crawl/validate |
 | Phase 2 (LLM-wiki ingest) | ✅ 完成 — ingest/lint 均已实现 |
-| Phase P1 (CLI 完整) | ✅ 完成 — 7 个命令全部可用 (init/discover/crawl/validate/ingest/lint/build) |
+| Phase P1 (CLI 完整) | ✅ 完成 — 8 个命令全部可用 (init/discover/crawl/validate/ingest/extract/lint/build) |
 | Phase P2 (Skill 包装) | ✅ 完成 — SKILL.md 已编写，git 已推送 |
-| Phase P3 (一键体验) | 🔶 代码完成，端到端验证未做 |
+| Phase P3 (一键体验) | ✅ 完成 — build 全流程验证通过，2 bug 已修复 |
 | Phase 3 (UX-partner 集成) | ❌ 未开始 |
 | Phase 4 (多产品线) | ❌ 未开始 |
 | Phase 5 (增量更新) | ❌ 未开始 |
 
 ### 24.7 即时下一步
 
-1. 用真实 Zoom Support 数据端到端验证 `build` 全流程
-2. 编写 ingest 中间步 (Claude Code 处理 .prompt.md) 的批处理脚本
+1. ~~用真实 Zoom Support 数据端到端验证 `build` 全流程~~ ✅ 已完成 (P3 verification: all 6 stages pass, 42 tests green)
+2. ~~编写 ingest 中间步 (Claude Code 处理 .prompt.md) 的批处理脚本~~ ✅ 已完成 — `zoomkb extract` 命令 + `--auto-extract` 选项
 3. 补 schema 模板（90-schema/ 目录）
-4. 验证 lint 命令对已生成 KB 的检查效果
+4. ~~验证 lint 命令对已生成 KB 的检查效果~~ ✅ 已验证 (6 dimensions: traceability, coverage, consistency, freshness, navigation, quality)
+5. Phase 3: UX-partner 集成 — setup-kb 读取 wiki 层

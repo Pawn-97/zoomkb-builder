@@ -28,9 +28,17 @@ Zoom Support KB Builder crawls Zoom's official support articles and transforms t
 ```bash
 git clone https://github.com/Pawn-97/zoomkb-builder.git
 cd zoomkb-builder
+python3 -m venv .venv && source .venv/bin/activate  # Create & activate venv
+pip install setuptools wheel                        # Ensure build deps available
 pip install -e .          # Core (crawl, discover, validate)
 pip install -e ".[llm]"   # + LLM ingest support
 ```
+
+> **macOS SSL fix:** If `pip install -e .` fails with `SSL: CERTIFICATE_VERIFY_FAILED`, re-run with:
+> ```bash
+> pip install --no-build-isolation -e .
+> ```
+> This skips the isolated build environment (setuptools/wheel must be pre-installed). Apple's Command Line Tools Python uses LibreSSL which lacks system root certificates — install Python via [Homebrew](https://brew.sh) (`brew install python`) for a permanent fix.
 
 #### Step 2 — Register the skill in Claude Code
 
@@ -102,13 +110,15 @@ wiki/constraints/*.md
 wiki/ux-patterns/*.md
 ```
 
+Extracted entities go through three-stage dedup (exact slug → normalized slug → title Jaccard similarity) and are filtered with `--min-sources` and `--min-quality` to remove thin pages.
+
 ### Requirements
 
 | Dependency | Purpose |
 |------------|---------|
-| `pip install zoomkb` | Core: crawl, discover, validate |
-| `pip install zoomkb[llm]` | LLM ingest via OpenAI |
-| `pip install zoomkb[dev]` | Tests, linting, type checking |
+| `pip install -e .` | Core: crawl, discover, validate, lint |
+| `pip install -e ".[llm]"` | LLM ingest via OpenAI |
+| `pip install -e ".[dev]"` | Tests, linting, type checking |
 | `OPENAI_API_KEY` | Required for ingest phase |
 | `ZOOMKB_CRAWL4AI=1` | Optional headless browser extraction |
 
@@ -135,9 +145,17 @@ wiki/ux-patterns/*.md
 ```bash
 git clone https://github.com/Pawn-97/zoomkb-builder.git
 cd zoomkb-builder
-pip install -e .          # 核心功能（爬取、发现、验证）
+python3 -m venv .venv && source .venv/bin/activate  # 创建并激活虚拟环境
+pip install setuptools wheel                        # 确保构建依赖可用
+pip install -e .          # 核心功能（爬取、发现、验证、质量检查）
 pip install -e ".[llm]"   # + LLM 提取支持
 ```
+
+> **macOS SSL 修复：** 如果 `pip install -e .` 失败并提示 `SSL: CERTIFICATE_VERIFY_FAILED`，可重新运行：
+> ```bash
+> pip install --no-build-isolation -e .
+> ```
+> 这会跳过隔离的构建环境（需要预先安装 setuptools/wheel）。Apple Command Line Tools 自带的 Python 使用 LibreSSL，缺少系统根证书 —— 通过 [Homebrew](https://brew.sh) 安装 Python（`brew install python`）可获得永久修复。
 
 #### 第二步 — 在 Claude Code 中注册技能
 
@@ -215,9 +233,9 @@ wiki/ux-patterns/*.md
 
 | 依赖 | 用途 |
 |------------|---------|
-| `pip install zoomkb` | 核心：爬取、发现、验证 |
-| `pip install zoomkb[llm]` | LLM 提取（OpenAI） |
-| `pip install zoomkb[dev]` | 测试、代码检查、类型检查 |
+| `pip install -e .` | 核心：爬取、发现、验证、质量检查 |
+| `pip install -e ".[llm]"` | LLM 提取（OpenAI） |
+| `pip install -e ".[dev]"` | 测试、代码检查、类型检查 |
 | `OPENAI_API_KEY` | ingest 阶段必需 |
 | `ZOOMKB_CRAWL4AI=1` | 可选：无头浏览器提取 |
 

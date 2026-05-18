@@ -233,6 +233,7 @@ def _resolve_raw_path(article: dict, raw_dir: Path) -> Optional[Path]:
 def prepare_extraction_queue(
     manifest_path: Path,
     raw_dir: Path,
+    product: str = "",
     force: bool = False,
     article_ids: Optional[List[str]] = None,
 ) -> dict:
@@ -244,6 +245,8 @@ def prepare_extraction_queue(
     from zoomkb.manifest import load_manifest
 
     manifest = load_manifest(manifest_path)
+    if not product:
+        product = manifest.get("product", "zoom-phone")
     articles = manifest.get("articles", [])
 
     # Filter: high-confidence accepted only
@@ -290,7 +293,7 @@ def prepare_extraction_queue(
         prompt_file = queue_dir / f"{article['article_id']}.prompt.md"
         prompt_content = f"""# Extraction Task: {article['article_id']}
 
-**Product**: zoom-phone
+**Product**: {product}
 **Article ID**: {article['article_id']}
 **Title**: {title}
 **Source URL**: {source_url}
@@ -386,9 +389,10 @@ def parse_extraction_result(
 # ── Commit: write wiki pages from results ──────────────────────────
 
 def _write_wiki_page(
-    entity: WikiEntity, wiki_dir: Path, valid_slugs: Optional[set[str]] = None
-) -> tuple[Path, bool]:
-    """Write or merge a wiki page. Returns (path, is_new).
+    entity: WikiEntity, wiki_dir: Path, product: str = "zoom-phone",
+    valid_slugs: Optional[set[str]] = None,
+) -> tuple[Path, bool, bool]:
+    """Write or merge a wiki page. Returns (path, is_new, conflict_flagged).
 
     If valid_slugs provided, wikilinks to non-existent pages are pruned.
     """
@@ -442,15 +446,21 @@ def _write_wiki_page(
     related_links = "\n".join(f"- [[{r}]]" for r in related) if related else "_None yet_"
     key_points_md = "\n".join(f"- {p}" for p in merged_points) if merged_points else "_None yet_"
 
+    # Flag entities with ≥3 different source articles for review
+    conflict_flag = ""
+    unique_source_aids = {s.get("article_id", "") for s in merged_sources if s.get("article_id")}
+    if len(unique_source_aids) >= 3:
+        conflict_flag = "multiple-sources"
+
     page = f"""---
 type: {entity.type}
-product: zoom-phone
+product: {product}
 title: {entity.title}
 sources:
 {sources_yaml}
 confidence: high
 last_reviewed: {today}
----
+""" + (f"conflict_flag: {conflict_flag}\n" if conflict_flag else "") + """---
 
 # {entity.title}
 
@@ -468,7 +478,7 @@ last_reviewed: {today}
 """
 
     path.write_text(page, encoding="utf-8")
-    return path, is_new
+    return path, is_new, bool(conflict_flag)
 
 
 def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
@@ -596,6 +606,7 @@ def commit_extraction(
         "entities_updated": 0,
         "entities_deduped": 0,
         "entities_filtered": 0,
+        "entities_conflict_flagged": 0,
         "errors": 0,
         "skipped": 0,
     }
@@ -712,12 +723,14 @@ def commit_extraction(
     entity_paths: set[Path] = set()
 
     for score, entity in scored:
-        path, is_new = _write_wiki_page(entity, wiki_dir, valid_slugs=valid_slugs)
+        path, is_new, conflict = _write_wiki_page(entity, wiki_dir, product=product, valid_slugs=valid_slugs)
         if is_new:
             stats["entities_created"] += 1
             entity_paths.add(path)
         else:
             stats["entities_updated"] += 1
+        if conflict:
+            stats["entities_conflict_flagged"] += 1
 
     # Count unprocessed as skipped
     if pending_ids:
@@ -806,6 +819,7 @@ def _write_ingest_report(
         f"| Entities updated | {stats['entities_updated']} |",
         f"| Entities deduped | {stats.get('entities_deduped', 0)} |",
         f"| Entities filtered (< min_sources or < min_quality) | {stats.get('entities_filtered', 0)} |",
+        f"| Entities conflict-flagged (≥3 source articles) | {stats.get('entities_conflict_flagged', 0)} |",
         f"| Errors | {stats['errors']} |",
         f"| Skipped | {stats['skipped']} |",
     ]
@@ -875,27 +889,22 @@ def _generate_index(wiki_dir: Path, product: str) -> None:
         "",
         f"_Last updated: {today}_",
         "",
-        "## Concepts",
-        "",
     ]
-    for slug, title in sections["concept"]:
-        lines.append(f"- [[{slug}]] — {title}")
 
-    lines.extend(["", "## User Roles", ""])
-    for slug, title in sections["user-role"]:
-        lines.append(f"- [[{slug}]] — {title}")
-
-    lines.extend(["", "## Task Flows", ""])
-    for slug, title in sections["task-flow"]:
-        lines.append(f"- [[{slug}]] — {title}")
-
-    lines.extend(["", "## Constraints", ""])
-    for slug, title in sections["constraint"]:
-        lines.append(f"- [[{slug}]] — {title}")
-
-    lines.extend(["", "## UX Patterns", ""])
-    for slug, title in sections["ux-pattern"]:
-        lines.append(f"- [[{slug}]] — {title}")
+    section_headers = [
+        ("Concepts", "concept"),
+        ("User Roles", "user-role"),
+        ("Task Flows", "task-flow"),
+        ("Constraints", "constraint"),
+        ("UX Patterns", "ux-pattern"),
+    ]
+    for header, key in section_headers:
+        lines.extend(["", f"## {header}", ""])
+        if sections[key]:
+            for slug, title in sections[key]:
+                lines.append(f"- [[{slug}]] — {title}")
+        else:
+            lines.append("_No entries yet._")
 
     lines.append("")
 

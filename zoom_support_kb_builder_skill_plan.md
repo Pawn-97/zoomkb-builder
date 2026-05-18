@@ -1506,14 +1506,64 @@ Phase P3: 一键体验
 | Phase P1 (CLI 完整) | ✅ 完成 — 8 个命令全部可用 (init/discover/crawl/validate/ingest/extract/lint/build) |
 | Phase P2 (Skill 包装) | ✅ 完成 — SKILL.md 已编写，git 已推送 |
 | Phase P3 (一键体验) | ✅ 完成 — build 全流程验证通过，2 bug 已修复 |
-| Phase 3 (UX-partner 集成) | ❌ 未开始 |
-| Phase 4 (多产品线) | ❌ 未开始 |
-| Phase 5 (增量更新) | ❌ 未开始 |
+| Phase 3 (UX-partner 集成) | ✅ 完成 — 5 changes (manifest kb_type, wiki subdirs, index placeholder, integration test, SKILL.md docs) |
+| Phase 4 (多产品线) | ✅ 完成 — 5 product configs, hardcoded fix, dynamic output, build-all, SKILL.md |
+| Phase 5 (增量更新) | ✅ 完成 — refresh, freshness, conflict detection, review queue, manifest query helpers |
 
-### 24.7 即时下一步
+### 24.7 Phase 3 交付明细
 
-1. ~~用真实 Zoom Support 数据端到端验证 `build` 全流程~~ ✅ 已完成 (P3 verification: all 6 stages pass, 42 tests green)
-2. ~~编写 ingest 中间步 (Claude Code 处理 .prompt.md) 的批处理脚本~~ ✅ 已完成 — `zoomkb extract` 命令 + `--auto-extract` 选项
-3. 补 schema 模板（90-schema/ 目录）
-4. ~~验证 lint 命令对已生成 KB 的检查效果~~ ✅ 已验证 (6 dimensions: traceability, coverage, consistency, freshness, navigation, quality)
-5. Phase 3: UX-partner 集成 — setup-kb 读取 wiki 层
+| 文件 | 变更 |
+|---|---|
+| `src/zoomkb/manifest.py` | 新 manifest 写入 `kb_type: "zoomkb"` + `kb_version: "1.0"`；已有 manifest 回填 |
+| `src/zoomkb/cli.py` | `cmd_init()` 预创建全部 5 个 wiki 子目录，确保 UX-partner 检测不因空目录失败 |
+| `src/zoomkb/ingest.py` | `_generate_index()` 空分类输出 `_No entries yet._` |
+| `SKILL.md` | 新增 "UX-partner Integration" 章节（用法、检测、分类标签、引用策略） |
+| `tests/test_ux_partner_integration.py` | 12 个集成测试：manifest 标记、wiki 结构、frontmatter、type/子目录一致性、wikilink 孤儿检测、分类兼容性 |
+
+验证结果：
+- 54/54 测试通过 (12 集成 + 42 已有)
+- UX-partner `index-to-context-mode.js` 对 test-kb-e2e 全部 402 文件分类正确 (0 条 UNCATEGORIZED)
+- 端到端流程：`/zoomkb:build` → `/ux-project:setup-kb` 可衔接
+
+### 24.8 Phase 4 交付明细
+
+| 文件 | 变更 |
+|---|---|
+| `src/zoomkb/constants.py` | 新增 5 个产品配置: `zoom-contact-center`, `zoom-clips`, `zoom-meetings`, `zoom-rooms`, `shared-zoom-platform` |
+| `src/zoomkb/ingest.py` | `prepare_extraction_queue()` 接受 `product` 参数；`_write_wiki_page()` 接受 `product` 参数；`commit_extraction()` 传递 product 到 wiki page |
+| `src/zoomkb/cli.py` | 新增 `_default_output()` 动态目录名；新增 `ALL_PRODUCTS` 常量；新增 `cmd_build_all` 命令；`cmd_init`/`cmd_discover`/`cmd_build` 使用动态 output |
+| `SKILL.md` | 新增 `build-all` 命令文档、支持产品线表、Shared Platform KB 说明 |
+
+验证结果：
+- 54/54 测试通过
+- `init --product "Zoom Meetings"` → `./zoom-meetings-kb/`
+- `build-all` → 6/6 产品线全部初始化成功
+
+### 24.10 Phase 5 交付明细
+
+| 文件 | 变更 |
+|---|---|
+| `src/zoomkb/refresh.py` | **新文件**: `refresh_articles()` 重新抓取已接受文章并对比 content_hash；`generate_freshness_report()` 生成完整 freshness 报告 |
+| `src/zoomkb/manifest.py` | 新增 3 个查询辅助函数: `get_review_queue()`, `get_stale_sources()`, `get_changed_since()` |
+| `src/zoomkb/cli.py` | 新增 `cmd_refresh` + `cmd_freshness` 命令和对应 arg parser；`cmd_ingest` 输出增加 conflict-flagged 统计 |
+| `src/zoomkb/ingest.py` | `_write_wiki_page()` 返回 `tuple[Path, bool, bool]`（增加 conflict_flagged）；≥3 个来源的实体添加 `conflict_flag: multiple-sources` frontmatter；commit stats 新增 `entities_conflict_flagged`；ingest 报告新增冲突统计 |
+| `SKILL.md` | 新增 `/zoomkb:refresh` 和 `/zoomkb:freshness` 命令文档；输出结构增加 `refresh-report.md` 和 `freshness-report.md` |
+
+新增命令：
+- `zoomkb refresh` — 重新抓取已接受文章，hash 对比，变化文章标记 `status: review`，不可达标记 `stale`
+- `zoomkb freshness` — 生成 `freshness-report.md`，包含逐篇文章表、stale 列表、review queue
+
+验证结果：
+- 54/54 测试通过
+- `zoomkb freshness --output ./test-kb` 正常运行（3 篇文章，1 review queue）
+- `zoomkb refresh --help` 和 `zoomkb freshness --help` 均可正常输出
+
+### 24.9 即时下一步
+
+1. ~~用真实 Zoom Support 数据端到端验证 `build` 全流程~~ ✅ 已完成
+2. ~~编写 ingest 中间步的批处理脚本~~ ✅ 已完成 — `zoomkb extract` + `--auto-extract`
+3. ~~Phase 3: UX-partner 集成~~ ✅ 已完成
+4. ~~Phase 4: 多产品线支持~~ ✅ 已完成
+5. ~~Phase 5: 增量更新与治理~~ ✅ 已完成 — refresh, freshness, conflict detection, review queue
+6. UX-partner 侧交叉建议：setup-kb 优先读 `kb_type` 字段；indexer 加入 `review/` skip；输出路径改为 KB root
+7. **Phase 6: 真实数据验证** — 用真实 Zoom Support 数据跑通完整流程，验证 refresh/conflict detection 在实际场景下行为正确

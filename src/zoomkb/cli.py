@@ -15,10 +15,27 @@ from zoomkb.discover import discover_articles
 from zoomkb.extractor import batch_extract
 from zoomkb.ingest import commit_extraction, dry_run_ingest, prepare_extraction_queue
 from zoomkb.manifest import add_article, init_manifest, load_manifest, save_manifest
+from zoomkb.refresh import generate_freshness_report, refresh_articles
 from zoomkb.lint import lint, write_lint_report
 from zoomkb.validator import check_duplicates
 
 logger = logging.getLogger("zoomkb")
+
+# All supported product lines
+ALL_PRODUCTS = [
+    "Zoom Phone",
+    "Zoom Contact Center",
+    "Zoom Clips",
+    "Zoom Meetings",
+    "Zoom Rooms",
+    "Shared Zoom Platform",
+]
+
+
+def _default_output(product: str) -> str:
+    """Compute default output directory from product name."""
+    slug = product.lower().replace(" ", "-")
+    return f"./{slug}-kb"
 
 
 def _setup_logging(verbose: bool) -> None:
@@ -29,7 +46,7 @@ def _setup_logging(verbose: bool) -> None:
 
 def cmd_discover(args: argparse.Namespace) -> int:
     """Discover candidate articles from sitemaps."""
-    output = Path(args.output)
+    output = Path(args.output or _default_output(args.product))
     product = args.product.lower().replace(" ", "-")
 
     stats = discover_articles(
@@ -59,7 +76,7 @@ def cmd_discover(args: argparse.Namespace) -> int:
 
 def cmd_init(args: argparse.Namespace) -> int:
     """Initialize KB directory structure."""
-    output = Path(args.output)
+    output = Path(args.output or _default_output(args.product))
     product = args.product.lower().replace(" ", "-")
 
     dirs = [
@@ -70,6 +87,10 @@ def cmd_init(args: argparse.Namespace) -> int:
     ]
     for d in dirs:
         d.mkdir(parents=True, exist_ok=True)
+
+    # Ensure all five wiki-type subdirectories exist for UX-partner compatibility
+    for sub in ["concepts", "task-flows", "user-roles", "constraints", "ux-patterns"]:
+        (output / "wiki" / sub).mkdir(parents=True, exist_ok=True)
 
     manifest_path = init_manifest(product, output)
 
@@ -162,10 +183,12 @@ def cmd_ingest(args: argparse.Namespace) -> int:
     # Prepare mode: write extraction prompts
     if args.prepare:
         manifest = load_manifest(manifest_path)
+        product = manifest.get("product", "zoom-phone")
 
         qm = prepare_extraction_queue(
             manifest_path=manifest_path,
             raw_dir=raw_dir,
+            product=product,
             force=args.force,
             article_ids=args.article_ids or None,
         )
@@ -200,6 +223,7 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         print(f"  Entities deduped: {stats.get('entities_deduped', 0)}")
         filter_reason = f"sources < {args.min_sources} or quality < {args.min_quality}"
         print(f"  Entities filtered ({filter_reason}): {stats.get('entities_filtered', 0)}")
+        print(f"  Entities conflict-flagged (>=3 source articles): {stats.get('entities_conflict_flagged', 0)}")
         print(f"  Errors: {stats['errors']}")
         print(f"  Skipped: {stats['skipped']}")
         print(f"\nWiki output: {wiki_dir}")
@@ -361,9 +385,77 @@ def cmd_extract(args: argparse.Namespace) -> int:
     return 0 if stats["failed"] == 0 else 1
 
 
+def cmd_refresh(args: argparse.Namespace) -> int:
+    """Re-crawl accepted articles, diff content hashes, detect changes and staleness."""
+    output = Path(args.output)
+    manifest_path = output / "manifest.json"
+    raw_dir = output / "raw" / "support-articles"
+
+    if not manifest_path.exists():
+        logger.error("Manifest not found. Run 'zoomkb init' first.")
+        return 1
+
+    manifest = load_manifest(manifest_path)
+    product = manifest.get("product", "zoom-phone")
+
+    stats = refresh_articles(
+        manifest_path=manifest_path,
+        raw_dir=raw_dir,
+        product=product,
+        article_ids=args.article_ids or None,
+        force=args.force,
+        max_workers=args.max_workers,
+        stale_days=args.stale_days,
+    )
+
+    print(f"\nRefresh complete for '{product}':")
+    print(f"  Total: {stats['total']}")
+    print(f"  Changed: {stats['changed']}")
+    print(f"  Unchanged: {stats['unchanged']}")
+    print(f"  Stale: {stats['stale']}")
+    print(f"  Errors: {stats['errors']}")
+    print(f"  Skipped: {stats.get('skipped', 0)}")
+
+    if stats["changed"]:
+        print(f"\n{stats['changed']} article(s) changed — moved to review queue.")
+        print("Run 'zoomkb freshness' for details.")
+
+    print(f"\nReport: {output / 'refresh-report.md'}")
+    return 0 if stats["errors"] == 0 else 1
+
+
+def cmd_freshness(args: argparse.Namespace) -> int:
+    """Generate source freshness report."""
+    output = Path(args.output)
+    manifest_path = output / "manifest.json"
+
+    if not manifest_path.exists():
+        logger.error("Manifest not found. Run 'zoomkb init' first.")
+        return 1
+
+    report = generate_freshness_report(
+        manifest_path=manifest_path,
+        stale_days=args.stale_days,
+    )
+
+    print(f"\nFreshness report for '{output}':")
+    print(f"  Total articles: {report['total']}")
+    print(f"  Fresh (checked within {report['stale_days']}d): {report['fresh']}")
+    print(f"  Stale (not checked in {report['stale_days']}+d): {report['stale']}")
+    print(f"  Review queue: {report['review']}")
+
+    if report["stale"]:
+        print(f"\nWarning: {report['stale']} stale articles. Run 'zoomkb refresh' to update.")
+    if report["review"]:
+        print(f"\n{report['review']} articles in review queue. Review and re-accept or reject.")
+
+    print(f"\nReport: {output / 'freshness-report.md'}")
+    return 0
+
+
 def cmd_build(args: argparse.Namespace) -> int:
     """One-shot: init → discover → crawl → validate → ingest → lint."""
-    output = Path(args.output)
+    output = Path(args.output or _default_output(args.product))
 
     print("=" * 50)
     print("zoomkb:build — full pipeline")
@@ -487,6 +579,47 @@ def cmd_build(args: argparse.Namespace) -> int:
     return rc
 
 
+def cmd_build_all(args: argparse.Namespace) -> int:
+    """Initialize KB directories for all supported Zoom product lines."""
+    print("=" * 50)
+    print("zoomkb:build-all — multi-product setup")
+    print("=" * 50)
+    print(f"\nProducts: {', '.join(ALL_PRODUCTS)}\n")
+
+    results: list[tuple[str, int, str]] = []
+
+    for product in ALL_PRODUCTS:
+        print(f"\n{'─' * 40}")
+        print(f"[{product}] init...")
+
+        init_args = copy.copy(args)
+        init_args.product = product
+        init_args.output = ""
+        init_args.func = None
+
+        rc = cmd_init(init_args)
+        output_dir = _default_output(product)
+        results.append((product, rc, output_dir))
+
+        if rc != 0:
+            print(f"[{product}] init FAILED")
+        else:
+            print(f"[{product}] init OK → {output_dir}")
+
+    # Summary
+    print("\n" + "=" * 50)
+    print("build-all summary")
+    print("=" * 50)
+    ok = sum(1 for _, rc, _ in results if rc == 0)
+    fail = sum(1 for _, rc, _ in results if rc != 0)
+    print(f"  OK: {ok}, Failed: {fail}")
+    for product, rc, output_dir in results:
+        status = "OK" if rc == 0 else "FAIL"
+        print(f"  [{status}] {product} → {output_dir}")
+
+    return 0 if fail == 0 else 1
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(prog="zoomkb", description="Zoom Support KB Builder")
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable debug logging")
@@ -496,7 +629,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_disc = sub.add_parser("discover", help="Discover candidate articles from sitemaps")
     p_disc.add_argument("--product", default="Zoom Phone", help="Target product")
     p_disc.add_argument("--source-root", default="https://support.zoom.com/hc/en", help="Zoom Support root URL")
-    p_disc.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
+    p_disc.add_argument("--output", default="", help="KB output directory (default: derived from --product)")
     p_disc.add_argument("--fetch-titles", action="store_true", help="Fetch page titles for better filtering")
     p_disc.add_argument("--max-workers", type=int, default=5, help="Parallel title fetch workers (default: 5)")
     p_disc.add_argument("--max-candidates", type=int, default=0, help="Stop after N candidates (0 = no limit)")
@@ -506,7 +639,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     # init
     p_init = sub.add_parser("init", help="Initialize KB directory structure")
     p_init.add_argument("--product", default="Zoom Phone", help="Target product")
-    p_init.add_argument("--output", default="./zoom-phone-kb", help="Output directory")
+    p_init.add_argument("--output", default="", help="Output directory (default: derived from --product)")
     p_init.set_defaults(func=cmd_init)
 
     # crawl
@@ -552,11 +685,26 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_ext.add_argument("--article-ids", nargs="+", help="Process specific articles")
     p_ext.set_defaults(func=cmd_extract)
 
+    # refresh
+    p_refresh = sub.add_parser("refresh", help="Re-crawl accepted articles, diff content hashes, detect changes")
+    p_refresh.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
+    p_refresh.add_argument("--article-ids", nargs="+", help="Refresh specific articles")
+    p_refresh.add_argument("--force", action="store_true", help="Force refresh even if recently checked")
+    p_refresh.add_argument("--max-workers", type=int, default=3, help="Parallel workers (default: 3)")
+    p_refresh.add_argument("--stale-days", type=int, default=30, help="Days after which unreachable source is stale (default: 30)")
+    p_refresh.set_defaults(func=cmd_refresh)
+
+    # freshness
+    p_fresh = sub.add_parser("freshness", help="Generate source freshness report")
+    p_fresh.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
+    p_fresh.add_argument("--stale-days", type=int, default=30, help="Days after which content is considered stale (default: 30)")
+    p_fresh.set_defaults(func=cmd_freshness)
+
     # build
     p_build = sub.add_parser("build", help="One-shot full pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint")
     p_build.add_argument("--product", default="Zoom Phone", help="Target product")
     p_build.add_argument("--source-root", default="https://support.zoom.com/hc/en", help="Zoom Support root URL")
-    p_build.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
+    p_build.add_argument("--output", default="", help="KB output directory (default: derived from --product)")
     p_build.add_argument("--fetch-titles", action="store_true", help="Fetch page titles for better filtering")
     p_build.add_argument("--max-workers", type=int, default=5, help="Parallel title fetch workers (default: 5)")
     p_build.add_argument("--max-candidates", type=int, default=0, help="Stop after N candidates (0 = no limit)")
@@ -575,6 +723,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_build.add_argument("--extract-model", default=os.environ.get("ZOOMKB_LLM_MODEL", "gpt-4o-mini"), help="Model for auto-extract (default: gpt-4o-mini)")
     p_build.add_argument("--extract-workers", type=int, default=3, help="Parallel extract workers (default: 3)")
     p_build.set_defaults(func=cmd_build)
+
+    # build-all
+    p_ball = sub.add_parser("build-all", help="Initialize KB directories for all supported Zoom product lines")
+    p_ball.set_defaults(func=cmd_build_all)
 
     args = parser.parse_args(argv)
     _setup_logging(args.verbose)

@@ -39,6 +39,18 @@ Options:
 - `--extract-model MODEL` — Model for auto-extract (default: gpt-4o-mini)
 - `--extract-workers N` — Parallel extract workers (default: 3)
 
+### `/zoomkb:build-all` — Initialize all product KBs
+
+Creates KB directory structures for all supported Zoom product lines in one shot.
+
+```
+/zoomkb:build-all
+```
+
+This initializes KBs for: Zoom Phone, Zoom Contact Center, Zoom Clips, Zoom Meetings, Zoom Rooms, and Shared Zoom Platform. Each product gets its own directory (e.g., `./zoom-phone-kb/`, `./zoom-contact-center-kb/`, etc.).
+
+After `build-all`, run `/zoomkb:build --product "Zoom Phone"` (or any other product) to run the full pipeline for that product line.
+
 ### `/zoomkb:init` — Initialize KB directory
 
 Creates directory structure, manifest.json, log.md, crawl-report.md.
@@ -101,6 +113,30 @@ Processes `.prompt.md` files in `extraction-queue/` via OpenAI API. Skips articl
 
 Requires `OPENAI_API_KEY` env var. Model defaults to `gpt-4o-mini` (override with `ZOOMKB_LLM_MODEL`).
 
+### `/zoomkb:refresh` — Re-crawl and detect changes
+
+Re-crawls accepted articles, compares content hashes, and flags changed or stale content for review.
+
+```
+/zoomkb:refresh --output ./zoom-phone-kb
+/zoomkb:refresh --force                 # Force refresh even if recently checked
+/zoomkb:refresh --article-ids KB0060257 # Specific articles only
+/zoomkb:refresh --stale-days 14         # Custom stale threshold
+```
+
+Output: refreshes `manifest.json` (updates `last_checked_at`, changed articles move to `status: review`). Generates `refresh-report.md`.
+
+### `/zoomkb:freshness` — Source freshness report
+
+Generates a comprehensive source freshness report showing which articles are fresh, stale, or in the review queue.
+
+```
+/zoomkb:freshness --output ./zoom-phone-kb
+/zoomkb:freshness --stale-days 60       # Custom stale threshold
+```
+
+Output: `freshness-report.md` with per-article table, stale article list, and review queue.
+
 ### `/zoomkb:lint` — Quality checks
 
 Checks traceability, coverage, consistency, freshness, navigation, and quality.
@@ -140,6 +176,19 @@ Rule-based relevance scoring by default. Optional LLM refinement with `ZOOMKB_LL
 | 4–7 | Medium | Review queue |
 | < 4 | Low | Rejected |
 
+## Supported Products
+
+| Product | CLI key | KB directory |
+|---|---|---|
+| Zoom Phone | `"Zoom Phone"` | `./zoom-phone-kb/` |
+| Zoom Contact Center | `"Zoom Contact Center"` | `./zoom-contact-center-kb/` |
+| Zoom Clips | `"Zoom Clips"` | `./zoom-clips-kb/` |
+| Zoom Meetings | `"Zoom Meetings"` | `./zoom-meetings-kb/` |
+| Zoom Rooms | `"Zoom Rooms"` | `./zoom-rooms-kb/` |
+| Shared Zoom Platform | `"Shared Zoom Platform"` | `./shared-zoom-platform-kb/` |
+
+**Shared Platform KB** is for cross-cutting knowledge that applies to all products: account management, user profiles, admin dashboard, billing, SSO, accessibility, desktop/mobile clients, etc. Individual product KBs reference shared platform concepts via wikilinks.
+
 ## Requirements
 
 ```
@@ -171,6 +220,8 @@ zoom-phone-kb/
 ├── crawl-report.md
 ├── ingest-report.md
 ├── lint-report.md
+├── refresh-report.md
+├── freshness-report.md
 ├── candidate-articles.json
 ├── raw/
 │   └── support-articles/
@@ -186,3 +237,51 @@ zoom-phone-kb/
     ├── constraints/
     └── ux-patterns/
 ```
+
+## UX-partner Integration
+
+After building a KB with `/zoomkb:build`, the output is directly consumable by
+UX-partner via its `setup-kb` command:
+
+```bash
+# 1. Build the KB
+/zoomkb:build --product "Zoom Phone" --output ./zoom-phone-kb
+
+# 2. In UX-partner, index it for design sessions
+/ux-project:setup-kb ./zoom-phone-kb
+```
+
+### Detection
+
+UX-partner's `setup-kb` detects zoomkb-builder output by checking
+`manifest.json` for `"kb_type": "zoomkb"` (fallback: verifies `wiki/index.md`
+and the five standard wiki subdirectories exist).
+
+### Classification tags
+
+Each wiki page is tagged by its source directory when indexed into
+context-mode FTS5:
+
+| Wiki path | UX-partner tag | Usage |
+|---|---|---|
+| `wiki/concepts/` | CONCEPT | Product concepts and features |
+| `wiki/task-flows/` | TASK-FLOW | User task steps and dependencies |
+| `wiki/user-roles/` | USER-ROLE | Role definitions and permissions |
+| `wiki/constraints/` | CONSTRAINT | Design limitations and rules |
+| `wiki/ux-patterns/` | UX-PATTERN | Reusable interaction patterns |
+| `raw/support-articles/` | RAW-SOURCE | Ground truth — always cite |
+| `wiki/index.md` | META | Navigation index |
+
+### Citation policy
+
+UX-partner applies a cite-or-die policy: every UX claim must reference a KB
+page. Citation priority order (from SKILL.md §cite-or-die):
+
+1. PRD / PM requirement document
+2. KB wiki pages (concepts, task-flows, constraints, user-roles, ux-patterns)
+3. KB raw articles (support articles — ultimate authority)
+4. Project memory files
+5. Assumptions (explicitly marked)
+
+Raw articles are never LLM-rewritten, making them the most authoritative
+source for fact-checking wiki claims.

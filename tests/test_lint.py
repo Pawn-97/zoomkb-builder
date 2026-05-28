@@ -78,3 +78,31 @@ class TestIssueCounting:
 
         report = lint(tmp_path, strict=True)
         assert report["exit_code"] == 1
+
+    def test_raw_orphan_files_count_as_coverage_issue(self, tmp_path):
+        """Raw article files outside the manifest indicate contaminated source data."""
+        _setup_kb(tmp_path, [
+            {
+                "article_id": "KB0012345",
+                "title": "Test Article",
+                "confidence": "high",
+                "status": "accepted",
+                "ingested_at": "2026-05-17T00:00:00Z",
+                "local_path": "raw/support-articles/KB0012345-test.md",
+            }
+        ])
+
+        raw_dir = tmp_path / "raw" / "support-articles"
+        (raw_dir / "KB0012345-test.md").write_text(
+            "---\narticle_id: KB0012345\n---\nExpected article.\n",
+            encoding="utf-8",
+        )
+        (raw_dir / "KB0099999-zoom-phone-leftover.md").write_text(
+            "---\narticle_id: KB0099999\n---\nWrong product leftover.\n",
+            encoding="utf-8",
+        )
+
+        report = lint(tmp_path, strict=False)
+
+        assert report["passed"] is False
+        assert any("not referenced by manifest" in issue for issue in report["coverage"])

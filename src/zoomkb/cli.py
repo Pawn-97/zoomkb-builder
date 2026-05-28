@@ -4,8 +4,10 @@ import argparse
 import copy
 import json
 import logging
-
+import os
+import signal
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Optional
 
@@ -13,9 +15,9 @@ from zoomkb.classifier import classify_relevance
 from zoomkb.crawler import crawl_article
 from zoomkb.discover import discover_articles
 from zoomkb.ingest import commit_extraction, dry_run_ingest, prepare_extraction_queue
+from zoomkb.lint import find_raw_orphan_files, lint, write_lint_report
 from zoomkb.manifest import add_article, init_manifest, load_manifest, save_manifest
 from zoomkb.refresh import generate_freshness_report, refresh_articles
-from zoomkb.lint import lint, write_lint_report
 from zoomkb.validator import check_duplicates
 
 logger = logging.getLogger("zoomkb")
@@ -43,6 +45,97 @@ def _setup_logging(verbose: bool) -> None:
     logging.basicConfig(level=level, format=fmt, datefmt="%H:%M:%S")
 
 
+def _pid_is_running(pid: int) -> bool:
+    """Return whether a PID appears alive for lock-file purposes."""
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def _read_build_lock(lock_path: Path) -> dict:
+    try:
+        return json.loads(lock_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _active_lock(lock_path: Path) -> tuple[bool, dict]:
+    """Return whether build.lock points to an active process."""
+    if not lock_path.exists():
+        return False, {}
+
+    data = _read_build_lock(lock_path)
+    try:
+        pid = int(data.get("pid", 0))
+    except (TypeError, ValueError):
+        pid = 0
+
+    return bool(pid and _pid_is_running(pid)), data
+
+
+def _acquire_build_lock(output: Path, product: str) -> Path | None:
+    """Create output/build.lock unless another build is still active."""
+    output.mkdir(parents=True, exist_ok=True)
+    lock_path = output / "build.lock"
+
+    active, data = _active_lock(lock_path)
+    if active:
+        logger.error(
+            "Build already running for %s (pid=%s, started_at=%s). "
+            "Stop that process first, or run 'zoomkb clean --output %s --force-lock' "
+            "only after confirming it is safe.",
+            data.get("product", "unknown product"),
+            data.get("pid", "?"),
+            data.get("started_at", "?"),
+            output,
+        )
+        return None
+
+    if lock_path.exists():
+        logger.warning("Removing stale build lock: %s", lock_path)
+        lock_path.unlink()
+
+    lock = {
+        "pid": os.getpid(),
+        "product": product,
+        "output": str(output),
+        "started_at": datetime.now(timezone.utc).isoformat(),
+        "argv": sys.argv,
+    }
+    tmp_path = output / "build.lock.tmp"
+    tmp_path.write_text(json.dumps(lock, indent=2), encoding="utf-8")
+    tmp_path.replace(lock_path)
+    return lock_path
+
+
+def _release_build_lock(lock_path: Optional[Path]) -> None:
+    """Remove build.lock only when it belongs to this process."""
+    if not lock_path or not lock_path.exists():
+        return
+
+    data = _read_build_lock(lock_path)
+    if data.get("pid") == os.getpid():
+        lock_path.unlink()
+
+
+def _write_abort_marker(output: Path, product: str) -> None:
+    marker = {
+        "pid": os.getpid(),
+        "product": product,
+        "output": str(output),
+        "aborted_at": datetime.now(timezone.utc).isoformat(),
+    }
+    output.mkdir(parents=True, exist_ok=True)
+    (output / "build-aborted.json").write_text(
+        json.dumps(marker, indent=2),
+        encoding="utf-8",
+    )
+
+
 def cmd_discover(args: argparse.Namespace) -> int:
     """Discover candidate articles from sitemaps."""
     output = Path(args.output or _default_output(args.product))
@@ -56,6 +149,7 @@ def cmd_discover(args: argparse.Namespace) -> int:
         max_workers=args.max_workers,
         max_candidates=args.max_candidates,
         locale=args.locale,
+        broad_discovery=getattr(args, "broad_discovery", False),
     )
 
     if "error" in stats:
@@ -70,6 +164,16 @@ def cmd_discover(args: argparse.Namespace) -> int:
     print(f"  Candidates: {stats['candidates']}")
     print(f"  Rejected: {stats['rejected']}")
     print(f"\nCandidates saved to: {stats['candidate_file']}")
+    if (
+        stats["candidates"] == 0
+        and not args.fetch_titles
+        and not getattr(args, "broad_discovery", False)
+    ):
+        logger.error(
+            "No candidates found without title fetching. Re-run with --fetch-titles "
+            "for product filtering, or --broad-discovery to accept untitled sitemap entries."
+        )
+        return 1
     return 0
 
 
@@ -329,6 +433,65 @@ def cmd_lint(args: argparse.Namespace) -> int:
     return report["exit_code"]
 
 
+def cmd_clean(args: argparse.Namespace) -> int:
+    """Remove stale build state and raw files not referenced by manifest."""
+    output = Path(args.output)
+    lock_path = output / "build.lock"
+    removed: list[str] = []
+    blocked = False
+
+    if lock_path.exists():
+        active, data = _active_lock(lock_path)
+        if active and not args.force_lock:
+            logger.error(
+                "Active build lock found (pid=%s, started_at=%s). "
+                "Confirm the process is stopped before using --force-lock.",
+                data.get("pid", "?"),
+                data.get("started_at", "?"),
+            )
+            blocked = True
+        else:
+            reason = "active lock" if active else "stale lock"
+            if args.dry_run:
+                print(f"Would remove {reason}: {lock_path}")
+            else:
+                lock_path.unlink()
+                removed.append(str(lock_path))
+
+    if blocked:
+        return 1
+
+    abort_marker = output / "build-aborted.json"
+    if abort_marker.exists():
+        if args.dry_run:
+            print(f"Would remove abort marker: {abort_marker}")
+        else:
+            abort_marker.unlink()
+            removed.append(str(abort_marker))
+
+    orphan_files = find_raw_orphan_files(output)
+    for path in orphan_files:
+        if args.dry_run:
+            print(f"Would remove orphan raw article: {path}")
+        else:
+            path.unlink()
+            removed.append(str(path))
+
+    if args.dry_run:
+        print(f"\nClean preview: {len(orphan_files)} orphan raw file(s)")
+        return 1 if blocked else 0
+
+    print(f"\nClean complete for {output}:")
+    print(f"  Removed: {len(removed)} file(s)")
+    if removed:
+        for path in removed[:20]:
+            print(f"  - {path}")
+        if len(removed) > 20:
+            print(f"  ... and {len(removed) - 20} more")
+
+    return 1 if blocked else 0
+
+
 def cmd_refresh(args: argparse.Namespace) -> int:
     """Re-crawl accepted articles, diff content hashes, detect changes and staleness."""
     output = Path(args.output)
@@ -400,7 +563,36 @@ def cmd_freshness(args: argparse.Namespace) -> int:
 def cmd_build(args: argparse.Namespace) -> int:
     """One-shot: init → discover → crawl → validate → ingest → lint."""
     output = Path(args.output or _default_output(args.product))
+    args = copy.copy(args)
+    args.output = str(output)
 
+    lock_path = _acquire_build_lock(output, args.product)
+    if lock_path is None:
+        return 1
+
+    previous_term_handler = signal.getsignal(signal.SIGTERM)
+
+    def _handle_sigterm(signum, frame):
+        raise KeyboardInterrupt(f"received signal {signum}")
+
+    signal.signal(signal.SIGTERM, _handle_sigterm)
+    try:
+        return _run_build(args, output)
+    except KeyboardInterrupt as exc:
+        _write_abort_marker(output, args.product)
+        print("\nBuild interrupted.")
+        print(f"Lock released: {lock_path}")
+        print(f"Run 'zoomkb clean --output {output}' to remove orphan raw files.")
+        if str(exc):
+            logger.info("Build interrupted: %s", exc)
+        return 130
+    finally:
+        signal.signal(signal.SIGTERM, previous_term_handler)
+        _release_build_lock(lock_path)
+
+
+def _run_build(args: argparse.Namespace, output: Path) -> int:
+    """Run the build pipeline after lock acquisition."""
     print("=" * 50)
     print("zoomkb:build — full pipeline (7 steps)")
     print("=" * 50)
@@ -560,6 +752,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_disc.add_argument("--source-root", default="https://support.zoom.com/hc/en", help="Zoom Support root URL")
     p_disc.add_argument("--output", default="", help="KB output directory (default: derived from --product)")
     p_disc.add_argument("--fetch-titles", action="store_true", help="Fetch page titles for better filtering")
+    p_disc.add_argument(
+        "--broad-discovery",
+        action="store_true",
+        help="Accept untitled sitemap articles for later classifier filtering",
+    )
     p_disc.add_argument("--max-workers", type=int, default=5, help="Parallel title fetch workers (default: 5)")
     p_disc.add_argument("--max-candidates", type=int, default=0, help="Stop after N candidates (0 = no limit)")
     p_disc.add_argument("--locale", default="en", help="Filter by language path, e.g. 'en'. Use '' for all (default: en)")
@@ -603,6 +800,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_lint.add_argument("--strict", action="store_true", help="Exit non-zero on any issue")
     p_lint.set_defaults(func=cmd_lint)
 
+    # clean
+    p_clean = sub.add_parser("clean", help="Remove stale build state and orphan raw articles")
+    p_clean.add_argument("--output", default="./zoom-phone-kb", help="KB output directory")
+    p_clean.add_argument("--dry-run", action="store_true", help="Preview cleanup without deleting files")
+    p_clean.add_argument(
+        "--force-lock",
+        action="store_true",
+        help="Remove build.lock even if its PID appears active; confirm the process is stopped first",
+    )
+    p_clean.set_defaults(func=cmd_clean)
+
     # extract step is handled by Claude Code (see SKILL.md /zoomkb:build)
     # The CLI no longer includes a separate extract command since Claude Code
     # reads .prompt.md files and writes .result.json files directly.
@@ -628,6 +836,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_build.add_argument("--source-root", default="https://support.zoom.com/hc/en", help="Zoom Support root URL")
     p_build.add_argument("--output", default="", help="KB output directory (default: derived from --product)")
     p_build.add_argument("--fetch-titles", action="store_true", help="Fetch page titles for better filtering")
+    p_build.add_argument(
+        "--broad-discovery",
+        action="store_true",
+        help="Accept untitled sitemap articles for later classifier filtering",
+    )
     p_build.add_argument("--max-workers", type=int, default=5, help="Parallel title fetch workers (default: 5)")
     p_build.add_argument("--max-candidates", type=int, default=0, help="Stop after N candidates (0 = no limit)")
     p_build.add_argument("--locale", default="en", help="Filter by language path (default: en)")

@@ -29,6 +29,49 @@ def _extract_wikilinks(text: str) -> set[str]:
     return set(re.findall(r"\[\[(.+?)\]\]", text))
 
 
+def find_raw_orphan_files(output_dir: Path) -> list[Path]:
+    """Return raw article files that are not referenced by manifest.json."""
+    manifest_path = output_dir / "manifest.json"
+    raw_dir = output_dir / "raw" / "support-articles"
+    if not manifest_path.exists() or not raw_dir.exists():
+        return []
+
+    import json
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    articles = manifest.get("articles", [])
+    raw_files = sorted(raw_dir.glob("*.md"))
+    if not raw_files:
+        return []
+
+    referenced_raw_paths: set[Path] = set()
+    article_ids = {a.get("article_id") for a in articles if a.get("article_id")}
+
+    for article in articles:
+        local_path = article.get("local_path")
+        if local_path:
+            referenced_raw_paths.add((output_dir / local_path).resolve())
+
+        article_id = article.get("article_id")
+        if article_id:
+            referenced_raw_paths.update(
+                path.resolve() for path in raw_dir.glob(f"{article_id}*.md")
+            )
+
+    orphan_files: list[Path] = []
+    for raw_file in raw_files:
+        if raw_file.resolve() in referenced_raw_paths:
+            continue
+
+        fm, _ = _extract_fm(raw_file.read_text(encoding="utf-8"))
+        article_id = fm.get("article_id", "")
+        if article_id and article_id in article_ids:
+            continue
+
+        orphan_files.append(raw_file)
+
+    return orphan_files
+
+
 def lint(
     output_dir: Path,
     stale_days: int = 30,
@@ -128,7 +171,7 @@ def _check_coverage(
     raw_dir: Path,
     report: dict[str, list[str]],
 ) -> None:
-    """Check all high-confidence raw articles have been ingested."""
+    """Check high-confidence ingestion coverage and raw/manifest consistency."""
     if not manifest_path.exists():
         report["coverage"].append("Manifest missing — cannot check coverage.")
         return
@@ -136,6 +179,7 @@ def _check_coverage(
     import json
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     articles = manifest.get("articles", [])
+    output_dir = manifest_path.parent
 
     # Find accepted articles not yet ingested
     uningested = []
@@ -154,6 +198,23 @@ def _check_coverage(
         report["coverage"].append("All high-confidence articles have been ingested.")
     else:
         report["coverage"].append("No articles in manifest — nothing to check.")
+
+    orphan_files = [
+        str(path.relative_to(output_dir))
+        for path in find_raw_orphan_files(output_dir)
+    ]
+
+    if orphan_files:
+        more = (
+            f" ... and {len(orphan_files) - 10} more"
+            if len(orphan_files) > 10
+            else ""
+        )
+        report["coverage"].append(
+            f"{len(orphan_files)} raw article file(s) are not referenced by manifest: "
+            + ", ".join(orphan_files[:10])
+            + more
+        )
 
 
 def _check_consistency(

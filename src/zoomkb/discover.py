@@ -4,11 +4,10 @@ import html
 import json
 import logging
 import re
-import sys
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional
 from urllib.parse import parse_qs, urlparse
 
 import certifi
@@ -118,12 +117,15 @@ def extract_title_from_url(url: str) -> Optional[str]:
 
 
 def _matches_product(
-    title: Optional[str], url: str, product_key: str
-) -> Tuple[bool, list[str]]:
+    title: Optional[str],
+    url: str,
+    product_key: str,
+    allow_untitled: bool = False,
+) -> tuple[bool, list[str]]:
     """Quick heuristic: does title/URL match product signals?
 
-    When title is None (no --fetch-titles), accept all.
-    Product relevance is properly judged by the classifier during crawl.
+    Untitled sitemap entries are only accepted in explicit broad-discovery mode.
+    Product relevance is judged more deeply by the classifier during crawl.
     """
     from zoomkb.constants import PRODUCT_ALIASES
 
@@ -131,10 +133,7 @@ def _matches_product(
     if not config:
         return True, ["unknown product, accepting all"]
 
-    if title is None:
-        return True, ["no title available, accepting for classifier"]
-
-    combined = f"{title} {url}".lower()
+    combined = re.sub(r"[-_]+", " ", f"{title or ''} {url}".lower())
     signals: list[str] = []
     seen_lower: set[str] = set()  # Deduplicate overlapping signal names
 
@@ -157,7 +156,15 @@ def _matches_product(
             signals.append(f"medium: {s}")
             seen_lower.add(sl)
 
-    return len(signals) > 0, signals
+    if signals:
+        return True, signals
+
+    if title is None:
+        if allow_untitled:
+            return True, ["broad discovery: no title available, accepting for classifier"]
+        return False, ["no title available; use --fetch-titles or --broad-discovery"]
+
+    return False, signals
 
 
 def _fetch_titles_parallel(
@@ -165,6 +172,7 @@ def _fetch_titles_parallel(
     product_key: str,
     max_workers: int = 5,
     max_candidates: int = 0,
+    allow_untitled: bool = False,
 ) -> tuple[list[dict], list[dict]]:
     """Fetch page titles in parallel and filter by product keyword match.
 
@@ -176,12 +184,18 @@ def _fetch_titles_parallel(
     total = len(entries)
 
     def _record(title: Optional[str], entry: dict) -> dict:
-        matched, signals = _matches_product(title, entry["canonical_url"], product_key)
+        matched, signals = _matches_product(
+            title,
+            entry["canonical_url"],
+            product_key,
+            allow_untitled=allow_untitled,
+        )
         return {
             "url": entry["canonical_url"],
             "original_url": entry["loc"],
             "title": title,
             "lastmod": entry.get("lastmod"),
+            "matched": matched,
             "matched_signals": signals,
         }
 
@@ -214,15 +228,10 @@ def _fetch_titles_parallel(
                     title = None
 
                 record = _record(title, entry)
-                if record["matched_signals"] and record["matched_signals"] != [
-                    "no title available, accepting for classifier"
-                ]:
+                if record["matched"]:
                     candidates.append(record)
-                elif not record["matched_signals"]:
-                    rejected.append(record)
                 else:
-                    # Title fetch failed, accept for classifier
-                    candidates.append(record)
+                    rejected.append(record)
 
                 if done_count % 100 == 0 or done_count == total:
                     logger.info(
@@ -248,14 +257,10 @@ def _fetch_titles_parallel(
             except Exception:
                 title = None
             record = _record(title, entry)
-            if record["matched_signals"] and record["matched_signals"] != [
-                "no title available, accepting for classifier"
-            ]:
+            if record["matched"]:
                 candidates.append(record)
-            elif not record["matched_signals"]:
-                rejected.append(record)
             else:
-                candidates.append(record)
+                rejected.append(record)
 
             if (i + 1) % 50 == 0 or i + 1 == total:
                 logger.info(
@@ -274,6 +279,7 @@ def discover_articles(
     max_workers: int = 5,
     max_candidates: int = 0,
     locale: Optional[str] = "en",
+    broad_discovery: bool = False,
 ) -> dict:
     """Run full discovery: robots.txt → sitemaps → article URLs → candidate filter.
 
@@ -358,17 +364,29 @@ def discover_articles(
             product,
             max_workers=max_workers,
             max_candidates=max_candidates,
+            allow_untitled=broad_discovery,
         )
     else:
+        if not broad_discovery:
+            logger.warning(
+                "Title fetching disabled and broad discovery not enabled; "
+                "untitled sitemap entries must match product signals in their URL."
+            )
         candidates = []
         rejected = []
         for entry in deduped:
-            matched, signals = _matches_product(None, entry["loc"], product)
+            matched, signals = _matches_product(
+                None,
+                entry["loc"],
+                product,
+                allow_untitled=broad_discovery,
+            )
             record = {
                 "url": entry["canonical_url"],
                 "original_url": entry["loc"],
                 "title": None,
                 "lastmod": entry.get("lastmod"),
+                "matched": matched,
                 "matched_signals": signals,
             }
             if matched:

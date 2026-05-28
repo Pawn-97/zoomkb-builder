@@ -52,11 +52,12 @@ zoom-phone-kb/
 ├── lint-report.md
 ├── refresh-report.md
 ├── freshness-report.md
-├── candidate-articles.json
 ├── raw/
 │   └── support-articles/
 │       └── KB0060257-getting-started-with-zoom-phone.md
 ├── review/
+│   ├── candidate-articles.json
+│   ├── rejected-articles.json
 │   ├── low-confidence/
 │   └── rejected/
 └── wiki/
@@ -77,6 +78,9 @@ pip install zoomkb[dev]   # Optional: pytest, ruff, mypy
 
 Environment variables (all optional):
 - `ZOOMKB_CRAWL4AI=1` — Enable Crawl4AI fallback for client-side rendered pages
+- `ZOOMKB_LLM_CLASSIFIER=1` — Enable optional OpenAI-backed relevance refinement
+- `ZOOMKB_LLM_MODEL` — Override the optional classifier model
+- `OPENAI_API_KEY` — Required only when `ZOOMKB_LLM_CLASSIFIER=1`
 
 ## Permissions
 

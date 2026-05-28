@@ -1,5 +1,11 @@
 # Zoom Support KB Builder
 
+> Status: historical product-shaping note from the initial MVP phase. The
+> current implementation has moved beyond several recommendations below:
+> discovery, review queues, wiki ingest, multi-product support, linting,
+> refresh/freshness, and one-shot build now exist. Use `README.md`,
+> `CLAUDE.md`, and `references/*.md` as the implementation source of truth.
+
 ## Problem Statement
 How might we help Zoom product designers quickly build a trustworthy, structured, traceable product knowledge base from official Zoom Support articles — without manually curating hundreds of articles?
 

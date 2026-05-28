@@ -49,6 +49,15 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md
 
 Alternatively, register it per-project by placing `SKILL.md` in your project's `.claude/skills/zoomkb/` directory.
 
+#### Cursor compatibility
+
+This repository also ships project rules under `.cursor/rules/`:
+
+- `zoomkb.mdc` gives Cursor agents the project architecture, run commands, and KB invariants.
+- `neat-freak.mdc` makes the end-of-session documentation cleanup skill available from Cursor when the user asks to sync, tidy, or hand off the project.
+
+Cursor does not consume Claude Code slash commands directly. In Cursor, run the Python CLI from the terminal (`zoomkb ...`) and let the project rules provide agent context.
+
 #### Step 3 — Set environment variables
 
 All environment variables are optional. The ingest phase uses Claude Code's built-in LLM — no API key required.
@@ -124,6 +133,7 @@ wiki/ux-patterns/*.md
 ```
 
 Extracted entities go through three-stage dedup (exact slug → normalized slug → title Jaccard similarity) and are filtered with `--min-sources` and `--min-quality` to remove thin pages.
+Discovery review files live under `review/`: `candidate-articles.json`, `rejected-articles.json`, `low-confidence/`, and `rejected/`.
 
 ### Requirements
 
@@ -177,6 +187,15 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md
 ```
 
 也可以按项目注册：将 `SKILL.md` 放到项目根目录的 `.claude/skills/zoomkb/` 中。
+
+#### Cursor 兼容
+
+本仓库同时提供 `.cursor/rules/` 项目规则：
+
+- `zoomkb.mdc` 为 Cursor agent 提供项目架构、运行命令和 KB 不变量。
+- `neat-freak.mdc` 让 Cursor 在用户要求同步、整理、收尾、交接时能加载文档清理技能。
+
+Cursor 不会直接消费 Claude Code 的斜杠命令。在 Cursor 中请从终端运行 Python CLI（`zoomkb ...`），由项目规则负责提供 agent 上下文。
 
 #### 第三步 — 设置环境变量
 
@@ -253,6 +272,7 @@ wiki/ux-patterns/*.md
 ```
 
 提取后的实体经过三阶段去重（精确 slug → 归一化 slug → 标题 Jaccard 相似度），并按照 `--min-sources`（最低来源数）和 `--min-quality`（最低质量分）过滤瘦页面。
+发现阶段的审核文件位于 `review/`：`candidate-articles.json`、`rejected-articles.json`、`low-confidence/` 和 `rejected/`。
 
 ### 依赖
 

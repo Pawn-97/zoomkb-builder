@@ -1,0 +1,37 @@
+---
+description: >-
+  End-of-session knowledge cleanup with OCD-level rigor — reconciles project
+  docs (CLAUDE.md, README.md, docs/) and agent memory against the code so
+  nothing rots. 会话结束后对项目文档和记忆进行洁癖级审查与同步。MUST trigger when
+  the user says: "sync up", "tidy up docs", "update memory", "clean up docs",
+  "/sync", "/neat", "同步一下", "整理文档", "整理一下", "更新记忆", "梳理一下",
+  "收尾", "这个阶段做完了", "新人能直接上手", or any phrase suggesting a dev
+  milestone where knowledge needs reconciliation. Also trigger when the user
+  reports stale docs, conflicting memories, or wants a clean handoff. Bare
+  "整理" / "tidy" with prior dev context counts — do not under-trigger.
+alwaysApply: false
+---
+
+# 洁癖 — Knowledge Base Neat-Freak (Skill Loader)
+
+This rule loads the cross-platform `neat-freak` skill installed at
+`~/.agents/skills/neat-freak/`. When the user's intent matches the triggers
+in the frontmatter above, read the SKILL.md below and follow its instructions
+verbatim before doing anything else.
+
+## How to execute
+
+1. Read the skill's full instructions: `@~/.agents/skills/neat-freak/SKILL.md`
+2. Consult the helper references when needed:
+   - `@~/.agents/skills/neat-freak/references/sync-matrix.md` — change-type → which docs to update
+   - `@~/.agents/skills/neat-freak/references/agent-paths.md` — per-agent memory/config paths
+3. Run the five-step flow (inventory → impact matrix → edits → self-check → summary)
+   exactly as the skill specifies. Do not skip the inventory `ls` step.
+
+## Why this rule exists (not just calling the skill directly)
+
+Cursor's project-level `.cursor/rules/` is the reliable surface for surfacing
+external skills into a Cursor session, since `~/.cursor/skills-cursor/` is
+managed by Cursor's own sync and may discard manually-added entries. Keeping
+the skill source at `~/.agents/skills/neat-freak/` and pointing here means a
+single upgrade path for both Cursor and CLI agents.

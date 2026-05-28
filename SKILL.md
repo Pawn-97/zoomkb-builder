@@ -31,7 +31,7 @@ Run `/zoomkb:init --product "Zoom Phone"` via the CLI. Creates the directory str
 
 ### 2. Discover — Find candidate articles
 
-Run `/zoomkb:discover --product "Zoom Phone"`. Reads robots.txt, follows sitemaps, filters by product-relevance signals. Outputs `candidate-articles.json`.
+Run `/zoomkb:discover --product "Zoom Phone"`. Reads robots.txt, follows sitemaps, filters by product-relevance signals. Outputs `review/candidate-articles.json` and `review/rejected-articles.json`.
 
 ### 3. Crawl — Fetch article content
 

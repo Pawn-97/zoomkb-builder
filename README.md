@@ -202,8 +202,16 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md
 本仓库同时提供 `.cursor/rules/` 项目规则：
 
 - `zoomkb.mdc` 为 Cursor agent 提供项目架构、运行命令和 KB 不变量。
+- `neat-freak.mdc` 在用户要求同步、整理或交接项目时，为 Cursor 提供文档清理工作流。
 
-Cursor 不会直接消费 Claude Code 的斜杠命令。在 Cursor 中请从终端运行 Python CLI（`zoomkb ...`），由项目规则负责提供 agent 上下文。
+Cursor 不会直接消费 Claude Code 的斜杠命令。项目级 Cursor 提示命令位于 `.cursor/commands/`，可在 Cursor 聊天中使用：
+
+- `/zoom` — 路由到合适的 ZoomKB 工作流
+- `/zoomkb-build` — 构建产品 KB
+- `/zoomkb-refresh` — 刷新已有 KB
+- `/zoomkb-lint` — 审计 KB 质量
+
+这些命令是 Cursor Agent 的提示模板，底层仍通过终端运行 Python CLI（`zoomkb ...`）。
 
 #### 第三步 — 设置环境变量
 

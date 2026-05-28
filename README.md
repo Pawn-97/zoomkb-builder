@@ -56,7 +56,14 @@ This repository also ships project rules under `.cursor/rules/`:
 - `zoomkb.mdc` gives Cursor agents the project architecture, run commands, and KB invariants.
 - `neat-freak.mdc` makes the end-of-session documentation cleanup skill available from Cursor when the user asks to sync, tidy, or hand off the project.
 
-Cursor does not consume Claude Code slash commands directly. In Cursor, run the Python CLI from the terminal (`zoomkb ...`) and let the project rules provide agent context.
+Cursor does not consume Claude Code slash commands directly. Project-level Cursor prompt commands live under `.cursor/commands/` and are available from Cursor chat as:
+
+- `/zoom` — route to the right ZoomKB workflow
+- `/zoomkb-build` — build a product KB
+- `/zoomkb-refresh` — refresh an existing KB
+- `/zoomkb-lint` — audit KB quality
+
+These commands are prompt templates for Cursor Agent. They still use the Python CLI from the terminal (`zoomkb ...`) under the hood.
 
 #### Step 3 — Set environment variables
 

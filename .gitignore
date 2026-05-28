@@ -13,5 +13,7 @@ test-discover3/
 test-discover4/
 test-kb/
 test-kb-e2e/
+!tests/fixtures/test-kb-e2e/
+!tests/fixtures/test-kb-e2e/**
 .DS_Store
 *.egg-info/

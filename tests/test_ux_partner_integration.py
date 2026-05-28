@@ -1,6 +1,6 @@
 """Tests for UX-partner integration compatibility.
 
-Validates that zoomkb-builder output (test-kb-e2e/) meets
+Validates that zoomkb-builder fixture output meets
 UX-partner's setup-kb detection and classification requirements.
 """
 
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-KB_ROOT = Path(__file__).resolve().parent.parent / "test-kb-e2e"
+KB_ROOT = Path(__file__).resolve().parent / "fixtures" / "test-kb-e2e"
 MANIFEST_PATH = KB_ROOT / "manifest.json"
 WIKI_DIR = KB_ROOT / "wiki"
 

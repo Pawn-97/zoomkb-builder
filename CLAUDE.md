@@ -55,7 +55,7 @@ Suite is 54 tests across `test_ingest.py`, `test_lint.py`, `test_validator.py`, 
 - `manifest.py` — JSON read/write helpers for the per-KB manifest.
 - `constants.py` — `PRODUCT_ALIASES` table driving classification.
 
-**Claude Code skill (`SKILL.md`).** Maps `/zoomkb:*` slash commands to CLI invocations. Edit when adding or renaming a subcommand. Detailed reference docs live in `references/cli-reference.md`, `references/architecture.md`, `references/ux-partner-integration.md`.
+**Claude Code skill (`SKILL.md`).** Exposes three user-facing actions: create KB (`/zoomkb:build`), update KB (`/zoomkb:refresh`), and validate quality (`/zoomkb:lint`). Other CLI subcommands exist for internal orchestration and debugging; do not promote them as primary skill commands. Detailed reference docs live in `references/cli-reference.md`, `references/architecture.md`, `references/ux-partner-integration.md`.
 
 **Cursor compatibility.** `.cursor/rules/zoomkb.mdc` mirrors the project-critical guidance for Cursor agents. `.cursor/rules/neat-freak.mdc` loads the cleanup workflow when a user asks to sync, tidy, or hand off the project. Keep those rules concise and update them when project invariants change.
 

@@ -89,20 +89,13 @@ In Claude Code, type `/zoomkb:build --product "Zoom Phone"` to run the full pipe
 
 ### Usage
 
-| Command | Purpose |
-|---------|---------|
-| `/zoomkb:build` | One-shot full pipeline (init → discover → crawl → validate → ingest → lint) |
-| `/zoomkb:build-all` | Initialize KB directories for all 6 product lines |
-| `/zoomkb:init` | Initialize KB directory structure |
-| `/zoomkb:discover` | Discover candidate articles from Zoom sitemaps |
-| `/zoomkb:crawl` | Crawl and extract articles (JSON-LD primary, Trafilatura fallback) |
-| `/zoomkb:validate` | Validate raw articles for quality |
-| `/zoomkb:ingest` | Generate wiki pages via Claude Code extraction (prepare → extract → commit) |
-| `/zoomkb:refresh` | Re-crawl accepted articles, detect content changes |
-| `/zoomkb:freshness` | Generate source freshness/staleness report |
-| `/zoomkb:lint` | Quality checks (traceability, coverage, consistency, freshness) |
+| User goal | Command | Purpose |
+|---|---|---|
+| Create a KB | `/zoomkb:build --product "Zoom Phone"` | Run the full create flow end-to-end |
+| Update a KB | `/zoomkb:refresh --output ./zoom-phone-kb` | Re-crawl accepted sources and flag changed content |
+| Validate quality | `/zoomkb:lint --output ./zoom-phone-kb` | Check traceability, coverage, consistency, freshness, navigation, and page quality |
 
-See [SKILL.md](SKILL.md) for full CLI options and flags.
+The lower-level CLI subcommands (`init`, `discover`, `crawl`, `validate`, `ingest`, `freshness`, `build-all`) are implementation and debugging tools. Keep the skill workflow centered on the three user goals above. See [references/cli-reference.md](references/cli-reference.md) only when you need advanced CLI details.
 
 ### Update & Maintenance
 
@@ -236,20 +229,13 @@ zoomkb --help
 
 ### 使用说明
 
-| 命令 | 用途 |
-|---------|---------|
-| `/zoomkb:build` | 一键运行完整流水线 |
-| `/zoomkb:build-all` | 初始化全部 6 条产品线知识库目录 |
-| `/zoomkb:init` | 初始化知识库目录结构 |
-| `/zoomkb:discover` | 从 Zoom 站点地图发现候选文章 |
-| `/zoomkb:crawl` | 爬取并提取文章内容（优先 JSON-LD，备用 Trafilatura） |
-| `/zoomkb:validate` | 验证原始文章质量 |
-| `/zoomkb:ingest` | 通过 Claude Code 提取生成 wiki 页面 (prepare → extract → commit) |
-| `/zoomkb:refresh` | 重新抓取已收录文章，检测内容变更 |
-| `/zoomkb:freshness` | 生成来源新鲜度/过期状态报告 |
-| `/zoomkb:lint` | 质量检查（可追溯性、覆盖度、一致性、新鲜度） |
+| 用户目标 | 命令 | 用途 |
+|---|---|---|
+| 创建 KB | `/zoomkb:build --product "Zoom Phone"` | 一键运行完整创建流程 |
+| 更新 KB | `/zoomkb:refresh --output ./zoom-phone-kb` | 重新抓取已收录来源并标记内容变化 |
+| 质量验证 | `/zoomkb:lint --output ./zoom-phone-kb` | 检查可追溯性、覆盖度、一致性、新鲜度、导航和页面质量 |
 
-详见 [SKILL.md](SKILL.md) 获取完整 CLI 参数和选项。
+底层 CLI 子命令（`init`、`discover`、`crawl`、`validate`、`ingest`、`freshness`、`build-all`）只作为实现和调试工具存在。面向用户的 skill 工作流应始终围绕上面三个目标。需要高级 CLI 细节时再看 [references/cli-reference.md](references/cli-reference.md)。
 
 ### 更新与维护
 

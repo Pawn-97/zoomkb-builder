@@ -15,7 +15,15 @@ Build a "wiki layer" from official Zoom Support articles — concept pages, user
 /zoomkb:build --product "Zoom Phone"
 ```
 
-This runs the full pipeline end-to-end. For a complete list of commands and options, see [references/cli-reference.md](references/cli-reference.md).
+This creates a complete KB end-to-end. The skill intentionally exposes only three user-facing actions:
+
+| User goal | Command |
+|---|---|
+| Create a KB | `/zoomkb:build --product "Zoom Phone"` |
+| Update an existing KB | `/zoomkb:refresh --output ./zoom-phone-kb` |
+| Validate KB quality | `/zoomkb:lint --output ./zoom-phone-kb` |
+
+Lower-level CLI subcommands exist for debugging and automation, but do not present them as the normal user workflow. See [references/cli-reference.md](references/cli-reference.md) only when you need advanced implementation details.
 
 ## Pipeline
 
@@ -23,33 +31,23 @@ This runs the full pipeline end-to-end. For a complete list of commands and opti
 sitemap discovery → crawl (JSON-LD) → classify (relevance scoring) → validate → ingest-prepare → extract → ingest-commit → lint
 ```
 
-## How to run each step
+## User-facing actions
 
-### 1. Init — Create KB directory
+### Create a KB
 
-Run `/zoomkb:init --product "Zoom Phone"` via the CLI. Creates the directory structure, manifest.json, and log.
+Run `/zoomkb:build --product "Zoom Phone"`. This initializes the KB, discovers and crawls relevant support articles, validates raw sources, prepares extraction prompts, commits wiki pages, and runs quality checks.
 
-### 2. Discover — Find candidate articles
+### Update an existing KB
 
-Run `/zoomkb:discover --product "Zoom Phone"`. Reads robots.txt, follows sitemaps, filters by product-relevance signals. Outputs `review/candidate-articles.json` and `review/rejected-articles.json`.
+Run `/zoomkb:refresh --output ./zoom-phone-kb`. This re-crawls accepted source articles, compares content hashes, and moves changed articles back to review.
 
-### 3. Crawl — Fetch article content
+### Validate KB quality
 
-Run `/zoomkb:crawl`. Fetches each candidate URL, extracts content via JSON-LD (primary) or Trafilatura (fallback). Writes raw markdown with frontmatter to `raw/support-articles/`.
+Run `/zoomkb:lint --output ./zoom-phone-kb`. This checks traceability, coverage, consistency, freshness, navigation, and wiki page quality.
 
-### 4. Validate — Check article quality
+## Internal extraction step
 
-Run `/zoomkb:validate`. Checks frontmatter completeness, content quality, and deduplication. Articles below the quality threshold move to `review/rejected/`.
-
-### 5. Classify — Score relevance
-
-Rule-based scoring by default (keyword matching, title signals, product mentions). If the user sets `ZOOMKB_LLM_CLASSIFIER=1`, an optional LLM refinement pass runs. See [references/architecture.md](references/architecture.md) for the scoring table.
-
-### 6. Ingest — Prepare extraction prompts
-
-Run `/zoomkb:ingest --prepare`. Groups accepted articles by entity (feature, user role, task, etc.) and writes `.prompt.md` files to `extraction-queue/`. Each prompt asks you to extract structured entities from the grouped source articles.
-
-### 7. Extract — YOU do this step
+During `/zoomkb:build`, the CLI prepares `extraction-queue/*.prompt.md` files. The LLM must process those prompts before commit:
 
 This step is your job. No CLI command — you read and process the files directly:
 
@@ -78,14 +76,6 @@ Quality scoring guidelines:
 - **20-49**: Entity inferred from fragments, low confidence
 - **< 20**: Do not emit — below minimum quality threshold
 
-### 8. Commit — Write wiki pages
-
-Run `/zoomkb:ingest --commit`. Reads all `.result.json` files, deduplicates entities across extraction batches, filters by `--min-quality` and `--min-sources`, then writes markdown pages to `wiki/`.
-
-### 9. Lint — Quality check
-
-Run `/zoomkb:lint`. Checks traceability (every wiki claim links to a raw source), coverage (no orphan entities), consistency, freshness, and navigation.
-
 ## Decision rules
 
 - **Score >= 8**: Auto-accept. These articles clearly match the target product.
@@ -110,7 +100,7 @@ After each `/zoomkb:build` run, verify:
 
 To detect outdated content: run `/zoomkb:refresh` which re-crawls accepted articles and compares content hashes. Changed articles move to `status: review`.
 
-To check freshness without re-crawling: run `/zoomkb:freshness` which generates a staleness report based on `manifest.json` timestamps.
+To inspect source freshness without changing content, use the advanced CLI reference. Do not expose freshness as a primary skill command.
 
 ## Reference files
 

@@ -1,5 +1,15 @@
 # CLI Command Reference
 
+The user-facing skill should stay focused on three actions:
+
+| User goal | Command |
+|---|---|
+| Create a KB | `/zoomkb:build --product "Zoom Phone"` |
+| Update a KB | `/zoomkb:refresh --output ./zoom-phone-kb` |
+| Validate quality | `/zoomkb:lint --output ./zoom-phone-kb` |
+
+The remaining commands below are advanced implementation/debugging surfaces. Do not present them as the default skill workflow.
+
 ## `/zoomkb:build` — One-shot full pipeline
 
 Runs the entire pipeline: init → discover → crawl → validate → ingest-prepare → extract → ingest-commit → lint.

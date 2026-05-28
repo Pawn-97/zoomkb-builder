@@ -187,6 +187,8 @@ def cmd_init(args: argparse.Namespace) -> int:
         output / "review" / "low-confidence",
         output / "review" / "rejected",
         output / "wiki",
+        output / "10-LLM-Wiki" / "Category Pages",
+        output / "30-Agent-Playbooks" / "Troubleshooting",
     ]
     for d in dirs:
         d.mkdir(parents=True, exist_ok=True)

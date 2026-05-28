@@ -31,6 +31,8 @@ Suite is 54 tests across `test_ingest.py`, `test_lint.py`, `test_validator.py`, 
 **Two-layer KB design.** Every KB output dir has:
 - `raw/support-articles/*.md` — verbatim crawl output, never LLM-rewritten. Source of truth.
 - `wiki/{concepts,user-roles,task-flows,constraints,ux-patterns}/*.md` — extracted, deduped, quality-filtered pages with `source_article_ids` traceability.
+- `10-LLM-Wiki/` — generated human navigation layer: taxonomy, master index, full category listings, feature cross references, and category pages.
+- `30-Agent-Playbooks/` — generated troubleshooting/root-cause playbooks.
 - `manifest.json` — per-article status (discovered → crawled → accepted → ingested), hashes, classification scores.
 - `extraction-queue/*.prompt.md` + `*.result.json` — handoff files between Python and Claude (see below).
 
@@ -42,6 +44,8 @@ Suite is 54 tests across `test_ingest.py`, `test_lint.py`, `test_validator.py`, 
 3. `zoomkb ingest --commit` — Python reads results, runs three-stage dedup (exact slug → normalized slug → title Jaccard similarity), filters by `--min-sources` and `--min-quality`, writes markdown to `wiki/`.
 
 `cmd_build` orchestrates this: it pauses after `--prepare`, expects results to exist before `--commit`. When running the full pipeline as a slash command, Claude is the one filling in step 2.
+
+After commit, the builder assigns entities to a product-agnostic taxonomy, writes richer type-specific wiki templates, and generates `10-LLM-Wiki/` plus `30-Agent-Playbooks/` for every supported Zoom product. Zoom Rooms examples are not special-cased; taxonomy and quality gates must work across products.
 
 **Module map** (`src/zoomkb/`):
 - `cli.py` — argparse entry, `cmd_*` functions per subcommand, plus `cmd_build` / `cmd_build_all` orchestrators.
@@ -67,6 +71,7 @@ Suite is 54 tests across `test_ingest.py`, `test_lint.py`, `test_validator.py`, 
 - `raw/` is append-only and never edited by LLM. Quality issues are filtered at validate / ingest time, not by rewriting source.
 - Wiki entities must carry `source_article_ids` frontmatter — `_check_traceability` in `lint.py` will fail otherwise.
 - Slugs are produced by `_slugify` + `_normalize_slug` in `ingest.py`; dedup relies on this canonical form, so don't bypass it when adding new entity writers.
+- `primary_category` is required on wiki pages once ingest has run. Thin pages, over-merged pages with too many sources, incomplete task-flow/UX-pattern sections, missing navigation layers, and low relationship density are lint failures.
 - `docs/ideas/` and `docs/reports/` contain historical planning and validation notes, not implementation truth. Prefer `README.md`, this file, and `references/*.md` for current behavior.
 
 ## Environment variables

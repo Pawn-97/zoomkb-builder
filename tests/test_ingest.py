@@ -267,3 +267,17 @@ class TestCommitExtraction:
         # Obscure Setting should be filtered (has 1 source)
         assert stats["entities_created"] == 1
         assert stats["entities_filtered"] >= 1
+
+        concept_page = wiki_dir / "concepts" / "call-queue.md"
+        content = concept_page.read_text(encoding="utf-8")
+        assert "primary_category:" in content
+        assert "source_article_ids:" in content
+        assert "## Product context" in content
+        assert "## UX implications" in content
+
+        assert (output_dir / "10-LLM-Wiki" / "Master Index.md").exists()
+        assert (output_dir / "10-LLM-Wiki" / "Taxonomy.md").exists()
+        assert (output_dir / "10-LLM-Wiki" / "Full Category Listings.md").exists()
+        assert (output_dir / "10-LLM-Wiki" / "Feature Cross References.md").exists()
+        assert list((output_dir / "10-LLM-Wiki" / "Category Pages").glob("*.md"))
+        assert (output_dir / "30-Agent-Playbooks" / "Troubleshooting" / "Product Business Domains.md").exists()

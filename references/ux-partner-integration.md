@@ -27,6 +27,8 @@ Each wiki page is tagged by its source directory when indexed into context-mode 
 | `wiki/ux-patterns/` | UX-PATTERN | Reusable interaction patterns |
 | `raw/support-articles/` | RAW-SOURCE | Ground truth — always cite |
 | `wiki/index.md` | META | Navigation index |
+| `10-LLM-Wiki/` | META | Taxonomy, category navigation, full listings, and cross references |
+| `30-Agent-Playbooks/` | PLAYBOOK | Troubleshooting and root-cause workflows |
 
 ## Citation policy
 

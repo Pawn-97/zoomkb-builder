@@ -106,3 +106,52 @@ class TestIssueCounting:
 
         assert report["passed"] is False
         assert any("not referenced by manifest" in issue for issue in report["coverage"])
+
+    def test_thin_wiki_page_fails_new_quality_gates(self, tmp_path):
+        """Lint must catch extraction summaries that are too thin for design use."""
+        _setup_kb(tmp_path, [
+            {
+                "article_id": "KB0012345",
+                "title": "Test Article",
+                "confidence": "high",
+                "status": "accepted",
+                "ingested_at": "2026-05-17T00:00:00Z",
+            }
+        ])
+        page = tmp_path / "wiki" / "concepts" / "thin-concept.md"
+        page.write_text(
+            """---
+type: concept
+product: zoom-phone
+title: Thin Concept
+sources:
+  - article_id: KB0012345
+    title: Test Article
+    source_url: https://support.zoom.com/
+confidence: high
+last_reviewed: 2026-05-17
+---
+
+# Thin Concept
+
+## Summary
+
+Too short.
+
+## Key points
+
+- Minimal point.
+
+## Related
+
+_None yet_
+""",
+            encoding="utf-8",
+        )
+
+        report = lint(tmp_path, strict=False)
+
+        assert report["passed"] is False
+        assert any("missing primary_category" in issue for issue in report["quality"])
+        assert any("thin body" in issue for issue in report["quality"])
+        assert any("10-LLM-Wiki/Master Index.md missing" in issue for issue in report["navigation"])

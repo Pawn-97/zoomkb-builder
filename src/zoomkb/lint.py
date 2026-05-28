@@ -29,6 +29,28 @@ def _extract_wikilinks(text: str) -> set[str]:
     return set(re.findall(r"\[\[(.+?)\]\]", text))
 
 
+def _wiki_page_paths(wiki_dir: Path) -> list[Path]:
+    paths: list[Path] = []
+    for subdir_name in [
+        "concepts", "user-roles", "task-flows", "constraints", "ux-patterns",
+    ]:
+        subdir = wiki_dir / subdir_name
+        if subdir.exists():
+            paths.extend(sorted(subdir.glob("*.md")))
+    return paths
+
+
+def _source_count(content: str) -> int:
+    if content.count("---") < 2:
+        return 0
+    fm_text = content.split("---", 2)[1]
+    return len(set(re.findall(r"article_id:\s*([A-Za-z0-9_-]+)", fm_text)))
+
+
+def _business_section_count(body: str) -> int:
+    return len(re.findall(r"^##\s+", body, flags=re.MULTILINE))
+
+
 def find_raw_orphan_files(output_dir: Path) -> list[Path]:
     """Return raw article files that are not referenced by manifest.json."""
     manifest_path = output_dir / "manifest.json"
@@ -314,6 +336,8 @@ def _check_navigation(
     """Check index.md is current and wikilinks resolve."""
     if not wiki_dir.exists():
         return
+    output_dir = wiki_dir.parent
+    has_wiki_pages = bool(_wiki_page_paths(wiki_dir))
 
     # Check index.md exists and is populated
     index_path = wiki_dir / "index.md"
@@ -391,6 +415,27 @@ def _check_navigation(
         if len(orphans) > 10:
             report["navigation"].append(f"  ... and {len(orphans) - 10} more")
 
+    if has_wiki_pages:
+        nav_dir = output_dir / "10-LLM-Wiki"
+        required_nav = [
+            nav_dir / "Master Index.md",
+            nav_dir / "Taxonomy.md",
+            nav_dir / "Full Category Listings.md",
+            nav_dir / "Feature Cross References.md",
+        ]
+        for path in required_nav:
+            if not path.exists():
+                report["navigation"].append(
+                    f"{path.relative_to(output_dir)} missing"
+                )
+        category_pages = nav_dir / "Category Pages"
+        if not category_pages.exists() or not list(category_pages.glob("*.md")):
+            report["navigation"].append("10-LLM-Wiki/Category Pages missing or empty")
+
+        playbooks = output_dir / "30-Agent-Playbooks" / "Troubleshooting"
+        if not playbooks.exists() or not list(playbooks.glob("*.md")):
+            report["navigation"].append("30-Agent-Playbooks/Troubleshooting missing or empty")
+
 
 def _check_quality(
     wiki_dir: Path,
@@ -408,33 +453,90 @@ def _check_quality(
             continue
         for path in subdir.glob("*.md"):
             content = path.read_text(encoding="utf-8")
+            fm, body = _extract_fm(content)
+            page_ref = f"{subdir_name}/{path.name}"
 
             # Check has key sections
             if "## Summary" not in content:
                 report["quality"].append(
-                    f"{subdir_name}/{path.name}: missing ## Summary section"
+                    f"{page_ref}: missing ## Summary section"
                 )
 
             if "## Key points" not in content:
                 report["quality"].append(
-                    f"{subdir_name}/{path.name}: missing ## Key points section"
+                    f"{page_ref}: missing ## Key points section"
                 )
 
             # Check summary is substantial
-            fm, body = _extract_fm(content)
             summary_match = re.search(r"## Summary\n\n(.+?)(?:\n##|\Z)", body, re.DOTALL)
             if summary_match:
                 summary = summary_match.group(1).strip()
                 if len(summary) < 50:
                     report["quality"].append(
-                        f"{subdir_name}/{path.name}: summary too short ({len(summary)} chars)"
+                        f"{page_ref}: summary too short ({len(summary)} chars)"
                     )
 
             # Check word count
             word_count = len(body.split())
             if word_count < 50:
                 report["quality"].append(
-                    f"{subdir_name}/{path.name}: body too short ({word_count} words)"
+                    f"{page_ref}: body too short ({word_count} words)"
+                )
+
+            if "primary_category" not in fm or not fm.get("primary_category"):
+                report["quality"].append(f"{page_ref}: missing primary_category frontmatter")
+
+            section_count = _business_section_count(body)
+            if section_count < 5:
+                report["quality"].append(
+                    f"{page_ref}: thin body ({section_count} business sections; expected at least 5)"
+                )
+
+            sources = _source_count(content)
+            if sources > 20:
+                report["quality"].append(
+                    f"{page_ref}: possible over-merged entity ({sources} source articles; split by category/task/constraint)"
+                )
+
+            if subdir_name == "task-flows":
+                required = [
+                    "## Actors",
+                    "## Surfaces",
+                    "## Prerequisites",
+                    "## Flow steps",
+                    "## Failure states",
+                    "## UX implications",
+                ]
+                missing = [section for section in required if section not in content]
+                if missing:
+                    report["quality"].append(
+                        f"{page_ref}: task-flow missing required sections: {', '.join(missing)}"
+                    )
+
+            if subdir_name == "ux-patterns":
+                required = [
+                    "## Intent",
+                    "## User context",
+                    "## Surfaces",
+                    "## States",
+                    "## Failure states",
+                    "## Design implications",
+                    "## Dependency map",
+                ]
+                missing = [section for section in required if section not in content]
+                if missing:
+                    report["quality"].append(
+                        f"{page_ref}: ux-pattern missing required sections: {', '.join(missing)}"
+                    )
+
+            if subdir_name == "constraints" and sources > 10:
+                report["quality"].append(
+                    f"{page_ref}: constraint may need splitting ({sources} sources)"
+                )
+
+            if sources >= 3 and content.count("[[") == 0:
+                report["quality"].append(
+                    f"{page_ref}: relationship density too low for multi-source page"
                 )
 
 

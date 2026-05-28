@@ -12,6 +12,8 @@ alwaysApply: true
 - Pipeline: `discover -> crawl -> classify -> validate -> ingest --prepare -> Claude/Cursor extracts result JSON -> ingest --commit -> lint`.
 - `raw/support-articles/` is source of truth and must not be LLM-rewritten.
 - Wiki pages live in `wiki/{concepts,user-roles,task-flows,constraints,ux-patterns}/` and need `source_article_ids`.
+- `10-LLM-Wiki/` and `30-Agent-Playbooks/` are generated for every product KB after ingest commit; do not treat Zoom Rooms as a hardcoded special case.
+- Wiki pages need `primary_category`; lint flags thin bodies, over-merged entities, incomplete task-flow/UX-pattern pages, missing navigation layers, and low relationship density.
 - Discovery artifacts are under `review/candidate-articles.json` and `review/rejected-articles.json`.
 - Product keys come from `src/zoomkb/constants.py`; do not invent product slugs elsewhere.
 - Optional env vars: `ZOOMKB_CRAWL4AI=1`, `ZOOMKB_LLM_CLASSIFIER=1`, `ZOOMKB_LLM_MODEL`, `OPENAI_API_KEY`.

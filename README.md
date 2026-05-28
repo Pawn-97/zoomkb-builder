@@ -13,7 +13,7 @@
 
 Zoom Support KB Builder crawls Zoom's official support articles and transforms them into a **design-facing knowledge base** (a "wiki layer"). It extracts concept pages, user-role descriptions, task flows, constraints, and UX patterns — all sourced from raw articles but compiled into design knowledge by Claude Code.
 
-**Pipeline:** `sitemap discovery → crawl (JSON-LD) → classify → validate → ingest (Claude Code extract) → lint`
+**Pipeline:** `sitemap discovery → crawl (JSON-LD) → classify → validate → ingest (Claude Code extract) → taxonomy/navigation/playbooks → lint`
 
 ### Installation in Claude Code
 
@@ -130,9 +130,11 @@ wiki/task-flows/*.md
 wiki/user-roles/*.md
 wiki/constraints/*.md
 wiki/ux-patterns/*.md
+10-LLM-Wiki/               ← Human navigation: taxonomy, master index, category listings, cross references
+30-Agent-Playbooks/        ← Troubleshooting and root-cause playbooks
 ```
 
-Extracted entities go through three-stage dedup (exact slug → normalized slug → title Jaccard similarity) and are filtered with `--min-sources` and `--min-quality` to remove thin pages.
+Extracted entities go through three-stage dedup (exact slug → normalized slug → title Jaccard similarity) and are filtered with `--min-sources` and `--min-quality` to remove thin pages. Ingest now also assigns every entity to a product-agnostic taxonomy category, writes richer page templates for task flows / constraints / UX patterns, and generates navigation plus troubleshooting layers for any supported Zoom product KB.
 Discovery review files live under `review/`: `candidate-articles.json`, `rejected-articles.json`, `low-confidence/`, and `rejected/`.
 
 ### Repository layout
@@ -161,7 +163,7 @@ Discovery review files live under `review/`: `candidate-articles.json`, `rejecte
 
 Zoom-UX知识库构建器（Zoom Support KB Builder）爬取 Zoom 官方支持文章，并将其转化为**面向设计的知识库**（"wiki 层"）。它提取概念页面、用户角色描述、任务流程、约束条件和 UX 模式 —— 全部来源于原始支持文章，但通过 LLM 编译成设计知识。
 
-**流水线：** `站点地图发现 → 爬取 (JSON-LD) → 分类 → 验证 → Claude Code 提取 → 质量检查`
+**流水线：** `站点地图发现 → 爬取 (JSON-LD) → 分类 → 验证 → Claude Code 提取 → taxonomy/导航/playbooks → 质量检查`
 
 ### 在 Claude Code 中安装
 
@@ -278,9 +280,11 @@ wiki/task-flows/*.md
 wiki/user-roles/*.md
 wiki/constraints/*.md
 wiki/ux-patterns/*.md
+10-LLM-Wiki/               ← 人类导航层：taxonomy、总索引、分类列表、功能关系
+30-Agent-Playbooks/        ← troubleshooting 与 root-cause playbooks
 ```
 
-提取后的实体经过三阶段去重（精确 slug → 归一化 slug → 标题 Jaccard 相似度），并按照 `--min-sources`（最低来源数）和 `--min-quality`（最低质量分）过滤瘦页面。
+提取后的实体经过三阶段去重（精确 slug → 归一化 slug → 标题 Jaccard 相似度），并按照 `--min-sources`（最低来源数）和 `--min-quality`（最低质量分）过滤瘦页面。Ingest 还会给每个 entity 分配通用产品 taxonomy 分类，为 task-flow / constraint / UX pattern 写入更完整页面模板，并为任何受支持的 Zoom product KB 生成导航层和排障 playbooks。
 发现阶段的审核文件位于 `review/`：`candidate-articles.json`、`rejected-articles.json`、`low-confidence/` 和 `rejected/`。
 
 ### 仓库结构

@@ -15,6 +15,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from zoomkb.navigation import generate_knowledge_navigation
+from zoomkb.taxonomy import categorize_text, normalize_category_title, taxonomy_prompt
+
 logger = logging.getLogger("zoomkb.ingest")
 
 
@@ -27,6 +30,14 @@ class WikiEntity:
     key_points: list[str] = field(default_factory=list)
     related: list[str] = field(default_factory=list)
     sources: list[dict[str, str]] = field(default_factory=list)
+    primary_category: str = ""
+    actors: list[str] = field(default_factory=list)
+    surfaces: list[str] = field(default_factory=list)
+    prerequisites: list[str] = field(default_factory=list)
+    steps: list[str] = field(default_factory=list)
+    failure_states: list[str] = field(default_factory=list)
+    ux_implications: list[str] = field(default_factory=list)
+    states: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -50,12 +61,33 @@ For each entity provide:
 - title: Human-readable title
 - summary: 2-3 sentences for designers, focused on UX implications
 - key_points: list of 2-5 bullet points
+- primary_category: one category from the taxonomy below
+- actors: user/admin/support roles involved
+- surfaces: product surfaces, clients, devices, admin pages, or support surfaces
 - related: list of related entity slugs in kebab-case (may be empty)
+
+For task-flow entities also provide:
+- prerequisites: required setup, permission, license, integration, or state
+- steps: ordered user/admin actions
+- failure_states: blocked, empty, unavailable, permission, or error states
+- ux_implications: design implications and edge cases
+
+For constraint entities also provide:
+- prerequisites: what must be true before the feature works
+- failure_states: what users/admins see when the constraint is not satisfied
+- ux_implications: design impact of the constraint
+
+For ux-pattern entities also provide:
+- states: default, empty/unavailable, permission blocked, configuration missing, error/recovery
+- failure_states: high-risk pattern failures
+- ux_implications: what designers must not miss
 
 Rules:
 - Only extract entities actually mentioned in the article
 - Keep summaries focused on UX/design implications, not implementation
 - Use kebab-case for related slugs
+- Do not collapse heterogeneous topics into a generic product concept
+- Prefer narrower task-flow, constraint, and ux-pattern entities over one over-merged concept
 - Empty array if no matches for an entity type"""
 
 
@@ -63,11 +95,25 @@ def _slugify(title: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:80]
 
 
+def _as_list(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    if isinstance(value, str) and value.strip():
+        return [value.strip()]
+    return []
+
+
 def _score_entity(entity: "WikiEntity", avg_article_score: float = 8.0) -> float:
     """Score entity quality 0-100. Higher = more substantial, better sourced."""
     source_score = min(len(entity.sources) * 8.0, 40.0)
     summary_score = min(len(entity.summary) / 7.5, 30.0)
-    kp_score = min(len(entity.key_points) * 10.0, 20.0)
+    structured_fields = (
+        entity.actors + entity.surfaces + entity.prerequisites
+        + entity.steps + entity.failure_states + entity.ux_implications + entity.states
+    )
+    kp_score = min((len(entity.key_points) + len(structured_fields)) * 4.0, 20.0)
     article_score = min(avg_article_score, 10.0)
     return source_score + summary_score + kp_score + article_score
 
@@ -107,6 +153,16 @@ def _merge_entities(canonical: "WikiEntity", other: "WikiEntity") -> None:
         if r not in canonical.related:
             canonical.related.append(r)
     canonical.related.sort()
+    if not canonical.primary_category and other.primary_category:
+        canonical.primary_category = other.primary_category
+    for attr in (
+        "actors", "surfaces", "prerequisites", "steps",
+        "failure_states", "ux_implications", "states",
+    ):
+        values = getattr(canonical, attr)
+        for item in getattr(other, attr):
+            if item not in values:
+                values.append(item)
 
 
 def _dedup_entities(entities: list["WikiEntity"]) -> list["WikiEntity"]:
@@ -213,6 +269,10 @@ def _extract_frontmatter_manual(content: str) -> tuple[dict[str, Any], str]:
     return fm, parts[2].strip()
 
 
+def _extraction_instructions(product: str) -> str:
+    return f"{_EXTRACTION_SYSTEM}\n\n## Product Taxonomy\n\n{taxonomy_prompt(product)}"
+
+
 def _resolve_raw_path(article: dict, raw_dir: Path) -> Optional[Path]:
     """Resolve article's raw markdown file path."""
     local = article.get("local_path", "")
@@ -300,7 +360,7 @@ def prepare_extraction_queue(
 
 ## Instructions
 
-{_EXTRACTION_SYSTEM}
+{_extraction_instructions(product)}
 
 ## Article Content
 
@@ -314,12 +374,47 @@ Output your extraction as valid JSON matching this schema:
 {{
   "article_id": "{article['article_id']}",
   "concepts": [
-    {{"title": "...", "summary": "...", "key_points": ["..."], "related": ["..."]}}
+    {{
+      "title": "...",
+      "summary": "...",
+      "primary_category": "02 Core Concepts & Product Model",
+      "actors": ["..."],
+      "surfaces": ["..."],
+      "key_points": ["..."],
+      "related": ["..."]
+    }}
   ],
   "user_roles": [...],
-  "task_flows": [...],
+  "task_flows": [
+    {{
+      "title": "...",
+      "summary": "...",
+      "primary_category": "03 User Tasks & Workflows",
+      "actors": ["..."],
+      "surfaces": ["..."],
+      "prerequisites": ["..."],
+      "steps": ["..."],
+      "failure_states": ["..."],
+      "ux_implications": ["..."],
+      "key_points": ["..."],
+      "related": ["..."]
+    }}
+  ],
   "constraints": [...],
-  "ux_patterns": [...]
+  "ux_patterns": [
+    {{
+      "title": "...",
+      "summary": "...",
+      "primary_category": "05 Scheduling, Meetings & Collaboration",
+      "actors": ["..."],
+      "surfaces": ["..."],
+      "states": ["Default", "Empty / unavailable", "Permission blocked", "Configuration missing", "Error / recovery"],
+      "failure_states": ["..."],
+      "ux_implications": ["..."],
+      "key_points": ["..."],
+      "related": ["..."]
+    }}
+  ]
 }}
 ```
 """
@@ -371,15 +466,30 @@ def parse_extraction_result(
         for item in data.get(key, []):
             if not item.get("title"):
                 continue
+            primary_category = normalize_category_title(item.get("primary_category", ""))
+            if not primary_category:
+                primary_category = categorize_text(
+                    item.get("title", ""),
+                    item.get("summary", ""),
+                    " ".join(_as_list(item.get("key_points"))),
+                )
             entities.append(
                 WikiEntity(
                     type=etype,
                     title=item["title"],
                     slug=_slugify(item["title"]),
                     summary=item.get("summary", ""),
-                    key_points=item.get("key_points", []),
+                    key_points=_as_list(item.get("key_points")),
                     related=[_slugify(r) for r in item.get("related", []) if r],
                     sources=[source],
+                    primary_category=primary_category,
+                    actors=_as_list(item.get("actors")),
+                    surfaces=_as_list(item.get("surfaces")),
+                    prerequisites=_as_list(item.get("prerequisites")),
+                    steps=_as_list(item.get("steps")),
+                    failure_states=_as_list(item.get("failure_states")),
+                    ux_implications=_as_list(item.get("ux_implications")),
+                    states=_as_list(item.get("states")),
                 )
             )
 
@@ -387,6 +497,265 @@ def parse_extraction_result(
 
 
 # ── Commit: write wiki pages from results ──────────────────────────
+
+def _yaml_list(values: list[str], indent: str = "  ") -> str:
+    if not values:
+        return "  []"
+    return "\n".join(f'{indent}- "{v.replace(chr(34), chr(39))}"' for v in values)
+
+
+def _bullet_list(values: list[str], fallback: str) -> str:
+    clean = [v for v in values if v]
+    if not clean:
+        return f"- {fallback}"
+    return "\n".join(f"- {v}" for v in clean)
+
+
+def _numbered_list(values: list[str], fallback: str) -> str:
+    clean = [v for v in values if v]
+    if not clean:
+        return f"1. {fallback}"
+    return "\n".join(f"{i}. {v}" for i, v in enumerate(clean, start=1))
+
+
+def _default_actors(entity: WikiEntity) -> list[str]:
+    if entity.actors:
+        return entity.actors
+    if entity.type in {"user-role", "constraint"}:
+        return ["Account admin", "support specialist", "UX designer"]
+    if entity.type == "task-flow":
+        return ["Primary user", "admin or support owner"]
+    return ["UX designer", "PM", "support specialist"]
+
+
+def _default_surfaces(entity: WikiEntity) -> list[str]:
+    if entity.surfaces:
+        return entity.surfaces
+    text = f"{entity.title} {entity.summary}".lower()
+    surfaces: list[str] = []
+    for keyword, surface in [
+        ("admin", "Admin web portal"),
+        ("mobile", "Mobile client"),
+        ("desktop", "Desktop client"),
+        ("device", "Device surface"),
+        ("room", "Room or physical workspace"),
+        ("calendar", "Calendar integration surface"),
+        ("api", "Integration/API surface"),
+    ]:
+        if keyword in text:
+            surfaces.append(surface)
+    return surfaces or ["Product UI", "admin or support surface"]
+
+
+def _entity_category(entity: WikiEntity) -> str:
+    return entity.primary_category or categorize_text(
+        entity.title,
+        entity.summary,
+        " ".join(entity.key_points),
+    )
+
+
+def _page_body(entity: WikiEntity, related_links: str, key_points_md: str) -> str:
+    actors = _default_actors(entity)
+    surfaces = _default_surfaces(entity)
+    category = _entity_category(entity)
+    source_note = "Validate exact factual claims against the linked source articles before using this in product decisions."
+    prerequisites = entity.prerequisites or [
+        "Check license, permission, configuration, integration, and platform support before assuming the flow is available."
+    ]
+    failure_states = entity.failure_states or [
+        "Unavailable state, permission block, missing configuration, unsupported platform, or unclear recovery path."
+    ]
+    ux_implications = entity.ux_implications or [
+        "Expose prerequisites, blocked states, and recovery guidance near the affected user action."
+    ]
+
+    common = f"""## Summary
+
+{entity.summary}
+
+## Category
+
+{category}
+
+## Actors
+
+{_bullet_list(actors, "Primary actor not specified by source; infer from linked articles.")}
+
+## Surfaces
+
+{_bullet_list(surfaces, "Surface not specified by source; verify in linked articles.")}
+
+## Key points
+
+{key_points_md}
+"""
+
+    if entity.type == "task-flow":
+        steps = entity.steps or [
+            "Identify the entry point, verify prerequisites, complete the main action, and confirm the success state from the source article."
+        ]
+        return f"""{common}
+
+## What this flow is for
+
+This flow captures the user or admin task behind the source article, including prerequisites, visible surfaces, and likely recovery states.
+
+## Entry points / Surfaces
+
+{_bullet_list(surfaces, "Entry point not explicit in extraction; inspect source article.")}
+
+## Prerequisites
+
+{_bullet_list(prerequisites, "Prerequisites not explicit in extraction; inspect source article.")}
+
+## Flow steps
+
+{_numbered_list(steps, "Follow the source article sequence and preserve source-specific ordering.")}
+
+## Key decisions
+
+{_bullet_list(entity.key_points, "Identify the branch point, setting, role, or support condition that changes the flow.")}
+
+## Failure states
+
+{_bullet_list(failure_states, "No failure state extracted; inspect source for unavailable or blocked states.")}
+
+## UX implications
+
+{_bullet_list(ux_implications, source_note)}
+
+## Related
+
+{related_links}
+"""
+
+    if entity.type == "constraint":
+        return f"""{common}
+
+## Constraint type
+
+This page captures a design constraint: license, permission, policy, platform support, integration dependency, limit, or operational rule.
+
+## Applies to
+
+{_bullet_list(actors + surfaces, "Affected actor or surface not explicit in extraction; inspect source article.")}
+
+## Prerequisites / Requirements
+
+{_bullet_list(prerequisites, "Requirement not explicit in extraction; inspect source article.")}
+
+## Design impact
+
+{_bullet_list(ux_implications, source_note)}
+
+## Affected flows
+
+{related_links}
+
+## Failure states
+
+{_bullet_list(failure_states, "No failure state extracted; inspect source for unavailable or blocked states.")}
+
+## Related
+
+{related_links}
+"""
+
+    if entity.type == "ux-pattern":
+        states = entity.states or [
+            "Default",
+            "Empty / unavailable",
+            "Permission blocked",
+            "Configuration missing",
+            "Error / recovery",
+        ]
+        return f"""{common}
+
+## Intent
+
+Explain the reusable interaction pattern, why it exists, and what user expectation it supports.
+
+## User context
+
+{_bullet_list(actors, "User context not explicit in extraction; inspect source article.")}
+
+## Primary interaction model
+
+{entity.summary}
+
+## States
+
+{_bullet_list(states, "State not explicit in extraction; inspect source article.")}
+
+## Failure states
+
+{_bullet_list(failure_states, "No failure state extracted; inspect source for unavailable or blocked states.")}
+
+## Design implications
+
+{_bullet_list(ux_implications, source_note)}
+
+## Dependency map
+
+{related_links}
+
+## Related
+
+{related_links}
+"""
+
+    if entity.type == "user-role":
+        return f"""{common}
+
+## Who this role is
+
+{entity.summary}
+
+## Permissions and visibility
+
+{_bullet_list(entity.key_points, "Permission boundary not explicit in extraction; inspect source article.")}
+
+## Typical tasks
+
+{_bullet_list(entity.steps or entity.key_points, "Identify the tasks this role can initiate, approve, or troubleshoot.")}
+
+## Constraints and blocked states
+
+{_bullet_list(failure_states, "No blocked state extracted; inspect source article for role-gated behavior.")}
+
+## UX implications
+
+{_bullet_list(ux_implications, "Design must make ownership, visibility, and permission boundaries explicit.")}
+
+## Related
+
+{related_links}
+"""
+
+    return f"""{common}
+
+## Product context
+
+This concept belongs to `{category}` and should be read as part of a broader product-domain model, not as an isolated summary.
+
+## Dependencies and constraints
+
+{_bullet_list(prerequisites, "No explicit dependency extracted; inspect related constraints and source articles.")}
+
+## Failure states
+
+{_bullet_list(failure_states, "No failure state extracted; inspect source article for unavailable or blocked states.")}
+
+## UX implications
+
+{_bullet_list(ux_implications, source_note)}
+
+## Related
+
+{related_links}
+"""
+
 
 def _write_wiki_page(
     entity: WikiEntity, wiki_dir: Path, product: str = "zoom-phone",
@@ -419,6 +788,16 @@ def _write_wiki_page(
     merged_sources = entity.sources.copy()
     merged_summary = entity.summary
     merged_points = list(entity.key_points)
+    merged_structured = {
+        "actors": list(entity.actors),
+        "surfaces": list(entity.surfaces),
+        "prerequisites": list(entity.prerequisites),
+        "steps": list(entity.steps),
+        "failure_states": list(entity.failure_states),
+        "ux_implications": list(entity.ux_implications),
+        "states": list(entity.states),
+    }
+    primary_category = _entity_category(entity)
 
     for e in existing_entities:
         for s in e.sources:
@@ -429,8 +808,31 @@ def _write_wiki_page(
         for p in e.key_points:
             if p not in merged_points:
                 merged_points.append(p)
+        if not primary_category and e.primary_category:
+            primary_category = e.primary_category
+        for attr, values in merged_structured.items():
+            for item in getattr(e, attr):
+                if item not in values:
+                    values.append(item)
 
     related = sorted(set(entity.related + [r for e in existing_entities for r in e.related]))
+    render_entity = WikiEntity(
+        type=entity.type,
+        title=entity.title,
+        slug=entity.slug,
+        summary=merged_summary,
+        key_points=merged_points,
+        related=related,
+        sources=merged_sources,
+        primary_category=primary_category,
+        actors=merged_structured["actors"],
+        surfaces=merged_structured["surfaces"],
+        prerequisites=merged_structured["prerequisites"],
+        steps=merged_structured["steps"],
+        failure_states=merged_structured["failure_states"],
+        ux_implications=merged_structured["ux_implications"],
+        states=merged_structured["states"],
+    )
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
@@ -438,6 +840,7 @@ def _write_wiki_page(
         f"  - article_id: {s['article_id']}\n    title: {s['title']}\n    source_url: {s.get('source_url', '')}"
         for s in merged_sources
     )
+    source_article_ids = sorted({s.get("article_id", "") for s in merged_sources if s.get("article_id")})
 
     # Prune wikilinks that don't resolve to existing entities
     if valid_slugs is not None:
@@ -457,6 +860,13 @@ def _write_wiki_page(
 type: {entity.type}
 product: {product}
 title: {entity.title}
+primary_category: {primary_category}
+actors:
+{_yaml_list(_default_actors(render_entity))}
+surfaces:
+{_yaml_list(_default_surfaces(render_entity))}
+source_article_ids:
+{_yaml_list(source_article_ids)}
 sources:
 {sources_yaml}
 confidence: high
@@ -465,17 +875,7 @@ last_reviewed: {today}
 
 # {entity.title}
 
-## Summary
-
-{merged_summary}
-
-## Key points
-
-{key_points_md}
-
-## Related
-
-{related_links}
+{_page_body(render_entity, related_links, key_points_md)}
 """
 
     path.write_text(page, encoding="utf-8")
@@ -486,9 +886,26 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
     """Read a wiki page back into an entity (basic parse)."""
     content = path.read_text(encoding="utf-8")
     fm, body = _extract_frontmatter_manual(content)
+    fm_text = content.split("---", 2)[1] if content.count("---") >= 2 else ""
 
     etype = fm.get("type", "concept")
     title = fm.get("title", path.stem)
+    primary_category = fm.get("primary_category", "")
+
+    def _fm_list(key: str) -> list[str]:
+        values: list[str] = []
+        in_key = False
+        for line in fm_text.splitlines():
+            stripped = line.strip()
+            if stripped == f"{key}:":
+                in_key = True
+                continue
+            if in_key:
+                if line and not line.startswith(" "):
+                    break
+                if stripped.startswith("- "):
+                    values.append(stripped[2:].strip().strip('"'))
+        return values
 
     sources: list[dict[str, str]] = []
     in_sources = False
@@ -558,6 +975,9 @@ def _read_wiki_page(path: Path) -> Optional[WikiEntity]:
         key_points=key_points,
         related=related,
         sources=sources,
+        primary_category=primary_category,
+        actors=_fm_list("actors"),
+        surfaces=_fm_list("surfaces"),
     )
 
 
@@ -742,6 +1162,13 @@ def commit_extraction(
     save_manifest(manifest_path, manifest)
 
     _generate_index(wiki_dir, product)
+    generate_knowledge_navigation(
+        output_dir=output_dir,
+        wiki_dir=wiki_dir,
+        raw_dir=raw_dir,
+        manifest=manifest,
+        product=product,
+    )
     _write_ingest_report(
         output_dir, stats, processed_articles, error_articles,
         quality_buckets=quality_buckets, avg_score=_avg_score(scored),

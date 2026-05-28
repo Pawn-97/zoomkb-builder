@@ -10,6 +10,8 @@ wiki/task-flows/*.md
 wiki/user-roles/*.md
 wiki/constraints/*.md
 wiki/ux-patterns/*.md
+10-LLM-Wiki/*.md           ← Taxonomy, master index, full listings, cross references, category pages
+30-Agent-Playbooks/*.md    ← Troubleshooting and root-cause playbooks
 ```
 
 ## Extraction strategy
@@ -27,6 +29,21 @@ Rule-based relevance scoring by default. Optional LLM refinement with `ZOOMKB_LL
 | >= 8 | High | Auto-accept, enters ingest |
 | 4-7 | Medium | Review queue |
 | < 4 | Low | Rejected |
+
+## Product taxonomy and navigation
+
+All product KBs use the same design-facing taxonomy layer so Zoom Rooms is not treated as a one-off special case. The taxonomy categories cover deployment, concepts, task workflows, devices/surfaces, scheduling/collaboration, admin policy, integrations, requirements/support, troubleshooting, and AI/automation.
+
+During ingest, each entity receives `primary_category`, actor, surface, source article IDs, and richer type-specific sections. After wiki pages are written, the builder generates:
+
+- `10-LLM-Wiki/Taxonomy.md`
+- `10-LLM-Wiki/Master Index.md`
+- `10-LLM-Wiki/Full Category Listings.md`
+- `10-LLM-Wiki/Feature Cross References.md`
+- `10-LLM-Wiki/Category Pages/*.md`
+- `30-Agent-Playbooks/Troubleshooting/*.md`
+
+Lint treats these layers as required once wiki pages exist, and flags missing categories, thin bodies, over-merged source sets, incomplete task flows, incomplete UX patterns, low relationship density, and oversized constraints.
 
 ## Supported Products
 
@@ -67,6 +84,14 @@ zoom-phone-kb/
     ├── task-flows/
     ├── constraints/
     └── ux-patterns/
+├── 10-LLM-Wiki/
+│   ├── Master Index.md
+│   ├── Taxonomy.md
+│   ├── Full Category Listings.md
+│   ├── Feature Cross References.md
+│   └── Category Pages/
+└── 30-Agent-Playbooks/
+    └── Troubleshooting/
 ```
 
 ## Requirements

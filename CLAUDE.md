@@ -67,7 +67,7 @@ Suite is 54 tests across `test_ingest.py`, `test_lint.py`, `test_validator.py`, 
 - `raw/` is append-only and never edited by LLM. Quality issues are filtered at validate / ingest time, not by rewriting source.
 - Wiki entities must carry `source_article_ids` frontmatter — `_check_traceability` in `lint.py` will fail otherwise.
 - Slugs are produced by `_slugify` + `_normalize_slug` in `ingest.py`; dedup relies on this canonical form, so don't bypass it when adding new entity writers.
-- `docs/ideas/` contains historical product-shaping notes, not implementation truth. Prefer `README.md`, this file, and `references/*.md` for current behavior.
+- `docs/ideas/` and `docs/reports/` contain historical planning and validation notes, not implementation truth. Prefer `README.md`, this file, and `references/*.md` for current behavior.
 
 ## Environment variables
 

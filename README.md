@@ -135,6 +135,15 @@ wiki/ux-patterns/*.md
 Extracted entities go through three-stage dedup (exact slug → normalized slug → title Jaccard similarity) and are filtered with `--min-sources` and `--min-quality` to remove thin pages.
 Discovery review files live under `review/`: `candidate-articles.json`, `rejected-articles.json`, `low-confidence/`, and `rejected/`.
 
+### Repository layout
+
+- `src/zoomkb/` — Python package and CLI implementation.
+- `tests/` — pytest suite for ingest, lint, validation, and UX-partner compatibility.
+- `references/` — current architecture, CLI, and integration references.
+- `docs/ideas/` — historical product and implementation planning notes.
+- `docs/reports/` — historical validation and test reports.
+- `zoom-phone-kb/` — checked-in sample KB output.
+
 ### Requirements
 
 | Dependency | Purpose |
@@ -273,6 +282,15 @@ wiki/ux-patterns/*.md
 
 提取后的实体经过三阶段去重（精确 slug → 归一化 slug → 标题 Jaccard 相似度），并按照 `--min-sources`（最低来源数）和 `--min-quality`（最低质量分）过滤瘦页面。
 发现阶段的审核文件位于 `review/`：`candidate-articles.json`、`rejected-articles.json`、`low-confidence/` 和 `rejected/`。
+
+### 仓库结构
+
+- `src/zoomkb/` — Python 包和 CLI 实现。
+- `tests/` — ingest、lint、validation、UX-partner 兼容性的 pytest 测试。
+- `references/` — 当前架构、CLI 和集成参考文档。
+- `docs/ideas/` — 历史产品方案和实现规划笔记。
+- `docs/reports/` — 历史验证报告和测试报告。
+- `zoom-phone-kb/` — 已纳入版本控制的示例 KB 输出。
 
 ### 依赖
 

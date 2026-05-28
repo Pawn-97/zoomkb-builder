@@ -202,7 +202,6 @@ cp SKILL.md ~/.claude/skills/zoomkb/SKILL.md
 本仓库同时提供 `.cursor/rules/` 项目规则：
 
 - `zoomkb.mdc` 为 Cursor agent 提供项目架构、运行命令和 KB 不变量。
-- `neat-freak.mdc` 让 Cursor 在用户要求同步、整理、收尾、交接时能加载文档清理技能。
 
 Cursor 不会直接消费 Claude Code 的斜杠命令。在 Cursor 中请从终端运行 Python CLI（`zoomkb ...`），由项目规则负责提供 agent 上下文。
 
